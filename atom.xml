@@ -2,12 +2,12 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>梓妤</title>
   
-  <subtitle>分享技术，品味人生</subtitle>
-  <link href="http://example.com/atom.xml" rel="self"/>
+  <subtitle>苟有恒,何必三更眠五更起;最无益,莫过一日暴十日寒。</subtitle>
+  <link href="https://codercandy.github.io/atom.xml" rel="self"/>
   
-  <link href="http://example.com/"/>
+  <link href="https://codercandy.github.io/"/>
   <updated>2021-12-05T05:30:59.095Z</updated>
-  <id>http://example.com/</id>
+  <id>https://codercandy.github.io/</id>
   
   <author>
     <name>Candy liu</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>Flink学习笔记</title>
-    <link href="http://example.com/2021/12/05/flink-xue-xi-bi-ji/"/>
-    <id>http://example.com/2021/12/05/flink-xue-xi-bi-ji/</id>
+    <link href="https://codercandy.github.io/2021/12/05/flink-xue-xi-bi-ji/"/>
+    <id>https://codercandy.github.io/2021/12/05/flink-xue-xi-bi-ji/</id>
     <published>2021-12-05T05:30:57.000Z</published>
     <updated>2021-12-05T05:30:59.095Z</updated>
     
@@ -34,21 +34,21 @@
     
     
     
-    <category term="学习" scheme="http://example.com/categories/%E5%AD%A6%E4%B9%A0/"/>
+    <category term="学习" scheme="https://codercandy.github.io/categories/%E5%AD%A6%E4%B9%A0/"/>
     
     
-    <category term="后端" scheme="http://example.com/tags/%E5%90%8E%E7%AB%AF/"/>
+    <category term="后端" scheme="https://codercandy.github.io/tags/%E5%90%8E%E7%AB%AF/"/>
     
-    <category term="Flink" scheme="http://example.com/tags/Flink/"/>
+    <category term="Flink" scheme="https://codercandy.github.io/tags/Flink/"/>
     
-    <category term="流计算" scheme="http://example.com/tags/%E6%B5%81%E8%AE%A1%E7%AE%97/"/>
+    <category term="流计算" scheme="https://codercandy.github.io/tags/%E6%B5%81%E8%AE%A1%E7%AE%97/"/>
     
   </entry>
   
   <entry>
     <title>Spring Boot学习笔记</title>
-    <link href="http://example.com/2021/12/05/springboot-jing-dian-xue-xi-bi-ji/"/>
-    <id>http://example.com/2021/12/05/springboot-jing-dian-xue-xi-bi-ji/</id>
+    <link href="https://codercandy.github.io/2021/12/05/springboot-jing-dian-xue-xi-bi-ji/"/>
+    <id>https://codercandy.github.io/2021/12/05/springboot-jing-dian-xue-xi-bi-ji/</id>
     <published>2021-12-05T02:31:45.000Z</published>
     <updated>2021-12-05T02:41:41.343Z</updated>
     
@@ -63,19 +63,19 @@
     
     
     
-    <category term="学习" scheme="http://example.com/categories/%E5%AD%A6%E4%B9%A0/"/>
+    <category term="学习" scheme="https://codercandy.github.io/categories/%E5%AD%A6%E4%B9%A0/"/>
     
     
-    <category term="后端" scheme="http://example.com/tags/%E5%90%8E%E7%AB%AF/"/>
+    <category term="后端" scheme="https://codercandy.github.io/tags/%E5%90%8E%E7%AB%AF/"/>
     
-    <category term="SpringBoot" scheme="http://example.com/tags/SpringBoot/"/>
+    <category term="SpringBoot" scheme="https://codercandy.github.io/tags/SpringBoot/"/>
     
   </entry>
   
   <entry>
     <title>Electron学习笔记</title>
-    <link href="http://example.com/2021/12/04/electron-xue-xi-bi-ji/"/>
-    <id>http://example.com/2021/12/04/electron-xue-xi-bi-ji/</id>
+    <link href="https://codercandy.github.io/2021/12/04/electron-xue-xi-bi-ji/"/>
+    <id>https://codercandy.github.io/2021/12/04/electron-xue-xi-bi-ji/</id>
     <published>2021-12-04T14:15:54.000Z</published>
     <updated>2021-12-04T14:16:23.440Z</updated>
     
@@ -93,12 +93,12 @@
     
     
     
-    <category term="学习" scheme="http://example.com/categories/%E5%AD%A6%E4%B9%A0/"/>
+    <category term="学习" scheme="https://codercandy.github.io/categories/%E5%AD%A6%E4%B9%A0/"/>
     
     
-    <category term="前端" scheme="http://example.com/tags/%E5%89%8D%E7%AB%AF/"/>
+    <category term="前端" scheme="https://codercandy.github.io/tags/%E5%89%8D%E7%AB%AF/"/>
     
-    <category term="Electron" scheme="http://example.com/tags/Electron/"/>
+    <category term="Electron" scheme="https://codercandy.github.io/tags/Electron/"/>
     
   </entry>
   
