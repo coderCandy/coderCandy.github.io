@@ -313,28 +313,10 @@
                 </a>
                 
                 
-                <a href="/tags/java/" title="java: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="java" style="background-color: #F5EEF8;">java
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/%E8%A7%84%E8%8C%83/" title="规范: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="规范" style="background-color: #D5F5E3;">规范
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
                 <a href="/tags/Flink/" title="Flink: 1">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            data-tagname="Flink" style="background-color: #E8F8F5;">Flink
+                            data-tagname="Flink" style="background-color: #F5EEF8;">Flink
                         <span class="tag-length">1</span>
                     </span>
                 </a>
@@ -343,7 +325,7 @@
                 <a href="/tags/%E6%B5%81%E8%AE%A1%E7%AE%97/" title="流计算: 1">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            data-tagname="流计算" style="background-color: #FEF9E7;">流计算
+                            data-tagname="流计算" style="background-color: #D5F5E3;">流计算
                         <span class="tag-length">1</span>
                     </span>
                 </a>
@@ -352,7 +334,7 @@
                 <a href="/tags/%E5%89%8D%E7%AB%AF/" title="前端: 1">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            data-tagname="前端" style="background-color: #F8F9F9;">前端
+                            data-tagname="前端" style="background-color: #E8F8F5;">前端
                         <span class="tag-length">1</span>
                     </span>
                 </a>
@@ -361,7 +343,25 @@
                 <a href="/tags/Electron/" title="Electron: 1">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            data-tagname="Electron" style="background-color: #82E0AA;">Electron
+                            data-tagname="Electron" style="background-color: #FEF9E7;">Electron
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/java/" title="java: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="java" style="background-color: #F8F9F9;">java
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/%E8%A7%84%E8%8C%83/" title="规范: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="规范" style="background-color: #82E0AA;">规范
                         <span class="tag-length">1</span>
                     </span>
                 </a>
@@ -376,19 +376,10 @@
                 </a>
                 
                 
-                <a href="/tags/SpringBoot/" title="SpringBoot: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="SpringBoot" style="background-color: #A3E4D7;">SpringBoot
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
                 <a href="/tags/%E7%AE%A1%E7%90%86/" title="管理: 1">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            data-tagname="管理" style="background-color: #85C1E9;">管理
+                            data-tagname="管理" style="background-color: #A3E4D7;">管理
                         <span class="tag-length">1</span>
                     </span>
                 </a>
@@ -397,7 +388,16 @@
                 <a href="/tags/%E9%AB%98%E7%BA%A7%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/" title="高级项目管理: 1">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            data-tagname="高级项目管理" style="background-color: #F8C471;">高级项目管理
+                            data-tagname="高级项目管理" style="background-color: #85C1E9;">高级项目管理
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/SpringBoot/" title="SpringBoot: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="SpringBoot" style="background-color: #F8C471;">SpringBoot
                         <span class="tag-length">1</span>
                     </span>
                 </a>
@@ -573,11 +573,11 @@
     
 
     <div class="container row center-align"
-         style="margin-bottom: 0px !important;">
+         style="margin-bottom: 15px !important;">
         <div class="col s12 m8 l8 copy-right">
             Copyright&nbsp;&copy;
             
-                <span id="year">2019-2021</span>
+                <span id="year">2021</span>
             
             <a href="/about" target="_blank">Candy liu</a>
             |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
@@ -603,6 +603,60 @@
             <br>
 
             <!-- 运行天数提醒. -->
+            
+                <span id="sitetime"> Loading ...</span>
+                <script>
+                    var calcSiteTime = function () {
+                        var seconds = 1000;
+                        var minutes = seconds * 60;
+                        var hours = minutes * 60;
+                        var days = hours * 24;
+                        var years = days * 365;
+                        var today = new Date();
+                        var startYear = "2021";
+                        var startMonth = "12";
+                        var startDate = "5";
+                        var startHour = "22";
+                        var startMinute = "49";
+                        var startSecond = "0";
+                        var todayYear = today.getFullYear();
+                        var todayMonth = today.getMonth() + 1;
+                        var todayDate = today.getDate();
+                        var todayHour = today.getHours();
+                        var todayMinute = today.getMinutes();
+                        var todaySecond = today.getSeconds();
+                        var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                        var diff = t2 - t1;
+                        var diffYears = Math.floor(diff / years);
+                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+
+                        // 区分是否有年份.
+                        var language = 'zh-CN';
+                        if (startYear === String(todayYear)) {
+                            document.getElementById("year").innerHTML = todayYear;
+                            var daysTip = 'This site has been running for ' + diffDays + ' days';
+                            if (language === 'zh-CN') {
+                                daysTip = '本站已运行 ' + diffDays + ' 天';
+                            } else if (language === 'zh-HK') {
+                                daysTip = '本站已運行 ' + diffDays + ' 天';
+                            }
+                            document.getElementById("sitetime").innerHTML = daysTip;
+                        } else {
+                            document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                            var yearsAndDaysTip = 'This site has been running for ' + diffYears + ' years and '
+                                + diffDays + ' days';
+                            if (language === 'zh-CN') {
+                                yearsAndDaysTip = '本站已运行 ' + diffYears + ' 年 ' + diffDays + ' 天';
+                            } else if (language === 'zh-HK') {
+                                yearsAndDaysTip = '本站已運行 ' + diffYears + ' 年 ' + diffDays + ' 天';
+                            }
+                            document.getElementById("sitetime").innerHTML = yearsAndDaysTip;
+                        }
+                    }
+
+                    calcSiteTime();
+                </script>
             
             <br>
             
