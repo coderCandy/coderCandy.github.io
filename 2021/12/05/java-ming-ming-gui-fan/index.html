@@ -437,8 +437,8 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1><span id="java-命名规范">Java 命名规范</span></h1><h2><span id="简介">简介</span></h2><p>在本文中，将从大到小，从外到内，总结Java编程中的命名规范。文中将会涉及到日常工作中常见的命名示例，如包命名，类命名，接口命名，方法命名，变量命名，常类命名，抽象类命名，异常类命名以及扩展类命名等。我将按照项目工程目录结构，从包，类(接口，抽象类，异常类)，方法，变量和常量的顺序展开介绍。</p>
-<h2><span id="1-包命名规范">1. 包命名规范</span></h2><p>包(Package)的作用是将功能相似或相关的类或者接口进行分组管理，便于类的定位和查找，同时也可以使用包来避免类名的冲突和访问控制，使代码更容易维护。通常，包命使用小写英文字母进行命名，并使用“.”进行分割，每个被分割的单元只能包含一个名词。一般地，包命名常采用顶级域名作为前缀，例如com，net，org，edu，gov，cn，io等，随后紧跟公司/组织/个人名称以及功能模块名称。下面是一些包命名示例：</p>
+                <h1 id="Java-命名规范"><a href="#Java-命名规范" class="headerlink" title="Java 命名规范"></a>Java 命名规范</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>在本文中，将从大到小，从外到内，总结Java编程中的命名规范。文中将会涉及到日常工作中常见的命名示例，如包命名，类命名，接口命名，方法命名，变量命名，常类命名，抽象类命名，异常类命名以及扩展类命名等。我将按照项目工程目录结构，从包，类(接口，抽象类，异常类)，方法，变量和常量的顺序展开介绍。</p>
+<h2 id="1-包命名规范"><a href="#1-包命名规范" class="headerlink" title="1. 包命名规范"></a>1. 包命名规范</h2><p>包(Package)的作用是将功能相似或相关的类或者接口进行分组管理，便于类的定位和查找，同时也可以使用包来避免类名的冲突和访问控制，使代码更容易维护。通常，包命使用小写英文字母进行命名，并使用“.”进行分割，每个被分割的单元只能包含一个名词。一般地，包命名常采用顶级域名作为前缀，例如com，net，org，edu，gov，cn，io等，随后紧跟公司/组织/个人名称以及功能模块名称。下面是一些包命名示例：</p>
 <pre><code>package org.springframework.boot.autoconfigure.cloud
 package org.springframework.boot.util
 package org.hibernate.action
@@ -456,7 +456,7 @@ package java.net
 package java.util
 package javax.annotation
 </code></pre>
-<h2><span id="2-类命名规范">2. 类命名规范</span></h2><p>类(Class)通常采用名词进行命名，且首字母大写，如果一个类名包含两个以上名词，建议使用驼峰命名(Camel-Case)法书写类名,每个名词首字母也应该大写。一般地，类名的书写尽量使其保持简单和描述的完整性，因此在书写类名时不建议使用缩写(一些约定俗成的命名除外，例如Internationalization and Localization缩写成i18n，Uniform Resource Identifier缩写成URI，Data Access Object缩写成DAO，JSON Web Token缩写成JWT，HyperText Markup Language缩写成HTML等等)。下列是一些常见的类命名示例：</p>
+<h2 id="2-类命名规范"><a href="#2-类命名规范" class="headerlink" title="2. 类命名规范"></a>2. 类命名规范</h2><p>类(Class)通常采用名词进行命名，且首字母大写，如果一个类名包含两个以上名词，建议使用驼峰命名(Camel-Case)法书写类名,每个名词首字母也应该大写。一般地，类名的书写尽量使其保持简单和描述的完整性，因此在书写类名时不建议使用缩写(一些约定俗成的命名除外，例如Internationalization and Localization缩写成i18n，Uniform Resource Identifier缩写成URI，Data Access Object缩写成DAO，JSON Web Token缩写成JWT，HyperText Markup Language缩写成HTML等等)。下列是一些常见的类命名示例：</p>
 <pre><code>public class UserDTO&#123;
     //TODO...
 &#125;
@@ -493,7 +493,7 @@ public class enum Thread.State&#123;
     //...
 &#125;
 </code></pre>
-<h3><span id="21-接口命名规范">2.1 接口命名规范</span></h3><p>首先，接口(Interface)是一种表述某一类型对象动作的特殊类；简单来说，接口也是类(不太严谨)，所以，接口的名称的书写也应该符合类名书写规范，首字母应该大写，与普通类名不同的是，接口命名时通常采用形容词或动词来描述接口的动作行为。下列是Oracle Java中一些标准库的接口使用形容词命名示例：</p>
+<h3 id="2-1-接口命名规范"><a href="#2-1-接口命名规范" class="headerlink" title="2.1 接口命名规范"></a>2.1 接口命名规范</h3><p>首先，接口(Interface)是一种表述某一类型对象动作的特殊类；简单来说，接口也是类(不太严谨)，所以，接口的名称的书写也应该符合类名书写规范，首字母应该大写，与普通类名不同的是，接口命名时通常采用形容词或动词来描述接口的动作行为。下列是Oracle Java中一些标准库的接口使用形容词命名示例：</p>
 <pre><code>public interface Closeable&#123;
     //...
 &#125;
@@ -530,7 +530,7 @@ public interface MessageSourceResolvable&#123;
     //...
 &#125;
 </code></pre>
-<h3><span id="22-抽象类命名规范">2.2 抽象类命名规范</span></h3><p>抽象类(Abstract Class)是一种特殊的类，其命名与普通类的命名规范相当。一般地，为了将抽象类与普通类和接口做出区别，提高抽象类的可读性，在命名抽象类时，会以“Abstract”/“Base”作为类命的前缀。下面是编程中一些常规的命名示例：</p>
+<h3 id="2-2-抽象类命名规范"><a href="#2-2-抽象类命名规范" class="headerlink" title="2.2 抽象类命名规范"></a>2.2 抽象类命名规范</h3><p>抽象类(Abstract Class)是一种特殊的类，其命名与普通类的命名规范相当。一般地，为了将抽象类与普通类和接口做出区别，提高抽象类的可读性，在命名抽象类时，会以“Abstract”/“Base”作为类命的前缀。下面是编程中一些常规的命名示例：</p>
 <pre><code>public abstract class AbstractRepository&lt;T&gt;&#123;
     //...
 &#125;
@@ -561,7 +561,7 @@ public abstract class AbstractContextLoaderInitializer&#123;
     //...
 &#125;
 </code></pre>
-<h3><span id="23-异常类命名规范">2.3 异常类命名规范</span></h3><p>异常类(Exception Class)也是类的一种，但与普通类命名不同的是，异常类在命名时需要使用“Exception”作为其后缀。下面是常见的异常类命名示例：</p>
+<h3 id="2-3-异常类命名规范"><a href="#2-3-异常类命名规范" class="headerlink" title="2.3 异常类命名规范"></a>2.3 异常类命名规范</h3><p>异常类(Exception Class)也是类的一种，但与普通类命名不同的是，异常类在命名时需要使用“Exception”作为其后缀。下面是常见的异常类命名示例：</p>
 <pre><code>public class FileNotFoundException&#123;
     //...
 &#125;
@@ -604,8 +604,8 @@ public class NoSuchMethodError&#123;
     //...
 &#125;
 </code></pre>
-<h2><span id="3方法命名规范">3.方法命名规范</span></h2><p>方法(Method)命名时,其首字母应该小写，如果方法签名由多个单词组成，则从第二个单词起，使用驼峰命名法进行书写。一般地，在对方法进行命名时，通常采用动词/动词+名词的组合，下面是方法命名的一些常见示例。</p>
-<h3><span id="31-表述获取">3.1 表述获取</span></h3><p>如果一个方法用于获取某个值，通常使用“get”作为其前缀，例如：</p>
+<h2 id="3-方法命名规范"><a href="#3-方法命名规范" class="headerlink" title="3.方法命名规范"></a>3.方法命名规范</h2><p>方法(Method)命名时,其首字母应该小写，如果方法签名由多个单词组成，则从第二个单词起，使用驼峰命名法进行书写。一般地，在对方法进行命名时，通常采用动词/动词+名词的组合，下面是方法命名的一些常见示例。</p>
+<h3 id="3-1-表述获取"><a href="#3-1-表述获取" class="headerlink" title="3.1 表述获取"></a>3.1 表述获取</h3><p>如果一个方法用于获取某个值，通常使用“get”作为其前缀，例如：</p>
 <pre><code>public String getUserName()&#123;
     //...
 &#125;
@@ -616,7 +616,7 @@ public User getOne()&#123;
     //...
 &#125;
 </code></pre>
-<h3><span id="32-表述查询">3.2 表述查询</span></h3><p>如果方法需要通过查询或筛选的方式获取某个数据，通常使用“find”/“query”作为其前缀，例如：</p>
+<h3 id="3-2-表述查询"><a href="#3-2-表述查询" class="headerlink" title="3.2 表述查询"></a>3.2 表述查询</h3><p>如果方法需要通过查询或筛选的方式获取某个数据，通常使用“find”/“query”作为其前缀，例如：</p>
 <pre><code>public List&lt;User&gt; findOne(Integer id)&#123;
     //...
 &#125;
@@ -627,7 +627,7 @@ public List&lt;String&gt; queryOrders()&#123;
     //...
 &#125;
 </code></pre>
-<h3><span id="33-表述条件">3.3 表述条件</span></h3><p>如果一个方法需要一些条件参数，则可以使用“by”/“with”等字符作为方法名中条件的连接符，例如：</p>
+<h3 id="3-3-表述条件"><a href="#3-3-表述条件" class="headerlink" title="3.3 表述条件"></a>3.3 表述条件</h3><p>如果一个方法需要一些条件参数，则可以使用“by”/“with”等字符作为方法名中条件的连接符，例如：</p>
 <pre><code>public User findByUsername(String username)&#123;
     //...
 &#125;
@@ -638,7 +638,7 @@ public List&lt;User&gt; findAllByUsernameOrderByIdDesc(String username)&#123;
     //...
 &#125;
 </code></pre>
-<h3><span id="34-表述设置">3.4 表述设置</span></h3><p>如果一个方法是要设置，插入，修改，删除等操作，应该将对应的动词(set,insert,update,delete)作为其名词的前缀，例如：</p>
+<h3 id="3-4-表述设置"><a href="#3-4-表述设置" class="headerlink" title="3.4 表述设置"></a>3.4 表述设置</h3><p>如果一个方法是要设置，插入，修改，删除等操作，应该将对应的动词(set,insert,update,delete)作为其名词的前缀，例如：</p>
 <pre><code>public void setName(String name)&#123;
     //...
 &#125;
@@ -652,7 +652,7 @@ public void clearAll()&#123;
     //...
 &#125;
 </code></pre>
-<h3><span id="35-其他规范">3.5 其他规范</span></h3><p>如果一个方法用于获取某组数据的长度或数量，则该方法应该使用length或size命名；如果方法的返回值为布尔类型(Boolean)，则该方法应该使用“is”或”has”作为前缀；如果方法用于将一种类型的数据转换为另一种数据数类型，则可以使用“to”作为前缀。下面是综合示例：</p>
+<h3 id="3-5-其他规范"><a href="#3-5-其他规范" class="headerlink" title="3.5 其他规范"></a>3.5 其他规范</h3><p>如果一个方法用于获取某组数据的长度或数量，则该方法应该使用length或size命名；如果方法的返回值为布尔类型(Boolean)，则该方法应该使用“is”或”has”作为前缀；如果方法用于将一种类型的数据转换为另一种数据数类型，则可以使用“to”作为前缀。下面是综合示例：</p>
 <pre><code>public long length()&#123;
     //...
 &#125;
@@ -678,7 +678,7 @@ public String toString(Object obj)&#123;
     //...
 &#125;
 </code></pre>
-<h2><span id="4-变量命名规范">4. 变量命名规范</span></h2><p>变量(Variable)命名包括参数名称，成员变量和局部变量。变量命名通常以小写字母开头，如果变量名由多个单词构成，则从第二个单词起首字母需要大写，在变量命名过程中，不建议使用“_”作为前缀或者单词之间的分割符号。下面是一些常见的变量命名示例：</p>
+<h2 id="4-变量命名规范"><a href="#4-变量命名规范" class="headerlink" title="4. 变量命名规范"></a>4. 变量命名规范</h2><p>变量(Variable)命名包括参数名称，成员变量和局部变量。变量命名通常以小写字母开头，如果变量名由多个单词构成，则从第二个单词起首字母需要大写，在变量命名过程中，不建议使用“_”作为前缀或者单词之间的分割符号。下面是一些常见的变量命名示例：</p>
 <pre><code>private String nickName;
 private String mobileNumber;
 private Long id;
@@ -686,7 +686,7 @@ private String username;
 private Long orderId;
 private Long orderItemId;
 </code></pre>
-<h2><span id="5-常量命名规范">5. 常量命名规范</span></h2><p>一般地，常量名称采用全部大写的英文单词书写，如果常量名称由多个单词组成，则单词之间统一使用“_”进行分割，下面是常量命名示例：</p>
+<h2 id="5-常量命名规范"><a href="#5-常量命名规范" class="headerlink" title="5. 常量命名规范"></a>5. 常量命名规范</h2><p>一般地，常量名称采用全部大写的英文单词书写，如果常量名称由多个单词组成，则单词之间统一使用“_”进行分割，下面是常量命名示例：</p>
 <pre><code>public static final String LOGIN_USER_SESSION_KEY = &quot;current_login_user&quot;;
 public static final int MAX_AGE_VALUE = 120;
 public static final int DEFAULT_PAGE_NO = 1;
@@ -694,7 +694,7 @@ public static final long MAX_PAGE_SIZE = 1000;
 public static final boolean HAS_LICENSE = false;
 public static final boolean IS_CHECKED = false;
 </code></pre>
-<h2><span id="6-枚举命名规范">6. 枚举命名规范</span></h2><p>枚举(Enum)类是一种特殊的类，其命名规范遵循普通类的命名约束条件，首字母大写，采用驼峰命名法；枚举类中定义的值的名称遵循常量的命名规范，且枚举值的名称需要与类名有一定的关联性，下面是枚举的一些示例：</p>
+<h2 id="6-枚举命名规范"><a href="#6-枚举命名规范" class="headerlink" title="6. 枚举命名规范"></a>6. 枚举命名规范</h2><p>枚举(Enum)类是一种特殊的类，其命名规范遵循普通类的命名约束条件，首字母大写，采用驼峰命名法；枚举类中定义的值的名称遵循常量的命名规范，且枚举值的名称需要与类名有一定的关联性，下面是枚举的一些示例：</p>
 <pre><code>public enum Color&#123;
     RED,YELLOW,BLUE,GREEN,WHITE;
 &#125;
@@ -716,7 +716,7 @@ public enum PhysicalSize&#123;
     TYPE_USE;
 &#125;
 </code></pre>
-<h2><span id="7-其他命名规范">7. 其他命名规范</span></h2><h3><span id="71-数组">7.1 数组</span></h3><p>在定义数组时，为了便于阅读，尽量保持以下的书写规范：</p>
+<h2 id="7-其他命名规范"><a href="#7-其他命名规范" class="headerlink" title="7. 其他命名规范"></a>7. 其他命名规范</h2><h3 id="7-1-数组"><a href="#7-1-数组" class="headerlink" title="7.1 数组"></a>7.1 数组</h3><p>在定义数组时，为了便于阅读，尽量保持以下的书写规范：</p>
 <pre><code>int[] array = new int[10];
 int[] idArray =&#123;1,2,3,4,5&#125;;
 String[] nameArray = &#123;&quot;First&quot;,&quot;Yellow&quot;,&quot;Big&quot;&#125;
@@ -729,7 +729,7 @@ public List&lt;String&gt; getNameById(Integer...ids)&#123;
     //...
 &#125;
 </code></pre>
-<h3><span id="72-表述复数或者集合">7.2 表述复数或者集合</span></h3><p>如果一个变量用于描述多个数据时，尽量使用单词的复数形式进行书写，例如：</p>
+<h3 id="7-2-表述复数或者集合"><a href="#7-2-表述复数或者集合" class="headerlink" title="7.2 表述复数或者集合"></a>7.2 表述复数或者集合</h3><p>如果一个变量用于描述多个数据时，尽量使用单词的复数形式进行书写，例如：</p>
 <pre><code>Collection&lt;Order&gt; orders;
 int[] values;
 List&lt;Item&gt; items;
@@ -738,7 +738,7 @@ List&lt;Item&gt; items;
 <pre><code>Map&lt;String,User&gt; userMap;
 Map&lt;String,List&lt;Object&gt;&gt; listMap;
 </code></pre>
-<h3><span id="73-泛型类">7.3 泛型类</span></h3><p>在书写泛型类时，通常做以下的约定：</p>
+<h3 id="7-3-泛型类"><a href="#7-3-泛型类" class="headerlink" title="7.3 泛型类"></a>7.3 泛型类</h3><p>在书写泛型类时，通常做以下的约定：</p>
 <ul>
 <li>E表示Element，通常用在集合中；</li>
 <li>ID用于表示对象的唯一标识符类型</li>
@@ -786,7 +786,7 @@ public static &lt;T&gt; List&lt;T&gt; methodName(Class&lt;T&gt; clz)&#123;
     return dataList;
 &#125;
 </code></pre>
-<h3><span id="74-接口实现类">7.4 接口实现类</span></h3><p>为了便于阅读，在通常情况下，建议接口实现类使用“Impl作为后缀”，不建议使用大写的“I”作为接口前缀，下面是接口和接口实现类的书写示例。</p>
+<h3 id="7-4-接口实现类"><a href="#7-4-接口实现类" class="headerlink" title="7.4 接口实现类"></a>7.4 接口实现类</h3><p>为了便于阅读，在通常情况下，建议接口实现类使用“Impl作为后缀”，不建议使用大写的“I”作为接口前缀，下面是接口和接口实现类的书写示例。</p>
 <p>推荐写法：</p>
 <pre><code>public interface OrderService&#123;
     //...
@@ -803,7 +803,7 @@ public class OrderService implements IOrderService&#123;
     //...
 &#125;
 </code></pre>
-<h3><span id="75-测试类和测试方法">7.5 测试类和测试方法</span></h3><p>在项目中，测试类采用被测试业务模块名/被测试接口/被测试类+“Test”的方法进行书写，测试类中的测试函数采用“test”+用例操作_状态的组合方式进行书写，例如：</p>
+<h3 id="7-5-测试类和测试方法"><a href="#7-5-测试类和测试方法" class="headerlink" title="7.5 测试类和测试方法"></a>7.5 测试类和测试方法</h3><p>在项目中，测试类采用被测试业务模块名/被测试接口/被测试类+“Test”的方法进行书写，测试类中的测试函数采用“test”+用例操作_状态的组合方式进行书写，例如：</p>
 <pre><code>public class UserServiceTest&#123;
 
     public void testFindByUsernameAndPassword()&#123;
@@ -819,7 +819,7 @@ public class OrderService implements IOrderService&#123;
     &#125;
 &#125;
 </code></pre>
-<h2><span id="8-扩展速记java开发中的各种o">8 扩展：速记Java开发中的各种O</span></h2><p>最后，通过一张表和图快速对Java中的<code>BO</code>,<code>DTO</code>,<code>DAO</code>,<code>PO</code>,<code>POJO</code>,<code>VO</code>之间的含义，区别以及联系进行梳理。</p>
+<h2 id="8-扩展：速记Java开发中的各种O"><a href="#8-扩展：速记Java开发中的各种O" class="headerlink" title="8 扩展：速记Java开发中的各种O"></a>8 扩展：速记Java开发中的各种O</h2><p>最后，通过一张表和图快速对Java中的<code>BO</code>,<code>DTO</code>,<code>DAO</code>,<code>PO</code>,<code>POJO</code>,<code>VO</code>之间的含义，区别以及联系进行梳理。</p>
 <table>
 <thead>
 <tr>

@@ -413,7 +413,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    4.2k
+                    4k
                 </div>
                 
 
@@ -436,7 +436,7 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <p>API接口文档规范Swagger3</p>
-<h1><span id="1-swagger3-简介"><strong>1 Swagger3</strong> <strong>简介</strong></span></h1><p>Swagger（丝袜哥）是一个简单但功能强大的API表达工具。它具有地球上最大的API工具生态系统，数</p>
+<h1 id="1-Swagger3-简介"><a href="#1-Swagger3-简介" class="headerlink" title="1 Swagger3 简介"></a><strong>1 Swagger3</strong> <strong>简介</strong></h1><p>Swagger（丝袜哥）是一个简单但功能强大的API表达工具。它具有地球上最大的API工具生态系统，数</p>
 <p>以千计的开发人员，使用几乎所有的现代编程语言，都在支持和使用Swagger。使用Swagger生成API，</p>
 <p>我们可以得到交互式文档，自动生成代码的SDK以及API的发现特性等。</p>
 <p>前后端分离的项目，接口文档的存在十分重要。与手动编写接口文档不同，swagger是一个自动生成接</p>
@@ -464,7 +464,7 @@
 <p><strong>Swagger Hub</strong>：集成了上面所有项目的各个功能，你可以以项目和版本为单位，将你的描述文件上传到</p>
 <p>Swagger Hub中。在Swagger Hub中可以完成上面项目的所有工作，需要注册账号，分免费版和收费</p>
 <p>版。</p>
-<h1><span id="2-swagger3-helloworld实现"><strong>2 Swagger3 HelloWorld实现</strong></span></h1><h2><span id="第一步我们新建一个springboot项目"><strong>第一步：我们新建一个SpringBoot项目；</strong></span></h2><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20211206200553827.png" alt="image-20211206200553827"></p>
+<h1 id="2-Swagger3-HelloWorld实现"><a href="#2-Swagger3-HelloWorld实现" class="headerlink" title="2 Swagger3 HelloWorld实现"></a><strong>2 Swagger3 HelloWorld实现</strong></h1><h2 id="第一步：我们新建一个SpringBoot项目；"><a href="#第一步：我们新建一个SpringBoot项目；" class="headerlink" title="第一步：我们新建一个SpringBoot项目；"></a><strong>第一步：我们新建一个SpringBoot项目；</strong></h2><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20211206200553827.png" alt="image-20211206200553827"></p>
 <p>加一个Spring Web依赖加下Swagger依赖：</p>
 <p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20211206200631096.png" alt="image-20211206200631096"></p>
 <pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span> 
@@ -569,7 +569,7 @@
 
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>project</span><span class="token punctuation">></span></span>
 </code></pre>
-<h2><span id="第二步开启swagger"><strong>第二步：开启Swagger</strong></span></h2><p>在 Spring Boot 的启动类添加 @EnableOpenApi 注解，开启 Swagger支持；</p>
+<h2 id="第二步：开启Swagger"><a href="#第二步：开启Swagger" class="headerlink" title="第二步：开启Swagger"></a><strong>第二步：开启Swagger</strong></h2><p>在 Spring Boot 的启动类添加 @EnableOpenApi 注解，开启 Swagger支持；</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>java1234<span class="token punctuation">;</span> 
 
 <span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>boot<span class="token punctuation">.</span>SpringApplication<span class="token punctuation">;</span> 
@@ -582,17 +582,17 @@
 
 <span class="token annotation punctuation">@SpringBootApplication</span> 
 
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SwaggerTestApplication</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> 
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SwaggerTestApplication</span> <span class="token punctuation">{</span> 
 
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> 
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span> 
 
         SpringApplication<span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span>SwaggerTestApplication<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> args<span class="token punctuation">)</span><span class="token punctuation">;</span> 
 
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> 
+    <span class="token punctuation">}</span> 
 
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 </code></pre>
-<h2><span id="第三步新建helloworldcontrollerjava控制器类"><strong>第三步：新建HelloWorldController.java控制器类</strong></span></h2><pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>java1234<span class="token punctuation">.</span>controller<span class="token punctuation">;</span> 
+<h2 id="第三步：新建HelloWorldController-java控制器类"><a href="#第三步：新建HelloWorldController-java控制器类" class="headerlink" title="第三步：新建HelloWorldController.java控制器类"></a><strong>第三步：新建HelloWorldController.java控制器类</strong></h2><pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>java1234<span class="token punctuation">.</span>controller<span class="token punctuation">;</span> 
 
 <span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>web<span class="token punctuation">.</span>bind<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>RequestMapping<span class="token punctuation">;</span> 
 
@@ -612,22 +612,22 @@
 
 <span class="token annotation punctuation">@RestController</span> 
 
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">HelloWorldController</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> 
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">HelloWorldController</span> <span class="token punctuation">{</span> 
 
     <span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">"/helloWorld"</span><span class="token punctuation">)</span> 
 
-    <span class="token keyword">public</span> String <span class="token function">helloWorld</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> 
+    <span class="token keyword">public</span> String <span class="token function">helloWorld</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span> 
 
         <span class="token keyword">return</span> <span class="token string">"helloWorld"</span><span class="token punctuation">;</span> 
 
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> 
+    <span class="token punctuation">}</span> 
 
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <p>启动项目，浏览器输入：<a target="_blank" rel="noopener" href="http://localhost:8080/helloWorld">http://localhost:8080/helloWorld</a></p>
 <p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20211206200712279.png" alt="image-20211206200712279"></p>
 <p>没问题；</p>
-<h2><span id="第四步访问swagger-ui查看接口文档"><strong>第四步：访问swagger-ui，查看接口文档</strong></span></h2><p>浏览器访问：<a target="_blank" rel="noopener" href="http://localhost:8080/swagger-ui/">http://localhost:8080/swagger-ui/</a></p>
+<h2 id="第四步：访问swagger-ui，查看接口文档"><a href="#第四步：访问swagger-ui，查看接口文档" class="headerlink" title="第四步：访问swagger-ui，查看接口文档"></a><strong>第四步：访问swagger-ui，查看接口文档</strong></h2><p>浏览器访问：<a target="_blank" rel="noopener" href="http://localhost:8080/swagger-ui/">http://localhost:8080/swagger-ui/</a></p>
 <p>显示如下图：主要三大区域，分组定义信息区块，API文档上信息区块以及最重要的接口定义信息区块；</p>
 <p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20211206200755727.png" alt="image-20211206200755727"></p>
 <p>展开HelloWorldController接口定义：</p>
@@ -638,7 +638,7 @@
 <p>我们可以看到，接口没有参数，返回值是 String 类型；</p>
 <p>这里描述了完整的接口定义信息；前端开发人员一目了然，假如接口定义变化，前端开发人员刷新下</p>
 <p>swagger-ui就能及时看到，比起以往的人工编写接口文档方便很多；</p>
-<h2><span id="第五步swagger注解描述接口"><strong>第五步：Swagger注解描述接口</strong></span></h2><p>在接口描述的时候，控制器类，以及方法，参数，返回值等，默认的话，是英文无备注信息，可能会让</p>
+<h2 id="第五步：Swagger注解描述接口"><a href="#第五步：Swagger注解描述接口" class="headerlink" title="第五步：Swagger注解描述接口"></a><strong>第五步：Swagger注解描述接口</strong></h2><p>在接口描述的时候，控制器类，以及方法，参数，返回值等，默认的话，是英文无备注信息，可能会让</p>
 <p>前端开发人员看起来吃力，会增加沟通成本；</p>
 <p>Swagger提供一套注解，我们给接口添加中文注释；</p>
 <p>我们在类上添加 @API 注解，以及在方法上添加 @ApiOperation 注解</p>
@@ -668,23 +668,23 @@
 
 <span class="token annotation punctuation">@RestController</span> 
 
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">HelloWorldController</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> 
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">HelloWorldController</span> <span class="token punctuation">{</span> 
 
     <span class="token annotation punctuation">@ApiOperation</span><span class="token punctuation">(</span><span class="token string">"测试方法"</span><span class="token punctuation">)</span> 
 
     <span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">"/helloWorld"</span><span class="token punctuation">)</span> 
 
-    <span class="token keyword">public</span> String <span class="token function">helloWorld</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> 
+    <span class="token keyword">public</span> String <span class="token function">helloWorld</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span> 
 
         <span class="token keyword">return</span> <span class="token string">"helloWorld"</span><span class="token punctuation">;</span> 
 
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> 
+    <span class="token punctuation">}</span> 
 
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20211206200956568.png" alt="image-20211206200956568"></p>
 <p>重启项目，刷新swagger-ui，发现已经以后中文注释了；</p>
-<h1><span id="3-swagger3-常用配置注解讲解"><strong>3 Swagger3</strong> <strong>常用配置注解讲解</strong></span></h1><h2><span id="31-swagger3常用配置如下"><strong>3.1 Swagger3****常用配置如下：</strong></span></h2><p>swagger提供了一些配置用来描述接口，下面是一些常用的注解，必须掌握；</p>
+<h1 id="3-Swagger3-常用配置注解讲解"><a href="#3-Swagger3-常用配置注解讲解" class="headerlink" title="3 Swagger3 常用配置注解讲解"></a><strong>3 Swagger3</strong> <strong>常用配置注解讲解</strong></h1><h2 id="3-1-Swagger3-常用配置如下："><a href="#3-1-Swagger3-常用配置如下：" class="headerlink" title="3.1 Swagger3****常用配置如下："></a><strong>3.1 Swagger3****常用配置如下：</strong></h2><p>swagger提供了一些配置用来描述接口，下面是一些常用的注解，必须掌握；</p>
 <p>@Api：用在请求的类上，表示对类的说明 </p>
 <p>tags=”说明该类的作用，可以在UI界面上看到的注解” </p>
 <p>value=”该参数没什么意义，在UI界面上也看到，所以不需要配置” </p>
@@ -712,7 +712,7 @@
 <p>@ApiModel：用于响应类上，表示一个返回响应数据的信息 </p>
 <p>（这种一般用在post创建的时候，使用@RequestBody这样的场景， </p>
 <p>请求参数无法使用@ApiImplicitParam注解进行描述的时候）</p>
-<h2><span id="32-实例一-apiimplicitparams-和-apiimplicitparam-参数描述"><strong>3.2</strong> <strong>实例一</strong> @ApiImplicitParams <strong>和</strong> @ApiImplicitParam <strong>参数描述</strong></span></h2><p>post方式，根据name和age两个参数查询数据，返回信息；</p>
+<h2 id="3-2-实例一-ApiImplicitParams-和-ApiImplicitParam-参数描述"><a href="#3-2-实例一-ApiImplicitParams-和-ApiImplicitParam-参数描述" class="headerlink" title="3.2 实例一 @ApiImplicitParams 和 @ApiImplicitParam 参数描述"></a><strong>3.2</strong> <strong>实例一</strong> @ApiImplicitParams <strong>和</strong> @ApiImplicitParam <strong>参数描述</strong></h2><p>post方式，根据name和age两个参数查询数据，返回信息；</p>
 <p>我们用 @ApiImplicitParams 和 @ApiImplicitParam ，描述请求参数</p>
 <pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
 
@@ -728,7 +728,7 @@
 
 <span class="token annotation punctuation">@PostMapping</span><span class="token punctuation">(</span><span class="token string">"/search"</span><span class="token punctuation">)</span> 
 
-<span class="token annotation punctuation">@ApiImplicitParams</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> 
+<span class="token annotation punctuation">@ApiImplicitParams</span><span class="token punctuation">(</span><span class="token punctuation">{</span> 
 
     <span class="token annotation punctuation">@ApiImplicitParam</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">"name"</span><span class="token punctuation">,</span>value <span class="token operator">=</span> <span class="token string">"姓名"</span><span class="token punctuation">,</span>required <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">,</span>paramType 
 
@@ -738,19 +738,19 @@
 
                       <span class="token string">"query"</span><span class="token punctuation">,</span>dataType <span class="token operator">=</span> <span class="token string">"Integer"</span><span class="token punctuation">)</span> 
 
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
 
 <span class="token annotation punctuation">@ApiOperation</span><span class="token punctuation">(</span><span class="token string">"测试查询"</span><span class="token punctuation">)</span> 
 
-<span class="token keyword">public</span> String <span class="token function">search</span><span class="token punctuation">(</span>String name<span class="token punctuation">,</span>Integer age<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> 
+<span class="token keyword">public</span> String <span class="token function">search</span><span class="token punctuation">(</span>String name<span class="token punctuation">,</span>Integer age<span class="token punctuation">)</span><span class="token punctuation">{</span> 
 
     <span class="token keyword">return</span> name<span class="token operator">+</span><span class="token string">":"</span><span class="token operator">+</span>age<span class="token punctuation">;</span> 
 
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <p>swagger控制台显示：</p>
 <p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20211206202207917.png" alt="image-20211206202207917"></p>
-<h2><span id="33-实例二-apimodel-apimodelproperty-实体参数描述"><strong>3.3</strong> <strong>实例二</strong> @ApiModel <strong>,</strong> @ApiModelProperty <strong>实体参数描述</strong></span></h2><p>我们搞一个用户信息添加,使用 @ApiModel , @ApiModelProperty 注解来描述输入参数；</p>
+<h2 id="3-3-实例二-ApiModel-ApiModelProperty-实体参数描述"><a href="#3-3-实例二-ApiModel-ApiModelProperty-实体参数描述" class="headerlink" title="3.3 实例二 @ApiModel , @ApiModelProperty 实体参数描述"></a><strong>3.3</strong> <strong>实例二</strong> @ApiModel <strong>,</strong> @ApiModelProperty <strong>实体参数描述</strong></h2><p>我们搞一个用户信息添加,使用 @ApiModel , @ApiModelProperty 注解来描述输入参数；</p>
 <p>先搞一个用户信息实体User.java</p>
 <p>@ApiModelProperty：用在属性上，描述响应类的属性 </p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>java1234<span class="token punctuation">.</span>entity<span class="token punctuation">;</span> 
@@ -773,7 +773,7 @@
 
 <span class="token annotation punctuation">@ApiModel</span><span class="token punctuation">(</span><span class="token string">"用户信息实体"</span><span class="token punctuation">)</span> 
 
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">User</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> 
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">User</span> <span class="token punctuation">{</span> 
 
     <span class="token annotation punctuation">@ApiModelProperty</span><span class="token punctuation">(</span><span class="token string">"编号"</span><span class="token punctuation">)</span> 
 
@@ -787,11 +787,11 @@
 
     <span class="token keyword">private</span> Integer age<span class="token punctuation">;</span> 
 
-    <span class="token keyword">public</span> <span class="token function">User</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> 
+    <span class="token keyword">public</span> <span class="token function">User</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> 
 
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-    <span class="token keyword">public</span> <span class="token function">User</span><span class="token punctuation">(</span>Integer id<span class="token punctuation">,</span>String name<span class="token punctuation">,</span> Integer age<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> 
+    <span class="token keyword">public</span> <span class="token function">User</span><span class="token punctuation">(</span>Integer id<span class="token punctuation">,</span>String name<span class="token punctuation">,</span> Integer age<span class="token punctuation">)</span> <span class="token punctuation">{</span> 
 
         <span class="token keyword">this</span><span class="token punctuation">.</span>id<span class="token operator">=</span>id<span class="token punctuation">;</span> 
 
@@ -799,49 +799,49 @@
 
         <span class="token keyword">this</span><span class="token punctuation">.</span>age <span class="token operator">=</span> age<span class="token punctuation">;</span> 
 
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-    <span class="token keyword">public</span> String <span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> 
+    <span class="token keyword">public</span> String <span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> 
 
         <span class="token keyword">return</span> name<span class="token punctuation">;</span> 
 
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setName</span><span class="token punctuation">(</span>String name<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> 
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setName</span><span class="token punctuation">(</span>String name<span class="token punctuation">)</span> <span class="token punctuation">{</span> 
 
         <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> name<span class="token punctuation">;</span> 
 
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-    <span class="token keyword">public</span> Integer <span class="token function">getAge</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> 
+    <span class="token keyword">public</span> Integer <span class="token function">getAge</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> 
 
         <span class="token keyword">return</span> age<span class="token punctuation">;</span> 
 
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setAge</span><span class="token punctuation">(</span>Integer age<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> 
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setAge</span><span class="token punctuation">(</span>Integer age<span class="token punctuation">)</span> <span class="token punctuation">{</span> 
 
         <span class="token keyword">this</span><span class="token punctuation">.</span>age <span class="token operator">=</span> age<span class="token punctuation">;</span> 
 
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-    <span class="token keyword">public</span> Integer <span class="token function">getId</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> 
+    <span class="token keyword">public</span> Integer <span class="token function">getId</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> 
 
         <span class="token keyword">return</span> id<span class="token punctuation">;</span> 
 
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setId</span><span class="token punctuation">(</span>Integer id<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> 
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setId</span><span class="token punctuation">(</span>Integer id<span class="token punctuation">)</span> <span class="token punctuation">{</span> 
 
         <span class="token keyword">this</span><span class="token punctuation">.</span>id <span class="token operator">=</span> id<span class="token punctuation">;</span> 
 
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
     <span class="token annotation punctuation">@Override</span> 
 
-    <span class="token keyword">public</span> String <span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> 
+    <span class="token keyword">public</span> String <span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> 
 
-        <span class="token keyword">return</span> <span class="token string">"User&amp;#123;"</span> <span class="token operator">+</span> 
+        <span class="token keyword">return</span> <span class="token string">"User{"</span> <span class="token operator">+</span> 
 
             <span class="token string">"id="</span> <span class="token operator">+</span> id <span class="token operator">+</span> 
 
@@ -849,11 +849,11 @@
 
             <span class="token string">", age="</span> <span class="token operator">+</span> age <span class="token operator">+</span> 
 
-            <span class="token string">'&amp;#125;'</span><span class="token punctuation">;</span> 
+            <span class="token string">'}'</span><span class="token punctuation">;</span> 
 
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> 
+    <span class="token punctuation">}</span> 
 
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <p>参数上，直接用 User user</p>
 <pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
@@ -870,29 +870,29 @@
 
 <span class="token annotation punctuation">@ApiOperation</span><span class="token punctuation">(</span><span class="token string">"测试添加"</span><span class="token punctuation">)</span> 
 
-<span class="token keyword">public</span> String <span class="token function">add</span><span class="token punctuation">(</span>User user<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> 
+<span class="token keyword">public</span> String <span class="token function">add</span><span class="token punctuation">(</span>User user<span class="token punctuation">)</span><span class="token punctuation">{</span> 
 
     <span class="token keyword">return</span> user<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token string">":"</span><span class="token operator">+</span>user<span class="token punctuation">.</span><span class="token function">getAge</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
 
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <p>swagger控制台显示：</p>
 <p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20211206202645911.png" alt="image-20211206202645911"></p>
-<h2><span id="34-实例三-apiresponses-apiresponse"><strong>3.4</strong> <strong>实例三</strong> @ApiResponses <strong>，</strong> @ApiResponse</span></h2><p>我们搞一个根据id获取用户信息案例，通过 @PathVariable 获取id，返回User对象，以及通过</p>
+<h2 id="3-4-实例三-ApiResponses-，-ApiResponse"><a href="#3-4-实例三-ApiResponses-，-ApiResponse" class="headerlink" title="3.4 实例三 @ApiResponses ， @ApiResponse"></a><strong>3.4</strong> <strong>实例三</strong> @ApiResponses <strong>，</strong> @ApiResponse</h2><p>我们搞一个根据id获取用户信息案例，通过 @PathVariable 获取id，返回User对象，以及通过</p>
 <p>@ApiResponses ， @ApiResponse ，描述响应码对应的描述信息</p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"/user/&amp;#123;id&amp;#125;"</span><span class="token punctuation">)</span> 
+<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"/user/{id}"</span><span class="token punctuation">)</span> 
 
 <span class="token annotation punctuation">@ApiOperation</span><span class="token punctuation">(</span><span class="token string">"根据ID获取用户信息"</span><span class="token punctuation">)</span> 
 
-<span class="token annotation punctuation">@ApiImplicitParams</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> 
+<span class="token annotation punctuation">@ApiImplicitParams</span><span class="token punctuation">(</span><span class="token punctuation">{</span> 
 
     <span class="token annotation punctuation">@ApiImplicitParam</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">"id"</span><span class="token punctuation">,</span>value <span class="token operator">=</span> <span class="token string">"用户编号"</span><span class="token punctuation">,</span>required <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">,</span>paramType 
 
                       <span class="token operator">=</span> <span class="token string">"path"</span><span class="token punctuation">)</span> 
 
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
 
-<span class="token annotation punctuation">@ApiResponses</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> 
+<span class="token annotation punctuation">@ApiResponses</span><span class="token punctuation">(</span><span class="token punctuation">{</span> 
 
     <span class="token annotation punctuation">@ApiResponse</span><span class="token punctuation">(</span>code<span class="token operator">=</span><span class="token number">408</span><span class="token punctuation">,</span>message<span class="token operator">=</span><span class="token string">"指定业务得报错信息，返回客户端"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> 
 
@@ -900,19 +900,19 @@
 
     <span class="token annotation punctuation">@ApiResponse</span><span class="token punctuation">(</span>code<span class="token operator">=</span><span class="token number">404</span><span class="token punctuation">,</span>message<span class="token operator">=</span><span class="token string">"请求路径没有或页面跳转路径不对"</span><span class="token punctuation">)</span> 
 
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
 
-<span class="token keyword">public</span> User <span class="token function">load</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span><span class="token punctuation">(</span><span class="token string">"id"</span><span class="token punctuation">)</span> Integer id<span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> 
+<span class="token keyword">public</span> User <span class="token function">load</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span><span class="token punctuation">(</span><span class="token string">"id"</span><span class="token punctuation">)</span> Integer id<span class="token punctuation">)</span><span class="token punctuation">{</span> 
 
     <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">User</span><span class="token punctuation">(</span>id<span class="token punctuation">,</span><span class="token string">"jack"</span><span class="token punctuation">,</span><span class="token number">32</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
 
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <p>swagger控制台显示：</p>
 <p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20211206202930545.png" alt="image-20211206202930545"></p>
 <p><strong>Schemas</strong>也对应有视图用户实体描述信息显示：</p>
 <p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20211206203039407.png" alt="image-20211206203039407"></p>
-<h1><span id="4-swagger3-接口测试"><strong>4 Swagger3</strong> <strong>接口测试</strong></span></h1><p>swagger-ui图形客户端提供了接口测试功能；</p>
+<h1 id="4-Swagger3-接口测试"><a href="#4-Swagger3-接口测试" class="headerlink" title="4 Swagger3 接口测试"></a><strong>4 Swagger3</strong> <strong>接口测试</strong></h1><p>swagger-ui图形客户端提供了接口测试功能；</p>
 <p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20211206203128020.png" alt="image-20211206203128020"></p>
 <p>默认情况下，这些参数都不能填写，禁用的；</p>
 <p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20211206203150526.png" alt="image-20211206203150526"></p>
@@ -923,7 +923,7 @@
 <p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20211206203259782.png" alt="image-20211206203259782"></p>
 <p>说明：很多时候，前后端分离，传的是json，键值对，用swagger-ui提供的简陋接口测试工具很难用，</p>
 <p>所以接口测试我们还是用专业的 postman</p>
-<h1><span id="5-swagger3-api信息配置"><strong>5 Swagger3 API信息配置</strong></span></h1><p>默认情况，显示的API信息如下：</p>
+<h1 id="5-Swagger3-API信息配置"><a href="#5-Swagger3-API信息配置" class="headerlink" title="5 Swagger3 API信息配置"></a><strong>5 Swagger3 API信息配置</strong></h1><p>默认情况，显示的API信息如下：</p>
 <p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20211206203417735.png" alt="image-20211206203417735"></p>
 <p>通过源码，我们可以看到：这个信息是通过 springfox.documentation.service.ApiInfo.java 类来</p>
 <p>构造的；</p>
@@ -961,7 +961,7 @@
 
 <span class="token annotation punctuation">@Configuration</span> 
 
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Swagger3Config</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> 
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Swagger3Config</span> <span class="token punctuation">{</span> 
 
     <span class="token comment" spellcheck="true">/**
 
@@ -973,13 +973,13 @@
 
     <span class="token annotation punctuation">@Bean</span> 
 
-    <span class="token keyword">public</span> Docket <span class="token function">createRestApi</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> 
+    <span class="token keyword">public</span> Docket <span class="token function">createRestApi</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> 
 
         <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Docket</span><span class="token punctuation">(</span>DocumentationType<span class="token punctuation">.</span>OAS_30<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// 指定swagger3.0版本 </span>
 
             <span class="token punctuation">.</span><span class="token function">apiInfo</span><span class="token punctuation">(</span><span class="token function">createApiInfo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
 
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
     <span class="token comment" spellcheck="true">/**
 
@@ -991,7 +991,7 @@
 
     <span class="token annotation punctuation">@Bean</span> 
 
-    <span class="token keyword">public</span> ApiInfo <span class="token function">createApiInfo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> 
+    <span class="token keyword">public</span> ApiInfo <span class="token function">createApiInfo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span> 
 
         <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">ApiInfo</span><span class="token punctuation">(</span><span class="token string">"Java1234 Swagger"</span> 
 
@@ -1011,16 +1011,16 @@
 
                            <span class="token punctuation">,</span><span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
 
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> 
+    <span class="token punctuation">}</span> 
 
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <p>重启项目，我们发现，APIInfo信息变了；</p>
 <p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20211206203839980.png" alt="image-20211206203839980"></p>
 <p>这个API信息主要作用是让前端开发人员看的，谁开发的接口，或者哪个小组负责，有问题方便联系沟</p>
 <p>通；</p>
-<h1><span id="6-swagger3-docket开关amp过滤amp分组-配置详解"><strong>6 Swagger3 Docket开关&amp;过滤&amp;分组 配置详解</strong></span></h1><p>我们可以通过设置Docket，可以配置很多功能，比如是否开启swagger，过滤，分组等；</p>
-<h2><span id="61-开关设置enable"><strong>6.1 开关设置enable</strong></span></h2><p>一般情况，我们只有在开发环境才会用到swagger，正式环境需要关闭swagger，一个是安全问题，还</p>
+<h1 id="6-Swagger3-Docket开关-amp-过滤-amp-分组-配置详解"><a href="#6-Swagger3-Docket开关-amp-过滤-amp-分组-配置详解" class="headerlink" title="6 Swagger3 Docket开关&amp;过滤&amp;分组 配置详解"></a><strong>6 Swagger3 Docket开关&amp;过滤&amp;分组 配置详解</strong></h1><p>我们可以通过设置Docket，可以配置很多功能，比如是否开启swagger，过滤，分组等；</p>
+<h2 id="6-1-开关设置enable"><a href="#6-1-开关设置enable" class="headerlink" title="6.1 开关设置enable"></a><strong>6.1 开关设置enable</strong></h2><p>一般情况，我们只有在开发环境才会用到swagger，正式环境需要关闭swagger，一个是安全问题，还</p>
 <p>有一个是用了swagger会影响系统运行速度；</p>
 <p>我们通过设置Docket对象的enable即可；</p>
 <pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
@@ -1033,7 +1033,7 @@
 
 <span class="token annotation punctuation">@Bean</span> 
 
-<span class="token keyword">public</span> Docket <span class="token function">createRestApi</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> 
+<span class="token keyword">public</span> Docket <span class="token function">createRestApi</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> 
 
     <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Docket</span><span class="token punctuation">(</span>DocumentationType<span class="token punctuation">.</span>OAS_30<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// 指定swagger3.0版本 </span>
 
@@ -1041,11 +1041,11 @@
 
         <span class="token punctuation">.</span><span class="token function">apiInfo</span><span class="token punctuation">(</span><span class="token function">createApiInfo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
 
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <p>设置后，重启项目，发现已经看不到API信息了；</p>
 <p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20211206204047084.png" alt="image-20211206204047084"></p>
-<h2><span id="62-设置过滤"><strong>6.2 设置过滤</strong></span></h2><p>有些情况，我们需要指定固定包路径下的类生成API，或者根据前端用户路径请求过滤；</p>
+<h2 id="6-2-设置过滤"><a href="#6-2-设置过滤" class="headerlink" title="6.2 设置过滤"></a><strong>6.2 设置过滤</strong></h2><p>有些情况，我们需要指定固定包路径下的类生成API，或者根据前端用户路径请求过滤；</p>
 <p>使用过滤，必须先调用 select 方法；</p>
 <p>通过apis方法， basePackage 可以根据包路径来生成特定类的API， </p>
 <p>any 方法是默认所有都有效， none 方法都无效；</p>
@@ -1063,7 +1063,7 @@
 
 <span class="token annotation punctuation">@Bean</span> 
 
-<span class="token keyword">public</span> Docket <span class="token function">createRestApi</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> 
+<span class="token keyword">public</span> Docket <span class="token function">createRestApi</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> 
 
     <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Docket</span><span class="token punctuation">(</span>DocumentationType<span class="token punctuation">.</span>OAS_30<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// 指定swagger3.0版本 </span>
 
@@ -1079,7 +1079,7 @@
 
         <span class="token punctuation">.</span><span class="token function">apiInfo</span><span class="token punctuation">(</span><span class="token function">createApiInfo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
 
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <p>最后要加 build() 方法；</p>
 <p>类似的还有一个根据请求路径的 paths 方法；</p>
@@ -1097,7 +1097,7 @@
 
 <span class="token annotation punctuation">@Bean</span> 
 
-<span class="token keyword">public</span> Docket <span class="token function">createRestApi</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> 
+<span class="token keyword">public</span> Docket <span class="token function">createRestApi</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> 
 
     <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Docket</span><span class="token punctuation">(</span>DocumentationType<span class="token punctuation">.</span>OAS_30<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// 指定swagger3.0版本 </span>
 
@@ -1111,10 +1111,10 @@
 
         <span class="token punctuation">.</span><span class="token function">apiInfo</span><span class="token punctuation">(</span><span class="token function">createApiInfo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
 
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <p>swagger-ui视图只显示过滤后的API接口信息；</p>
-<h2><span id="63-设置分组"><strong>6.3 设置分组</strong></span></h2><p>在实际项目开发中，把复杂项目划分多模块给多个小组或者多个人负责开发，所以每个小组或者个人要</p>
+<h2 id="6-3-设置分组"><a href="#6-3-设置分组" class="headerlink" title="6.3 设置分组"></a><strong>6.3 设置分组</strong></h2><p>在实际项目开发中，把复杂项目划分多模块给多个小组或者多个人负责开发，所以每个小组或者个人要</p>
 <p>实现自己的分组，方便查找到API接口开发负责人，沟通和处理问题；</p>
 <p>我们通过 groupName 方法可以设置组名；</p>
 <p>实例：</p>
@@ -1128,7 +1128,7 @@
 
 <span class="token annotation punctuation">@Bean</span> 
 
-<span class="token keyword">public</span> Docket <span class="token function">createRestApi</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> 
+<span class="token keyword">public</span> Docket <span class="token function">createRestApi</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> 
 
     <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Docket</span><span class="token punctuation">(</span>DocumentationType<span class="token punctuation">.</span>OAS_30<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// 指定swagger3.0版本 </span>
 
@@ -1142,7 +1142,7 @@
 
         <span class="token punctuation">.</span><span class="token function">apiInfo</span><span class="token punctuation">(</span><span class="token function">createApiInfo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
 
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <p>刷新界面：</p>
 <p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20211206204917170.png" alt="image-20211206204917170"></p>
@@ -1174,7 +1174,7 @@
 
 <span class="token annotation punctuation">@RestController</span> 
 
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">HelloWorldController2</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> 
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">HelloWorldController2</span> <span class="token punctuation">{</span> 
 
     <span class="token comment" spellcheck="true">/**
 
@@ -1188,13 +1188,13 @@
 
     <span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"/helloWorld2"</span><span class="token punctuation">)</span> 
 
-    <span class="token keyword">public</span> String <span class="token function">helloWorld</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> 
+    <span class="token keyword">public</span> String <span class="token function">helloWorld</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span> 
 
         <span class="token keyword">return</span> <span class="token string">"helloWorld2"</span><span class="token punctuation">;</span> 
 
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> 
+    <span class="token punctuation">}</span> 
 
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <p>我们搞两个 Docket 和两个 ApiInfo </p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>java1234<span class="token punctuation">.</span>config<span class="token punctuation">;</span> 
@@ -1229,7 +1229,7 @@
 
 <span class="token annotation punctuation">@Configuration</span> 
 
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Swagger3Config</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> 
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Swagger3Config</span> <span class="token punctuation">{</span> 
 
     <span class="token comment" spellcheck="true">/**
 
@@ -1241,7 +1241,7 @@
 
     <span class="token annotation punctuation">@Bean</span> 
 
-    <span class="token keyword">public</span> Docket <span class="token function">createRestApi</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> 
+    <span class="token keyword">public</span> Docket <span class="token function">createRestApi</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> 
 
         <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Docket</span><span class="token punctuation">(</span>DocumentationType<span class="token punctuation">.</span>OAS_30<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// 指定swagger3.0版本 </span>
 
@@ -1256,7 +1256,7 @@
             <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 
 
             <span class="token punctuation">.</span><span class="token function">apiInfo</span><span class="token punctuation">(</span><span class="token function">createApiInfo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
     <span class="token comment" spellcheck="true">/**
 
@@ -1268,7 +1268,7 @@
 
     <span class="token annotation punctuation">@Bean</span> 
 
-    <span class="token keyword">public</span> Docket <span class="token function">createRestApi2</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> 
+    <span class="token keyword">public</span> Docket <span class="token function">createRestApi2</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> 
 
         <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Docket</span><span class="token punctuation">(</span>DocumentationType<span class="token punctuation">.</span>OAS_30<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// 指定swagger3.0版本 </span>
 
@@ -1284,7 +1284,7 @@
 
             <span class="token punctuation">.</span><span class="token function">apiInfo</span><span class="token punctuation">(</span><span class="token function">createApiInfo2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
 
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
     <span class="token comment" spellcheck="true">/**
 
@@ -1296,7 +1296,7 @@
 
     <span class="token annotation punctuation">@Bean</span> 
 
-    <span class="token keyword">public</span> ApiInfo <span class="token function">createApiInfo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> 
+    <span class="token keyword">public</span> ApiInfo <span class="token function">createApiInfo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span> 
 
         <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">ApiInfo</span><span class="token punctuation">(</span><span class="token string">"Java1234 Swagger"</span> 
 
@@ -1316,7 +1316,7 @@
 
                            <span class="token punctuation">,</span><span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
 
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
     <span class="token comment" spellcheck="true">/**
 
@@ -1328,7 +1328,7 @@
 
     <span class="token annotation punctuation">@Bean</span> 
 
-    <span class="token keyword">public</span> ApiInfo <span class="token function">createApiInfo2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> 
+    <span class="token keyword">public</span> ApiInfo <span class="token function">createApiInfo2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span> 
 
         <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">ApiInfo</span><span class="token punctuation">(</span><span class="token string">"Java1234 Swagger"</span> 
 
@@ -1348,9 +1348,9 @@
 
                            <span class="token punctuation">,</span><span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
 
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> 
+    <span class="token punctuation">}</span> 
 
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <p>启动项目运行；</p>
 <p>开发组001</p>
