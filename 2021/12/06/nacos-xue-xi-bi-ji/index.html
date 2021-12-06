@@ -532,15 +532,15 @@
 <p>这样就可以实现服务的发现和调用；</p>
 <p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/ru5erkjggg==3.png" alt="img"></p>
 <h1><span id="8-服务注册发现">8-服务注册发现</span></h1><p>引入依赖：</p>
-<pre class=" language-xml-dtd"><code class="language-xml-dtd"><!-- 服务注册/发现-->
+<pre class=" language-xml"><code class="language-xml"><span class="token comment" spellcheck="true">&lt;!-- 服务注册/发现--></span>
 
-<dependency>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
 
-  <groupid>com.alibaba.cloud</groupid>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>com.alibaba.cloud<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
 
-  <artifactid>spring-cloud-starter-alibaba-nacos-discovery</artifactid>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-cloud-starter-alibaba-nacos-discovery<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
 
-</dependency>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
 </code></pre>
 <p> 配置服务发现：</p>
 <p>spring:</p>
@@ -569,7 +569,7 @@
 
 <span class="token annotation punctuation">@FeignClient</span><span class="token punctuation">(</span><span class="token string">"nacos-stock"</span><span class="token punctuation">)</span>
 
-<span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">StockFeignService</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">StockFeignService</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
 
   <span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">"/stock/test"</span><span class="token punctuation">)</span>
 
