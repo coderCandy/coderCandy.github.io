@@ -6,7 +6,7 @@
   <link href="https://codercandy.github.io/atom.xml" rel="self"/>
   
   <link href="https://codercandy.github.io/"/>
-  <updated>2021-12-05T13:06:34.756Z</updated>
+  <updated>2021-12-06T14:10:28.005Z</updated>
   <id>https://codercandy.github.io/</id>
   
   <author>
@@ -15,6 +15,114 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="https://codercandy.github.io/2021/12/06/scrum-min-jie-kai-fa-liu-cheng/"/>
+    <id>https://codercandy.github.io/2021/12/06/scrum-min-jie-kai-fa-liu-cheng/</id>
+    <published>2021-12-06T13:55:53.192Z</published>
+    <updated>2021-12-06T14:10:28.005Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;hr&gt;
+&lt;h2&gt;&lt;span</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>自定义Spring Boot Starter</title>
+    <link href="https://codercandy.github.io/2021/12/06/zi-ding-yi-spring-boot-starter/"/>
+    <id>https://codercandy.github.io/2021/12/06/zi-ding-yi-spring-boot-starter/</id>
+    <published>2021-12-06T13:40:27.000Z</published>
+    <updated>2021-12-06T13:53:55.540Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1&gt;&lt;span id=&quot;自定义spring-boot-starter&quot;&gt;自定义Spring Boot Starter&lt;/span&gt;&lt;/h1&gt;&lt;p&gt;众所周知Spring</summary>
+        
+      
+    
+    
+    
+    <category term="工作" scheme="https://codercandy.github.io/categories/%E5%B7%A5%E4%BD%9C/"/>
+    
+    
+    <category term="后端" scheme="https://codercandy.github.io/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+    <category term="SpringBoot" scheme="https://codercandy.github.io/tags/SpringBoot/"/>
+    
+    <category term="组件" scheme="https://codercandy.github.io/tags/%E7%BB%84%E4%BB%B6/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Nacos学习笔记</title>
+    <link href="https://codercandy.github.io/2021/12/06/nacos-xue-xi-bi-ji/"/>
+    <id>https://codercandy.github.io/2021/12/06/nacos-xue-xi-bi-ji/</id>
+    <published>2021-12-06T13:25:37.000Z</published>
+    <updated>2021-12-06T13:30:30.388Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1&gt;&lt;span</summary>
+        
+      
+    
+    
+    
+    <category term="学习" scheme="https://codercandy.github.io/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="后端" scheme="https://codercandy.github.io/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+    <category term="服务治理" scheme="https://codercandy.github.io/tags/%E6%9C%8D%E5%8A%A1%E6%B2%BB%E7%90%86/"/>
+    
+    <category term="微服务" scheme="https://codercandy.github.io/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Swagger3学习笔记</title>
+    <link href="https://codercandy.github.io/2021/12/06/api-jie-kou-wen-dang-gui-fan-swagger3-xue-xi-bi-ji/"/>
+    <id>https://codercandy.github.io/2021/12/06/api-jie-kou-wen-dang-gui-fan-swagger3-xue-xi-bi-ji/</id>
+    <published>2021-12-06T12:56:39.000Z</published>
+    <updated>2021-12-06T12:58:23.394Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;API接口文档规范Swagger3&lt;/p&gt;
+&lt;h1&gt;&lt;span id=&quot;1-swagger3-简介&quot;&gt;&lt;strong&gt;1 Swagger3&lt;/strong&gt;</summary>
+        
+      
+    
+    
+    
+    <category term="学习" scheme="https://codercandy.github.io/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="前端" scheme="https://codercandy.github.io/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+    <category term="Swagger3" scheme="https://codercandy.github.io/tags/Swagger3/"/>
+    
+  </entry>
   
   <entry>
     <title>信息系统项目管理师-学习笔记</title>
