@@ -7,8 +7,7 @@
     <meta name="keywords" content="Nacos学习笔记, Java,Flink,高级项目管理,Electron.js等">
     <meta name="description" content="1-nacos简介Nacos一个更易于构建云原生应用的动态服务发现、配置管理和服务管理平台。
 功能：
-1，动态配置服务
-动态配置服务让您能够以中心化、外部化和动态化的方式管理所有环境的配置。动态配置消除了配置变更时重新部署应用和服务的需要。">
+1，动态配置服务动态配置服务让您能够以中心化、外部化和动态化的方式管理所有环境的配置。动态配置消除了配置变更时重新部署应用和服务的需要。配">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -411,7 +410,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-12-06
+                    2021-12-07
                 </div>
                 
 
@@ -442,19 +441,15 @@
             <div id="articleContent">
                 <h1 id="1-nacos简介"><a href="#1-nacos简介" class="headerlink" title="1-nacos简介"></a>1-nacos简介</h1><p>Nacos一个更易于构建云原生应用的动态服务发现、配置管理和服务管理平台。</p>
 <p><strong>功能：</strong></p>
-<p><strong>1，动态配置服务</strong></p>
-<p>动态配置服务让您能够以中心化、外部化和动态化的方式管理所有环境的配置。动态配置消除了配置变更时重新部署应用和服务的需要。配置中心化管理让实现无状态服务更简单，也让按需弹性扩展服务更容易。</p>
+<h2 id="1，动态配置服务"><a href="#1，动态配置服务" class="headerlink" title="1，动态配置服务"></a><strong>1，动态配置服务</strong></h2><p>动态配置服务让您能够以中心化、外部化和动态化的方式管理所有环境的配置。动态配置消除了配置变更时重新部署应用和服务的需要。配置中心化管理让实现无状态服务更简单，也让按需弹性扩展服务更容易。</p>
 <p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/suvork5cyii=.png" alt="img"></p>
-<p><strong>2，服务发现及管理</strong></p>
-<p>动态服务发现对以服务为中心的（例如微服务和云原生）应用架构方式非常关键。Nacos支持DNS-Based和RPC-Based（Dubbo、gRPC）模式的服务发现。Nacos也提供实时健康检查，以防止将请求发往不健康的主机或服务实例。借助Nacos，您可以更容易地为您的服务实现断路器。</p>
+<h2 id="2，服务发现及管理"><a href="#2，服务发现及管理" class="headerlink" title="2，服务发现及管理"></a><strong>2，服务发现及管理</strong></h2><p>动态服务发现对以服务为中心的（例如微服务和云原生）应用架构方式非常关键。Nacos支持DNS-Based和RPC-Based（Dubbo、gRPC）模式的服务发现。Nacos也提供实时健康检查，以防止将请求发往不健康的主机或服务实例。借助Nacos，您可以更容易地为您的服务实现断路器。</p>
 <p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/ru5erkjggg==.png" alt="img"></p>
-<p><strong>3，动态DNS服务</strong></p>
-<p>通过支持权重路由，动态DNS服务能让您轻松实现中间层负载均衡、更灵活的路由策略、流量控制以及简单数据中心内网的简单DNS解析服务。动态DNS服务还能让您更容易地实现以DNS协议为基础的服务发现，以消除耦合到厂商私有服务发现API上的风险。</p>
+<h2 id="3，动态DNS服务"><a href="#3，动态DNS服务" class="headerlink" title="3，动态DNS服务"></a><strong>3，动态DNS服务</strong></h2><p>通过支持权重路由，动态DNS服务能让您轻松实现中间层负载均衡、更灵活的路由策略、流量控制以及简单数据中心内网的简单DNS解析服务。动态DNS服务还能让您更容易地实现以DNS协议为基础的服务发现，以消除耦合到厂商私有服务发现API上的风险。</p>
 <p>Nacos中文官方站点：</p>
 <p><a target="_blank" rel="noopener" href="https://nacos.io/zh-cn/">https://nacos.io/zh-cn/</a></p>
 <h1 id="2-nacos-server安装"><a href="#2-nacos-server安装" class="headerlink" title="2-nacos server安装"></a>2-nacos server安装</h1><p>Nacos Server依赖于java环境运行，jdk用1.8以上；</p>
-<p>安装：</p>
-<p><a target="_blank" rel="noopener" href="https://nacos.io/zh-cn/docs/quick-start.html">https://nacos.io/zh-cn/docs/quick-start.html</a></p>
+<h2 id="安装："><a href="#安装：" class="headerlink" title="安装："></a>安装：</h2><p><a target="_blank" rel="noopener" href="https://nacos.io/zh-cn/docs/quick-start.html">https://nacos.io/zh-cn/docs/quick-start.html</a></p>
 <p> 默认启动是集群方式：</p>
 <p>我们修改startup.cmd默认配置 set MODE=”cluster”：</p>
 <p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/aelftksuqmcc.png" alt="img"></p>
@@ -521,12 +516,8 @@
 <p>spring.cloud.nacos.config.extension-configs[3].data-id=oa.properties</p>
 <p>spring.cloud.nacos.config.extension-configs[3].group=OA_GROUP</p>
 <p>spring.cloud.nacos.config.extension-configs[3].refresh=true</p>
-<h1 id="6-配置中心其他功能"><a href="#6-配置中心其他功能" class="headerlink" title="6-配置中心其他功能"></a>6-配置中心其他功能</h1><p> 1，配置导出和导入；</p>
-<p>2，配置克隆功能；</p>
-<p>3，历史版本，可以进行版本回滚；</p>
-<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/suvork5cyii=3.png" alt="img"></p>
-<p> 4，监听查询，查看哪些客户端正在监听配置中心；</p>
-<img src="https://gitee.com/CandyLoveYL/img/raw/master/img/suvork5cyii=4.png" alt="img" style="zoom:75%;" />
+<h1 id="6-配置中心其他功能"><a href="#6-配置中心其他功能" class="headerlink" title="6-配置中心其他功能"></a>6-配置中心其他功能</h1><h2 id="1，配置导出和导入；"><a href="#1，配置导出和导入；" class="headerlink" title="1，配置导出和导入；"></a>1，配置导出和导入；</h2><h2 id="2，配置克隆功能；"><a href="#2，配置克隆功能；" class="headerlink" title="2，配置克隆功能；"></a>2，配置克隆功能；</h2><h2 id="3，历史版本，可以进行版本回滚；"><a href="#3，历史版本，可以进行版本回滚；" class="headerlink" title="3，历史版本，可以进行版本回滚；"></a>3，历史版本，可以进行版本回滚；</h2><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/suvork5cyii=3.png" alt="img"></p>
+<h2 id="4，监听查询，查看哪些客户端正在监听配置中心；"><a href="#4，监听查询，查看哪些客户端正在监听配置中心；" class="headerlink" title="4，监听查询，查看哪些客户端正在监听配置中心；"></a>4，监听查询，查看哪些客户端正在监听配置中心；</h2><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/suvork5cyii=4.png" alt="img" style="zoom:75%;" />
 
 
 

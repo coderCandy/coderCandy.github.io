@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="自定义Spring Boot Starter, Java,Flink,高级项目管理,Electron.js等">
-    <meta name="description" content="自定义Spring Boot Starter众所周知Spring Boot由众多Starter组成，随着版本的推移Starter家族成员也与日俱增。在传统Maven项目中通常将一些层、组件拆分为模块来管理，以便相互依赖复用，在Spring ">
+    <meta name="description" content="自定义Spring Boot Starter背景众所周知Spring Boot由众多Starter组成，随着版本的推移Starter家族成员也与日俱增。在传统Maven项目中通常将一些层、组件拆分为模块来管理，以便相互依赖复用，在Sprin">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -408,14 +408,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-12-06
+                    2021-12-07
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    816
+                    830
                 </div>
                 
 
@@ -437,8 +437,8 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="自定义Spring-Boot-Starter"><a href="#自定义Spring-Boot-Starter" class="headerlink" title="自定义Spring Boot Starter"></a>自定义Spring Boot Starter</h1><p>众所周知Spring Boot由众多Starter组成，随着版本的推移Starter家族成员也与日俱增。在传统Maven项目中通常将一些层、组件拆分为模块来管理，以便相互依赖复用，在Spring Boot项目中我们则可以创建自定义Spring Boot Starter来达成该目的。</p>
-<p>好，开始，先创建一个Maven项目并引入依赖，pom.xml如下，供参考~</p>
+                <h1 id="自定义Spring-Boot-Starter"><a href="#自定义Spring-Boot-Starter" class="headerlink" title="自定义Spring Boot Starter"></a>自定义Spring Boot Starter</h1><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>众所周知Spring Boot由众多Starter组成，随着版本的推移Starter家族成员也与日俱增。在传统Maven项目中通常将一些层、组件拆分为模块来管理，以便相互依赖复用，在Spring Boot项目中我们则可以创建自定义Spring Boot Starter来达成该目的。</p>
+<h2 id="创建maven"><a href="#创建maven" class="headerlink" title="创建maven"></a>创建maven</h2><p>好，开始，先创建一个Maven项目并引入依赖，pom.xml如下，供参考~</p>
 <pre class=" language-xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8"?></span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>project</span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://maven.apache.org/POM/4.0.0<span class="token punctuation">"</span></span>          <span class="token attr-name"><span class="token namespace">xmlns:</span>xsi</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://www.w3.org/2001/XMLSchema-instance<span class="token punctuation">"</span></span>          <span class="token attr-name"><span class="token namespace">xsi:</span>schemaLocation</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>     
 
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>modelVersion</span><span class="token punctuation">></span></span>4.0.0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>modelVersion</span><span class="token punctuation">></span></span>     
@@ -483,8 +483,8 @@
 
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>project</span><span class="token punctuation">></span></span>
 </code></pre>
-<p>这里说下artifactId的命名问题，Spring 官方 Starter通常命名为spring-boot-starter-{name}如 spring-boot-starter-web， <a target="_blank" rel="noopener" href="https://link.jianshu.com/?t=http://docs.spring.io/spring-boot/docs/1.5.2.RELEASE/reference/htmlsingle/#boot-features-custom-starter-naming">Spring官方建议</a>非官方Starter命名应遵循{name}-spring-boot-starter的格式。</p>
-<p>这里讲一下我们的Starter要实现的功能，很简单，提供一个Service，包含一个能够将字符串加上前后缀的方法String wrap(String word)。</p>
+<h2 id="artifactId的命名"><a href="#artifactId的命名" class="headerlink" title="artifactId的命名"></a>artifactId的命名</h2><p>这里说下artifactId的命名问题，Spring 官方 Starter通常命名为spring-boot-starter-{name}如 spring-boot-starter-web， <a target="_blank" rel="noopener" href="https://link.jianshu.com/?t=http://docs.spring.io/spring-boot/docs/1.5.2.RELEASE/reference/htmlsingle/#boot-features-custom-starter-naming">Spring官方建议</a>非官方Starter命名应遵循{name}-spring-boot-starter的格式。</p>
+<h2 id="Starter实现"><a href="#Starter实现" class="headerlink" title="Starter实现"></a>Starter实现</h2><p>这里讲一下我们的Starter要实现的功能，很简单，提供一个Service，包含一个能够将字符串加上前后缀的方法String wrap(String word)。</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ExampleService</span><span class="token punctuation">{</span>
 
 
@@ -550,7 +550,7 @@
 <p>最后一步，在resources/META-INF/下创建spring.factories文件，内容供参考下面~</p>
 <p>org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.example.autocinfigure.ExampleAutoConfigure</p>
 <p>OK，完事，运行 mvn:install打包安装，一个Spring Boot Starter便开发完成了。如果你需要该Starter的源代码，<a target="_blank" rel="noopener" href="https://link.jianshu.com/?t=https://github.com/lihengming/example-starter">点这里</a>。</p>
-<p>创建一个Spring Boot项目来 试试~</p>
+<h2 id="验证starter"><a href="#验证starter" class="headerlink" title="验证starter"></a>验证starter</h2><p>创建一个Spring Boot项目来 试试~</p>
 <p>引入example-spring-boot-starter依赖</p>
 <pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>   
 
@@ -595,7 +595,7 @@
 </code></pre>
 <p>启动Application，访问/input接口试试看~</p>
 <p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/1603753-9f9810fe2efe933f.webp" alt="1603753-9f9810fe2efe933f"></p>
-<p>总结下Starter的工作原理</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>总结下Starter的工作原理</p>
 <ol>
 <li>Spring Boot在启动时扫描项目所依赖的JAR包，寻找包含spring.factories文件的JAR包</li>
 <li>根据spring.factories配置加载AutoConfigure类</li>
