@@ -6,7 +6,7 @@
   <link href="https://codercandy.github.io/atom.xml" rel="self"/>
   
   <link href="https://codercandy.github.io/"/>
-  <updated>2021-12-06T14:16:07.234Z</updated>
+  <updated>2021-12-07T12:12:54.990Z</updated>
   <id>https://codercandy.github.io/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Gateway学习笔记</title>
+    <link href="https://codercandy.github.io/2021/12/07/wei-fu-wu-wang-guan-gateway/"/>
+    <id>https://codercandy.github.io/2021/12/07/wei-fu-wu-wang-guan-gateway/</id>
+    <published>2021-12-07T12:11:35.000Z</published>
+    <updated>2021-12-07T12:12:54.990Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;strong&gt;微服务网关Gateway&lt;/strong&gt;&lt;/p&gt;
+&lt;h1 id=&quot;1-Gateway简介&quot;&gt;&lt;a href=&quot;#1-Gateway简介&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="学习" scheme="https://codercandy.github.io/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="后端" scheme="https://codercandy.github.io/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+    <category term="Gateway" scheme="https://codercandy.github.io/tags/Gateway/"/>
+    
+    <category term="网关" scheme="https://codercandy.github.io/tags/%E7%BD%91%E5%85%B3/"/>
+    
+  </entry>
   
   <entry>
     <title>Scrum敏捷开发流程</title>
