@@ -6,7 +6,7 @@
   <link href="https://codercandy.github.io/atom.xml" rel="self"/>
   
   <link href="https://codercandy.github.io/"/>
-  <updated>2021-12-07T12:12:54.990Z</updated>
+  <updated>2021-12-09T14:41:33.838Z</updated>
   <id>https://codercandy.github.io/</id>
   
   <author>
@@ -15,6 +15,66 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Seata学习笔记</title>
+    <link href="https://codercandy.github.io/2021/12/09/a-li-fen-bu-shi-shi-wu-kuang-jia-seata/"/>
+    <id>https://codercandy.github.io/2021/12/09/a-li-fen-bu-shi-shi-wu-kuang-jia-seata/</id>
+    <published>2021-12-09T13:26:34.000Z</published>
+    <updated>2021-12-09T14:41:33.838Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;阿里分布式事务框架Seata&lt;/p&gt;
+&lt;h1 id=&quot;1-阿里分布式事务框架-Seata-简介&quot;&gt;&lt;a href=&quot;#1-阿里分布式事务框架-Seata-简介&quot; class=&quot;headerlink&quot; title=&quot;1 阿里分布式事务框架 Seata</summary>
+        
+      
+    
+    
+    
+    <category term="学习" scheme="https://codercandy.github.io/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="后端" scheme="https://codercandy.github.io/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+    <category term="Seata" scheme="https://codercandy.github.io/tags/Seata/"/>
+    
+    <category term="分布式事务" scheme="https://codercandy.github.io/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Sentinel学习笔记</title>
+    <link href="https://codercandy.github.io/2021/12/07/sentinel-fen-bu-shi-xi-tong-de-liu-liang-zu-jian/"/>
+    <id>https://codercandy.github.io/2021/12/07/sentinel-fen-bu-shi-xi-tong-de-liu-liang-zu-jian/</id>
+    <published>2021-12-07T12:17:16.000Z</published>
+    <updated>2021-12-09T13:12:13.135Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;strong&gt;Sentinel分布式系统的流量组件&lt;/strong&gt;&lt;/p&gt;
+&lt;h1 id=&quot;1-Sentine快速了解&quot;&gt;&lt;a href=&quot;#1-Sentine快速了解&quot; class=&quot;headerlink&quot; title=&quot;1</summary>
+        
+      
+    
+    
+    
+    <category term="学习" scheme="https://codercandy.github.io/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="后端" scheme="https://codercandy.github.io/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+    <category term="Sentinel" scheme="https://codercandy.github.io/tags/Sentinel/"/>
+    
+    <category term="组件" scheme="https://codercandy.github.io/tags/%E7%BB%84%E4%BB%B6/"/>
+    
+  </entry>
   
   <entry>
     <title>Gateway学习笔记</title>
@@ -96,9 +156,9 @@
     
     <category term="后端" scheme="https://codercandy.github.io/tags/%E5%90%8E%E7%AB%AF/"/>
     
-    <category term="SpringBoot" scheme="https://codercandy.github.io/tags/SpringBoot/"/>
-    
     <category term="组件" scheme="https://codercandy.github.io/tags/%E7%BB%84%E4%BB%B6/"/>
+    
+    <category term="SpringBoot" scheme="https://codercandy.github.io/tags/SpringBoot/"/>
     
   </entry>
   
