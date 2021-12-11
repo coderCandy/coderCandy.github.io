@@ -417,7 +417,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    12.3k
+                    13.7k
                 </div>
                 
 
@@ -2464,7 +2464,179 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <p>undo_log也有数据</p>
 <p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211211175955690.png" alt="image-20211211175955690"></p>
 <p>说明一阶段业务数据和回滚日志记录在同一个本地事务中提交，释放本地锁和连接资源。<br>然后下面，如果提交事务超时或者有接口调用异常，则分支事务立刻根据回滚日志，立刻进行反向补偿，最后回滚日志会被清空；<br>如果接口调用一切正常，日志清空，全局事务提交，完成本次事务操作；</p>
-<h1 id="8-seata事务日志mysql持久化配置"><a href="#8-seata事务日志mysql持久化配置" class="headerlink" title="8 seata事务日志mysql持久化配置"></a>8 seata事务日志mysql持久化配置</h1>
+<h1 id="8-seata事务日志mysql持久化配置"><a href="#8-seata事务日志mysql持久化配置" class="headerlink" title="8 seata事务日志mysql持久化配置"></a>8 seata事务日志mysql持久化配置</h1><p>seata默认事务支持是file文件存储，不怎么好，不方便查看和管理；所以我们一般是db存储；<br>修改conf下的file.conf配置文件</p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211211191217789.png" alt="image-20211211191217789"></p>
+<p>把mode改成”db”，<br>然后下方mysql配置改成你们对应的配置即可，数据库要自己先建立，比如我这边定义是db_seata<br>还有三个表，global_table，branch_table，lock_table分别是全局事务会话表，分支事务会话表，锁数<br>据表；<br>建表语句获取：<a target="_blank" rel="noopener" href="https://gitee.com/dhb414/seata/blob/master/script/server/db/mysql.sql#">https://gitee.com/dhb414/seata/blob/master/script/server/db/mysql.sql#</a></p>
+<pre class=" language-sql"><code class="language-sql"><span class="token comment" spellcheck="true">-- -------------------------------- The script used when storeMode is 'db' ------</span>
+<span class="token comment" spellcheck="true">--------------------------</span>
+
+<span class="token comment" spellcheck="true">-- the table to store GlobalSession data</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> <span class="token keyword">IF</span> <span class="token operator">NOT</span> <span class="token keyword">EXISTS</span> <span class="token punctuation">`</span>global_table<span class="token punctuation">`</span>
+<span class="token punctuation">(</span>
+    <span class="token punctuation">`</span>xid<span class="token punctuation">`</span> <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">128</span><span class="token punctuation">)</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    <span class="token punctuation">`</span>transaction_id<span class="token punctuation">`</span> <span class="token keyword">BIGINT</span><span class="token punctuation">,</span>
+    <span class="token punctuation">`</span><span class="token keyword">status</span><span class="token punctuation">`</span> <span class="token keyword">TINYINT</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    <span class="token punctuation">`</span>application_id<span class="token punctuation">`</span> <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">32</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">`</span>transaction_service_group<span class="token punctuation">`</span> <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">32</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">`</span>transaction_name<span class="token punctuation">`</span> <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">128</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">`</span>timeout<span class="token punctuation">`</span> <span class="token keyword">INT</span><span class="token punctuation">,</span>
+    <span class="token punctuation">`</span>begin_time<span class="token punctuation">`</span> <span class="token keyword">BIGINT</span><span class="token punctuation">,</span>
+    <span class="token punctuation">`</span>application_data<span class="token punctuation">`</span> <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">2000</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">`</span>gmt_create<span class="token punctuation">`</span> <span class="token keyword">DATETIME</span><span class="token punctuation">,</span>
+    <span class="token punctuation">`</span>gmt_modified<span class="token punctuation">`</span> <span class="token keyword">DATETIME</span><span class="token punctuation">,</span>
+    <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span><span class="token punctuation">`</span>xid<span class="token punctuation">`</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token keyword">KEY</span> <span class="token punctuation">`</span>idx_gmt_modified_status<span class="token punctuation">`</span> <span class="token punctuation">(</span><span class="token punctuation">`</span>gmt_modified<span class="token punctuation">`</span><span class="token punctuation">,</span> <span class="token punctuation">`</span><span class="token keyword">status</span><span class="token punctuation">`</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token keyword">KEY</span> <span class="token punctuation">`</span>idx_transaction_id<span class="token punctuation">`</span> <span class="token punctuation">(</span><span class="token punctuation">`</span>transaction_id<span class="token punctuation">`</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span> <span class="token keyword">ENGINE</span> <span class="token operator">=</span> <span class="token keyword">InnoDB</span>
+<span class="token keyword">DEFAULT</span> <span class="token keyword">CHARSET</span> <span class="token operator">=</span> utf8<span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">-- the table to store BranchSession data</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> <span class="token keyword">IF</span> <span class="token operator">NOT</span> <span class="token keyword">EXISTS</span> <span class="token punctuation">`</span>branch_table<span class="token punctuation">`</span>
+<span class="token punctuation">(</span>
+    <span class="token punctuation">`</span>branch_id<span class="token punctuation">`</span> <span class="token keyword">BIGINT</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    <span class="token punctuation">`</span>xid<span class="token punctuation">`</span> <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">128</span><span class="token punctuation">)</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    <span class="token punctuation">`</span>transaction_id<span class="token punctuation">`</span> <span class="token keyword">BIGINT</span><span class="token punctuation">,</span>
+
+    <span class="token punctuation">`</span>resource_group_id<span class="token punctuation">`</span> <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">32</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">`</span>resource_id<span class="token punctuation">`</span> <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">256</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">`</span>branch_type<span class="token punctuation">`</span> <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">`</span><span class="token keyword">status</span><span class="token punctuation">`</span> <span class="token keyword">TINYINT</span><span class="token punctuation">,</span>
+    <span class="token punctuation">`</span>client_id<span class="token punctuation">`</span> <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">64</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">`</span>application_data<span class="token punctuation">`</span> <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">2000</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">`</span>gmt_create<span class="token punctuation">`</span> <span class="token keyword">DATETIME</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">`</span>gmt_modified<span class="token punctuation">`</span> <span class="token keyword">DATETIME</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span><span class="token punctuation">`</span>branch_id<span class="token punctuation">`</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token keyword">KEY</span> <span class="token punctuation">`</span>idx_xid<span class="token punctuation">`</span> <span class="token punctuation">(</span><span class="token punctuation">`</span>xid<span class="token punctuation">`</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span> <span class="token keyword">ENGINE</span> <span class="token operator">=</span> <span class="token keyword">InnoDB</span>
+<span class="token keyword">DEFAULT</span> <span class="token keyword">CHARSET</span> <span class="token operator">=</span> utf8<span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">-- the table to store lock data</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> <span class="token keyword">IF</span> <span class="token operator">NOT</span> <span class="token keyword">EXISTS</span> <span class="token punctuation">`</span>lock_table<span class="token punctuation">`</span>
+<span class="token punctuation">(</span>
+    <span class="token punctuation">`</span>row_key<span class="token punctuation">`</span> <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">128</span><span class="token punctuation">)</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    <span class="token punctuation">`</span>xid<span class="token punctuation">`</span> <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">96</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">`</span>transaction_id<span class="token punctuation">`</span> <span class="token keyword">BIGINT</span><span class="token punctuation">,</span>
+    <span class="token punctuation">`</span>branch_id<span class="token punctuation">`</span> <span class="token keyword">BIGINT</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    <span class="token punctuation">`</span>resource_id<span class="token punctuation">`</span> <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">256</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">`</span>table_name<span class="token punctuation">`</span> <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">32</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">`</span>pk<span class="token punctuation">`</span> <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">36</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">`</span>gmt_create<span class="token punctuation">`</span> <span class="token keyword">DATETIME</span><span class="token punctuation">,</span>
+    <span class="token punctuation">`</span>gmt_modified<span class="token punctuation">`</span> <span class="token keyword">DATETIME</span><span class="token punctuation">,</span>
+    <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span><span class="token punctuation">`</span>row_key<span class="token punctuation">`</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token keyword">KEY</span> <span class="token punctuation">`</span>idx_branch_id<span class="token punctuation">`</span> <span class="token punctuation">(</span><span class="token punctuation">`</span>branch_id<span class="token punctuation">`</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span> <span class="token keyword">ENGINE</span> <span class="token operator">=</span> <span class="token keyword">InnoDB</span>
+<span class="token keyword">DEFAULT</span> <span class="token keyword">CHARSET</span> <span class="token operator">=</span> utf8<span class="token punctuation">;</span>
+</code></pre>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211211191400017.png" alt="image-20211211191400017"></p>
+<p>因为都是临时数据，最终提交事务会被清理，我们要看数据的话，还是需要服务代码里打断点，debug<br>进行捕获；<br>下面这个是锋哥捕获到的一个数据；<br><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211211191434036.png" alt="image-20211211191434036"></p>
+<h1 id="9-nacos注册中心和配置中心支持"><a href="#9-nacos注册中心和配置中心支持" class="headerlink" title="9 nacos注册中心和配置中心支持"></a>9 nacos注册中心和配置中心支持</h1><p>Seata支持注册服务到Nacos，以及支持Seata所有配置放到Nacos配置中心，在Nacos中统一维护；具体步骤如下：</p>
+<h2 id="9-1-项目里添加nacos-client依赖"><a href="#9-1-项目里添加nacos-client依赖" class="headerlink" title="9.1 项目里添加nacos-client依赖"></a>9.1 项目里添加nacos-client依赖</h2><pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>com.alibaba.nacos<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>nacos-client<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>1.4.0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
+</code></pre>
+<h2 id="9-2-集成Nacos注册中心支持"><a href="#9-2-集成Nacos注册中心支持" class="headerlink" title="9.2 集成Nacos注册中心支持"></a>9.2 集成Nacos注册中心支持</h2><p>项目里 application.yml 添加注册信息配置</p>
+<pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">seata</span><span class="token punctuation">:</span>
+    <span class="token key atrule">registry</span><span class="token punctuation">:</span>
+        <span class="token key atrule">type</span><span class="token punctuation">:</span> nacos
+        <span class="token key atrule">nacos</span><span class="token punctuation">:</span>
+            <span class="token key atrule">application</span><span class="token punctuation">:</span> seata<span class="token punctuation">-</span>server
+            <span class="token key atrule">server-addr</span><span class="token punctuation">:</span> 127.0.0.1<span class="token punctuation">:</span><span class="token number">8848</span>
+            <span class="token key atrule">group</span> <span class="token punctuation">:</span> <span class="token string">"SEATA_GROUP"</span>
+            <span class="token key atrule">namespace</span><span class="token punctuation">:</span> <span class="token string">""</span>
+            <span class="token key atrule">username</span><span class="token punctuation">:</span> <span class="token string">"nacos"</span>
+            <span class="token key atrule">password</span><span class="token punctuation">:</span> <span class="token string">"nacos"</span>
+</code></pre>
+<p>seata-server端配置注册中心<br>在 registry.conf 中加入对应配置中心</p>
+<pre class=" language-properties"><code class="language-properties"><span class="token attr-name">registry</span> <span class="token attr-value">{</span>
+<span class="token attr-name">    type</span> <span class="token punctuation">=</span> <span class="token attr-value">"nacos"</span>
+<span class="token attr-name">    nacos</span> <span class="token attr-value">{</span>
+<span class="token attr-name">        application</span> <span class="token punctuation">=</span> <span class="token attr-value">"seata-server"</span>
+<span class="token attr-name">        serverAddr</span> <span class="token punctuation">=</span> <span class="token attr-value">"127.0.0.1:8848"</span>
+<span class="token attr-name">        group</span> <span class="token punctuation">=</span> <span class="token attr-value">"SEATA_GROUP"</span>
+<span class="token attr-name">        namespace</span> <span class="token punctuation">=</span> <span class="token attr-value">""</span>
+<span class="token attr-name">        cluster</span> <span class="token punctuation">=</span> <span class="token attr-value">"default"</span>
+<span class="token attr-name">        username</span> <span class="token punctuation">=</span> <span class="token attr-value">""</span>
+<span class="token attr-name">        password</span> <span class="token punctuation">=</span> <span class="token attr-value">""</span>
+    }
+}
+</code></pre>
+<h2 id="9-3-集成Nacos配置中心支持"><a href="#9-3-集成Nacos配置中心支持" class="headerlink" title="9.3 集成Nacos配置中心支持"></a>9.3 集成Nacos配置中心支持</h2><p>在 application.yml 中加入对应的配置中心</p>
+<pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">seata</span><span class="token punctuation">:</span>
+    <span class="token key atrule">config</span><span class="token punctuation">:</span>
+        <span class="token key atrule">type</span><span class="token punctuation">:</span> nacos
+        <span class="token key atrule">nacos</span><span class="token punctuation">:</span>
+            <span class="token key atrule">server-addr</span><span class="token punctuation">:</span> 127.0.0.1<span class="token punctuation">:</span><span class="token number">8848</span>
+            <span class="token key atrule">group</span> <span class="token punctuation">:</span> <span class="token string">"SEATA_GROUP"</span>
+            <span class="token key atrule">namespace</span><span class="token punctuation">:</span> <span class="token string">""</span>
+            <span class="token key atrule">username</span><span class="token punctuation">:</span> <span class="token string">"nacos"</span>
+            <span class="token key atrule">password</span><span class="token punctuation">:</span> <span class="token string">"nacos"</span>
+</code></pre>
+<p>在 registry.conf 中加入对应配置中心</p>
+<pre class=" language-properties"><code class="language-properties"><span class="token attr-name">config</span> <span class="token attr-value">{</span>
+<span class="token attr-name">    type</span> <span class="token punctuation">=</span> <span class="token attr-value">"nacos"</span>
+<span class="token attr-name">    nacos</span> <span class="token attr-value">{</span>
+<span class="token attr-name">        serverAddr</span> <span class="token punctuation">=</span> <span class="token attr-value">"127.0.0.1:8848"</span>
+<span class="token attr-name">        group</span> <span class="token punctuation">=</span> <span class="token attr-value">"SEATA_GROUP"</span>
+<span class="token attr-name">        namespace</span> <span class="token punctuation">=</span> <span class="token attr-value">""</span>
+<span class="token attr-name">        username</span> <span class="token punctuation">=</span> <span class="token attr-value">"nacos"</span>
+<span class="token attr-name">        password</span> <span class="token punctuation">=</span> <span class="token attr-value">"nacos"</span>
+    }
+}
+</code></pre>
+<p>因为我们Nacos没有开启认证功能，所有不需要用户名密码，最终配置如下：</p>
+<pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">seata</span><span class="token punctuation">:</span>
+    <span class="token key atrule">config</span><span class="token punctuation">:</span>
+        <span class="token key atrule">type</span><span class="token punctuation">:</span> nacos
+        <span class="token key atrule">nacos</span><span class="token punctuation">:</span>
+            <span class="token key atrule">server-addr</span><span class="token punctuation">:</span> 127.0.0.1<span class="token punctuation">:</span><span class="token number">8848</span>
+            <span class="token key atrule">group</span><span class="token punctuation">:</span> SEATA_GROUP
+            <span class="token key atrule">namespace</span><span class="token punctuation">:</span> <span class="token string">""</span>
+            <span class="token key atrule">registry</span><span class="token punctuation">:</span>
+        <span class="token key atrule">type</span><span class="token punctuation">:</span> nacos
+        <span class="token key atrule">nacos</span><span class="token punctuation">:</span>
+            <span class="token key atrule">application</span><span class="token punctuation">:</span> seata<span class="token punctuation">-</span>server
+            <span class="token key atrule">server-addr</span><span class="token punctuation">:</span> 127.0.0.1<span class="token punctuation">:</span><span class="token number">8848</span>
+            <span class="token key atrule">group</span><span class="token punctuation">:</span> <span class="token string">"SEATA_GROUP"</span>
+            <span class="token key atrule">namespace</span><span class="token punctuation">:</span> <span class="token string">""</span>
+</code></pre>
+<p>作为Nacos配置中心，我们需要把seata的一些配置上传到Nacos，配置比较多，官方给了我们一个<br>config.txt 我们修改后，上传到Nacos。<br>config.txt 下载地址：<a target="_blank" rel="noopener" href="https://github.com/seata/seata/blob/develop/script/config-center/config.txt">https://github.com/seata/seata/blob/develop/script/config-center/config.txt</a></p>
+<p>我们做一些修改：</p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211211192453720.png" alt="image-20211211192453720"></p>
+<p>修改好的文件，放seata目录下</p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211211192528572.png" alt="image-20211211192528572"></p>
+<p>之后运行仓库中提供的nacos脚本,将信息提交到nacos控制台,如果有需要更改,可直接通过控制台更改<br>脚本地址：<a target="_blank" rel="noopener" href="https://github.com/seata/seata/blob/develop/script/config-center/nacos/nacos-config.sh">https://github.com/seata/seata/blob/develop/script/config-center/nacos/nacos-config.sh</a><br>我们把 nacos-config.sh 文件放到 conf 目录下</p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211211192552300.png" alt="image-20211211192552300"></p>
+<p>右击鼠标，选 Git Bash Here</p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211211192628182.png" alt="image-20211211192628182"></p>
+<p>我们执行命令</p>
+<pre class=" language-shell"><code class="language-shell">sh nacos-config.sh -h localhost -p 8848 -g SEATA_GROUP
+</code></pre>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211211192722665.png" alt="image-20211211192722665"></p>
+<p>完整命令是：</p>
+<pre class=" language-shell"><code class="language-shell">sh nacos-config.sh -h localhost -p 8848 -g SEATA_GROUP -t 0af6e97b-a684-4647-
+b696-7c6d42aecce7 -u nacos -w nacos
+</code></pre>
+<p>注：命令解析：-h -p 指定nacos的端口地址；-g 指定配置的分组，注意，是配置的分组；-t 指定命名空间id； -u -w指定nacos的用户名和密码，同样，这里开启了nacos注册和配置认证的才需要指定。</p>
+<p>等执行完：</p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211211192832432.png" alt="image-20211211192832432"></p>
+<p>我们会发现Nacos配置中心就有seata的配置了；</p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211211192900496.png" alt="image-20211211192900496"></p>
+<p>这样，我们的seata配置就可以在nacos维护了，很方便；</p>
+<h2 id="9-4-测试"><a href="#9-4-测试" class="headerlink" title="9.4 测试"></a>9.4 测试</h2><p>我们要重新启动seata-server，以及重启三个项目，用postman测试，测试OK；</p>
+<h1 id="10-seata事务分组介绍"><a href="#10-seata事务分组介绍" class="headerlink" title="10 seata事务分组介绍"></a>10 seata事务分组介绍</h1><p><strong>事务分组是什么？</strong><br>事务分组是seata的资源逻辑，类似于服务实例。在file.conf中的my_test_tx_group就是一个事务分组。<br><strong>通过事务分组如何找到后端集群？</strong></p>
+<ol>
+<li><p>首先程序中配置了事务分组（GlobalTransactionScanner 构造方法的txServiceGroup参数）</p>
+</li>
+<li><p>程序会通过用户配置的配置中心去寻找service.vgroupMapping .[事务分组配置项]，取得配置项的值就是TC集群的名称</p>
+</li>
+<li><p>拿到集群名称程序通过一定的前后缀+集群名称去构造服务名，各配置中心的服务名实现不同</p>
+</li>
+<li><p>拿到服务名去相应的注册中心去拉取相应服务名的服务列表，获得后端真实的TC服务列表</p>
+</li>
+</ol>
+<p><strong>为什么这么设计，不直接取服务名？</strong><br>这里多了一层获取事务分组到映射集群的配置。这样设计后，事务分组可以作为资源的逻辑隔离单位，出现某集群故障时可以快速failover，只切换对应分组，可以把故障缩减到服务级别，但前提也是你有足够server集群。</p>
+<h1 id="11-遇到问题以及解决"><a href="#11-遇到问题以及解决" class="headerlink" title="11 遇到问题以及解决"></a>11 遇到问题以及解决</h1><p>学习Seata课程，锋哥遇到的最大的坑就是 no available service ‘default’ found, please make sure registry config correct报错问题；原因还是配置问题，各种可能都有，也有可能是版本问题；终极解决方案Debug进源码看，一定可以解决；</p>
+
                 
             </div>
             <hr/>
