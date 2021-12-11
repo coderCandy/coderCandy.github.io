@@ -410,14 +410,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-12-09
+                    2021-12-11
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    4.6k
+                    12.3k
                 </div>
                 
 
@@ -1956,7 +1956,515 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <p>再看t_account表，数据没变化：</p>
 <p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211209224118557.png" alt="image-20211209224118557"></p>
 <p>这样的话，就导致了业务上的数据不一致性问题，也就是分布式事务问题，我们需要解决这个问题；</p>
+<h1 id="4-分布式事务问题模拟"><a href="#4-分布式事务问题模拟" class="headerlink" title="4 分布式事务问题模拟"></a>4 分布式事务问题模拟</h1><p>当多个服务调用过程中，其中一个或者多个服务执行失败，出现异常情况的时候，导致数据不一致性，这样就出现了分布式事务问题；<br>我们来模拟下这个问题，我们运行过程中，让账户扣钱操作执行失败；  </p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211211152123191.png" alt="image-20211211152123191"></p>
+<p>我们修改 seata-account 里面 AccountController 类的 decrease 方法：  </p>
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
+* 给指定用户账户扣钱
+* @param amount
+* @param userId
+* @return
+*/</span>
+<span class="token annotation punctuation">@PostMapping</span><span class="token punctuation">(</span><span class="token string">"/decrease"</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">decrease</span><span class="token punctuation">(</span><span class="token annotation punctuation">@RequestParam</span><span class="token punctuation">(</span><span class="token string">"amount"</span><span class="token punctuation">)</span>Integer amount<span class="token punctuation">,</span>
+                        <span class="token annotation punctuation">@RequestParam</span><span class="token punctuation">(</span><span class="token string">"userId"</span><span class="token punctuation">)</span>Integer userId<span class="token punctuation">)</span><span class="token keyword">throws</span> Exception<span class="token punctuation">{</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"amount:"</span><span class="token operator">+</span>amount<span class="token operator">+</span><span class="token string">",userId:"</span><span class="token operator">+</span>userId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>userId<span class="token operator">==</span>null <span class="token operator">||</span> userId<span class="token operator">==</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Exception</span><span class="token punctuation">(</span><span class="token string">"模拟异常"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> 
+    Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span>Object<span class="token operator">></span> map<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    map<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"amount"</span><span class="token punctuation">,</span>amount<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    map<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"userId"</span><span class="token punctuation">,</span>userId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    accountService<span class="token punctuation">.</span><span class="token function">decrease</span><span class="token punctuation">(</span>map<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>  
+</code></pre>
+<p>当userId=1的时候，模拟抛出异常，下面的就不执行；<br>数据库数据先恢复原来的，postman再测试：  </p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211211152348519.png" alt="image-20211211152348519"></p>
+<p>出现 500异常；<br>这时候我们去查看数据库发现，t_order表有数据，订单已经生成了；  </p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211211152418225.png" alt="image-20211211152418225"></p>
+<p>再看t_account表，数据没变化：  </p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211211152529074.png" alt="image-20211211152529074"></p>
+<p> 这样的话，就导致了业务上的数据不一致性问题，也就是分布式事务问题，我们需要解决这个问题；  </p>
+<h1 id="5-分布式事务常见解决方案"><a href="#5-分布式事务常见解决方案" class="headerlink" title="5 分布式事务常见解决方案"></a>5 分布式事务常见解决方案</h1><h2 id="5-1-CAP理论"><a href="#5-1-CAP理论" class="headerlink" title="5.1 CAP理论"></a>5.1 CAP理论</h2><p>CAP理论：一个分布式系统不可能同时满足一致性，可用性和分区容错性这个三个基本需求，最多只能同时满足其中两项</p>
+<ul>
+<li>一致性(C)：数据在多个副本之间是否能够保持一致的特性。</li>
+<li>可用性(A)：是指系统提供的服务必须一致处于可用状态，对于每一个用户的请求总是在有限的时间内返回结果，超过时间就认为系统是不可用的</li>
+<li>分区容错性(P)：分布式系统在遇到任何网络分区故障的时候，仍然需要能够保证对外提供满足一致性和可用性的服务，除非整个网络环境都发生故障。  </li>
+</ul>
+<h2 id="5-2-CAP定理的应用"><a href="#5-2-CAP定理的应用" class="headerlink" title="5.2 CAP定理的应用"></a>5.2 CAP定理的应用</h2><p>放弃P(CA)：如果希望能够避免系统出现分区容错性问题，一种较为简单的做法就是将所有的数据(或者是与事物先相关的数据)都放在一个分布式节点上，这样虽然无法保证100%系统不会出错，但至少不会碰到由于网络分区带来的负面影响</p>
+<p>放弃A(CP):其做法是一旦系统遇到网络分区或其他故障时，那受到影响的服务需要等待一定的时间，应用等待期间系统无法对外提供正常的服务，即不可用</p>
+<p>放弃C(AP):这里说的放弃一致性，并不是完全不需要数据一致性，是指放弃数据的强一致性，保留数据的最终一致性。  </p>
+<h2 id="5-3-BASE理论"><a href="#5-3-BASE理论" class="headerlink" title="5.3 BASE理论"></a>5.3 BASE理论</h2><p>BASE是基本可用，软状态，最终一致性。是对CAP中一致性和可用性权限的结果，是基于CAP定理演化而来的，核心思想是即使无法做到强一致性，但每个应用都可以根据自身的业务特定，采用适当的方式来使系统达到最终一致性  </p>
+<h2 id="5-4-2PC提交"><a href="#5-4-2PC提交" class="headerlink" title="5.4 2PC提交"></a>5.4 2PC提交</h2><p>二阶段提交协议是将事务的提交过程分成提交事务请求和执行事务提交两个阶段进行处理。<br>阶段一：提交事务请求</p>
+<ol>
+<li>事务询问：协调者向所有的参与者发送事务内容，询问是否可以执行事务提交操作，并开始等待各参与者的响应</li>
+<li>执行事务：各参与者节点执行事务操作，并将Undo和Redo信息记入事务日志中</li>
+<li>如果参与者成功执事务操作，就反馈给协调者Yes响应，表示事物可以执行，如果没有成功执行事务，就反馈给协调者No响应，表示事务不可以执行</li>
+<li>二阶段提交一些的阶段一夜被称为投票阶段，即各参与者投票票表明是否可以继续执行接下去的事<br>务提交操作</li>
+</ol>
+<p>阶段二：执行事务提交</p>
+<ol>
+<li>假如协调者从所有的参与者或得反馈都是Yes响应，那么就会执行事务提交。</li>
+<li>发送提交请求：协调者向所有参与者节点发出Commit请求</li>
+<li>事务提交：参与者接受到Commit请求后，会正式执行事务提交操作，并在完成提交之后放弃整个<br>事务执行期间占用的事务资源</li>
+<li>反馈事务提交结果:参与者在完成事物提交之后，向协调者发送ACK消息</li>
+<li>完成事务：协调者接收到所有参与者反馈的ACK消息后，完成事务  </li>
+</ol>
+<p>中断事务</p>
+<ul>
+<li>假如任何一个参与者向协调者反馈了No响应，或者在等待超时之后，协调者尚无法接收到所有参与者的反馈响应，那么就中断事务。</li>
+<li>发送回滚请求：协调者向所有参与者节点发出Rollback请求</li>
+<li>事务回滚：参与者接收到Rollback请求后，会利用其在阶段一种记录的Undo信息执行事物回滚操作，并在完成回滚之后释放事务执行期间占用的资源。</li>
+<li>反馈事务回滚结果：参与则在完成事务回滚之后，向协调者发送ACK消息</li>
+<li>中断事务：协调者接收到所有参与者反馈的ACk消息后，完成事务中断  </li>
+</ul>
+<p>优缺点</p>
+<ul>
+<li>原理简单，实现方便</li>
+<li>缺点是同步阻塞，单点问题，脑裂，保守  </li>
+</ul>
+<h2 id="5-5-3PC提交"><a href="#5-5-3PC提交" class="headerlink" title="5.5 3PC提交"></a>5.5 3PC提交</h2><ul>
+<li>三阶段提，也叫三阶段提交协议，是二阶段提交（2PC）的改进版本。</li>
+<li>与两阶段提交不同的是，三阶段提交有两个改动点。引入超时机制。同时在协调者和参与者中都引入超时机制。在第一阶段和第二阶段中插入一个准备阶段。保证了在最后提交阶段之前各参与节点的状态是一致的。</li>
+<li>三阶段提交就有CanCommit、PreCommit、DoCommit三个阶段  </li>
+</ul>
+<h2 id="5-6-TCC分布式事务"><a href="#5-6-TCC分布式事务" class="headerlink" title="5.6 TCC分布式事务"></a>5.6 TCC分布式事务</h2><ul>
+<li>TCC是服务化的两阶段编程模型，其Try、Confirm、Cancel，3个方法均由业务编码实现</li>
+<li>TCC要求每个分支事务实现三个操作：预处理Try,确认Confirm,撤销Cancel。</li>
+<li>Try操作做业务检查及资源预留,</li>
+<li>Confirm做业务确认操作</li>
+<li>Cancel实现一个与Try相反的操作即回滚操作。</li>
+<li>TM首先发起所有的分支事务Try操作，任何一个分支事务的Try操作执行失败，TM将会发起所有分支事务的Cancel操作，若Try操作全部成功，TM将会发起所有分支事务的Confirm操作,其中Confirm/Cancel操作若执行失败,TM会进行重试。  </li>
+</ul>
+<p>TCC的三个阶段</p>
+<ul>
+<li>Try阶段是做业务检查(一致性)及资源预留(隔离),此阶段仅是一个初步操作，它和后续的Confirmy一起才能构成一个完整的业务逻辑</li>
+<li>Confirm阶段是做确认提交，Try阶段所有分支事务执行成功后开始执行Confirm，通常情况下，采用TCC则认为Confirm阶段是不会出错的,即：只要Try成功，Confirm一定成功，若Confirm阶段真的出错，需要引入重试机制或人工处理</li>
+<li>Cancel阶段是在业务执行错误需要回滚到状态下执行分支事务的取消，预留资源的释放，通常情况下，采用TCC则认为Cancel阶段也一定是真功的,若Cance阶段真的出错，需要引入重试机制或人工处理</li>
+<li>TM事务管理器：TM事务管理器可以实现为独立的服务，也可以让全局事务发起方充当TM的角色,TM独立出来是为了公用组件，是为了考虑系统结构和软件的复用</li>
+<li>TM在发起全局事务时生成全局事务记录，全局事务ID贯穿整个分布式事务调用链条，用来记录事务上下文，追踪和记录状态，用于Confirm和cacel失败需要进行重试,因此需要实现幂等  </li>
+</ul>
+<p>TCC的三种异常处理情况</p>
+<p>幂等处理</p>
+<ul>
+<li>因为网络抖动等原因，分布式事务框架可能会重复调用同一个分布式事务中的一个分支事务的二阶段接口。所以分支事务的二阶段接口Confirm/Cancel需要能够保证幂等性。如果二阶段接口不能保证幂等性，则会产生严重的问题，造成资源的重复使用或者重复释放，进而导致业务故障。</li>
+<li>对于幂等类型的问题，通常的手段是引入幂等字段进行防重放攻击。对于分布式事务框架中的幂等问题，同样可以祭出这一利器。</li>
+<li>幂等记录的插入时机是参与者的Try方法，此时的分支事务状态会被初始化为INIT。然后当二阶段的Confirm/Cancel执行时会将其状态置为CONFIRMED/ROLLBACKED。</li>
+<li>当TC重复调用二阶段接口时，参与者会先获取事务状态控制表的对应记录查看其事务状态。如果状态已经为CONFIRMED/ROLLBACKED，那么表示参与者已经处理完其分内之事，不需要再次执行，可以直接返回幂等成功的结果给TC，帮助其推进分布式事务。  </li>
+</ul>
+<p>空回滚</p>
+<ul>
+<li>当没有调用参与方Try方法的情况下，就调用了二阶段的Cancel方法，Cancel方法需要有办法识别出此时Try有没有执行。如果Try还没执行，表示这个Cancel操作是无效的，即本次Cancel属于空回滚；如果Try已经执行，那么执行的是正常的回滚逻辑。</li>
+<li>要应对空回滚的问题，就需要让参与者在二阶段的Cancel方法中有办法识别到一阶段的Try是否已经执行。很显然，可以继续利用事务状态控制表来实现这个功能。</li>
+<li>当Try方法被成功执行后，会插入一条记录，标识该分支事务处于INIT状态。所以后续当二阶段的Cancel方法被调用时，可以通过查询控制表的对应记录进行判断。如果记录存在且状态为INIT，就表示一阶段已成功执行，可以正常执行回滚操作，释放预留的资源；如果记录不存在则表示一阶段未执行，本次为空回滚，不释放任何资源。  </li>
+</ul>
+<p>资源悬挂</p>
+<ul>
+<li>问题：TC回滚事务调用二阶段完成空回滚后，一阶段执行成功</li>
+<li>解决：事务状态控制记录作为控制手段，二阶段发现无记录时插入记录，一阶段执行时检查记录是否存在  </li>
+</ul>
+<p>TCC和2PC比较</p>
+<ul>
+<li>2PC通常都是在跨库的DB层面，而TCC则在应用层面处理，需要通过业务逻辑实现，这种分布式事务的实现方式优势在于，可以让应用自己定义数据操作的粒度，使得降低锁冲突，提高吞吐量成为可能</li>
+<li>而不足之处则在于对应用的侵入性非常强，业务逻辑的每个分支都需要实现Try，confirm,cancel三<br>个操作。此外，其实现难度也比较大，需要按照网络状态，系统故障的不同失败原因实现不同的回<br>滚策略  </li>
+</ul>
+<h2 id="5-7-消息队列实现可靠消息最终一致性"><a href="#5-7-消息队列实现可靠消息最终一致性" class="headerlink" title="5.7 消息队列实现可靠消息最终一致性"></a>5.7 消息队列实现可靠消息最终一致性</h2><ul>
+<li>可靠消息最终一致性就是保证消息从生产方经过消息中间件传递到消费方的一致性</li>
+<li>RocketMQ主要解决了两个功能：本地事务与消息发送的原子性问题。事务参与方接收消息的可靠性</li>
+<li>可靠消息最终一致性事务适合执行周期长且实时性要求不高的场景，引入消息机制后，同步的事务操作变为基于消息执行的异步操作，避免分布式事务中的同步阻塞操作的影响，并实现了两个服务的解耦  </li>
+</ul>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211211164336343.png" alt="image-20211211164336343"></p>
+<h2 id="5-8-最大努力通知"><a href="#5-8-最大努力通知" class="headerlink" title="5.8 最大努力通知"></a>5.8 最大努力通知</h2><p><strong>最大努力通知与可靠消息一致性有什么不同</strong></p>
+<ul>
+<li>可靠消息一致性，发起通知方需要保证将消息发出去，并且将消息发送到接收通知方，消息的可靠性由发起通知方保证</li>
+<li>最大努力通知，发起通知方尽最大的努力将业务处理结果通知为接收通知方，但是消息可能接收不到，此时需要接收通知方主动调用发起通知方的接口查询业务，通知可靠性关键在于接收通知方</li>
+</ul>
+<p><strong>两者的应用场景</strong></p>
+<ul>
+<li>可靠消息一致性关注的是交易过程的事务一致，以异步的方式完成交易</li>
+<li>最大努力通知关注的是交易后的通知事务，即将交易结果可靠的通知出去</li>
+</ul>
+<p><strong>基于MQ的ack机制实现最大努力通知</strong></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211211164757834.png" alt="image-20211211164757834"></p>
+<ul>
+<li>利用MQ的ack机制由MQ向接收通知方发送消息通知，发起方将普通消息发送到MQ</li>
+<li>接收通知监听MQ，接收消息，业务处理完成回应ACK</li>
+<li>接收通知方如果没有回应ACK则MQ会重复通知，按照时间间隔的方式，逐步拉大通知间隔</li>
+<li>此方案适用于内部微服务之间的通知，不适应与通知外部平台</li>
+</ul>
+<p>方案二：增加一个通知服务区进行通知，提供外部第三方时适用</p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211211164907402.png" alt="image-20211211164907402"></p>
+<h2 id="5-9-分布式事务方案对比分析"><a href="#5-9-分布式事务方案对比分析" class="headerlink" title="5.9 分布式事务方案对比分析"></a>5.9 分布式事务方案对比分析</h2><ul>
+<li>2PC 最大的一个诟病是一个阻塞协议。RM在执行分支事务后需要等待TM的决定，此时服务会阻塞锁定资源。由于其阻塞机制和最差时间复杂度高，因此，这种设计不能适应随着事务涉及的服务数量增加而扩展的需要，很难用于并发较高以及子事务生命周期较长的分布式服务中</li>
+<li>如果拿TCC事务的处理流程与2PC两阶段提交做比较，2PC通常都是在跨库的DB层面，而TCC则在应用层面处理，需要通过业务逻辑来实现。这种分布式事务的优势在于，可以让应用自定义数据操作的粒度，使得降低锁冲突，提高吞吐量成为可能。而不足之处在于对应用的侵入性非常强，业务逻辑的每个分支都需要实现三个操作。此外，其实现难度也比较大，需要按照网络状态，系统故障等不同失败原因实现不同的策略。</li>
+<li>可靠消息最终一致性事务适合执行周期长且实时性要求不高的场景。引入消息机制后，同步的事务操作变为基于消息执行的异步操作，避免了分布式事务中的同步阻塞操作的影响，并实现了两个服务的解耦，典型的场景：注册送积分，登陆送优惠券等</li>
+<li>最大努力通知是分布式事务中要求最低的一种，适用于一些最终一致性时间敏感度低的业务，允许发起通知方业务处理失败，在接收通知方收到通知后积极进行失败处理，无论发起通知方如何处理结果都不会影响到接收通知方的后续处理，发起通知方需提供查询执行情况接口，用于接收通知方校对结果，典型的应用场景：银行通知，支付结果通知等。</li>
+</ul>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211211165047219.png" alt="image-20211211165047219"></p>
+<h1 id="6-seata原理详解"><a href="#6-seata原理详解" class="headerlink" title="6 seata原理详解"></a>6 seata原理详解</h1><p>Seata 是一款开源的分布式事务解决方案，致力于提供高性能和简单易用的分布式事务服务。Seata 将为用户提供了 AT、TCC、SAGA 和 XA 事务模式，为用户打造一站式的分布式解决方案。</p>
+<h2 id="6-1-Seata术语"><a href="#6-1-Seata术语" class="headerlink" title="6.1 Seata术语"></a>6.1 Seata术语</h2><p><strong>TC (Transaction Coordinator) - 事务协调者</strong><br>维护全局和分支事务的状态，驱动全局事务提交或回滚。<br><strong>TM (Transaction Manager) - 事务管理器</strong><br>定义全局事务的范围：开始全局事务、提交或回滚全局事务。<br><strong>RM (Resource Manager) - 资源管理器</strong><br>管理分支事务处理的资源，与TC交谈以注册分支事务和报告分支事务的状态，并驱动分支事务提交或回滚。</p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211211165222231.png" alt="image-20211211165222231"></p>
+<p><strong>Seata管理分布式事务的典型生命周期</strong></p>
+<ul>
+<li>TM要求TC开始新的全局事务。 TC生成表示全局事务的XID。</li>
+<li>XID通过微服务的调用链传播。</li>
+<li>RM将本地事务注册为XID到TC的相应全局事务的分支。</li>
+<li>TM要求TC提交或回滚XID的相应全局事务。</li>
+<li>TC在XID的相应全局事务下驱动所有分支事务，以完成分支提交或回滚。</li>
+</ul>
+<p><strong>分布式事务是由一批分支事务组成的全局事务，通常分支事务就是本地事务。</strong></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211211165323190.png" alt="image-20211211165323190"></p>
+<h2 id="6-2-AT-模式"><a href="#6-2-AT-模式" class="headerlink" title="6.2 AT 模式"></a>6.2 AT 模式</h2><p>前提</p>
+<ul>
+<li>基于支持本地 ACID 事务的关系型数据库。</li>
+<li>Java 应用，通过 JDBC 访问数据库。</li>
+</ul>
+<p>整体机制</p>
+<p>两阶段提交协议的演变：</p>
+<ul>
+<li>一阶段：业务数据和回滚日志记录在同一个本地事务中提交，释放本地锁和连接资源。</li>
+<li>二阶段：<ul>
+<li>提交异步化，非常快速地完成。</li>
+<li>回滚通过一阶段的回滚日志进行反向补偿。</li>
+</ul>
+</li>
+</ul>
+<p>写隔离</p>
+<ul>
+<li>一阶段本地事务提交前，需要确保先拿到 <strong>全局锁</strong> 。</li>
+<li>拿不到 <strong>全局锁</strong> ，不能提交本地事务。</li>
+<li>拿 <strong>全局锁</strong> 的尝试被限制在一定范围内，超出范围将放弃，并回滚本地事务，释放本地锁。</li>
+</ul>
+<p>以一个示例来说明：<br>两个全局事务 tx1 和 tx2，分别对 a 表的 m 字段进行更新操作，m 的初始值 1000。<br>tx1 先开始，开启本地事务，拿到本地锁，更新操作 m = 1000 - 100 = 900。本地事务提交前，先拿到该记录的 全局锁 ，本地提交释放本地锁。 tx2 后开始，开启本地事务，拿到本地锁，更新操作 m = 900-100 = 800。本地事务提交前，尝试拿该记录的 全局锁 ，tx1 全局提交前，该记录的全局锁被 tx1 持有，tx2 需要重试等待 全局锁 </p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211211165743142.png" alt="image-20211211165743142"></p>
+<p>tx1 二阶段全局提交，释放 <strong>全局锁</strong> 。tx2 拿到 <strong>全局锁</strong> 提交本地事务。</p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211211165835492.png" alt="image-20211211165835492"></p>
+<p>如果 tx1 的二阶段全局回滚，则 tx1 需要重新获取该数据的本地锁，进行反向补偿的更新操作，实现分支的回滚。<br>此时，如果 tx2 仍在等待该数据的 全局锁，同时持有本地锁，则 tx1 的分支回滚会失败。分支的回滚会一直重试，直到 tx2 的 全局锁 等锁超时，放弃 全局锁 并回滚本地事务释放本地锁，tx1 的分支回滚最终成功。<br>因为整个过程 全局锁 在 tx1 结束前一直是被 tx1 持有的，所以不会发生 脏写 的问题。</p>
+<p><strong>读隔离</strong></p>
+<p>在数据库本地事务隔离级别 读已提交（Read Committed） 或以上的基础上，Seata（AT 模式）的默认全局隔离级别是 读未提交（Read Uncommitted） 。<br>如果应用在特定场景下，必需要求全局的 读已提交 ，目前 Seata 的方式是通过 SELECT FOR UPDATE语句的代理。</p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211211165947913.png" alt="image-20211211165947913"></p>
+<p>SELECT FOR UPDATE 语句的执行会申请 <strong>全局锁</strong> ，如果 <strong>全局锁</strong> 被其他事务持有，则释放本地锁（回滚SELECT FOR UPDATE 语句的本地执行）并重试。这个过程中，查询是被 block 住的，直到 <strong>全局锁</strong> 拿到，即读取的相关数据是 <strong>已提交</strong> 的，才返回。<br>出于总体性能上的考虑，Seata 目前的方案并没有对所有 SELECT 语句都进行代理，仅针对 FOR UPDATE 的 SELECT 语句。</p>
+<p><strong>工作机制</strong></p>
+<p>以一个示例来说明整个 AT 分支的工作过程。<br>业务表： product</p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211211170140632.png" alt="image-20211211170140632"></p>
+<p>AT 分支事务的业务逻辑：</p>
+<pre class=" language-sql"><code class="language-sql"><span class="token keyword">update</span> product <span class="token keyword">set</span> name <span class="token operator">=</span> <span class="token string">'GTS'</span> <span class="token keyword">where</span> name <span class="token operator">=</span> <span class="token string">'TXC'</span><span class="token punctuation">;</span>
+</code></pre>
+<p>一阶段</p>
+<p>过程：</p>
+<ol>
+<li>解析 SQL：得到 SQL 的类型（UPDATE），表（product），条件（where name = ‘TXC’）等相关的信息。</li>
+<li>查询前镜像：根据解析得到的条件信息，生成查询语句，定位数据。</li>
+</ol>
+<pre class=" language-sql"><code class="language-sql"><span class="token keyword">select</span> id<span class="token punctuation">,</span> name<span class="token punctuation">,</span> since <span class="token keyword">from</span> product <span class="token keyword">where</span> name <span class="token operator">=</span> <span class="token string">'TXC'</span><span class="token punctuation">;</span>
+</code></pre>
+<p>得到前镜像：</p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211211170313844.png" alt="image-20211211170313844"></p>
+<ol>
+<li>执行业务 SQL：更新这条记录的 name 为 ‘GTS’。</li>
+<li>查询后镜像：根据前镜像的结果，通过 主键 定位数据。</li>
+</ol>
+<pre class=" language-sql"><code class="language-sql"><span class="token keyword">select</span> id<span class="token punctuation">,</span> name<span class="token punctuation">,</span> since <span class="token keyword">from</span> product <span class="token keyword">where</span> id <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+</code></pre>
+<p>得到后镜像：</p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211211170412181.png" alt="image-20211211170412181"></p>
+<p>插入回滚日志：把前后镜像数据以及业务 SQL 相关的信息组成一条回滚日志记录，插入到UNDO_LOG 表中。</p>
+<pre class=" language-json"><code class="language-json"><span class="token punctuation">{</span>
+    <span class="token property">"branchId"</span><span class="token operator">:</span> <span class="token number">641789253</span><span class="token punctuation">,</span>
+    <span class="token property">"undoItems"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">{</span>
+        <span class="token property">"afterImage"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+            <span class="token property">"rows"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">{</span>
+                <span class="token property">"fields"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">{</span>
+                    <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"id"</span><span class="token punctuation">,</span>
+                    <span class="token property">"type"</span><span class="token operator">:</span> <span class="token number">4</span><span class="token punctuation">,</span>
+                    <span class="token property">"value"</span><span class="token operator">:</span> <span class="token number">1</span>
+                <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+                    <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"name"</span><span class="token punctuation">,</span>
+                    <span class="token property">"type"</span><span class="token operator">:</span> <span class="token number">12</span><span class="token punctuation">,</span>
+                    <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"GTS"</span>
+                <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+                    <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"since"</span><span class="token punctuation">,</span>
+                    <span class="token property">"type"</span><span class="token operator">:</span> <span class="token number">12</span><span class="token punctuation">,</span>
+                    <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"2014"</span>
+                <span class="token punctuation">}</span><span class="token punctuation">]</span>
+            <span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+            <span class="token property">"tableName"</span><span class="token operator">:</span> <span class="token string">"product"</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token property">"beforeImage"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+            <span class="token property">"rows"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">{</span>
+                <span class="token property">"fields"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">{</span>
+                    <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"id"</span><span class="token punctuation">,</span>
+                    <span class="token property">"type"</span><span class="token operator">:</span> <span class="token number">4</span><span class="token punctuation">,</span>
+                    <span class="token property">"value"</span><span class="token operator">:</span> <span class="token number">1</span>
+                <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+                    <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"name"</span><span class="token punctuation">,</span>
+                    <span class="token property">"type"</span><span class="token operator">:</span> <span class="token number">12</span><span class="token punctuation">,</span>
+                    <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"TXC"</span>
+                <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
 
+                    <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"since"</span><span class="token punctuation">,</span>
+                    <span class="token property">"type"</span><span class="token operator">:</span> <span class="token number">12</span><span class="token punctuation">,</span>
+                    <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"2014"</span>
+                <span class="token punctuation">}</span><span class="token punctuation">]</span>
+            <span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+            <span class="token property">"tableName"</span><span class="token operator">:</span> <span class="token string">"product"</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token property">"sqlType"</span><span class="token operator">:</span> <span class="token string">"UPDATE"</span>
+    <span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token property">"xid"</span><span class="token operator">:</span> <span class="token string">"xid:xxx"</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<ol>
+<li>提交前，向 TC 注册分支：申请 product 表中，主键值等于 1 的记录的 全局锁 。</li>
+<li>本地事务提交：业务数据的更新和前面步骤中生成的 UNDO LOG 一并提交。</li>
+<li>将本地事务提交的结果上报给 TC。</li>
+</ol>
+<p><strong>二阶段-回滚</strong></p>
+<ol>
+<li><p>收到 TC 的分支回滚请求，开启一个本地事务，执行如下操作。</p>
+</li>
+<li><p>通过 XID 和 Branch ID 查找到相应的 UNDO LOG 记录。</p>
+</li>
+<li><p>数据校验：拿 UNDO LOG 中的后镜与当前数据进行比较，如果有不同，说明数据被当前全局事务之外的动作做了修改。这种情况，需要根据配置策略来做处理，详细的说明在另外的文档中介绍。</p>
+</li>
+<li><p>根据 UNDO LOG 中的前镜像和业务 SQL 的相关信息生成并执行回滚的语句：</p>
+<pre class=" language-sql"><code class="language-sql"><span class="token keyword">update</span> product <span class="token keyword">set</span> name <span class="token operator">=</span> <span class="token string">'TXC'</span> <span class="token keyword">where</span> id <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+</code></pre>
+<p>提交本地事务。并把本地事务的执行结果（即分支事务回滚的结果）上报给 TC。</p>
+</li>
+</ol>
+<p><strong>二阶段-提交</strong></p>
+<ol>
+<li>收到 TC 的分支提交请求，把请求放入一个异步任务的队列中，马上返回提交成功的结果给 TC。</li>
+<li>异步任务阶段的分支提交请求将异步和批量地删除相应 UNDO LOG 记录。</li>
+</ol>
+<p><strong>附录</strong><br><strong>回滚日志表</strong><br>UNDO_LOG Table：不同数据库在类型上会略有差别。<br>以 MySQL 为例：</p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211211170749499.png" alt="image-20211211170749499"></p>
+<pre class=" language-sql"><code class="language-sql"><span class="token comment" spellcheck="true">-- 注意此处0.7.0+ 增加字段 context</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> <span class="token punctuation">`</span>undo_log<span class="token punctuation">`</span> <span class="token punctuation">(</span>
+<span class="token punctuation">`</span>id<span class="token punctuation">`</span> <span class="token keyword">bigint</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">AUTO_INCREMENT</span><span class="token punctuation">,</span>
+<span class="token punctuation">`</span>branch_id<span class="token punctuation">`</span> <span class="token keyword">bigint</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+<span class="token punctuation">`</span>xid<span class="token punctuation">`</span> <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+<span class="token punctuation">`</span>context<span class="token punctuation">`</span> <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">128</span><span class="token punctuation">)</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+<span class="token punctuation">`</span>rollback_info<span class="token punctuation">`</span> <span class="token keyword">longblob</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+<span class="token punctuation">`</span>log_status<span class="token punctuation">`</span> <span class="token keyword">int</span><span class="token punctuation">(</span><span class="token number">11</span><span class="token punctuation">)</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+<span class="token punctuation">`</span>log_created<span class="token punctuation">`</span> <span class="token keyword">datetime</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+<span class="token punctuation">`</span>log_modified<span class="token punctuation">`</span> <span class="token keyword">datetime</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+<span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span><span class="token punctuation">`</span>id<span class="token punctuation">`</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token keyword">UNIQUE</span> <span class="token keyword">KEY</span> <span class="token punctuation">`</span>ux_undo_log<span class="token punctuation">`</span> <span class="token punctuation">(</span><span class="token punctuation">`</span>xid<span class="token punctuation">`</span><span class="token punctuation">,</span><span class="token punctuation">`</span>branch_id<span class="token punctuation">`</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span> <span class="token keyword">ENGINE</span><span class="token operator">=</span><span class="token keyword">InnoDB</span> <span class="token keyword">AUTO_INCREMENT</span><span class="token operator">=</span><span class="token number">1</span> <span class="token keyword">DEFAULT</span> <span class="token keyword">CHARSET</span><span class="token operator">=</span>utf8<span class="token punctuation">;</span>
+</code></pre>
+<h2 id="6-3-TCC-模式"><a href="#6-3-TCC-模式" class="headerlink" title="6.3 TCC 模式"></a>6.3 TCC 模式</h2><p>回顾总览中的描述：一个分布式的全局事务，整体是 两阶段提交 的模型。全局事务是由若干分支事务组<br>成的，分支事务要满足 两阶段提交 的模型要求，即需要每个分支事务都具备自己的：</p>
+<ul>
+<li>一阶段 prepare 行为</li>
+<li>二阶段 commit 或 rollback 行为</li>
+</ul>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211211171005541.png" alt="image-20211211171005541"></p>
+<p>根据两阶段行为模式的不同，我们将分支事务划分为 <strong>Automatic (Branch) Transaction Mode</strong> 和<br><strong>Manual (Branch) Transaction Mode.</strong></p>
+<p>AT 模式（参考链接 TBD）基于 支持本地 ACID 事务 的 关系型数据库：</p>
+<ul>
+<li>一阶段 prepare 行为：在本地事务中，一并提交业务数据更新和相应回滚日志记录。</li>
+<li>二阶段 commit 行为：马上成功结束，自动 异步批量清理回滚日志。</li>
+<li>二阶段 rollback 行为：通过回滚日志，自动 生成补偿操作，完成数据回滚。</li>
+</ul>
+<p>相应的，TCC 模式，不依赖于底层数据资源的事务支持：</p>
+<ul>
+<li>一阶段 prepare 行为：调用 自定义 的 prepare 逻辑。</li>
+<li>二阶段 commit 行为：调用 自定义 的 commit 逻辑。</li>
+<li>二阶段 rollback 行为：调用 自定义 的 rollback 逻辑。</li>
+</ul>
+<p>所谓 TCC 模式，是指支持把 自定义 的分支事务纳入到全局事务的管理中。</p>
+<h2 id="6-4-Saga-模式"><a href="#6-4-Saga-模式" class="headerlink" title="6.4 Saga 模式"></a>6.4 Saga 模式</h2><p>Saga模式是SEATA提供的长事务解决方案，在Saga模式中，业务流程中每个参与者都提交本地事务，当出现某一个参与者失败则补偿前面已经成功的参与者，一阶段正向服务和二阶段补偿服务都由业务开发实现。</p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211211171227503.png" alt="image-20211211171227503"></p>
+<p>理论基础：Hector &amp; Kenneth 发表论⽂ Sagas （1987）</p>
+<p>适用场景：</p>
+<ul>
+<li>业务流程长、业务流程多</li>
+<li>参与者包含其它公司或遗留系统服务，无法提供 TCC 模式要求的三个接口</li>
+</ul>
+<p>优势：</p>
+<ul>
+<li>一阶段提交本地事务，无锁，高性能</li>
+<li>事件驱动架构，参与者可异步执行，高吞吐</li>
+<li>补偿服务易于实现</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>不保证隔离性（应对方案见用户文档）</li>
+</ul>
+<h1 id="7-应用seata-AT模式方案解决分布式事务问题"><a href="#7-应用seata-AT模式方案解决分布式事务问题" class="headerlink" title="7 应用seata AT模式方案解决分布式事务问题"></a>7 应用seata AT模式方案解决分布式事务问题</h1><p>seata主推的是AT模式强一致性解决方案，所以我们采用这个方案来解决前面案例的分布式问题。</p>
+<h2 id="7-1-下载和运行seata-server"><a href="#7-1-下载和运行seata-server" class="headerlink" title="7.1 下载和运行seata server"></a>7.1 下载和运行seata server</h2><p>seata server地址：<a target="_blank" rel="noopener" href="https://github.com/seata/seata/releases">https://github.com/seata/seata/releases</a><br>最新版本 v1.4.2<br>我们用windows演示，下载seata-server-1.4.2.zip</p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211211173923075.png" alt="image-20211211173923075"></p>
+<p><strong>seata-server配置文件：</strong><br>seata server所有的配置都在conf文件夹内，该文件夹内有两个文件我们必须要详细介绍下。seata server默认使用file（文件方式）进行存储事务日志、事务运行信息，我们可以通过-m db脚本参数的形式来指定，目前仅支持file、db这两种方式。</p>
+<p><strong>file.conf</strong><br>该文件用于配置存储方式、透传事务信息的NIO等信息，默认对应registry.conf文件内的file方式配置。</p>
+<p><strong>registry.conf</strong><br>seata server核心配置文件，可以通过该文件配置服务注册方式、配置读取方式。<br>注册方式目前支持file 、nacos 、eureka、redis、zk、consul、etcd3、sofa等方式，默认为file，对应<br>读取file.conf内的注册方式信息。<br>读取配置信息的方式支持file、nacos 、apollo、zk、consul、etcd3等方式，默认为file，对应读取<br>file.conf文件内的配置。</p>
+<p>file.conf 我们加一个service 配置：</p>
+<pre class=" language-properties"><code class="language-properties"><span class="token attr-name">service</span> <span class="token attr-value">{</span>
+<span class="token comment" spellcheck="true">    #vgroup->rgroup 服务分组 集群分组默认为"default"</span>
+<span class="token attr-name">    vgroupMapping.my_test_tx_group</span> <span class="token punctuation">=</span> <span class="token attr-value">"default"</span>
+<span class="token comment" spellcheck="true">    #only support single node</span>
+<span class="token attr-name">    default.grouplist</span> <span class="token punctuation">=</span> <span class="token attr-value">"127.0.0.1:8091"</span>
+<span class="token comment" spellcheck="true">    #degrade current not support 服务降级达到多次错误不走seata</span>
+<span class="token attr-name">    enableDegrade</span> <span class="token punctuation">=</span> <span class="token attr-value">false</span>
+<span class="token comment" spellcheck="true">    #disable</span>
+<span class="token attr-name">    disable</span> <span class="token punctuation">=</span> <span class="token attr-value">false</span>
+<span class="token comment" spellcheck="true">    #unit ms,s,m,h,d represents milliseconds, seconds, minutes, hours, days,</span>
+<span class="token attr-name">    default</span> <span class="token attr-value">permanent</span>
+<span class="token attr-name">    max.commit.retry.timeout</span> <span class="token punctuation">=</span> <span class="token attr-value">"-1"</span>
+<span class="token attr-name">    max.rollback.retry.timeout</span> <span class="token punctuation">=</span> <span class="token attr-value">"-1"</span>
+}
+</code></pre>
+<p>这里事务分组概念，我们最后单独讲，主要是为了集群故障的时候，能快速切换，实现高可用；<br>配置分组映射，集群分组再配置grouplist，暴露server地址，提供给seata-client调用；<br>最后我们运行bin目录下的seata-server.bat启动seata-server：</p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211211174155372.png" alt="image-20211211174155372"></p>
+<p>启动OK，监听端口8091</p>
+<h2 id="7-2-每个数据库都建一个undo-log回滚日志表"><a href="#7-2-每个数据库都建一个undo-log回滚日志表" class="headerlink" title="7.2 每个数据库都建一个undo_log回滚日志表"></a>7.2 每个数据库都建一个undo_log回滚日志表</h2><p>根据seata AT模式规范，我们新建undo_log表，db_account和db_order都要建；</p>
+<pre class=" language-sql"><code class="language-sql"><span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> <span class="token punctuation">`</span>undo_log<span class="token punctuation">`</span> <span class="token punctuation">(</span>
+    <span class="token punctuation">`</span>id<span class="token punctuation">`</span> <span class="token keyword">bigint</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">AUTO_INCREMENT</span><span class="token punctuation">,</span>
+    <span class="token punctuation">`</span>branch_id<span class="token punctuation">`</span> <span class="token keyword">bigint</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    <span class="token punctuation">`</span>xid<span class="token punctuation">`</span> <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    <span class="token punctuation">`</span>context<span class="token punctuation">`</span> <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">128</span><span class="token punctuation">)</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    <span class="token punctuation">`</span>rollback_info<span class="token punctuation">`</span> <span class="token keyword">longblob</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    <span class="token punctuation">`</span>log_status<span class="token punctuation">`</span> <span class="token keyword">int</span><span class="token punctuation">(</span><span class="token number">11</span><span class="token punctuation">)</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    <span class="token punctuation">`</span>log_created<span class="token punctuation">`</span> <span class="token keyword">datetime</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    <span class="token punctuation">`</span>log_modified<span class="token punctuation">`</span> <span class="token keyword">datetime</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    <span class="token punctuation">`</span>ext<span class="token punctuation">`</span> <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span> <span class="token keyword">DEFAULT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span><span class="token punctuation">`</span>id<span class="token punctuation">`</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token keyword">UNIQUE</span> <span class="token keyword">KEY</span> <span class="token punctuation">`</span>ux_undo_log<span class="token punctuation">`</span> <span class="token punctuation">(</span><span class="token punctuation">`</span>xid<span class="token punctuation">`</span><span class="token punctuation">,</span><span class="token punctuation">`</span>branch_id<span class="token punctuation">`</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span> <span class="token keyword">ENGINE</span><span class="token operator">=</span><span class="token keyword">InnoDB</span> <span class="token keyword">AUTO_INCREMENT</span><span class="token operator">=</span><span class="token number">3</span> <span class="token keyword">DEFAULT</span> <span class="token keyword">CHARSET</span><span class="token operator">=</span>utf8
+</code></pre>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211211174319249.png" alt="image-20211211174319249"></p>
+<h2 id="7-3-项目里添加seata-client-maven依赖"><a href="#7-3-项目里添加seata-client-maven依赖" class="headerlink" title="7.3 项目里添加seata-client maven依赖"></a>7.3 项目里添加seata-client maven依赖</h2><p>我们只需要在seata-common公共模块项目里添加seata依赖，其他子模块都有了，方便；</p>
+<pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>com.alibaba.cloud<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-cloud-starter-alibaba-seata<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
+</code></pre>
+<h2 id="7-4-项目里配置seata分布式事务"><a href="#7-4-项目里配置seata分布式事务" class="headerlink" title="7.4 项目里配置seata分布式事务"></a>7.4 项目里配置seata分布式事务</h2><p>首先是每个项目都要配置seata支持，请求seata-server，根据配置；<br>再通过@GlobalTransactional注解，开启全局分布式事务；</p>
+<p>seata-order子项目 application.yml配置改下：</p>
+<pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">server</span><span class="token punctuation">:</span>
+    <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">8081</span>
+    <span class="token key atrule">servlet</span><span class="token punctuation">:</span>
+        <span class="token key atrule">context-path</span><span class="token punctuation">:</span> /
+<span class="token key atrule">spring</span><span class="token punctuation">:</span>
+    <span class="token key atrule">datasource</span><span class="token punctuation">:</span>
+        <span class="token key atrule">type</span><span class="token punctuation">:</span> com.alibaba.druid.pool.DruidDataSource
+        <span class="token key atrule">driver-class-name</span><span class="token punctuation">:</span> com.mysql.cj.jdbc.Driver
+        <span class="token key atrule">url</span><span class="token punctuation">:</span> jdbc<span class="token punctuation">:</span>mysql<span class="token punctuation">:</span>//localhost<span class="token punctuation">:</span>3306/db_order<span class="token punctuation">?</span>serverTimezone=Asia/Shanghai
+
+        <span class="token key atrule">username</span><span class="token punctuation">:</span> root
+        <span class="token key atrule">password</span><span class="token punctuation">:</span> <span class="token number">123456</span>
+    <span class="token key atrule">cloud</span><span class="token punctuation">:</span>
+        <span class="token key atrule">nacos</span><span class="token punctuation">:</span>
+            <span class="token key atrule">discovery</span><span class="token punctuation">:</span>
+                <span class="token key atrule">server-addr</span><span class="token punctuation">:</span> 127.0.0.1<span class="token punctuation">:</span><span class="token number">8848</span>
+        <span class="token key atrule">alibaba</span><span class="token punctuation">:</span>
+            <span class="token key atrule">seata</span><span class="token punctuation">:</span>
+                <span class="token key atrule">tx-service-group</span><span class="token punctuation">:</span> my_test_tx_group
+    <span class="token key atrule">application</span><span class="token punctuation">:</span>
+        <span class="token key atrule">name</span><span class="token punctuation">:</span> seata<span class="token punctuation">-</span>order
+<span class="token key atrule">mybatis</span><span class="token punctuation">:</span>
+    <span class="token key atrule">mapper-locations</span><span class="token punctuation">:</span> classpath<span class="token punctuation">:</span>mybatis/mapper/*.xml
+<span class="token key atrule">seata</span><span class="token punctuation">:</span>
+    <span class="token key atrule">service</span><span class="token punctuation">:</span>
+        <span class="token key atrule">vgroup-mapping</span><span class="token punctuation">:</span>
+            <span class="token key atrule">my_test_tx_group</span><span class="token punctuation">:</span> default
+        <span class="token key atrule">grouplist</span><span class="token punctuation">:</span>
+            <span class="token key atrule">default</span><span class="token punctuation">:</span> 127.0.0.1<span class="token punctuation">:</span><span class="token number">8091</span>
+        <span class="token key atrule">enable-degrade</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
+        <span class="token key atrule">disable-global-transaction</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
+</code></pre>
+<p>主要多了服务分组和集群分组的配置：</p>
+<img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211211174808756.png" alt="image-20211211174808756" style="zoom:150%;" />
+
+<p>同理，seata-account下的application.yml配置：</p>
+<pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">server</span><span class="token punctuation">:</span>
+    <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">8082</span>
+    <span class="token key atrule">servlet</span><span class="token punctuation">:</span>
+        <span class="token key atrule">context-path</span><span class="token punctuation">:</span> /
+<span class="token key atrule">spring</span><span class="token punctuation">:</span>
+    <span class="token key atrule">datasource</span><span class="token punctuation">:</span>
+        <span class="token key atrule">type</span><span class="token punctuation">:</span> com.alibaba.druid.pool.DruidDataSource
+        <span class="token key atrule">driver-class-name</span><span class="token punctuation">:</span> com.mysql.cj.jdbc.Driver
+        <span class="token key atrule">url</span><span class="token punctuation">:</span> jdbc<span class="token punctuation">:</span>mysql<span class="token punctuation">:</span>//localhost<span class="token punctuation">:</span>3306/db_account<span class="token punctuation">?</span>serverTimezone=Asia/Shanghai
+        <span class="token key atrule">username</span><span class="token punctuation">:</span> root
+        <span class="token key atrule">password</span><span class="token punctuation">:</span> <span class="token number">123456</span>
+    <span class="token key atrule">cloud</span><span class="token punctuation">:</span>
+
+        <span class="token key atrule">nacos</span><span class="token punctuation">:</span>
+            <span class="token key atrule">discovery</span><span class="token punctuation">:</span>
+                <span class="token key atrule">server-addr</span><span class="token punctuation">:</span> 127.0.0.1<span class="token punctuation">:</span><span class="token number">8848</span>
+        <span class="token key atrule">alibaba</span><span class="token punctuation">:</span>
+            <span class="token key atrule">seata</span><span class="token punctuation">:</span>
+                <span class="token key atrule">tx-service-group</span><span class="token punctuation">:</span> my_test_tx_group
+    <span class="token key atrule">application</span><span class="token punctuation">:</span>
+        <span class="token key atrule">name</span><span class="token punctuation">:</span> seata<span class="token punctuation">-</span>account
+<span class="token key atrule">mybatis</span><span class="token punctuation">:</span>
+    <span class="token key atrule">mapper-locations</span><span class="token punctuation">:</span> classpath<span class="token punctuation">:</span>mybatis/mapper/*.xml
+<span class="token key atrule">seata</span><span class="token punctuation">:</span>
+    <span class="token key atrule">service</span><span class="token punctuation">:</span>
+        <span class="token key atrule">vgroup-mapping</span><span class="token punctuation">:</span>
+            <span class="token key atrule">my_test_tx_group</span><span class="token punctuation">:</span> default
+        <span class="token key atrule">grouplist</span><span class="token punctuation">:</span>
+            <span class="token key atrule">default</span><span class="token punctuation">:</span> 127.0.0.1<span class="token punctuation">:</span><span class="token number">8091</span>
+        <span class="token key atrule">enable-degrade</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
+        <span class="token key atrule">disable-global-transaction</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
+</code></pre>
+<p>seata-web下的application.yml配置：</p>
+<pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">server</span><span class="token punctuation">:</span>
+    <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">80</span>
+    <span class="token key atrule">servlet</span><span class="token punctuation">:</span>
+    <span class="token key atrule">context-path</span><span class="token punctuation">:</span> /
+<span class="token key atrule">spring</span><span class="token punctuation">:</span>
+    <span class="token key atrule">cloud</span><span class="token punctuation">:</span>
+        <span class="token key atrule">nacos</span><span class="token punctuation">:</span>
+            <span class="token key atrule">discovery</span><span class="token punctuation">:</span>
+                <span class="token key atrule">server-addr</span><span class="token punctuation">:</span> 127.0.0.1<span class="token punctuation">:</span><span class="token number">8848</span>
+        <span class="token key atrule">alibaba</span><span class="token punctuation">:</span>
+            <span class="token key atrule">seata</span><span class="token punctuation">:</span>
+                <span class="token key atrule">tx-service-group</span><span class="token punctuation">:</span> my_test_tx_group
+    <span class="token key atrule">application</span><span class="token punctuation">:</span>
+        <span class="token key atrule">name</span><span class="token punctuation">:</span> seata<span class="token punctuation">-</span>web
+<span class="token key atrule">seata</span><span class="token punctuation">:</span>
+    <span class="token key atrule">service</span><span class="token punctuation">:</span>
+        <span class="token key atrule">vgroup-mapping</span><span class="token punctuation">:</span>
+            <span class="token key atrule">my_test_tx_group</span><span class="token punctuation">:</span> default
+        <span class="token key atrule">grouplist</span><span class="token punctuation">:</span>
+            <span class="token key atrule">java1234-seata-server</span><span class="token punctuation">:</span> 127.0.0.1<span class="token punctuation">:</span><span class="token number">8091</span>
+        <span class="token key atrule">enable-degrade</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
+        <span class="token key atrule">disable-global-transaction</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
+</code></pre>
+<p>seata-web项目-&gt;WebController-&gt;shopping方法，添加@GlobalTransactional注解</p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211211175400034.png" alt="image-20211211175400034"></p>
+<h2 id="7-5-分布式案例测试"><a href="#7-5-分布式案例测试" class="headerlink" title="7.5 分布式案例测试"></a>7.5 分布式案例测试</h2><p>三个子项目一起运行；</p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211211175459069.png" alt="image-20211211175459069"></p>
+<p>两个RM在seata-server注册成功；</p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211211175531060.png" alt="image-20211211175531060"></p>
+<p>seata-web项目的RM，TM注册成功；</p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211211175601564.png" alt="image-20211211175601564"></p>
+<p>seata-order项目的TM注册成功；</p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211211175633662.png" alt="image-20211211175633662"></p>
+<p>seata-account项目的TM注册成功；</p>
+<p>我们用postman 发送 <a target="_blank" rel="noopener" href="http://localhost/shopping">http://localhost/shopping</a> post请求</p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211211175709012.png" alt="image-20211211175709012"></p>
+<p>执行发现，订单表，和日志表都没有数据，说明测试OK；</p>
+<h2 id="7-6-setata二阶段提交过程剖析"><a href="#7-6-setata二阶段提交过程剖析" class="headerlink" title="7.6 setata二阶段提交过程剖析"></a>7.6 setata二阶段提交过程剖析</h2><p>因为是执行是一瞬间的，很多小伙伴根本无法感受到内部的二阶段提交过程。</p>
+<ul>
+<li>一阶段：业务数据和回滚日志记录在同一个本地事务中提交，释放本地锁和连接资源。</li>
+<li>二阶段：<ul>
+<li>提交异步化，非常快速地完成。</li>
+<li>回滚通过一阶段的回滚日志进行反向补偿。</li>
+</ul>
+</li>
+</ul>
+<p>所以我们在再seata-account项目里搞个断点，来看下回滚的一个流程；</p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211211175851089.png" alt="image-20211211175851089"></p>
+<p>seata-account项目debug启动；<br>再次postman测试，我们立刻查看db_order数据库表信息（比较难捕获，因为提交事务超时就立刻回滚，看不到信息）<br>订单服务执行完的时候，db_order有数据</p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211211175931475.png" alt="image-20211211175931475"></p>
+<p>undo_log也有数据</p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211211175955690.png" alt="image-20211211175955690"></p>
+<p>说明一阶段业务数据和回滚日志记录在同一个本地事务中提交，释放本地锁和连接资源。<br>然后下面，如果提交事务超时或者有接口调用异常，则分支事务立刻根据回滚日志，立刻进行反向补偿，最后回滚日志会被清空；<br>如果接口调用一切正常，日志清空，全局事务提交，完成本次事务操作；</p>
+<h1 id="8-seata事务日志mysql持久化配置"><a href="#8-seata事务日志mysql持久化配置" class="headerlink" title="8 seata事务日志mysql持久化配置"></a>8 seata事务日志mysql持久化配置</h1>
                 
             </div>
             <hr/>
