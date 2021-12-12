@@ -413,7 +413,7 @@ https://github.com/apache/logging-log4j2/releases/tag/log4j-2.15.0-rc2
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    664
+                    676
                 </div>
                 
 
@@ -441,14 +441,14 @@ https://github.com/apache/logging-log4j2/releases/tag/log4j-2.15.0-rc2
 <p><a target="_blank" rel="noopener" href="https://downloads.apache.org/logging/log4j/2.15.0/">https://downloads.apache.org/logging/log4j/2.15.0/</a></p>
 <p>替换maven仓库的地址 参考如下：</p>
 <p>\repository\org\apache\logging\log4j\log4j-api\2.15.0</p>
-<h2 id="spring-boot-starter-log4j2修复方式"><a href="#spring-boot-starter-log4j2修复方式" class="headerlink" title="spring-boot-starter-log4j2修复方式"></a><strong>spring-boot-starter-log4j2修复方式</strong></h2><pre class=" language-XML"><code class="language-XML">
-<dependency>
+<h2 id="spring-boot-starter-log4j2修复方式"><a href="#spring-boot-starter-log4j2修复方式" class="headerlink" title="spring-boot-starter-log4j2修复方式"></a><strong>spring-boot-starter-log4j2修复方式</strong></h2><pre class=" language-xml"><code class="language-xml">
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
 
-    <groupId>org.springframework.boot</groupId>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
 
-    <artifactId>spring-boot-starter-log4j2</artifactId>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-boot-starter-log4j2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
 
-</dependency>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
 </code></pre>
 <p>替换为：</p>
 <pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
