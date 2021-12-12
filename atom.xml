@@ -6,7 +6,7 @@
   <link href="https://codercandy.github.io/atom.xml" rel="self"/>
   
   <link href="https://codercandy.github.io/"/>
-  <updated>2021-12-11T14:14:22.834Z</updated>
+  <updated>2021-12-12T08:04:22.190Z</updated>
   <id>https://codercandy.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Apache Log4j2任意代码执行漏洞修复</title>
+    <link href="https://codercandy.github.io/2021/12/12/apache-log4j-ren-yi-dai-ma-zhi-xing-lou-dong-xiu-fu/"/>
+    <id>https://codercandy.github.io/2021/12/12/apache-log4j-ren-yi-dai-ma-zhi-xing-lou-dong-xiu-fu/</id>
+    <published>2021-12-12T08:03:04.000Z</published>
+    <updated>2021-12-12T08:04:22.190Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;springboot的Apache-Log4j2任意代码执行漏洞修复&quot;&gt;&lt;a href=&quot;#springboot的Apache-Log4j2任意代码执行漏洞修复&quot; class=&quot;headerlink&quot; title=&quot;springboot的Apache</summary>
+        
+      
+    
+    
+    
+    <category term="工作" scheme="https://codercandy.github.io/categories/%E5%B7%A5%E4%BD%9C/"/>
+    
+    
+    <category term="后端" scheme="https://codercandy.github.io/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+    <category term="漏洞" scheme="https://codercandy.github.io/tags/%E6%BC%8F%E6%B4%9E/"/>
+    
+  </entry>
   
   <entry>
     <title>梓妤周岁照</title>
