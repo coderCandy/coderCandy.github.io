@@ -625,7 +625,7 @@
   port: 8001
 </code></pre>
 <h3 id="4-总结"><a href="#4-总结" class="headerlink" title="4. 总结"></a>4. 总结</h3><p>本节我们快速学习了如何在 IDEA 中导入 jdk，以及使用 IDEA 如何配置 maven 和编码，如何快速的创建和启动 Spring Boot 工程。IDEA 对 Spring Boot 的支持非常友好，建议大家使用 IDEA 进行 Spring Boot 的开发，从下一课开始，我们真正进入 Spring Boot 的学习中。<br>课程源代码下载地址：<a target="_blank" rel="noopener" href="https://gitee.com/eson15/springboot_study">戳我下载</a></p>
-<h1 id="第02课：Spring-Boot返回Json数据及数据封装"><a href="#第02课：Spring-Boot返回Json数据及数据封装" class="headerlink" title="第02课：Spring Boot返回Json数据及数据封装"></a>第02课：Spring Boot返回Json数据及数据封装</h1><p>在项目开发中，接口与接口之间，前后端之间数据的传输都使用 Json 格式，在 Spring Boot 中，接口返回 Json 格式的数据很简单，在 Controller 中使用<code>@RestController</code>注解即可返回 Json 格式的数据，<code>@RestController</code>也是 Spring Boot 新增的一个注解，我们点进去看一下该注解都包含了哪些东西。</p>
+<h2 id="第02课：Spring-Boot返回Json数据及数据封装"><a href="#第02课：Spring-Boot返回Json数据及数据封装" class="headerlink" title="第02课：Spring Boot返回Json数据及数据封装"></a>第02课：Spring Boot返回Json数据及数据封装</h2><p>在项目开发中，接口与接口之间，前后端之间数据的传输都使用 Json 格式，在 Spring Boot 中，接口返回 Json 格式的数据很简单，在 Controller 中使用<code>@RestController</code>注解即可返回 Json 格式的数据，<code>@RestController</code>也是 Spring Boot 新增的一个注解，我们点进去看一下该注解都包含了哪些东西。</p>
 <pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Target</span><span class="token punctuation">(</span><span class="token punctuation">{</span>ElementType<span class="token punctuation">.</span>TYPE<span class="token punctuation">}</span><span class="token punctuation">)</span>
 <span class="token annotation punctuation">@Retention</span><span class="token punctuation">(</span>RetentionPolicy<span class="token punctuation">.</span>RUNTIME<span class="token punctuation">)</span>
 <span class="token annotation punctuation">@Documented</span>
@@ -670,8 +670,8 @@
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
 </code></pre>
 <p>到此为止，我们知道了 Spring Boot 中默认使用的 json 解析框架是 jackson。下面我们看一下默认的 jackson 框架对常用数据类型的转 Json 处理。</p>
-<h2 id="1-Spring-Boot-默认对Json的处理"><a href="#1-Spring-Boot-默认对Json的处理" class="headerlink" title="1. Spring Boot 默认对Json的处理"></a>1. Spring Boot 默认对Json的处理</h2><p>在实际项目中，常用的数据结构无非有类对象、List对象、Map对象，我们看一下默认的 jackson 框架对这三个常用的数据结构转成 json 后的格式如何。</p>
-<h3 id="1-1-创建-User-实体类"><a href="#1-1-创建-User-实体类" class="headerlink" title="1.1 创建 User 实体类"></a>1.1 创建 User 实体类</h3><p>为了测试，我们需要创建一个实体类，这里我们就用 User 来演示。</p>
+<h3 id="1-Spring-Boot-默认对Json的处理"><a href="#1-Spring-Boot-默认对Json的处理" class="headerlink" title="1. Spring Boot 默认对Json的处理"></a>1. Spring Boot 默认对Json的处理</h3><p>在实际项目中，常用的数据结构无非有类对象、List对象、Map对象，我们看一下默认的 jackson 框架对这三个常用的数据结构转成 json 后的格式如何。</p>
+<h4 id="1-1-创建-User-实体类"><a href="#1-1-创建-User-实体类" class="headerlink" title="1.1 创建 User 实体类"></a>1.1 创建 User 实体类</h4><p>为了测试，我们需要创建一个实体类，这里我们就用 User 来演示。</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">User</span> <span class="token punctuation">{</span>
     <span class="token keyword">private</span> Long id<span class="token punctuation">;</span>
     <span class="token keyword">private</span> String username<span class="token punctuation">;</span>
@@ -679,7 +679,7 @@
     <span class="token comment" spellcheck="true">/* 省略get、set和带参构造方法 */</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<h3 id="1-2-创建Controller类"><a href="#1-2-创建Controller类" class="headerlink" title="1.2 创建Controller类"></a>1.2 创建Controller类</h3><p>然后我们创建一个 Controller，分别返回 <code>User</code>对象、<code>List&lt;User&gt;</code> 和 <code>Map&lt;String, Object&gt;</code>。</p>
+<h4 id="1-2-创建Controller类"><a href="#1-2-创建Controller类" class="headerlink" title="1.2 创建Controller类"></a>1.2 创建Controller类</h4><p>然后我们创建一个 Controller，分别返回 <code>User</code>对象、<code>List&lt;User&gt;</code> 和 <code>Map&lt;String, Object&gt;</code>。</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">import</span> com<span class="token punctuation">.</span>itcodai<span class="token punctuation">.</span>course02<span class="token punctuation">.</span>entity<span class="token punctuation">.</span>User<span class="token punctuation">;</span>
 <span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>web<span class="token punctuation">.</span>bind<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>RequestMapping<span class="token punctuation">;</span>
 <span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>web<span class="token punctuation">.</span>bind<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>RestController<span class="token punctuation">;</span>
@@ -719,7 +719,7 @@
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<h3 id="1-3-测试不同数据类型返回的json"><a href="#1-3-测试不同数据类型返回的json" class="headerlink" title="1.3 测试不同数据类型返回的json"></a>1.3 测试不同数据类型返回的json</h3><p>OK，写好了接口，分别返回了一个 User 对象、一个 List 集合和一个 Map 集合，其中 Map 集合中的 value 存的是不同的数据类型。接下来我们依次来测试一下效果。</p>
+<h4 id="1-3-测试不同数据类型返回的json"><a href="#1-3-测试不同数据类型返回的json" class="headerlink" title="1.3 测试不同数据类型返回的json"></a>1.3 测试不同数据类型返回的json</h4><p>OK，写好了接口，分别返回了一个 User 对象、一个 List 集合和一个 Map 集合，其中 Map 集合中的 value 存的是不同的数据类型。接下来我们依次来测试一下效果。</p>
 <p>在浏览器中输入：<code>localhost:8080/json/user</code> 返回 json 如下：</p>
 <pre class=" language-json"><code class="language-json"><span class="token punctuation">{</span><span class="token property">"id"</span><span class="token operator">:</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token property">"username"</span><span class="token operator">:</span><span class="token string">"倪升武"</span><span class="token punctuation">,</span><span class="token property">"password"</span><span class="token operator">:</span><span class="token string">"123456"</span><span class="token punctuation">}</span>
 </code></pre>
@@ -730,7 +730,7 @@
 <pre class=" language-json"><code class="language-json"><span class="token punctuation">{</span><span class="token property">"作者信息"</span><span class="token operator">:</span><span class="token punctuation">{</span><span class="token property">"id"</span><span class="token operator">:</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token property">"username"</span><span class="token operator">:</span><span class="token string">"倪升武"</span><span class="token punctuation">,</span><span class="token property">"password"</span><span class="token operator">:</span><span class="token string">"123456"</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token property">"CSDN地址"</span><span class="token operator">:</span><span class="token string">"http://blog.csdn.net/eson_15"</span><span class="token punctuation">,</span><span class="token property">"粉丝数量"</span><span class="token operator">:</span><span class="token number">4153</span><span class="token punctuation">,</span><span class="token property">"博客地址"</span><span class="token operator">:</span><span class="token string">"http://blog.itcodai.com"</span><span class="token punctuation">}</span>
 </code></pre>
 <p>可以看出，map 中不管是什么数据类型，都可以转成相应的 json 格式，这样就非常方便。</p>
-<h3 id="1-4-jackson-中对null的处理"><a href="#1-4-jackson-中对null的处理" class="headerlink" title="1.4 jackson 中对null的处理"></a>1.4 jackson 中对null的处理</h3><p>在实际项目中，我们难免会遇到一些 null 值出现，我们转 json 时，是不希望有这些 null 出现的，比如我们期望所有的 null 在转 json 时都变成 “” 这种空字符串，那怎么做呢？在 Spring Boot 中，我们做一下配置即可，新建一个 jackson 的配置类：</p>
+<h4 id="1-4-jackson-中对null的处理"><a href="#1-4-jackson-中对null的处理" class="headerlink" title="1.4 jackson 中对null的处理"></a>1.4 jackson 中对null的处理</h4><p>在实际项目中，我们难免会遇到一些 null 值出现，我们转 json 时，是不希望有这些 null 出现的，比如我们期望所有的 null 在转 json 时都变成 “” 这种空字符串，那怎么做呢？在 Spring Boot 中，我们做一下配置即可，新建一个 jackson 的配置类：</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">import</span> com<span class="token punctuation">.</span>fasterxml<span class="token punctuation">.</span>jackson<span class="token punctuation">.</span>core<span class="token punctuation">.</span>JsonGenerator<span class="token punctuation">;</span>
 <span class="token keyword">import</span> com<span class="token punctuation">.</span>fasterxml<span class="token punctuation">.</span>jackson<span class="token punctuation">.</span>databind<span class="token punctuation">.</span>JsonSerializer<span class="token punctuation">;</span>
 <span class="token keyword">import</span> com<span class="token punctuation">.</span>fasterxml<span class="token punctuation">.</span>jackson<span class="token punctuation">.</span>databind<span class="token punctuation">.</span>ObjectMapper<span class="token punctuation">;</span>
@@ -775,16 +775,16 @@
 <p>重启项目，再次输入：<code>localhost:8080/json/map</code>，可以看到 jackson 已经将所有 null 字段转成了空字符串了。</p>
 <pre class=" language-json"><code class="language-json"><span class="token punctuation">{</span><span class="token property">"作者信息"</span><span class="token operator">:</span><span class="token punctuation">{</span><span class="token property">"id"</span><span class="token operator">:</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token property">"username"</span><span class="token operator">:</span><span class="token string">"倪升武"</span><span class="token punctuation">,</span><span class="token property">"password"</span><span class="token operator">:</span><span class="token string">""</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token property">"CSDN地址"</span><span class="token operator">:</span><span class="token string">""</span><span class="token punctuation">,</span><span class="token property">"粉丝数量"</span><span class="token operator">:</span><span class="token number">4153</span><span class="token punctuation">,</span><span class="token property">"博客地址"</span><span class="token operator">:</span><span class="token string">"http://blog.itcodai.com"</span><span class="token punctuation">}</span>
 </code></pre>
-<h2 id="2-使用阿里巴巴FastJson的设置"><a href="#2-使用阿里巴巴FastJson的设置" class="headerlink" title="2. 使用阿里巴巴FastJson的设置"></a>2. 使用阿里巴巴FastJson的设置</h2><h3 id="2-1-jackson-和-fastJson-的对比"><a href="#2-1-jackson-和-fastJson-的对比" class="headerlink" title="2.1 jackson 和 fastJson 的对比"></a>2.1 jackson 和 fastJson 的对比</h3><p>有很多朋友习惯于使用阿里巴巴的 fastJson 来做项目中 json 转换的相关工作，目前我们项目中使用的就是阿里的 fastJson，那么 jackson 和 fastJson 有哪些区别呢？根据网上公开的资料比较得到下表。<br>| 选项 | fastJson | jackson |<br>| :-: | :-: | :-: |<br>| 上手难易程度 | 容易 | 中等 |<br>| 高级特性支持 | 中等 | 丰富 |<br>| 官方文档、Example支持 | 中文 | 英文 |<br>| 处理json速度 | 略快 | 快 |</p>
+<h3 id="2-使用阿里巴巴FastJson的设置"><a href="#2-使用阿里巴巴FastJson的设置" class="headerlink" title="2. 使用阿里巴巴FastJson的设置"></a>2. 使用阿里巴巴FastJson的设置</h3><h4 id="2-1-jackson-和-fastJson-的对比"><a href="#2-1-jackson-和-fastJson-的对比" class="headerlink" title="2.1 jackson 和 fastJson 的对比"></a>2.1 jackson 和 fastJson 的对比</h4><p>有很多朋友习惯于使用阿里巴巴的 fastJson 来做项目中 json 转换的相关工作，目前我们项目中使用的就是阿里的 fastJson，那么 jackson 和 fastJson 有哪些区别呢？根据网上公开的资料比较得到下表。<br>| 选项 | fastJson | jackson |<br>| :-: | :-: | :-: |<br>| 上手难易程度 | 容易 | 中等 |<br>| 高级特性支持 | 中等 | 丰富 |<br>| 官方文档、Example支持 | 中文 | 英文 |<br>| 处理json速度 | 略快 | 快 |</p>
 <p>关于 fastJson 和 jackson 的对比，网上有很多资料可以查看，主要是根据自己实际项目情况来选择合适的框架。从扩展上来看，fastJson 没有 jackson 灵活，从速度或者上手难度来看，fastJson 可以考虑，我们项目中目前使用的是阿里的 fastJson，挺方便的。</p>
-<h3 id="2-2-fastJson依赖导入"><a href="#2-2-fastJson依赖导入" class="headerlink" title="2.2 fastJson依赖导入"></a>2.2 fastJson依赖导入</h3><p>使用 fastJson 需要导入依赖，本课程使用 1.2.35 版本，依赖如下：</p>
+<h4 id="2-2-fastJson依赖导入"><a href="#2-2-fastJson依赖导入" class="headerlink" title="2.2 fastJson依赖导入"></a>2.2 fastJson依赖导入</h4><p>使用 fastJson 需要导入依赖，本课程使用 1.2.35 版本，依赖如下：</p>
 <pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>com.alibaba<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>fastjson<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>1.2.35<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
 </code></pre>
-<h3 id="2-2-使用-fastJson-处理-null"><a href="#2-2-使用-fastJson-处理-null" class="headerlink" title="2.2 使用 fastJson 处理 null"></a>2.2 使用 fastJson 处理 null</h3><p>使用 fastJson 时，对 null 的处理和 jackson 有些不同，需要继承  <code>WebMvcConfigurationSupport</code> 类，然后覆盖 <code>configureMessageConverters</code> 方法，在方法中，我们可以选择对要实现 null 转换的场景，配置好即可。如下：</p>
+<h4 id="2-2-使用-fastJson-处理-null"><a href="#2-2-使用-fastJson-处理-null" class="headerlink" title="2.2 使用 fastJson 处理 null"></a>2.2 使用 fastJson 处理 null</h4><p>使用 fastJson 时，对 null 的处理和 jackson 有些不同，需要继承  <code>WebMvcConfigurationSupport</code> 类，然后覆盖 <code>configureMessageConverters</code> 方法，在方法中，我们可以选择对要实现 null 转换的场景，配置好即可。如下：</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">import</span> com<span class="token punctuation">.</span>alibaba<span class="token punctuation">.</span>fastjson<span class="token punctuation">.</span>serializer<span class="token punctuation">.</span>SerializerFeature<span class="token punctuation">;</span>
 <span class="token keyword">import</span> com<span class="token punctuation">.</span>alibaba<span class="token punctuation">.</span>fastjson<span class="token punctuation">.</span>support<span class="token punctuation">.</span>config<span class="token punctuation">.</span>FastJsonConfig<span class="token punctuation">;</span>
 <span class="token keyword">import</span> com<span class="token punctuation">.</span>alibaba<span class="token punctuation">.</span>fastjson<span class="token punctuation">.</span>support<span class="token punctuation">.</span>spring<span class="token punctuation">.</span>FastJsonHttpMessageConverter<span class="token punctuation">;</span>
@@ -832,8 +832,8 @@
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<h2 id="3-封装统一返回的数据结构"><a href="#3-封装统一返回的数据结构" class="headerlink" title="3. 封装统一返回的数据结构"></a>3. 封装统一返回的数据结构</h2><p>以上是 Spring Boot 返回 json 的几个代表的例子，但是在实际项目中，除了要封装数据之外，我们往往需要在返回的 json 中添加一些其他信息，比如返回一些状态码 code ，返回一些 msg 给调用者，这样调用者可以根据 code 或者 msg 做一些逻辑判断。所以在实际项目中，我们需要封装一个统一的 json 返回结构存储返回信息。 </p>
-<h3 id="3-1-定义统一的-json-结构"><a href="#3-1-定义统一的-json-结构" class="headerlink" title="3.1 定义统一的 json 结构"></a>3.1 定义统一的 json 结构</h3><p>由于封装的 json 数据的类型不确定，所以在定义统一的 json 结构时，我们需要用到泛型。统一的 json 结构中属性包括数据、状态码、提示信息即可，构造方法可以根据实际业务需求做相应的添加即可，一般来说，应该有默认的返回结构，也应该有用户指定的返回结构。如下：</p>
+<h3 id="3-封装统一返回的数据结构"><a href="#3-封装统一返回的数据结构" class="headerlink" title="3. 封装统一返回的数据结构"></a>3. 封装统一返回的数据结构</h3><p>以上是 Spring Boot 返回 json 的几个代表的例子，但是在实际项目中，除了要封装数据之外，我们往往需要在返回的 json 中添加一些其他信息，比如返回一些状态码 code ，返回一些 msg 给调用者，这样调用者可以根据 code 或者 msg 做一些逻辑判断。所以在实际项目中，我们需要封装一个统一的 json 返回结构存储返回信息。 </p>
+<h4 id="3-1-定义统一的-json-结构"><a href="#3-1-定义统一的-json-结构" class="headerlink" title="3.1 定义统一的 json 结构"></a>3.1 定义统一的 json 结构</h4><p>由于封装的 json 数据的类型不确定，所以在定义统一的 json 结构时，我们需要用到泛型。统一的 json 结构中属性包括数据、状态码、提示信息即可，构造方法可以根据实际业务需求做相应的添加即可，一般来说，应该有默认的返回结构，也应该有用户指定的返回结构。如下：</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">JsonResult</span><span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token punctuation">{</span>
 
     <span class="token keyword">private</span> T data<span class="token punctuation">;</span>
@@ -881,7 +881,7 @@
     <span class="token comment" spellcheck="true">// 省略get和set方法</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<h3 id="3-2-修改-Controller-中的返回值类型及测试"><a href="#3-2-修改-Controller-中的返回值类型及测试" class="headerlink" title="3.2 修改 Controller 中的返回值类型及测试"></a>3.2 修改 Controller 中的返回值类型及测试</h3><p>由于 JsonResult 使用了泛型，所以所有的返回值类型都可以使用该统一结构，在具体的场景将泛型替换成具体的数据类型即可，非常方便，也便于维护。在实际项目中，还可以继续封装，比如状态码和提示信息可以定义一个枚举类型，以后我们只需要维护这个枚举类型中的数据即可（在本课程中就不展开了）。根据以上的 JsonResult，我们改写一下 Controller，如下：</p>
+<h4 id="3-2-修改-Controller-中的返回值类型及测试"><a href="#3-2-修改-Controller-中的返回值类型及测试" class="headerlink" title="3.2 修改 Controller 中的返回值类型及测试"></a>3.2 修改 Controller 中的返回值类型及测试</h4><p>由于 JsonResult 使用了泛型，所以所有的返回值类型都可以使用该统一结构，在具体的场景将泛型替换成具体的数据类型即可，非常方便，也便于维护。在实际项目中，还可以继续封装，比如状态码和提示信息可以定义一个枚举类型，以后我们只需要维护这个枚举类型中的数据即可（在本课程中就不展开了）。根据以上的 JsonResult，我们改写一下 Controller，如下：</p>
 <pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@RestController</span>
 <span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">"/jsonresult"</span><span class="token punctuation">)</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">JsonResultController</span> <span class="token punctuation">{</span>
@@ -924,9 +924,9 @@
 <pre class=" language-json"><code class="language-json"><span class="token punctuation">{</span><span class="token property">"code"</span><span class="token operator">:</span><span class="token string">"0"</span><span class="token punctuation">,</span><span class="token property">"data"</span><span class="token operator">:</span><span class="token punctuation">{</span><span class="token property">"作者信息"</span><span class="token operator">:</span><span class="token punctuation">{</span><span class="token property">"id"</span><span class="token operator">:</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token property">"password"</span><span class="token operator">:</span><span class="token string">""</span><span class="token punctuation">,</span><span class="token property">"username"</span><span class="token operator">:</span><span class="token string">"倪升武"</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token property">"CSDN地址"</span><span class="token operator">:</span><span class="token null">null</span><span class="token punctuation">,</span><span class="token property">"粉丝数量"</span><span class="token operator">:</span><span class="token number">4153</span><span class="token punctuation">,</span><span class="token property">"博客地址"</span><span class="token operator">:</span><span class="token string">"http://blog.itcodai.com"</span><span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token property">"msg"</span><span class="token operator">:</span><span class="token string">"操作成功！"</span><span class="token punctuation">}</span>
 </code></pre>
 <p>通过封装，我们不但将数据通过 json 传给前端或者其他接口，还带上了状态码和提示信息，这在实际项目场景中应用非常广泛。</p>
-<h2 id="4-总结-1"><a href="#4-总结-1" class="headerlink" title="4. 总结"></a>4. 总结</h2><p>本节主要对 Spring Boot 中 json 数据的返回做了详细的分析，从 Spring Boot 默认的 jackson 框架到阿里巴巴的 fastJson 框架，分别对它们的配置做了相应的讲解。另外，结合实际项目情况，总结了实际项目中使用的 json 封装结构体，加入了状态码和提示信息，使得返回的 json 数据信息更加完整。<br>课程源代码下载地址：<a target="_blank" rel="noopener" href="https://gitee.com/eson15/springboot_study">戳我下载</a></p>
-<h1 id="第03课：Spring-Boot使用slf4j进行日志记录"><a href="#第03课：Spring-Boot使用slf4j进行日志记录" class="headerlink" title="第03课：Spring Boot使用slf4j进行日志记录"></a>第03课：Spring Boot使用slf4j进行日志记录</h1><p>在开发中，我们经常使用 <code>System.out.println()</code> 来打印一些信息，但是这样不好，因为大量的使用 <code>System.out</code> 会增加资源的消耗。我们实际项目中使用的是 slf4j 的 logback 来输出日志，效率挺高的，Spring Boot 提供了一套日志系统，logback 是最优的选择。</p>
-<h2 id="1-slf4j-介绍"><a href="#1-slf4j-介绍" class="headerlink" title="1. slf4j 介绍"></a>1. slf4j 介绍</h2><p>引用百度百科里的一段话：</p>
+<h3 id="4-总结-1"><a href="#4-总结-1" class="headerlink" title="4. 总结"></a>4. 总结</h3><p>本节主要对 Spring Boot 中 json 数据的返回做了详细的分析，从 Spring Boot 默认的 jackson 框架到阿里巴巴的 fastJson 框架，分别对它们的配置做了相应的讲解。另外，结合实际项目情况，总结了实际项目中使用的 json 封装结构体，加入了状态码和提示信息，使得返回的 json 数据信息更加完整。<br>课程源代码下载地址：<a target="_blank" rel="noopener" href="https://gitee.com/eson15/springboot_study">戳我下载</a></p>
+<h2 id="第03课：Spring-Boot使用slf4j进行日志记录"><a href="#第03课：Spring-Boot使用slf4j进行日志记录" class="headerlink" title="第03课：Spring Boot使用slf4j进行日志记录"></a>第03课：Spring Boot使用slf4j进行日志记录</h2><p>在开发中，我们经常使用 <code>System.out.println()</code> 来打印一些信息，但是这样不好，因为大量的使用 <code>System.out</code> 会增加资源的消耗。我们实际项目中使用的是 slf4j 的 logback 来输出日志，效率挺高的，Spring Boot 提供了一套日志系统，logback 是最优的选择。</p>
+<h3 id="1-slf4j-介绍"><a href="#1-slf4j-介绍" class="headerlink" title="1. slf4j 介绍"></a>1. slf4j 介绍</h3><p>引用百度百科里的一段话：</p>
 <blockquote>
 <p>SLF4J，即简单日志门面（Simple Logging Facade for Java），不是具体的日志解决方案，它只服务于各种各样的日志系统。按照官方的说法，SLF4J是一个用于日志系统的简单Facade，允许最终用户在部署其应用时使用其所希望的日志系统。</p>
 </blockquote>
@@ -944,7 +944,7 @@
     <span class="token comment" spellcheck="true">// ……</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<h2 id="2-application-yml-中对日志的配置"><a href="#2-application-yml-中对日志的配置" class="headerlink" title="2. application.yml 中对日志的配置"></a>2. application.yml 中对日志的配置</h2><p>Spring Boot 对 slf4j 支持的很好，内部已经集成了 slf4j，一般我们在使用的时候，会对slf4j 做一下配置。<code>application.yml</code> 文件是 Spring Boot 中唯一一个需要配置的文件，一开始创建工程的时候是 <code>application.properties</code> 文件，个人比较细化用 yml 文件，因为 yml 文件的层次感特别好，看起来更直观，但是 yml 文件对格式要求比较高，比如英文冒号后面必须要有个空格，否则项目估计无法启动，而且也不报错。用 properties 还是 yml 视个人习惯而定，都可以。本课程使用 yml。</p>
+<h3 id="2-application-yml-中对日志的配置"><a href="#2-application-yml-中对日志的配置" class="headerlink" title="2. application.yml 中对日志的配置"></a>2. application.yml 中对日志的配置</h3><p>Spring Boot 对 slf4j 支持的很好，内部已经集成了 slf4j，一般我们在使用的时候，会对slf4j 做一下配置。<code>application.yml</code> 文件是 Spring Boot 中唯一一个需要配置的文件，一开始创建工程的时候是 <code>application.properties</code> 文件，个人比较细化用 yml 文件，因为 yml 文件的层次感特别好，看起来更直观，但是 yml 文件对格式要求比较高，比如英文冒号后面必须要有个空格，否则项目估计无法启动，而且也不报错。用 properties 还是 yml 视个人习惯而定，都可以。本课程使用 yml。</p>
 <p>我们看一下 application.yml 文件中对日志的配置：</p>
 <pre class=" language-xml"><code class="language-xml">logging:
   config: logback.xml
@@ -953,15 +953,15 @@
 </code></pre>
 <p><code>logging.config</code> 是用来指定项目启动的时候，读取哪个配置文件，这里指定的是日志配置文件是根路径下的 <code>logback.xml</code> 文件，关于日志的相关配置信息，都放在 <code>logback.xml</code> 文件中了。<code>logging.level</code> 是用来指定具体的 mapper 中日志的输出级别，上面的配置表示 <code>com.itcodai.course03.dao</code> 包下的所有 mapper 日志输出级别为 trace，会将操作数据库的 sql 打印出来，开发时设置成 trace 方便定位问题，在生产环境上，将这个日志级别再设置成 error 级别即可（本节课不讨论 mapper 层，在后面 Spring Boot 集成 MyBatis 时再详细讨论）。</p>
 <p>常用的日志级别按照从高到低依次为：ERROR、WARN、INFO、DEBUG。</p>
-<h2 id="3-logback-xml-配置文件解析"><a href="#3-logback-xml-配置文件解析" class="headerlink" title="3. logback.xml 配置文件解析"></a>3. logback.xml 配置文件解析</h2><p>在上面 <code>application.yml</code> 文件中，我们指定了日志配置文件 <code>logback.xml</code>，<code>logback.xml</code> 文件中主要用来做日志的相关配置。在 <code>logback.xml</code> 中，我们可以定义日志输出的格式、路径、控制台输出格式、文件大小、保存时长等等。下面来分析一下：</p>
-<h3 id="3-1-定义日志输出格式和存储路径"><a href="#3-1-定义日志输出格式和存储路径" class="headerlink" title="3.1 定义日志输出格式和存储路径"></a>3.1 定义日志输出格式和存储路径</h3><pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>configuration</span><span class="token punctuation">></span></span>
+<h3 id="3-logback-xml-配置文件解析"><a href="#3-logback-xml-配置文件解析" class="headerlink" title="3. logback.xml 配置文件解析"></a>3. logback.xml 配置文件解析</h3><p>在上面 <code>application.yml</code> 文件中，我们指定了日志配置文件 <code>logback.xml</code>，<code>logback.xml</code> 文件中主要用来做日志的相关配置。在 <code>logback.xml</code> 中，我们可以定义日志输出的格式、路径、控制台输出格式、文件大小、保存时长等等。下面来分析一下：</p>
+<h4 id="3-1-定义日志输出格式和存储路径"><a href="#3-1-定义日志输出格式和存储路径" class="headerlink" title="3.1 定义日志输出格式和存储路径"></a>3.1 定义日志输出格式和存储路径</h4><pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>configuration</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>LOG_PATTERN<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>%date{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>FILE_PATH<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>D:/logs/course03/demo.%d{yyyy-MM-dd}.%i.log<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>configuration</span><span class="token punctuation">></span></span>
 </code></pre>
 <p>我们来看一下这个定义的含义：首先定义一个格式，命名为 “LOG_PATTERN”，该格式中 <code>%date</code> 表示日期，<code>%thread</code> 表示线程名，<code>%-5level</code> 表示级别从左显示5个字符宽度，<code>%logger&#123;36&#125;</code>  表示 logger 名字最长36个字符，<code>%msg</code> 表示日志消息，<code>%n</code> 是换行符。</p>
 <p>然后再定义一下名为 “FILE_PATH” 文件路径，日志都会存储在该路径下。<code>%i</code> 表示第 i 个文件，当日志文件达到指定大小时，会将日志生成到新的文件里，这里的 i 就是文件索引，日志文件允许的大小可以设置，下面会讲解。这里需要注意的是，不管是 windows 系统还是 Linux 系统，日志存储的路径必须要是绝对路径。</p>
-<h3 id="3-2-定义控制台输出"><a href="#3-2-定义控制台输出" class="headerlink" title="3.2 定义控制台输出"></a>3.2 定义控制台输出</h3><pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>configuration</span><span class="token punctuation">></span></span>
+<h4 id="3-2-定义控制台输出"><a href="#3-2-定义控制台输出" class="headerlink" title="3.2 定义控制台输出"></a>3.2 定义控制台输出</h4><pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>configuration</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>appender</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>CONSOLE<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>ch.qos.logback.core.ConsoleAppender<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>encoder</span><span class="token punctuation">></span></span>
             <span class="token comment" spellcheck="true">&lt;!-- 按照上面配置的LOG_PATTERN来打印日志 --></span>
@@ -971,7 +971,7 @@
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>configuration</span><span class="token punctuation">></span></span>
 </code></pre>
 <p>使用 <code>&lt;appender&gt;</code> 节点设置个控制台输出（<code>class=&quot;ch.qos.logback.core.ConsoleAppender&quot;</code>）的配置，定义为 “CONSOLE”。使用上面定义好的输出格式（LOG_PATTERN）来输出，使用 <code>$&#123;&#125;</code> 引用进来即可。</p>
-<h3 id="3-3-定义日志文件的相关参数"><a href="#3-3-定义日志文件的相关参数" class="headerlink" title="3.3 定义日志文件的相关参数"></a>3.3 定义日志文件的相关参数</h3><pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>configuration</span><span class="token punctuation">></span></span>
+<h4 id="3-3-定义日志文件的相关参数"><a href="#3-3-定义日志文件的相关参数" class="headerlink" title="3.3 定义日志文件的相关参数"></a>3.3 定义日志文件的相关参数</h4><pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>configuration</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>appender</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>FILE<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>ch.qos.logback.core.rolling.RollingFileAppender<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>rollingPolicy</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>ch.qos.logback.core.rolling.TimeBasedRollingPolicy<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
             <span class="token comment" spellcheck="true">&lt;!-- 按照上面配置的FILE_PATH路径来保存日志 --></span>
@@ -992,7 +992,7 @@
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>configuration</span><span class="token punctuation">></span></span>
 </code></pre>
 <p>使用 <code>&lt;appender&gt;</code> 定义一个名为 “FILE” 的文件配置，主要是配置日志文件保存的时间、单个日志文件存储的大小、以及文件保存的路径和日志的输出格式。</p>
-<h3 id="3-4-定义日志输出级别"><a href="#3-4-定义日志输出级别" class="headerlink" title="3.4 定义日志输出级别"></a>3.4 定义日志输出级别</h3><pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>configuration</span><span class="token punctuation">></span></span>
+<h4 id="3-4-定义日志输出级别"><a href="#3-4-定义日志输出级别" class="headerlink" title="3.4 定义日志输出级别"></a>3.4 定义日志输出级别</h4><pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>configuration</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>logger</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>com.itcodai.course03<span class="token punctuation">"</span></span> <span class="token attr-name">level</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>INFO<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>root</span> <span class="token attr-name">level</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>INFO<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>appender-ref</span> <span class="token attr-name">ref</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>CONSOLE<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
@@ -1001,7 +1001,7 @@
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>configuration</span><span class="token punctuation">></span></span>
 </code></pre>
 <p>有了上面那些定义后，最后我们使用 <code>&lt;logger&gt;</code> 来定义一下项目中默认的日志输出级别，这里定义级别为 INFO，然后针对 INFO 级别的日志，使用 <code>&lt;root&gt;</code> 引用上面定义好的控制台日志输出和日志文件的参数。这样 logback.xml 文件中的配置就设置完了。</p>
-<h2 id="4-使用Logger在项目中打印日志"><a href="#4-使用Logger在项目中打印日志" class="headerlink" title="4. 使用Logger在项目中打印日志"></a>4. 使用Logger在项目中打印日志</h2><p>在代码中，我们一般使用 Logger 对象来打印出一些 log 信息，可以指定打印出的日志级别，也支持占位符，很方便。</p>
+<h3 id="4-使用Logger在项目中打印日志"><a href="#4-使用Logger在项目中打印日志" class="headerlink" title="4. 使用Logger在项目中打印日志"></a>4. 使用Logger在项目中打印日志</h3><p>在代码中，我们一般使用 Logger 对象来打印出一些 log 信息，可以指定打印出的日志级别，也支持占位符，很方便。</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">import</span> org<span class="token punctuation">.</span>slf4j<span class="token punctuation">.</span>Logger<span class="token punctuation">;</span>
 <span class="token keyword">import</span> org<span class="token punctuation">.</span>slf4j<span class="token punctuation">.</span>LoggerFactory<span class="token punctuation">;</span>
 <span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>web<span class="token punctuation">.</span>bind<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>RequestMapping<span class="token punctuation">;</span>
@@ -1034,9 +1034,9 @@
 <p>======测试日志info级别打印=====<br>=====测试日志error级别打印====<br>======测试日志warn级别打印=====<br>======倪升武的个人博客：blog.itcodai.com；倪升武的CSDN博客：blog.csdn.net/eson_15</p>
 </blockquote>
 <p>因为 INFO 级别比 DEBUG 级别高，所以 debug 这条没有打印出来，如果将 logback.xml 中的日志级别设置成 DEBUG，那么四条语句都会打印出来，这个大家自己去测试了。同时可以打开 D:\logs\course03\ 目录，里面有刚刚项目启动，以后后面生成的所有日志记录。在项目部署后，我们大部分都是通过查看日志文件来定位问题。</p>
-<h2 id="5-总结"><a href="#5-总结" class="headerlink" title="5. 总结"></a>5. 总结</h2><p>本节课主要对 slf4j 做了一个简单的介绍，并且对 Spring Boot 中如何使用 slf4j 输出日志做了详细的说明，着重分析了 <code>logback.xml</code> 文件中对日志相关信息的配置，包括日志的不同级别。最后针对这些配置，在代码中使用 Logger 打印出一些进行测试。在实际项目中，这些日志都是排查问题的过程中非常重要的资料。<br>课程源代码下载地址：<a target="_blank" rel="noopener" href="https://gitee.com/eson15/springboot_study">戳我下载</a></p>
-<h1 id="第04课：Spring-Boot中的项目属性配置"><a href="#第04课：Spring-Boot中的项目属性配置" class="headerlink" title="第04课：Spring Boot中的项目属性配置"></a>第04课：Spring Boot中的项目属性配置</h1><p>我们知道，在项目中，很多时候需要用到一些配置的信息，这些信息可能在测试环境和生产环境下会有不同的配置，后面根据实际业务情况有可能还会做修改，针对这种情况，我们不能将这些配置在代码中写死，最好就是写到配置文件中。比如可以把这些信息写到 <code>application.yml</code> 文件中。   </p>
-<h2 id="1-少量配置信息的情形"><a href="#1-少量配置信息的情形" class="headerlink" title="1. 少量配置信息的情形"></a>1. 少量配置信息的情形</h2><p>举个例子，在微服务架构中，最常见的就是某个服务需要调用其他服务来获取其提供的相关信息，那么在该服务的配置文件中需要配置被调用的服务地址，比如在当前服务里，我们需要调用订单微服务获取订单相关的信息，假设 订单服务的端口号是 8002，那我们可以做如下配置：</p>
+<h3 id="5-总结"><a href="#5-总结" class="headerlink" title="5. 总结"></a>5. 总结</h3><p>本节课主要对 slf4j 做了一个简单的介绍，并且对 Spring Boot 中如何使用 slf4j 输出日志做了详细的说明，着重分析了 <code>logback.xml</code> 文件中对日志相关信息的配置，包括日志的不同级别。最后针对这些配置，在代码中使用 Logger 打印出一些进行测试。在实际项目中，这些日志都是排查问题的过程中非常重要的资料。<br>课程源代码下载地址：<a target="_blank" rel="noopener" href="https://gitee.com/eson15/springboot_study">戳我下载</a></p>
+<h2 id="第04课：Spring-Boot中的项目属性配置"><a href="#第04课：Spring-Boot中的项目属性配置" class="headerlink" title="第04课：Spring Boot中的项目属性配置"></a>第04课：Spring Boot中的项目属性配置</h2><p>我们知道，在项目中，很多时候需要用到一些配置的信息，这些信息可能在测试环境和生产环境下会有不同的配置，后面根据实际业务情况有可能还会做修改，针对这种情况，我们不能将这些配置在代码中写死，最好就是写到配置文件中。比如可以把这些信息写到 <code>application.yml</code> 文件中。   </p>
+<h3 id="1-少量配置信息的情形"><a href="#1-少量配置信息的情形" class="headerlink" title="1. 少量配置信息的情形"></a>1. 少量配置信息的情形</h3><p>举个例子，在微服务架构中，最常见的就是某个服务需要调用其他服务来获取其提供的相关信息，那么在该服务的配置文件中需要配置被调用的服务地址，比如在当前服务里，我们需要调用订单微服务获取订单相关的信息，假设 订单服务的端口号是 8002，那我们可以做如下配置：</p>
 <pre class=" language-xml"><code class="language-xml">server:
   port: 8001
 
@@ -1072,7 +1072,7 @@ url:
 <pre><code>=====获取的订单服务地址为：http://localhost:8002
 </code></pre>
 <p>说明我们成功获取到了配置文件中的订单微服务地址，在实际项目中也是这么用的，后面如果因为服务器部署的原因，需要修改某个服务的地址，那么只要在配置文件中修改即可。  </p>
-<h2 id="2-多个配置信息的情形"><a href="#2-多个配置信息的情形" class="headerlink" title="2. 多个配置信息的情形"></a>2. 多个配置信息的情形</h2><p>这里再引申一个问题，随着业务复杂度的增加，一个项目中可能会有越来越多的微服务，某个模块可能需要调用多个微服务获取不同的信息，那么就需要在配置文件中配置多个微服务的地址。可是，在需要调用这些微服务的代码中，如果这样一个个去使用 <code>@Value</code> 注解引入相应的微服务地址的话，太过于繁琐，也不科学。</p>
+<h3 id="2-多个配置信息的情形"><a href="#2-多个配置信息的情形" class="headerlink" title="2. 多个配置信息的情形"></a>2. 多个配置信息的情形</h3><p>这里再引申一个问题，随着业务复杂度的增加，一个项目中可能会有越来越多的微服务，某个模块可能需要调用多个微服务获取不同的信息，那么就需要在配置文件中配置多个微服务的地址。可是，在需要调用这些微服务的代码中，如果这样一个个去使用 <code>@Value</code> 注解引入相应的微服务地址的话，太过于繁琐，也不科学。</p>
 <p>所以，在实际项目中，业务繁琐，逻辑复杂的情况下，需要考虑封装一个或多个配置类。举个例子：假如在当前服务中，某个业务需要同时调用订单微服务、用户微服务和购物车微服务，分别获取订单、用户和购物车相关信息，然后对这些信息做一定的逻辑处理。那么在配置文件中，我们需要将这些微服务的地址都配置好：</p>
 <pre class=" language-xml"><code class="language-xml"># 配置多个微服务的地址
 url:
@@ -1128,7 +1128,7 @@ url:
 =====获取的用户服务地址为：http://localhost:8003
 =====获取的购物车服务地址为：http://localhost:8004
 </code></pre>
-<h2 id="3-指定项目配置文件"><a href="#3-指定项目配置文件" class="headerlink" title="3. 指定项目配置文件"></a>3. 指定项目配置文件</h2><p>我们知道，在实际项目中，一般有两个环境：开发环境和生产环境。开发环境中的配置和生产环境中的配置往往不同，比如：环境、端口、数据库、相关地址等等。我们不可能在开发环境调试好之后，部署到生产环境后，又要将配置信息全部修改成生产环境上的配置，这样太麻烦，也不科学。</p>
+<h3 id="3-指定项目配置文件"><a href="#3-指定项目配置文件" class="headerlink" title="3. 指定项目配置文件"></a>3. 指定项目配置文件</h3><p>我们知道，在实际项目中，一般有两个环境：开发环境和生产环境。开发环境中的配置和生产环境中的配置往往不同，比如：环境、端口、数据库、相关地址等等。我们不可能在开发环境调试好之后，部署到生产环境后，又要将配置信息全部修改成生产环境上的配置，这样太麻烦，也不科学。</p>
 <p>最好的解决方法就是开发环境和生产环境都有一套对用的配置信息，然后当我们在开发时，指定读取开发环境的配置，当我们将项目部署到服务器上之后，再指定去读取生产环境的配置。</p>
 <p>我们新建两个配置文件： <code>application-dev.yml</code> 和 <code>application-pro.yml</code>，分别用来对开发环境和生产环境进行相关配置。这里为了方便，我们分别设置两个访问端口号，开发环境用 8001，生产环境用 8002.</p>
 <pre class=" language-xml"><code class="language-xml"># 开发环境配置文件
@@ -1146,9 +1146,9 @@ server:
     - dev
 </code></pre>
 <p>这样就可以在开发的时候，指定读取  <code>application-dev.yml</code> 文件，访问的时候使用 8001 端口，部署到服务器后，只需要将 <code>application.yml</code> 中指定的文件改成 <code>application-pro.yml</code> 即可，然后使用 8002 端口访问，非常方便。</p>
-<h2 id="4-总结-2"><a href="#4-总结-2" class="headerlink" title="4. 总结"></a>4. 总结</h2><p>本节课主要讲解了 Spring Boot 中如何在业务代码中读取相关配置，包括单一配置和多个配置项，在微服务中，这种情况非常常见，往往会有很多其他微服务需要调用，所以封装一个配置类来接收这些配置是个很好的处理方式。除此之外，例如数据库相关的连接参数等等，也可以放到一个配置类中，其他遇到类似的场景，都可以这么处理。最后介绍了开发环境和生产环境配置的快速切换方式，省去了项目部署时，诸多配置信息的修改。<br>课程源代码下载地址：<a target="_blank" rel="noopener" href="https://gitee.com/eson15/springboot_study">戳我下载</a></p>
-<h1 id="第05课：Spring-Boot中的MVC支持"><a href="#第05课：Spring-Boot中的MVC支持" class="headerlink" title="第05课：Spring Boot中的MVC支持"></a>第05课：Spring Boot中的MVC支持</h1><p>Spring Boot 的 MVC 支持主要来介绍实际项目中最常用的几个注解，包括 <code>@RestController</code>、 <code>@RequestMapping</code>、<code>@PathVariable</code>、<code>@RequestParam</code> 以及 <code>@RequestBody</code>。主要介绍这几个注解常用的使用方式和特点。  </p>
-<h2 id="1-RestController"><a href="#1-RestController" class="headerlink" title="1. @RestController"></a>1. @RestController</h2><p><code>@RestController</code> 是 Spring Boot 新增的一个注解，我们看一下该注解都包含了哪些东西。</p>
+<h3 id="4-总结-2"><a href="#4-总结-2" class="headerlink" title="4. 总结"></a>4. 总结</h3><p>本节课主要讲解了 Spring Boot 中如何在业务代码中读取相关配置，包括单一配置和多个配置项，在微服务中，这种情况非常常见，往往会有很多其他微服务需要调用，所以封装一个配置类来接收这些配置是个很好的处理方式。除此之外，例如数据库相关的连接参数等等，也可以放到一个配置类中，其他遇到类似的场景，都可以这么处理。最后介绍了开发环境和生产环境配置的快速切换方式，省去了项目部署时，诸多配置信息的修改。<br>课程源代码下载地址：<a target="_blank" rel="noopener" href="https://gitee.com/eson15/springboot_study">戳我下载</a></p>
+<h2 id="第05课：Spring-Boot中的MVC支持"><a href="#第05课：Spring-Boot中的MVC支持" class="headerlink" title="第05课：Spring Boot中的MVC支持"></a>第05课：Spring Boot中的MVC支持</h2><p>Spring Boot 的 MVC 支持主要来介绍实际项目中最常用的几个注解，包括 <code>@RestController</code>、 <code>@RequestMapping</code>、<code>@PathVariable</code>、<code>@RequestParam</code> 以及 <code>@RequestBody</code>。主要介绍这几个注解常用的使用方式和特点。  </p>
+<h3 id="1-RestController"><a href="#1-RestController" class="headerlink" title="1. @RestController"></a>1. @RestController</h3><p><code>@RestController</code> 是 Spring Boot 新增的一个注解，我们看一下该注解都包含了哪些东西。</p>
 <pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Target</span><span class="token punctuation">(</span><span class="token punctuation">{</span>ElementType<span class="token punctuation">.</span>TYPE<span class="token punctuation">}</span><span class="token punctuation">)</span>
 <span class="token annotation punctuation">@Retention</span><span class="token punctuation">(</span>RetentionPolicy<span class="token punctuation">.</span>RUNTIME<span class="token punctuation">)</span>
 <span class="token annotation punctuation">@Documented</span>
@@ -1164,7 +1164,7 @@ server:
 <span class="token punctuation">}</span>
 </code></pre>
 <p>其实是需要返回到 user.html 页面的，如果使用 <code>@RestController</code> 的话，会将 user 作为字符串返回的，所以这时候我们需要使用 <code>@Controller</code> 注解。这在下一节 Spring Boot 集成 Thymeleaf 模板引擎中会再说明。</p>
-<h2 id="2-RequestMapping"><a href="#2-RequestMapping" class="headerlink" title="2. @RequestMapping"></a>2. @RequestMapping</h2><p><code>@RequestMapping</code> 是一个用来处理请求地址映射的注解，它可以用于类上，也可以用于方法上。在类的级别上的注解会将一个特定请求或者请求模式映射到一个控制器之上，表示类中的所有响应请求的方法都是以该地址作为父路径；在方法的级别表示进一步指定到处理方法的映射关系。</p>
+<h3 id="2-RequestMapping"><a href="#2-RequestMapping" class="headerlink" title="2. @RequestMapping"></a>2. @RequestMapping</h3><p><code>@RequestMapping</code> 是一个用来处理请求地址映射的注解，它可以用于类上，也可以用于方法上。在类的级别上的注解会将一个特定请求或者请求模式映射到一个控制器之上，表示类中的所有响应请求的方法都是以该地址作为父路径；在方法的级别表示进一步指定到处理方法的映射关系。</p>
 <p>该注解有6个属性，一般在项目中比较常用的有三个属性：value、method 和 produces。</p>
 <ul>
 <li>value 属性：指定请求的实际地址，value 可以省略不写</li>
@@ -1184,7 +1184,7 @@ server:
 </code></pre>
 <p>这个很简单，启动项目在浏览器中输入 <code>localhost:8080/test/get</code> 测试一下即可。</p>
 <p>针对四种不同的请求方式，是有相应注解的，不用每次在 <code>@RequestMapping</code> 注解中加 method 属性来指定，上面的 GET 方式请求可以直接使用 <code>@GetMapping(&quot;/get&quot;)</code> 注解，效果一样。相应地，PUT 方式、POST 方式和 DELETE 方式对应的注解分别为 <code>@PutMapping</code>、<code>@PostMapping</code> 和 <code>DeleteMapping</code>。</p>
-<h2 id="3-PathVariable"><a href="#3-PathVariable" class="headerlink" title="3. @PathVariable"></a>3. @PathVariable</h2><p><code>@PathVariable</code> 注解主要是用来获取 url 参数，Spring Boot 支持 restfull 风格的 url，比如一个 GET 请求携带一个参数 id 过来，我们将 id 作为参数接收，可以使用 <code>@PathVariable</code> 注解。如下：</p>
+<h3 id="3-PathVariable"><a href="#3-PathVariable" class="headerlink" title="3. @PathVariable"></a>3. @PathVariable</h3><p><code>@PathVariable</code> 注解主要是用来获取 url 参数，Spring Boot 支持 restfull 风格的 url，比如一个 GET 请求携带一个参数 id 过来，我们将 id 作为参数接收，可以使用 <code>@PathVariable</code> 注解。如下：</p>
 <pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"/user/{id}"</span><span class="token punctuation">)</span>
 <span class="token keyword">public</span> String <span class="token function">testPathVariable</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span> Integer id<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"获取到的id为："</span> <span class="token operator">+</span> id<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -1211,7 +1211,7 @@ server:
 获取到的name为：zhangsan
 </code></pre>
 <p>所以支持多个参数的接收。同样地，如果 url 中的参数和方法中的参数名称不同的话，也需要使用 value 属性来绑定两个参数。</p>
-<h2 id="4-RequestParam"><a href="#4-RequestParam" class="headerlink" title="4. @RequestParam"></a>4. @RequestParam</h2><p><code>@RequestParam</code> 注解顾名思义，也是获取请求参数的，上面我们介绍了 <code>@PathValiable</code> 注解也是获取请求参数的，那么 <code>@RequestParam</code> 和 <code>@PathVariable</code> 有什么不同呢？主要区别在于： <code>@PathValiable</code> 是从 url 模板中获取参数值， 即这种风格的 url：<code>http://localhost:8080/user/&#123;id&#125;</code> ；而 <code>@RequestParam</code> 是从 request 里面获取参数值，即这种风格的 url：<code>http://localhost:8080/user?id=1</code>  。我们使用该 url 带上参数 id 来测试一下如下代码：</p>
+<h3 id="4-RequestParam"><a href="#4-RequestParam" class="headerlink" title="4. @RequestParam"></a>4. @RequestParam</h3><p><code>@RequestParam</code> 注解顾名思义，也是获取请求参数的，上面我们介绍了 <code>@PathValiable</code> 注解也是获取请求参数的，那么 <code>@RequestParam</code> 和 <code>@PathVariable</code> 有什么不同呢？主要区别在于： <code>@PathValiable</code> 是从 url 模板中获取参数值， 即这种风格的 url：<code>http://localhost:8080/user/&#123;id&#125;</code> ；而 <code>@RequestParam</code> 是从 request 里面获取参数值，即这种风格的 url：<code>http://localhost:8080/user?id=1</code>  。我们使用该 url 带上参数 id 来测试一下如下代码：</p>
 <pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"/user"</span><span class="token punctuation">)</span>
 <span class="token keyword">public</span> String <span class="token function">testRequestParam</span><span class="token punctuation">(</span><span class="token annotation punctuation">@RequestParam</span> Integer id<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"获取到的id为："</span> <span class="token operator">+</span> id<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -1256,7 +1256,7 @@ server:
     <span class="token punctuation">}</span>
 </code></pre>
 <p>使用 postman 再次测试一下表单提交，观察一下返回值和控制台打印出的日志即可。在实际项目中，一般都是封装一个实体类来接收表单数据，因为实际项目中表单数据一般都很多。</p>
-<h2 id="5-RequestBody"><a href="#5-RequestBody" class="headerlink" title="5. @RequestBody"></a>5. @RequestBody</h2><p><code>@RequestBody</code> 注解用于接收前端传来的实体，接收参数也是对应的实体，比如前端通过 json 提交传来两个参数 username 和 password，此时我们需要在后端封装一个实体来接收。在传递的参数比较多的情况下，使用 <code>@RequestBody</code> 接收会非常方便。例如：</p>
+<h3 id="5-RequestBody"><a href="#5-RequestBody" class="headerlink" title="5. @RequestBody"></a>5. @RequestBody</h3><p><code>@RequestBody</code> 注解用于接收前端传来的实体，接收参数也是对应的实体，比如前端通过 json 提交传来两个参数 username 和 password，此时我们需要在后端封装一个实体来接收。在传递的参数比较多的情况下，使用 <code>@RequestBody</code> 接收会非常方便。例如：</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">User</span> <span class="token punctuation">{</span>
     <span class="token keyword">private</span> String username<span class="token punctuation">;</span>
     <span class="token keyword">private</span> String password<span class="token punctuation">;</span>
@@ -1277,18 +1277,18 @@ server:
 获取到的password为：123456
 </code></pre>
 <p>可以看出，<code>@RequestBody</code> 注解用于 POST 请求上，接收 json 实体参数。它和上面我们介绍的表单提交有点类似，只不过参数的格式不同，一个是 json 实体，一个是表单提交。在实际项目中根据具体场景和需要使用对应的注解即可。</p>
-<h2 id="6-总结"><a href="#6-总结" class="headerlink" title="6. 总结"></a>6. 总结</h2><p>本节课主要讲解了 Spring Boot 中对 MVC 的支持，分析了 <code>@RestController</code>、 <code>@RequestMapping</code>、<code>@PathVariable</code>、 <code>@RequestParam</code> 和 <code>@RequestBody</code> 四个注解的使用方式，由于 <code>@RestController</code> 中集成了 <code>@ResponseBody</code> 所以对返回 json 的注解不再赘述。以上四个注解是使用频率很高的注解，在所有的实际项目中基本都会遇到，要熟练掌握。</p>
+<h3 id="6-总结"><a href="#6-总结" class="headerlink" title="6. 总结"></a>6. 总结</h3><p>本节课主要讲解了 Spring Boot 中对 MVC 的支持，分析了 <code>@RestController</code>、 <code>@RequestMapping</code>、<code>@PathVariable</code>、 <code>@RequestParam</code> 和 <code>@RequestBody</code> 四个注解的使用方式，由于 <code>@RestController</code> 中集成了 <code>@ResponseBody</code> 所以对返回 json 的注解不再赘述。以上四个注解是使用频率很高的注解，在所有的实际项目中基本都会遇到，要熟练掌握。</p>
 <p>课程源代码下载地址：<a target="_blank" rel="noopener" href="https://gitee.com/eson15/springboot_study">戳我下载</a></p>
-<h1 id="第06课：Spring-Boot集成-Swagger2-展现在线接口文档"><a href="#第06课：Spring-Boot集成-Swagger2-展现在线接口文档" class="headerlink" title="第06课：Spring Boot集成 Swagger2 展现在线接口文档"></a>第06课：Spring Boot集成 Swagger2 展现在线接口文档</h1><h2 id="1-Swagger-简介"><a href="#1-Swagger-简介" class="headerlink" title="1. Swagger 简介"></a>1. Swagger 简介</h2><h3 id="1-1-解决的问题"><a href="#1-1-解决的问题" class="headerlink" title="1.1 解决的问题"></a>1.1 解决的问题</h3><p>随着互联网技术的发展，现在的网站架构基本都由原来的后端渲染，变成了前后端分离的形态，而且前端技术和后端技术在各自的道路上越走越远。前端和后端的唯一联系，变成了 API 接口，所以 API 文档变成了前后端开发人员联系的纽带，变得越来越重要。</p>
+<h2 id="第06课：Spring-Boot集成-Swagger2-展现在线接口文档"><a href="#第06课：Spring-Boot集成-Swagger2-展现在线接口文档" class="headerlink" title="第06课：Spring Boot集成 Swagger2 展现在线接口文档"></a>第06课：Spring Boot集成 Swagger2 展现在线接口文档</h2><h3 id="1-Swagger-简介"><a href="#1-Swagger-简介" class="headerlink" title="1. Swagger 简介"></a>1. Swagger 简介</h3><h4 id="1-1-解决的问题"><a href="#1-1-解决的问题" class="headerlink" title="1.1 解决的问题"></a>1.1 解决的问题</h4><p>随着互联网技术的发展，现在的网站架构基本都由原来的后端渲染，变成了前后端分离的形态，而且前端技术和后端技术在各自的道路上越走越远。前端和后端的唯一联系，变成了 API 接口，所以 API 文档变成了前后端开发人员联系的纽带，变得越来越重要。</p>
 <p>那么问题来了，随着代码的不断更新，开发人员在开发新的接口或者更新旧的接口后，由于开发任务的繁重，往往文档很难持续跟着更新，Swagger 就是用来解决该问题的一款重要的工具，对使用接口的人来说，开发人员不需要给他们提供文档，只要告诉他们一个 Swagger 地址，即可展示在线的 API 接口文档，除此之外，调用接口的人员还可以在线测试接口数据，同样地，开发人员在开发接口时，同样也可以利用 Swagger 在线接口文档测试接口数据，这给开发人员提供了便利。</p>
-<h3 id="1-2-Swagger-官方"><a href="#1-2-Swagger-官方" class="headerlink" title="1.2 Swagger 官方"></a>1.2 Swagger 官方</h3><p>我们打开 <a target="_blank" rel="noopener" href="https://swagger.io/">Swagger 官网</a>，官方对 Swagger 的定义为：</p>
+<h4 id="1-2-Swagger-官方"><a href="#1-2-Swagger-官方" class="headerlink" title="1.2 Swagger 官方"></a>1.2 Swagger 官方</h4><p>我们打开 <a target="_blank" rel="noopener" href="https://swagger.io/">Swagger 官网</a>，官方对 Swagger 的定义为：</p>
 <blockquote>
 <p>The Best APIs are Built with Swagger Tools </p>
 </blockquote>
 <p>翻译成中文是：“最好的 API 是使用 Swagger 工具构建的”。由此可见，Swagger 官方对其功能和所处的地位非常自信，由于其非常好用，所以官方对其定位也合情合理。如下图所示：</p>
 <p><img src="https://img-blog.csdnimg.cn/20200215043936444.png" alt="官方对swagger的定位"></p>
 <p>本文主要讲解在 Spring Boot 中如何导入 Swagger2 工具来展现项目中的接口文档。本节课使用的 Swagger 版本为 2.2.2。下面开始进入 Swagger2 之旅。</p>
-<h2 id="2-Swagger2-的-maven-依赖"><a href="#2-Swagger2-的-maven-依赖" class="headerlink" title="2. Swagger2 的 maven 依赖"></a>2. Swagger2 的 maven 依赖</h2><p>使用 Swagger2 工具，必须要导入 maven 依赖，当前官方最高版本是 2.8.0，我尝试了一下，个人感觉页面展示的效果不太好，而且不够紧凑，不利于操作。另外，最新版本并不一定是最稳定版本，当前我们实际项目中使用的是 2.2.2 版本，该版本稳定，界面友好，所以本节课主要围绕着 2.2.2 版本来展开，依赖如下：</p>
+<h3 id="2-Swagger2-的-maven-依赖"><a href="#2-Swagger2-的-maven-依赖" class="headerlink" title="2. Swagger2 的 maven 依赖"></a>2. Swagger2 的 maven 依赖</h3><p>使用 Swagger2 工具，必须要导入 maven 依赖，当前官方最高版本是 2.8.0，我尝试了一下，个人感觉页面展示的效果不太好，而且不够紧凑，不利于操作。另外，最新版本并不一定是最稳定版本，当前我们实际项目中使用的是 2.2.2 版本，该版本稳定，界面友好，所以本节课主要围绕着 2.2.2 版本来展开，依赖如下：</p>
 <pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>io.springfox<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>springfox-swagger2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
@@ -1300,7 +1300,7 @@ server:
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>2.2.2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
 </code></pre>
-<h2 id="3-Swagger2-的配置"><a href="#3-Swagger2-的配置" class="headerlink" title="3. Swagger2 的配置"></a>3. Swagger2 的配置</h2><p>使用 Swagger2 需要进行配置，Spring Boot 中对 Swagger2 的配置非常方便，新建一个配置类，Swagger2 的配置类上除了添加必要的 <code>@Configuration</code> 注解外，还需要添加 <code>@EnableSwagger2</code> 注解。</p>
+<h3 id="3-Swagger2-的配置"><a href="#3-Swagger2-的配置" class="headerlink" title="3. Swagger2 的配置"></a>3. Swagger2 的配置</h3><p>使用 Swagger2 需要进行配置，Spring Boot 中对 Swagger2 的配置非常方便，新建一个配置类，Swagger2 的配置类上除了添加必要的 <code>@Configuration</code> 注解外，还需要添加 <code>@EnableSwagger2</code> 注解。</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>context<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>Bean<span class="token punctuation">;</span>
 <span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>context<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>Configuration<span class="token punctuation">;</span>
 <span class="token keyword">import</span> springfox<span class="token punctuation">.</span>documentation<span class="token punctuation">.</span>builders<span class="token punctuation">.</span>ApiInfoBuilder<span class="token punctuation">;</span>
@@ -1354,8 +1354,8 @@ server:
 <p>结合该图，对照上面的 Swagger2 配置文件中的配置，可以很明确的知道配置类中每个方法的作用。这样就很容易理解和掌握 Swagger2 中的配置了，也可以看出，其实 Swagger2 配置很简单。</p>
 <p>【友情提示】可能有很多朋友在配置 Swagger 的时候会遇到下面的情况，而且还关不掉的，这是因为浏览器缓存引起的，清空一下浏览器缓存即可解决问题。</p>
 <p><img src="http://p99jlm9k5.bkt.clouddn.com/blog/images/1/error.png" alt="错误页面-倪升武的博客-图2"></p>
-<h2 id="4-Swagger2-的使用"><a href="#4-Swagger2-的使用" class="headerlink" title="4. Swagger2 的使用"></a>4. Swagger2 的使用</h2><p>上面我们已经配置好了 Swagger2，并且也启动测试了一下，功能正常，下面我们开始使用 Swagger2，主要来介绍 Swagger2 中的几个常用的注解，分别在实体类上、 Controller 类上以及 Controller 中的方法上，最后我们看一下 Swagger2 是如何在页面上呈现在线接口文档的，并且结合 Controller 中的方法在接口中测试一下数据。</p>
-<h3 id="4-1-实体类注解"><a href="#4-1-实体类注解" class="headerlink" title="4.1 实体类注解"></a>4.1 实体类注解</h3><p>本节我们建一个 User 实体类，主要介绍一下 Swagger2 中的 <code>@ApiModel</code> 和 <code>@ApiModelProperty</code> 注解，同时为后面的测试做准备。</p>
+<h3 id="4-Swagger2-的使用"><a href="#4-Swagger2-的使用" class="headerlink" title="4. Swagger2 的使用"></a>4. Swagger2 的使用</h3><p>上面我们已经配置好了 Swagger2，并且也启动测试了一下，功能正常，下面我们开始使用 Swagger2，主要来介绍 Swagger2 中的几个常用的注解，分别在实体类上、 Controller 类上以及 Controller 中的方法上，最后我们看一下 Swagger2 是如何在页面上呈现在线接口文档的，并且结合 Controller 中的方法在接口中测试一下数据。</p>
+<h4 id="4-1-实体类注解"><a href="#4-1-实体类注解" class="headerlink" title="4.1 实体类注解"></a>4.1 实体类注解</h4><p>本节我们建一个 User 实体类，主要介绍一下 Swagger2 中的 <code>@ApiModel</code> 和 <code>@ApiModelProperty</code> 注解，同时为后面的测试做准备。</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">import</span> io<span class="token punctuation">.</span>swagger<span class="token punctuation">.</span>annotations<span class="token punctuation">.</span>ApiModel<span class="token punctuation">;</span>
 <span class="token keyword">import</span> io<span class="token punctuation">.</span>swagger<span class="token punctuation">.</span>annotations<span class="token punctuation">.</span>ApiModelProperty<span class="token punctuation">;</span>
 
@@ -1379,7 +1379,7 @@ server:
 <p><code>@ApiModel</code> 注解用于实体类，表示对类进行说明，用于参数用实体类接收。<br><code>@ApiModelProperty</code> 注解用于类中属性，表示对 model 属性的说明或者数据操作更改。</p>
 </blockquote>
 <p>该注解在在线 API 文档中的具体效果在下文说明。</p>
-<h3 id="4-2-Controller-类中相关注解"><a href="#4-2-Controller-类中相关注解" class="headerlink" title="4.2 Controller 类中相关注解"></a>4.2 Controller 类中相关注解</h3><p>我们写一个 TestController，再写几个接口，然后学习一下 Controller 中和 Swagger2 相关的注解。</p>
+<h4 id="4-2-Controller-类中相关注解"><a href="#4-2-Controller-类中相关注解" class="headerlink" title="4.2 Controller 类中相关注解"></a>4.2 Controller 类中相关注解</h4><p>我们写一个 TestController，再写几个接口，然后学习一下 Controller 中和 Swagger2 相关的注解。</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">import</span> com<span class="token punctuation">.</span>itcodai<span class="token punctuation">.</span>course06<span class="token punctuation">.</span>entiy<span class="token punctuation">.</span>JsonResult<span class="token punctuation">;</span>
 <span class="token keyword">import</span> com<span class="token punctuation">.</span>itcodai<span class="token punctuation">.</span>course06<span class="token punctuation">.</span>entiy<span class="token punctuation">.</span>User<span class="token punctuation">;</span>
 <span class="token keyword">import</span> io<span class="token punctuation">.</span>swagger<span class="token punctuation">.</span>annotations<span class="token punctuation">.</span>Api<span class="token punctuation">;</span>
@@ -1422,9 +1422,9 @@ server:
 </code></pre>
 <p>重启项目，在浏览器中输入 <code>localhost:8080/swagger-ui.html</code> 看一下效果：</p>
 <p><img src="https://img-blog.csdnimg.cn/20200215044256579.png" alt="swagger接口展示"></p>
-<h2 id="5-总结-1"><a href="#5-总结-1" class="headerlink" title="5. 总结"></a>5. 总结</h2><p>OK，本节课详细分析了 Swagger 的优点，以及 Spring Boot 如何集成 Swagger2，包括配置，相关注解的讲解，涉及到了实体类和接口类，以及如何使用。最后通过页面测试，体验了 Swagger 的强大之处，基本上是每个项目组中必备的工具之一，所以要掌握该工具的使用，也不难。</p>
+<h3 id="5-总结-1"><a href="#5-总结-1" class="headerlink" title="5. 总结"></a>5. 总结</h3><p>OK，本节课详细分析了 Swagger 的优点，以及 Spring Boot 如何集成 Swagger2，包括配置，相关注解的讲解，涉及到了实体类和接口类，以及如何使用。最后通过页面测试，体验了 Swagger 的强大之处，基本上是每个项目组中必备的工具之一，所以要掌握该工具的使用，也不难。</p>
 <p>课程源代码下载地址：<a target="_blank" rel="noopener" href="https://gitee.com/eson15/springboot_study">戳我下载</a></p>
-<h1 id="第07课：Spring-Boot集成Thymeleaf模板引擎"><a href="#第07课：Spring-Boot集成Thymeleaf模板引擎" class="headerlink" title="第07课：Spring Boot集成Thymeleaf模板引擎"></a>第07课：Spring Boot集成Thymeleaf模板引擎</h1><h2 id="1-Thymeleaf-介绍"><a href="#1-Thymeleaf-介绍" class="headerlink" title="1. Thymeleaf 介绍"></a>1. Thymeleaf 介绍</h2><blockquote>
+<h2 id="第07课：Spring-Boot集成Thymeleaf模板引擎"><a href="#第07课：Spring-Boot集成Thymeleaf模板引擎" class="headerlink" title="第07课：Spring Boot集成Thymeleaf模板引擎"></a>第07课：Spring Boot集成Thymeleaf模板引擎</h2><h3 id="1-Thymeleaf-介绍"><a href="#1-Thymeleaf-介绍" class="headerlink" title="1. Thymeleaf 介绍"></a>1. Thymeleaf 介绍</h3><blockquote>
 <p>Thymeleaf 是适用于 Web 和独立环境的现代服务器端 Java 模板引擎。<br>Thymeleaf 的主要目标是为您的开发工作流程带来优雅的自然模板 - 可以在浏览器中正确显示的HTML，也可以用作静态原型，从而在开发团队中实现更强大的协作。  </p>
 </blockquote>
 <p>以上翻译自 Thymeleaf 官方网站。传统的 JSP+JSTL 组合是已经过去了，Thymeleaf 是现代服务端的模板引擎，与传统的 JSP 不同，Thymeleaf 可以使用浏览器直接打开，因为可以忽略掉拓展属性，相当于打开原生页面，给前端人员也带来一定的便利。   </p>
@@ -1435,7 +1435,7 @@ server:
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h2</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>ui center aligned header<span class="token punctuation">"</span></span> <span class="token attr-name"><span class="token namespace">th:</span>text</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>${blog.title}<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>这是静态标题<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h2</span><span class="token punctuation">></span></span>
 </code></pre>
 <p>类似与上面这样，在静态页面时，会展示静态信息，当服务启动后，动态获取数据库中的数据后，就可以展示动态数据，<code>th:text</code> 标签是用来动态替换文本的，这会在下文说明。该例子说明浏览器解释 html 时会忽略 html 中未定义的标签属性（比如 <code>th:text</code>），所以 thymeleaf 的模板可以静态地运行；当有数据返回到页面时，Thymeleaf 标签会动态地替换掉静态内容，使页面动态显示数据。 </p>
-<h2 id="2-依赖导入"><a href="#2-依赖导入" class="headerlink" title="2. 依赖导入"></a>2. 依赖导入</h2><p>在 Spring Boot 中使用 thymeleaf 模板需要引入依赖，可以在创建项目工程时勾选 Thymeleaf，也可以创建之后再手动导入，如下：</p>
+<h3 id="2-依赖导入"><a href="#2-依赖导入" class="headerlink" title="2. 依赖导入"></a>2. 依赖导入</h3><p>在 Spring Boot 中使用 thymeleaf 模板需要引入依赖，可以在创建项目工程时勾选 Thymeleaf，也可以创建之后再手动导入，如下：</p>
 <pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-boot-starter-thymeleaf<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
@@ -1444,13 +1444,13 @@ server:
 <p>另外，在 html 页面上如果要使用 thymeleaf 模板，需要在页面标签中引入：</p>
 <pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name"><span class="token namespace">xmlns:</span>th</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://www.thymeleaf.org<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
 </code></pre>
-<h2 id="3-Thymeleaf相关配置"><a href="#3-Thymeleaf相关配置" class="headerlink" title="3. Thymeleaf相关配置"></a>3. Thymeleaf相关配置</h2><p>因为 Thymeleaf 中已经有默认的配置了，我们不需要再对其做过多的配置，有一个需要注意一下，Thymeleaf 默认是开启页面缓存的，所以在开发的时候，需要关闭这个页面缓存，配置如下。</p>
+<h3 id="3-Thymeleaf相关配置"><a href="#3-Thymeleaf相关配置" class="headerlink" title="3. Thymeleaf相关配置"></a>3. Thymeleaf相关配置</h3><p>因为 Thymeleaf 中已经有默认的配置了，我们不需要再对其做过多的配置，有一个需要注意一下，Thymeleaf 默认是开启页面缓存的，所以在开发的时候，需要关闭这个页面缓存，配置如下。</p>
 <pre class=" language-yml"><code class="language-yml">spring:
   thymeleaf:
     cache: false #关闭缓存
 </code></pre>
 <p>否则会有缓存，导致页面没法及时看到更新后的效果。 比如你修改了一个文件，已经 update 到 tomcat 了，但刷新页面还是之前的页面，就是因为缓存引起的。</p>
-<h2 id="4-Thymeleaf-的使用"><a href="#4-Thymeleaf-的使用" class="headerlink" title="4. Thymeleaf 的使用"></a>4. Thymeleaf 的使用</h2><h3 id="4-1-访问静态页面"><a href="#4-1-访问静态页面" class="headerlink" title="4.1 访问静态页面"></a>4.1 访问静态页面</h3><p>这个和 Thymeleaf 没啥关系，应该说是通用的，我把它一并写到这里的原因是一般我们做网站的时候，都会做一个 404 页面和 500 页面，为了出错时给用户一个友好的展示，而不至于一堆异常信息抛出来。Spring Boot 中会自动识别模板目录（templates/）下的 404.html 和 500.html 文件。我们在 templates/ 目录下新建一个 error 文件夹，专门放置错误的 html 页面，然后分别打印些信息。以 404.html 为例：</p>
+<h3 id="4-Thymeleaf-的使用"><a href="#4-Thymeleaf-的使用" class="headerlink" title="4. Thymeleaf 的使用"></a>4. Thymeleaf 的使用</h3><h4 id="4-1-访问静态页面"><a href="#4-1-访问静态页面" class="headerlink" title="4.1 访问静态页面"></a>4.1 访问静态页面</h4><p>这个和 Thymeleaf 没啥关系，应该说是通用的，我把它一并写到这里的原因是一般我们做网站的时候，都会做一个 404 页面和 500 页面，为了出错时给用户一个友好的展示，而不至于一堆异常信息抛出来。Spring Boot 中会自动识别模板目录（templates/）下的 404.html 和 500.html 文件。我们在 templates/ 目录下新建一个 error 文件夹，专门放置错误的 html 页面，然后分别打印些信息。以 404.html 为例：</p>
 <pre class=" language-html"><code class="language-html"><span class="token doctype">&lt;!DOCTYPE html></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>en<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span>
@@ -1483,7 +1483,7 @@ server:
 <p>当我们在浏览器中输入 <code>localhost:8080/thymeleaf/test400</code> 时，故意输入错误，找不到对应的方法，就会跳转到 404.html 显示。<br>当我们在浏览器中输入 <code>localhost:8088/thymeleaf/test505</code> 时，会抛出异常，然后会自动跳转到 500.html 显示。</p>
 </blockquote>
 <p>【注】这里有个问题需要注意一下，前面的课程中我们说了微服务中会走向前后端分离，我们在 Controller 层上都是使用的 <code>@RestController</code> 注解，自动会把返回的数据转成 json 格式。但是在使用模板引擎时，Controller 层就不能用 <code>@RestController</code> 注解了，因为在使用 thymeleaf 模板时，返回的是视图文件名，比如上面的 Controller 中是返回到 index.html 页面，如果使用 <code>@RestController</code> 的话，会把 index 当作 String 解析了，直接返回到页面了，而不是去找 index.html 页面，大家可以试一下。所以在使用模板时要用 <code>@Controller</code> 注解。</p>
-<h3 id="4-2-Thymeleaf-中处理对象"><a href="#4-2-Thymeleaf-中处理对象" class="headerlink" title="4.2 Thymeleaf 中处理对象"></a>4.2 Thymeleaf 中处理对象</h3><p>我们来看一下 thymeleaf 模板中如何处理对象信息，假如我们在做个人博客的时候，需要给前端传博主相关信息来展示，那么我们会封装成一个博主对象，比如：</p>
+<h4 id="4-2-Thymeleaf-中处理对象"><a href="#4-2-Thymeleaf-中处理对象" class="headerlink" title="4.2 Thymeleaf 中处理对象"></a>4.2 Thymeleaf 中处理对象</h4><p>我们来看一下 thymeleaf 模板中如何处理对象信息，假如我们在做个人博客的时候，需要给前端传博主相关信息来展示，那么我们会封装成一个博主对象，比如：</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Blogger</span> <span class="token punctuation">{</span>
     <span class="token keyword">private</span> Long id<span class="token punctuation">;</span>
     <span class="token keyword">private</span> String name<span class="token punctuation">;</span>
@@ -1522,7 +1522,7 @@ server:
 </blockquote>
 <p>可以看出，在 Thymeleaf 中可以像写 java 一样写代码，很方便。我们在浏览器中输入 <code>localhost:8080/thymeleaf/getBlogger</code> 来测试一下数据：</p>
 <p><img src="https://img-blog.csdnimg.cn/20200215044353803.jpg" alt="thymeleaf中处理对象"></p>
-<h3 id="4-3-Thymeleaf-中处理-List"><a href="#4-3-Thymeleaf-中处理-List" class="headerlink" title="4.3 Thymeleaf 中处理 List"></a>4.3 Thymeleaf 中处理 List</h3><p>处理 List 的话，和处理上面介绍的对象差不多，但是需要在 thymeleaf 中进行遍历。我们先在 Controller 中模拟一个 List。</p>
+<h4 id="4-3-Thymeleaf-中处理-List"><a href="#4-3-Thymeleaf-中处理-List" class="headerlink" title="4.3 Thymeleaf 中处理 List"></a>4.3 Thymeleaf 中处理 List</h4><p>处理 List 的话，和处理上面介绍的对象差不多，但是需要在 thymeleaf 中进行遍历。我们先在 Controller 中模拟一个 List。</p>
 <pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"/getList"</span><span class="token punctuation">)</span>
 <span class="token keyword">public</span> String <span class="token function">getList</span><span class="token punctuation">(</span>Model model<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     Blogger blogger1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Blogger</span><span class="token punctuation">(</span>1L<span class="token punctuation">,</span> <span class="token string">"倪升武"</span><span class="token punctuation">,</span> <span class="token string">"123456"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -1552,7 +1552,7 @@ server:
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span>
 </code></pre>
 <p>可以看出，其实和处理单个对象信息差不多，Thymeleaf 使用 <code>th:each</code> 进行遍历，<code>$&#123;&#125;</code> 取 model 中传过来的参数，然后自定义 list 中取出来的每个对象，这里定义为 blogger。表单里面可以直接使用 <code>$&#123;对象.属性名&#125;</code> 来获取 list 中对象的属性值，也可以使用 <code>$&#123;对象.get方法&#125;</code> 来获取，这点和上面处理对象信息是一样的，但是不能使用 <code>*&#123;属性名&#125;</code> 来获取对象中的属性，thymeleaf 模板获取不到。    </p>
-<h3 id="4-4-其他常用-thymeleaf-操作"><a href="#4-4-其他常用-thymeleaf-操作" class="headerlink" title="4.4 其他常用 thymeleaf 操作"></a>4.4 其他常用 thymeleaf 操作</h3><p>我们来总结一下 thymeleaf 中的一些常用的标签操作，如下：</p>
+<h4 id="4-4-其他常用-thymeleaf-操作"><a href="#4-4-其他常用-thymeleaf-操作" class="headerlink" title="4.4 其他常用 thymeleaf 操作"></a>4.4 其他常用 thymeleaf 操作</h4><p>我们来总结一下 thymeleaf 中的一些常用的标签操作，如下：</p>
 <table>
 <thead>
 <tr>
@@ -1613,10 +1613,10 @@ server:
 </tr>
 </tbody></table>
 <p>Thymeleaf 还有很多其他用法，这里就不总结了，具体的可以参考Thymeleaf的<a target="_blank" rel="noopener" href="https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html">官方文档（v3.0）</a>。主要要学会如何在 Spring Boot 中去使用 thymeleaf，遇到对应的标签或者方法，查阅官方文档即可。</p>
-<h2 id="5-总结-2"><a href="#5-总结-2" class="headerlink" title="5. 总结"></a>5. 总结</h2><p>Thymeleaf 在 Spring Boot 中使用非常广泛，本节课主要分析了 thymeleaf 的优点，以及如何在 Spring Boot 中集成并使用 thymeleaf 模板，包括依赖、配置，相关数据的获取、以及一些注意事项等等。最后列举了一些 thymeleaf 中常用的标签，在实际项目中多使用，多查阅就能熟练掌握，thymeleaf 中的一些标签或者方法不用死记硬背，用到什么去查阅什么，关键是要会在 Spring Boot 中集成，用的多了就熟能生巧。</p>
+<h3 id="5-总结-2"><a href="#5-总结-2" class="headerlink" title="5. 总结"></a>5. 总结</h3><p>Thymeleaf 在 Spring Boot 中使用非常广泛，本节课主要分析了 thymeleaf 的优点，以及如何在 Spring Boot 中集成并使用 thymeleaf 模板，包括依赖、配置，相关数据的获取、以及一些注意事项等等。最后列举了一些 thymeleaf 中常用的标签，在实际项目中多使用，多查阅就能熟练掌握，thymeleaf 中的一些标签或者方法不用死记硬背，用到什么去查阅什么，关键是要会在 Spring Boot 中集成，用的多了就熟能生巧。</p>
 <p>课程源代码下载地址：<a target="_blank" rel="noopener" href="https://gitee.com/eson15/springboot_study">戳我下载</a></p>
-<h1 id="第08课：Spring-Boot中的全局异常处理"><a href="#第08课：Spring-Boot中的全局异常处理" class="headerlink" title="第08课：Spring Boot中的全局异常处理"></a>第08课：Spring Boot中的全局异常处理</h1><p>在项目开发过程中，不管是对底层数据库的操作过程，还是业务层的处理过程，还是控制层的处理过程，都不可避免会遇到各种可预知的、不可预知的异常需要处理。如果对每个过程都单独作异常处理，那系统的代码耦合度会变得很高，此外，开发工作量也会加大而且不好统一，这也增加了代码的维护成本。<br>针对这种实际情况，我们需要将所有类型的异常处理从各处理过程解耦出来，这样既保证了相关处理过程的功能单一，也实现了异常信息的统一处理和维护。同时，我们也不希望直接把异常抛给用户，应该对异常进行处理，对错误信息进行封装，然后返回一个友好的信息给用户。这节主要总结一下项目中如何使用 Spring Boot 如何拦截并处理全局的异常。</p>
-<h2 id="1-定义返回的统一-json-结构"><a href="#1-定义返回的统一-json-结构" class="headerlink" title="1. 定义返回的统一 json 结构"></a>1. 定义返回的统一 json 结构</h2><p>前端或者其他服务请求本服务的接口时，该接口需要返回对应的 json 数据，一般该服务只需要返回请求着需要的参数即可，但是在实际项目中，我们需要封装更多的信息，比如状态码 code、相关信息 msg 等等，这一方面是在项目中可以有个统一的返回结构，整个项目组都适用，另一方面是方便结合全局异常处理信息，因为异常处理信息中一般我们需要把状态码和异常内容反馈给调用方。<br>这个统一的 json 结构这可以参考<a target="_blank" rel="noopener" href="https://gitbook.cn/gitchat/column/5b3c9f35a3442272491a176a">第02课：Spring Boot 返回 JSON 数据及数据封装</a>中封装的统一 json 结构，本节内容我们简化一下，只保留状态码 code 和异常信息 msg即可。如下：</p>
+<h2 id="第08课：Spring-Boot中的全局异常处理"><a href="#第08课：Spring-Boot中的全局异常处理" class="headerlink" title="第08课：Spring Boot中的全局异常处理"></a>第08课：Spring Boot中的全局异常处理</h2><p>在项目开发过程中，不管是对底层数据库的操作过程，还是业务层的处理过程，还是控制层的处理过程，都不可避免会遇到各种可预知的、不可预知的异常需要处理。如果对每个过程都单独作异常处理，那系统的代码耦合度会变得很高，此外，开发工作量也会加大而且不好统一，这也增加了代码的维护成本。<br>针对这种实际情况，我们需要将所有类型的异常处理从各处理过程解耦出来，这样既保证了相关处理过程的功能单一，也实现了异常信息的统一处理和维护。同时，我们也不希望直接把异常抛给用户，应该对异常进行处理，对错误信息进行封装，然后返回一个友好的信息给用户。这节主要总结一下项目中如何使用 Spring Boot 如何拦截并处理全局的异常。</p>
+<h3 id="1-定义返回的统一-json-结构"><a href="#1-定义返回的统一-json-结构" class="headerlink" title="1. 定义返回的统一 json 结构"></a>1. 定义返回的统一 json 结构</h3><p>前端或者其他服务请求本服务的接口时，该接口需要返回对应的 json 数据，一般该服务只需要返回请求着需要的参数即可，但是在实际项目中，我们需要封装更多的信息，比如状态码 code、相关信息 msg 等等，这一方面是在项目中可以有个统一的返回结构，整个项目组都适用，另一方面是方便结合全局异常处理信息，因为异常处理信息中一般我们需要把状态码和异常内容反馈给调用方。<br>这个统一的 json 结构这可以参考<a target="_blank" rel="noopener" href="https://gitbook.cn/gitchat/column/5b3c9f35a3442272491a176a">第02课：Spring Boot 返回 JSON 数据及数据封装</a>中封装的统一 json 结构，本节内容我们简化一下，只保留状态码 code 和异常信息 msg即可。如下：</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">JsonResult</span> <span class="token punctuation">{</span>
     <span class="token comment" spellcheck="true">/**
      * 异常码
@@ -1640,7 +1640,7 @@ server:
     <span class="token comment" spellcheck="true">// get set</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<h2 id="2-处理系统异常"><a href="#2-处理系统异常" class="headerlink" title="2. 处理系统异常"></a>2. 处理系统异常</h2><p>新建一个 GlobalExceptionHandler 全局异常处理类，然后加上 <code>@ControllerAdvice</code> 注解即可拦截项目中抛出的异常，如下：</p>
+<h3 id="2-处理系统异常"><a href="#2-处理系统异常" class="headerlink" title="2. 处理系统异常"></a>2. 处理系统异常</h3><p>新建一个 GlobalExceptionHandler 全局异常处理类，然后加上 <code>@ControllerAdvice</code> 注解即可拦截项目中抛出的异常，如下：</p>
 <pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@ControllerAdvice</span>
 <span class="token annotation punctuation">@ResponseBody</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">GlobalExceptionHandler</span> <span class="token punctuation">{</span>
@@ -1650,7 +1650,7 @@ server:
 <span class="token punctuation">}</span>
 </code></pre>
 <p>我们点开 <code>@ControllerAdvice</code> 注解可以看到，<code>@ControllerAdvice</code> 注解包含了 <code>@Component</code> 注解，说明在 Spring Boot 启动时，也会把该类作为组件交给 Spring 来管理。除此之外，该注解还有个 <code>basePackages</code> 属性，该属性是用来拦截哪个包中的异常信息，一般我们不指定这个属性，我们拦截项目工程中的所有异常。<code>@ResponseBody</code> 注解是为了异常处理完之后给调用方输出一个 json 格式的封装数据。<br>在项目中如何使用呢？Spring Boot 中很简单，在方法上通过 <code>@ExceptionHandler</code> 注解来指定具体的异常，然后在方法中处理该异常信息，最后将结果通过统一的 json 结构体返回给调用者。下面我们举几个例子来说明如何来使用。</p>
-<h3 id="2-1-处理参数缺失异常"><a href="#2-1-处理参数缺失异常" class="headerlink" title="2.1 处理参数缺失异常"></a>2.1 处理参数缺失异常</h3><p>在前后端分离的架构中，前端请求后台的接口都是通过 rest 风格来调用，有时候，比如 POST 请求 需要携带一些参数，但是往往有时候参数会漏掉。另外，在微服务架构中，涉及到多个微服务之间的接口调用时，也可能出现这种情况，此时我们需要定义一个处理参数缺失异常的方法，来给前端或者调用方提示一个友好信息。  </p>
+<h4 id="2-1-处理参数缺失异常"><a href="#2-1-处理参数缺失异常" class="headerlink" title="2.1 处理参数缺失异常"></a>2.1 处理参数缺失异常</h4><p>在前后端分离的架构中，前端请求后台的接口都是通过 rest 风格来调用，有时候，比如 POST 请求 需要携带一些参数，但是往往有时候参数会漏掉。另外，在微服务架构中，涉及到多个微服务之间的接口调用时，也可能出现这种情况，此时我们需要定义一个处理参数缺失异常的方法，来给前端或者调用方提示一个友好信息。  </p>
 <p>参数缺失的时候，会抛出 <code>HttpMessageNotReadableException</code>，我们可以拦截该异常，做一个友好处理，如下：</p>
 <pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
 * 缺少请求参数异常
@@ -1683,7 +1683,7 @@ server:
 </code></pre>
 <p>然后使用 Postman 来调用一下该接口，调用的时候，只传姓名，不传密码，就会抛缺少参数异常，该异常被捕获之后，就会进入我们写好的逻辑，给调用方返回一个友好信息，如下：</p>
 <p><img src="https://img-blog.csdnimg.cn/2020021504443480.png" alt="缺失参数异常"></p>
-<h3 id="2-2-处理空指针异常"><a href="#2-2-处理空指针异常" class="headerlink" title="2.2 处理空指针异常"></a>2.2 处理空指针异常</h3><p>空指针异常是开发中司空见惯的东西了，一般发生的地方有哪些呢？<br>先来聊一聊一些注意的地方，比如在微服务中，经常会调用其他服务获取数据，这个数据主要是 json 格式的，但是在解析 json 的过程中，可能会有空出现，所以我们在获取某个 jsonObject 时，再通过该 jsonObject 去获取相关信息时，应该要先做非空判断。<br>还有一个很常见的地方就是从数据库中查询的数据，不管是查询一条记录封装在某个对象中，还是查询多条记录封装在一个 List 中，我们接下来都要去处理数据，那么就有可能出现空指针异常，因为谁也不能保证从数据库中查出来的东西就一定不为空，所以在使用数据时一定要先做非空判断。<br>对空指针异常的处理很简单，和上面的逻辑一样，将异常信息换掉即可。如下：</p>
+<h4 id="2-2-处理空指针异常"><a href="#2-2-处理空指针异常" class="headerlink" title="2.2 处理空指针异常"></a>2.2 处理空指针异常</h4><p>空指针异常是开发中司空见惯的东西了，一般发生的地方有哪些呢？<br>先来聊一聊一些注意的地方，比如在微服务中，经常会调用其他服务获取数据，这个数据主要是 json 格式的，但是在解析 json 的过程中，可能会有空出现，所以我们在获取某个 jsonObject 时，再通过该 jsonObject 去获取相关信息时，应该要先做非空判断。<br>还有一个很常见的地方就是从数据库中查询的数据，不管是查询一条记录封装在某个对象中，还是查询多条记录封装在一个 List 中，我们接下来都要去处理数据，那么就有可能出现空指针异常，因为谁也不能保证从数据库中查出来的东西就一定不为空，所以在使用数据时一定要先做非空判断。<br>对空指针异常的处理很简单，和上面的逻辑一样，将异常信息换掉即可。如下：</p>
 <pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@ControllerAdvice</span>
 <span class="token annotation punctuation">@ResponseBody</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">GlobalExceptionHandler</span> <span class="token punctuation">{</span>
@@ -1706,7 +1706,7 @@ server:
 <p>这个我就不测试了，代码中 ExceptionController 有个 <code>testNullPointException</code> 方法，模拟了一个空指针异常，我们在浏览器中请求一下对应的 url 即可看到返回的信息：</p>
 <pre class=" language-json"><code class="language-json"><span class="token punctuation">{</span><span class="token property">"code"</span><span class="token operator">:</span><span class="token string">"500"</span><span class="token punctuation">,</span><span class="token property">"msg"</span><span class="token operator">:</span><span class="token string">"空指针异常了"</span><span class="token punctuation">}</span>
 </code></pre>
-<h3 id="2-3-一劳永逸？"><a href="#2-3-一劳永逸？" class="headerlink" title="2.3 一劳永逸？"></a>2.3 一劳永逸？</h3><p>当然了，异常很多，比如还有 RuntimeException，数据库还有一些查询或者操作异常等等。由于 Exception 异常是父类，所有异常都会继承该异常，所以我们可以直接拦截 Exception 异常，一劳永逸：</p>
+<h4 id="2-3-一劳永逸？"><a href="#2-3-一劳永逸？" class="headerlink" title="2.3 一劳永逸？"></a>2.3 一劳永逸？</h4><p>当然了，异常很多，比如还有 RuntimeException，数据库还有一些查询或者操作异常等等。由于 Exception 异常是父类，所有异常都会继承该异常，所以我们可以直接拦截 Exception 异常，一劳永逸：</p>
 <pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@ControllerAdvice</span>
 <span class="token annotation punctuation">@ResponseBody</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">GlobalExceptionHandler</span> <span class="token punctuation">{</span>
@@ -1726,8 +1726,8 @@ server:
 <span class="token punctuation">}</span>
 </code></pre>
 <p>但是项目中，我们一般都会比较详细的去拦截一些常见异常，拦截 Exception 虽然可以一劳永逸，但是不利于我们去排查或者定位问题。实际项目中，可以把拦截 Exception 异常写在 GlobalExceptionHandler 最下面，如果都没有找到，最后再拦截一下 Exception 异常，保证输出信息友好。</p>
-<h2 id="3-拦截自定义异常"><a href="#3-拦截自定义异常" class="headerlink" title="3. 拦截自定义异常"></a>3. 拦截自定义异常</h2><p>在实际项目中，除了拦截一些系统异常外，在某些业务上，我们需要自定义一些业务异常，比如在微服务中，服务之间的相互调用很平凡，很常见。要处理一个服务的调用时，那么可能会调用失败或者调用超时等等，此时我们需要自定义一个异常，当调用失败时抛出该异常，给 GlobalExceptionHandler 去捕获。</p>
-<h3 id="3-1-定义异常信息"><a href="#3-1-定义异常信息" class="headerlink" title="3.1 定义异常信息"></a>3.1 定义异常信息</h3><p>由于在业务中，有很多异常，针对不同的业务，可能给出的提示信息不同，所以为了方便项目异常信息管理，我们一般会定义一个异常信息枚举类。比如：</p>
+<h3 id="3-拦截自定义异常"><a href="#3-拦截自定义异常" class="headerlink" title="3. 拦截自定义异常"></a>3. 拦截自定义异常</h3><p>在实际项目中，除了拦截一些系统异常外，在某些业务上，我们需要自定义一些业务异常，比如在微服务中，服务之间的相互调用很平凡，很常见。要处理一个服务的调用时，那么可能会调用失败或者调用超时等等，此时我们需要自定义一个异常，当调用失败时抛出该异常，给 GlobalExceptionHandler 去捕获。</p>
+<h4 id="3-1-定义异常信息"><a href="#3-1-定义异常信息" class="headerlink" title="3.1 定义异常信息"></a>3.1 定义异常信息</h4><p>由于在业务中，有很多异常，针对不同的业务，可能给出的提示信息不同，所以为了方便项目异常信息管理，我们一般会定义一个异常信息枚举类。比如：</p>
 <pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
  * 业务异常提示信息枚举类
  * @author shengwu ni
@@ -1759,7 +1759,7 @@ server:
     <span class="token comment" spellcheck="true">// set get方法</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<h3 id="3-2-拦截自定义异常"><a href="#3-2-拦截自定义异常" class="headerlink" title="3.2 拦截自定义异常"></a>3.2 拦截自定义异常</h3><p>然后我们可以定义一个业务异常，当出现业务异常时，我们就抛这个自定义的业务异常即可。比如我们定义一个 BusinessErrorException 异常，如下：</p>
+<h4 id="3-2-拦截自定义异常"><a href="#3-2-拦截自定义异常" class="headerlink" title="3.2 拦截自定义异常"></a>3.2 拦截自定义异常</h4><p>然后我们可以定义一个业务异常，当出现业务异常时，我们就抛这个自定义的业务异常即可。比如我们定义一个 BusinessErrorException 异常，如下：</p>
 <pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
  * 自定义业务异常
  * @author shengwu ni
@@ -1825,18 +1825,18 @@ server:
 <p>运行一下项目，测试一下，返回 json 如下，说明我们自定义的业务异常捕获成功：</p>
 <pre class=" language-json"><code class="language-json"><span class="token punctuation">{</span><span class="token property">"code"</span><span class="token operator">:</span><span class="token string">"500"</span><span class="token punctuation">,</span><span class="token property">"msg"</span><span class="token operator">:</span><span class="token string">"系统发生异常，请联系管理员！"</span><span class="token punctuation">}</span>
 </code></pre>
-<h2 id="4-总结-3"><a href="#4-总结-3" class="headerlink" title="4. 总结"></a>4. 总结</h2><p>本节课程主要讲解了Spring Boot 的全局异常处理，包括异常信息的封装、异常信息的捕获和处理，以及在实际项目中，我们用到的自定义异常枚举类和业务异常的捕获与处理，在项目中运用的非常广泛，基本上每个项目中都需要做全局异常处理。</p>
+<h3 id="4-总结-3"><a href="#4-总结-3" class="headerlink" title="4. 总结"></a>4. 总结</h3><p>本节课程主要讲解了Spring Boot 的全局异常处理，包括异常信息的封装、异常信息的捕获和处理，以及在实际项目中，我们用到的自定义异常枚举类和业务异常的捕获与处理，在项目中运用的非常广泛，基本上每个项目中都需要做全局异常处理。</p>
 <p>课程源代码下载地址：<a target="_blank" rel="noopener" href="https://gitee.com/eson15/springboot_study">戳我下载</a></p>
-<h1 id="第09课：Spring-Boot中的切面AOP处理"><a href="#第09课：Spring-Boot中的切面AOP处理" class="headerlink" title="第09课：Spring Boot中的切面AOP处理"></a>第09课：Spring Boot中的切面AOP处理</h1><h2 id="1-什么是AOP"><a href="#1-什么是AOP" class="headerlink" title="1. 什么是AOP"></a>1. 什么是AOP</h2><p>AOP：Aspect Oriented Programming 的缩写，意为：面向切面编程。面向切面编程的目标就是分离关注点。什么是关注点呢？就是关注点，就是你要做的事情。假如你是一位公子哥，没啥人生目标，每天衣来伸手，饭来张口，整天只知道一件事：玩（这就是你的关注点，你只要做这一件事）！但是有个问题，你在玩之前，你还需要起床、穿衣服、穿鞋子、叠被子、做早饭等等等等，但是这些事情你不想关注，也不用关注，你只想想玩，那么怎么办呢？  </p>
+<h2 id="第09课：Spring-Boot中的切面AOP处理"><a href="#第09课：Spring-Boot中的切面AOP处理" class="headerlink" title="第09课：Spring Boot中的切面AOP处理"></a>第09课：Spring Boot中的切面AOP处理</h2><h3 id="1-什么是AOP"><a href="#1-什么是AOP" class="headerlink" title="1. 什么是AOP"></a>1. 什么是AOP</h3><p>AOP：Aspect Oriented Programming 的缩写，意为：面向切面编程。面向切面编程的目标就是分离关注点。什么是关注点呢？就是关注点，就是你要做的事情。假如你是一位公子哥，没啥人生目标，每天衣来伸手，饭来张口，整天只知道一件事：玩（这就是你的关注点，你只要做这一件事）！但是有个问题，你在玩之前，你还需要起床、穿衣服、穿鞋子、叠被子、做早饭等等等等，但是这些事情你不想关注，也不用关注，你只想想玩，那么怎么办呢？  </p>
 <p>对！这些事情通通交给下人去干。你有一个专门的仆人 A 帮你穿衣服，仆人 B 帮你穿鞋子，仆人 C 帮你叠好被子，仆人 D 帮你做饭，然后你就开始吃饭、去玩（这就是你一天的正事），你干完你的正事之后，回来，然后一系列仆人又开始帮你干这个干那个，然后一天就结束了！  </p>
 <p>这就是 AOP。AOP 的好处就是你只需要干你的正事，其它事情别人帮你干。也许有一天，你想裸奔，不想穿衣服，那么你把仆人 A 解雇就是了！也许有一天，出门之前你还想带点钱，那么你再雇一个仆人 E 专门帮你干取钱的活！这就是AOP。每个人各司其职，灵活组合，达到一种可配置的、可插拔的程序结构。</p>
-<h2 id="2-Spring-Boot-中的-AOP-处理"><a href="#2-Spring-Boot-中的-AOP-处理" class="headerlink" title="2. Spring Boot 中的 AOP 处理"></a>2. Spring Boot 中的 AOP 处理</h2><h3 id="2-1-AOP-依赖"><a href="#2-1-AOP-依赖" class="headerlink" title="2.1 AOP 依赖"></a>2.1 AOP 依赖</h3><p>使用AOP，首先需要引入AOP的依赖。</p>
+<h3 id="2-Spring-Boot-中的-AOP-处理"><a href="#2-Spring-Boot-中的-AOP-处理" class="headerlink" title="2. Spring Boot 中的 AOP 处理"></a>2. Spring Boot 中的 AOP 处理</h3><h4 id="2-1-AOP-依赖"><a href="#2-1-AOP-依赖" class="headerlink" title="2.1 AOP 依赖"></a>2.1 AOP 依赖</h4><p>使用AOP，首先需要引入AOP的依赖。</p>
 <pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-boot-starter-aop<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
 </code></pre>
-<h3 id="2-2-实现-AOP-切面"><a href="#2-2-实现-AOP-切面" class="headerlink" title="2.2 实现 AOP 切面"></a>2.2 实现 AOP 切面</h3><p>Spring Boot 中使用 AOP 非常简单，假如我们要在项目中打印一些 log，在引入了上面的依赖之后，我们新建一个类 LogAspectHandler，用来定义切面和处理方法。只要在类上加个<code>@Aspect</code>注解即可。<code>@Aspect</code> 注解用来描述一个切面类，定义切面类的时候需要打上这个注解。<code>@Component</code> 注解让该类交给 Spring 来管理。</p>
+<h4 id="2-2-实现-AOP-切面"><a href="#2-2-实现-AOP-切面" class="headerlink" title="2.2 实现 AOP 切面"></a>2.2 实现 AOP 切面</h4><p>Spring Boot 中使用 AOP 非常简单，假如我们要在项目中打印一些 log，在引入了上面的依赖之后，我们新建一个类 LogAspectHandler，用来定义切面和处理方法。只要在类上加个<code>@Aspect</code>注解即可。<code>@Aspect</code> 注解用来描述一个切面类，定义切面类的时候需要打上这个注解。<code>@Component</code> 注解让该类交给 Spring 来管理。</p>
 <pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Aspect</span>
 <span class="token annotation punctuation">@Component</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">LogAspectHandler</span> <span class="token punctuation">{</span>
@@ -1847,7 +1847,7 @@ server:
 <blockquote>
 <p>1.@Pointcut：定义一个切面，即上面所描述的关注的某件事入口。<br>2.@Before：在做某件事之前做的事。<br>3.@After：在做某件事之后做的事。<br>4.@AfterReturning：在做某件事之后，对其返回值做增强处理。<br>5.@AfterThrowing：在做某件事抛出异常时，处理。</p>
 </blockquote>
-<h4 id="2-2-1-Pointcut-注解"><a href="#2-2-1-Pointcut-注解" class="headerlink" title="2.2.1 @Pointcut 注解"></a>2.2.1 @Pointcut 注解</h4><p><code>@Pointcut</code> 注解：用来定义一个切面（切入点），即上文中所关注的某件事情的入口。切入点决定了连接点关注的内容，使得我们可以控制通知什么时候执行。</p>
+<h5 id="2-2-1-Pointcut-注解"><a href="#2-2-1-Pointcut-注解" class="headerlink" title="2.2.1 @Pointcut 注解"></a>2.2.1 @Pointcut 注解</h5><p><code>@Pointcut</code> 注解：用来定义一个切面（切入点），即上文中所关注的某件事情的入口。切入点决定了连接点关注的内容，使得我们可以控制通知什么时候执行。</p>
 <pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Aspect</span>
 <span class="token annotation punctuation">@Component</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">LogAspectHandler</span> <span class="token punctuation">{</span>
@@ -1868,7 +1868,7 @@ server:
 <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">annotationCut</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
 </code></pre>
 <p>然后使用该切面的话，就会切入注解是 <code>@GetMapping</code> 的方法。因为在实际项目中，可能对于不同的注解有不同的逻辑处理，比如 <code>@GetMapping</code>、<code>@PostMapping</code>、<code>@DeleteMapping</code> 等。所以这种按照注解的切入方式在实际项目中也很常用。</p>
-<h4 id="2-2-2-Before-注解"><a href="#2-2-2-Before-注解" class="headerlink" title="2.2.2 @Before 注解"></a>2.2.2 @Before 注解</h4><p><code>@Before</code> 注解指定的方法在切面切入目标方法之前执行，可以做一些 log 处理，也可以做一些信息的统计，比如获取用户的请求 url 以及用户的 ip 地址等等，这个在做个人站点的时候都能用得到，都是常用的方法。例如：</p>
+<h5 id="2-2-2-Before-注解"><a href="#2-2-2-Before-注解" class="headerlink" title="2.2.2 @Before 注解"></a>2.2.2 @Before 注解</h5><p><code>@Before</code> 注解指定的方法在切面切入目标方法之前执行，可以做一些 log 处理，也可以做一些信息的统计，比如获取用户的请求 url 以及用户的 ip 地址等等，这个在做个人站点的时候都能用得到，都是常用的方法。例如：</p>
 <pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Aspect</span>
 <span class="token annotation punctuation">@Component</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">LogAspectHandler</span> <span class="token punctuation">{</span>
@@ -1903,7 +1903,7 @@ server:
 <span class="token punctuation">}</span>
 </code></pre>
 <p>JointPoint 对象很有用，可以用它来获取一个签名，然后利用签名可以获取请求的包名、方法名，包括参数（通过 <code>joinPoint.getArgs()</code> 获取）等等。</p>
-<h4 id="2-2-3-After-注解"><a href="#2-2-3-After-注解" class="headerlink" title="2.2.3 @After 注解"></a>2.2.3 @After 注解</h4><p><code>@After</code> 注解和 <code>@Before</code>  注解相对应，指定的方法在切面切入目标方法之后执行，也可以做一些完成某方法之后的 log 处理。</p>
+<h5 id="2-2-3-After-注解"><a href="#2-2-3-After-注解" class="headerlink" title="2.2.3 @After 注解"></a>2.2.3 @After 注解</h5><p><code>@After</code> 注解和 <code>@Before</code>  注解相对应，指定的方法在切面切入目标方法之后执行，也可以做一些完成某方法之后的 log 处理。</p>
 <pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Aspect</span>
 <span class="token annotation punctuation">@Component</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">LogAspectHandler</span> <span class="token punctuation">{</span>
@@ -1949,7 +1949,7 @@ server:
 方法testAop已经执行完
 </code></pre>
 <p>从打印出来的 log 中可以看出程序执行的逻辑与顺序，可以很直观的掌握 <code>@Before</code> 和 <code>@After</code> 两个注解的实际作用。</p>
-<h4 id="2-2-4-AfterReturning-注解"><a href="#2-2-4-AfterReturning-注解" class="headerlink" title="2.2.4 @AfterReturning 注解"></a>2.2.4 @AfterReturning 注解</h4><p><code>@AfterReturning</code> 注解和 <code>@After</code> 有些类似，区别在于 <code>@AfterReturning</code> 注解可以用来捕获切入方法执行完之后的返回值，对返回值进行业务逻辑上的增强处理，例如：</p>
+<h5 id="2-2-4-AfterReturning-注解"><a href="#2-2-4-AfterReturning-注解" class="headerlink" title="2.2.4 @AfterReturning 注解"></a>2.2.4 @AfterReturning 注解</h5><p><code>@AfterReturning</code> 注解和 <code>@After</code> 有些类似，区别在于 <code>@AfterReturning</code> 注解可以用来捕获切入方法执行完之后的返回值，对返回值进行业务逻辑上的增强处理，例如：</p>
 <pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Aspect</span>
 <span class="token annotation punctuation">@Component</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">LogAspectHandler</span> <span class="token punctuation">{</span>
@@ -1976,7 +1976,7 @@ server:
 <pre><code>方法testAop执行完毕，返回参数为：Hello CSDN  
 对返回参数进行业务上的增强：Hello CSDN增强版
 </code></pre>
-<h4 id="2-2-5-AfterThrowing-注解"><a href="#2-2-5-AfterThrowing-注解" class="headerlink" title="2.2.5 @AfterThrowing 注解"></a>2.2.5 @AfterThrowing 注解</h4><p>顾名思义，<code>@AfterThrowing</code> 注解是当被切方法执行时抛出异常时，会进入 <code>@AfterThrowing</code> 注解的方法中执行，在该方法中可以做一些异常的处理逻辑。要注意的是 <code>throwing</code> 属性的值必须要和参数一致，否则会报错。该方法中的第二个入参即为抛出的异常。</p>
+<h5 id="2-2-5-AfterThrowing-注解"><a href="#2-2-5-AfterThrowing-注解" class="headerlink" title="2.2.5 @AfterThrowing 注解"></a>2.2.5 @AfterThrowing 注解</h5><p>顾名思义，<code>@AfterThrowing</code> 注解是当被切方法执行时抛出异常时，会进入 <code>@AfterThrowing</code> 注解的方法中执行，在该方法中可以做一些异常的处理逻辑。要注意的是 <code>throwing</code> 属性的值必须要和参数一致，否则会报错。该方法中的第二个入参即为抛出的异常。</p>
 <pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
  * 使用AOP处理log
  * @author shengwu ni
@@ -2003,10 +2003,10 @@ server:
 <span class="token punctuation">}</span>
 </code></pre>
 <p>该方法我就不测试了，大家可以自行测试一下。</p>
-<h2 id="3-总结"><a href="#3-总结" class="headerlink" title="3. 总结"></a>3. 总结</h2><p>本节课针对 Spring Boot 中的切面 AOP 做了详细的讲解，主要介绍了 Spring Boot 中 AOP 的引入，常用注解的使用，参数的使用，以及常用 api 的介绍。AOP 在实际项目中很有用，对切面方法执行前后都可以根据具体的业务，做相应的预处理或者增强处理，同时也可以用作异常捕获处理，可以根据具体业务场景，合理去使用 AOP。</p>
+<h3 id="3-总结"><a href="#3-总结" class="headerlink" title="3. 总结"></a>3. 总结</h3><p>本节课针对 Spring Boot 中的切面 AOP 做了详细的讲解，主要介绍了 Spring Boot 中 AOP 的引入，常用注解的使用，参数的使用，以及常用 api 的介绍。AOP 在实际项目中很有用，对切面方法执行前后都可以根据具体的业务，做相应的预处理或者增强处理，同时也可以用作异常捕获处理，可以根据具体业务场景，合理去使用 AOP。</p>
 <p>课程源代码下载地址：<a target="_blank" rel="noopener" href="https://gitee.com/eson15/springboot_study">戳我下载</a></p>
-<h1 id="第10课：Spring-Boot集成MyBatis"><a href="#第10课：Spring-Boot集成MyBatis" class="headerlink" title="第10课：Spring Boot集成MyBatis"></a>第10课：Spring Boot集成MyBatis</h1><h2 id="1-MyBatis-介绍"><a href="#1-MyBatis-介绍" class="headerlink" title="1. MyBatis 介绍"></a>1. MyBatis 介绍</h2><p>大家都知道，MyBatis 框架是一个持久层框架，是 Apache 下的顶级项目。Mybatis 可以让开发者的主要精力放在 sql 上，通过 Mybatis 提供的映射方式，自由灵活的生成满足需要的 sql 语句。使用简单的 XML 或注解来配置和映射原生信息，将接口和 Java 的 POJOs 映射成数据库中的记录，在国内可谓是占据了半壁江山。本节课程主要通过两种方式来对 Spring Boot 集成 MyBatis 做一讲解。重点讲解一下基于注解的方式。因为实际项目中使用注解的方式更多一点，更简洁一点，省去了很多 xml 配置（这不是绝对的，有些项目组中可能也在使用 xml 的方式）。</p>
-<h2 id="2-MyBatis-的配置"><a href="#2-MyBatis-的配置" class="headerlink" title="2. MyBatis 的配置"></a>2. MyBatis 的配置</h2><h2 id="2-1-依赖导入"><a href="#2-1-依赖导入" class="headerlink" title="2.1 依赖导入"></a>2.1 依赖导入</h2><p>Spring Boot 集成 MyBatis，需要导入 <code>mybatis-spring-boot-starter</code> 和 mysql 的依赖，这里我们使用的版本时 1.3.2，如下：</p>
+<h2 id="第10课：Spring-Boot集成MyBatis"><a href="#第10课：Spring-Boot集成MyBatis" class="headerlink" title="第10课：Spring Boot集成MyBatis"></a>第10课：Spring Boot集成MyBatis</h2><h3 id="1-MyBatis-介绍"><a href="#1-MyBatis-介绍" class="headerlink" title="1. MyBatis 介绍"></a>1. MyBatis 介绍</h3><p>大家都知道，MyBatis 框架是一个持久层框架，是 Apache 下的顶级项目。Mybatis 可以让开发者的主要精力放在 sql 上，通过 Mybatis 提供的映射方式，自由灵活的生成满足需要的 sql 语句。使用简单的 XML 或注解来配置和映射原生信息，将接口和 Java 的 POJOs 映射成数据库中的记录，在国内可谓是占据了半壁江山。本节课程主要通过两种方式来对 Spring Boot 集成 MyBatis 做一讲解。重点讲解一下基于注解的方式。因为实际项目中使用注解的方式更多一点，更简洁一点，省去了很多 xml 配置（这不是绝对的，有些项目组中可能也在使用 xml 的方式）。</p>
+<h3 id="2-MyBatis-的配置"><a href="#2-MyBatis-的配置" class="headerlink" title="2. MyBatis 的配置"></a>2. MyBatis 的配置</h3><h4 id="2-1-依赖导入"><a href="#2-1-依赖导入" class="headerlink" title="2.1 依赖导入"></a>2.1 依赖导入</h4><p>Spring Boot 集成 MyBatis，需要导入 <code>mybatis-spring-boot-starter</code> 和 mysql 的依赖，这里我们使用的版本时 1.3.2，如下：</p>
 <pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.mybatis.spring.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>mybatis-spring-boot-starter<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
@@ -2029,7 +2029,7 @@ server:
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>mybatis-spring<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
 </code></pre>
-<h2 id="2-2-properties-yml配置"><a href="#2-2-properties-yml配置" class="headerlink" title="2.2 properties.yml配置"></a>2.2 properties.yml配置</h2><p>我们再来看一下，集成 MyBatis 时需要在 properties.yml 配置文件中做哪些基本配置呢？</p>
+<h4 id="2-2-properties-yml配置"><a href="#2-2-properties-yml配置" class="headerlink" title="2.2 properties.yml配置"></a>2.2 properties.yml配置</h4><p>我们再来看一下，集成 MyBatis 时需要在 properties.yml 配置文件中做哪些基本配置呢？</p>
 <pre class=" language-xml"><code class="language-xml"># 服务端口号
 server:
   port: 8080
@@ -2058,7 +2058,7 @@ mybatis:
 </code></pre>
 <p>我们来简单介绍一下上面的这些配置：关于数据库的相关配置，我就不详细的解说了，这点相信大家已经非常熟练了，配置一下用户名、密码、数据库连接等等，这里使用的连接池是 Spring Boot 自带的 hikari，感兴趣的朋友可以去百度或者谷歌搜一搜，了解一下。  </p>
 <p>这里说明一下 <code>map-underscore-to-camel-case: true</code>， 用来开启驼峰命名规范，这个比较好用，比如数据库中字段名为：<code>user_name</code>， 那么在实体类中可以定义属性为 <code>userName</code> （甚至可以写成 <code>username</code>，也能映射上），会自动匹配到驼峰属性，如果不这样配置的话，针对字段名和属性名不同的情况，会映射不到。</p>
-<h2 id="3-基于-xml-的整合"><a href="#3-基于-xml-的整合" class="headerlink" title="3. 基于 xml 的整合"></a>3. 基于 xml 的整合</h2><p>使用原始的 xml 方式，需要新建 UserMapper.xml 文件，在上面的 application.yml 配置文件中，我们已经定义了 xml 文件的路径：<code>classpath:mapper/*.xml</code>，所以我们在 resources 目录下新建一个 mapper 文件夹，然后创建一个 UserMapper.xml 文件。</p>
+<h3 id="3-基于-xml-的整合"><a href="#3-基于-xml-的整合" class="headerlink" title="3. 基于 xml 的整合"></a>3. 基于 xml 的整合</h3><p>使用原始的 xml 方式，需要新建 UserMapper.xml 文件，在上面的 application.yml 配置文件中，我们已经定义了 xml 文件的路径：<code>classpath:mapper/*.xml</code>，所以我们在 resources 目录下新建一个 mapper 文件夹，然后创建一个 UserMapper.xml 文件。</p>
 <pre class=" language-xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8"?></span>
 <span class="token doctype">&lt;!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>mapper</span> <span class="token attr-name">namespace</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>com.itcodai.course10.dao.UserMapper<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
@@ -2105,7 +2105,7 @@ mybatis:
 <span class="token punctuation">}</span>
 </code></pre>
 <p>这样的话，<code>com.itcodai.course10.dao</code> 包下的所有 mapper 都会被扫描到了。</p>
-<h2 id="4-基于注解的整合"><a href="#4-基于注解的整合" class="headerlink" title="4. 基于注解的整合"></a>4. 基于注解的整合</h2><p>基于注解的整合就不需要 xml 配置文件了，MyBatis 主要提供了 <code>@Select</code>， <code>@Insert</code>， <code>@Update</code>， <code>Delete</code> 四个注解。这四个注解是用的非常多的，也很简单，注解后面跟上对应的 sql 语句即可，我们举个例子：</p>
+<h3 id="4-基于注解的整合"><a href="#4-基于注解的整合" class="headerlink" title="4. 基于注解的整合"></a>4. 基于注解的整合</h3><p>基于注解的整合就不需要 xml 配置文件了，MyBatis 主要提供了 <code>@Select</code>， <code>@Insert</code>， <code>@Update</code>， <code>Delete</code> 四个注解。这四个注解是用的非常多的，也很简单，注解后面跟上对应的 sql 语句即可，我们举个例子：</p>
 <pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Select</span><span class="token punctuation">(</span><span class="token string">"select * from user where id = #{id}"</span><span class="token punctuation">)</span>
 User <span class="token function">getUser</span><span class="token punctuation">(</span>Long id<span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
@@ -2132,12 +2132,12 @@ User <span class="token function">getUser</span><span class="token punctuation">
 <pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>resultMap</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>BaseResultMap<span class="token punctuation">"</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>com.itcodai.course10.entity.User<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
 </code></pre>
 <p>这种 xml 和注解结合着使用的情况也很常见，而且也减少了大量的代码，因为 xml 文件可以使用自动生成工具去生成，也不需要人为手动敲，所以这种使用方式也很常见。</p>
-<h2 id="5-总结-3"><a href="#5-总结-3" class="headerlink" title="5. 总结"></a>5. 总结</h2><p>本节课主要系统的讲解了 Spring Boot 集成 MyBatis 的过程，分为基于 xml 形式和基于注解的形式来讲解，通过实际配置手把手讲解了 Spring Boot 中 MyBatis 的使用方式，并针对注解方式，讲解了常见的问题已经解决方式，有很强的实战意义。在实际项目中，建议根据实际情况来确定使用哪种方式，一般 xml 和注解都在用。</p>
+<h3 id="5-总结-3"><a href="#5-总结-3" class="headerlink" title="5. 总结"></a>5. 总结</h3><p>本节课主要系统的讲解了 Spring Boot 集成 MyBatis 的过程，分为基于 xml 形式和基于注解的形式来讲解，通过实际配置手把手讲解了 Spring Boot 中 MyBatis 的使用方式，并针对注解方式，讲解了常见的问题已经解决方式，有很强的实战意义。在实际项目中，建议根据实际情况来确定使用哪种方式，一般 xml 和注解都在用。</p>
 <p>课程源代码下载地址：<a target="_blank" rel="noopener" href="https://gitee.com/eson15/springboot_study">戳我下载</a></p>
-<h1 id="第11课：Spring-Boot事务配置管理"><a href="#第11课：Spring-Boot事务配置管理" class="headerlink" title="第11课：Spring Boot事务配置管理"></a>第11课：Spring Boot事务配置管理</h1><h2 id="1-事务相关"><a href="#1-事务相关" class="headerlink" title="1. 事务相关"></a>1. 事务相关</h2><p>场景：我们在开发企业应用时，由于数据操作在顺序执行的过程中，线上可能有各种无法预知的问题，任何一步操作都有可能发生异常，异常则会导致后续的操作无法完成。此时由于业务逻辑并未正确的完成，所以在之前操作过数据库的动作并不可靠，需要在这种情况下进行数据的回滚。  </p>
+<h2 id="第11课：Spring-Boot事务配置管理"><a href="#第11课：Spring-Boot事务配置管理" class="headerlink" title="第11课：Spring Boot事务配置管理"></a>第11课：Spring Boot事务配置管理</h2><h3 id="1-事务相关"><a href="#1-事务相关" class="headerlink" title="1. 事务相关"></a>1. 事务相关</h3><p>场景：我们在开发企业应用时，由于数据操作在顺序执行的过程中，线上可能有各种无法预知的问题，任何一步操作都有可能发生异常，异常则会导致后续的操作无法完成。此时由于业务逻辑并未正确的完成，所以在之前操作过数据库的动作并不可靠，需要在这种情况下进行数据的回滚。  </p>
 <p>事务的作用就是为了保证用户的每一个操作都是可靠的，事务中的每一步操作都必须成功执行，只要有发生异常就回退到事务开始未进行操作的状态。这很好理解，转账、购票等等，必须整个事件流程全部执行完才能人为该事件执行成功，不能转钱转到一半，系统死了，转账人钱没了，收款人钱还没到。</p>
 <p>事务管理是 Spring Boot 框架中最为常用的功能之一，我们在实际应用开发时，基本上在 service 层处理业务逻辑的时候都要加上事务，当然了，有时候可能由于场景需要，也不用加事务（比如我们就要往一个表里插数据，相互没有影响，插多少是多少，不能因为某个数据挂了，把之前插的全部回滚）。</p>
-<h2 id="2-Spring-Boot-事务配置"><a href="#2-Spring-Boot-事务配置" class="headerlink" title="2. Spring Boot 事务配置"></a>2. Spring Boot 事务配置</h2><h3 id="2-1-依赖导入-1"><a href="#2-1-依赖导入-1" class="headerlink" title="2.1 依赖导入"></a>2.1 依赖导入</h3><p>在 Spring Boot 中使用事务，需要导入 mysql 依赖：</p>
+<h3 id="2-Spring-Boot-事务配置"><a href="#2-Spring-Boot-事务配置" class="headerlink" title="2. Spring Boot 事务配置"></a>2. Spring Boot 事务配置</h3><h4 id="2-1-依赖导入-1"><a href="#2-1-依赖导入-1" class="headerlink" title="2.1 依赖导入"></a>2.1 依赖导入</h4><p>在 Spring Boot 中使用事务，需要导入 mysql 依赖：</p>
 <pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.mybatis.spring.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>mybatis-spring-boot-starter<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
@@ -2145,7 +2145,7 @@ User <span class="token function">getUser</span><span class="token punctuation">
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
 </code></pre>
 <p>导入了 mysql 依赖后，Spring Boot 会自动注入 DataSourceTransactionManager，我们不需要任何其他的配置就可以用 <code>@Transactional</code> 注解进行事务的使用。关于 mybatis 的配置，在上一节课中已经说明了，这里还是使用上一节课中的 mybatis 配置即可。  </p>
-<h3 id="2-2-事务的测试"><a href="#2-2-事务的测试" class="headerlink" title="2.2 事务的测试"></a>2.2 事务的测试</h3><p>我们首先在数据库表中插入一条数据：<br>|id|user_name|password|<br>|:–:|:–:|:–:|<br>|1|倪升武|123456|</p>
+<h4 id="2-2-事务的测试"><a href="#2-2-事务的测试" class="headerlink" title="2.2 事务的测试"></a>2.2 事务的测试</h4><p>我们首先在数据库表中插入一条数据：<br>|id|user_name|password|<br>|:–:|:–:|:–:|<br>|1|倪升武|123456|</p>
 <p>然后我们写一个插入的 mapper：</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">UserMapper</span> <span class="token punctuation">{</span>
 
@@ -2189,9 +2189,9 @@ User <span class="token function">getUser</span><span class="token punctuation">
 <span class="token punctuation">}</span>
 </code></pre>
 <p>我们使用 postman 调用一下该接口，因为在程序中抛出了个异常，会造成事务回滚，我们刷新一下数据库，并没有增加一条记录，说明事务生效了。事务很简单，我们平时在使用的时候，一般不会有多少问题，但是并不仅仅如此……</p>
-<h2 id="3-常见问题总结"><a href="#3-常见问题总结" class="headerlink" title="3. 常见问题总结"></a>3. 常见问题总结</h2><p>从上面的内容中可以看出，Spring Boot 中使用事务非常简单，<code>@Transactional</code> 注解即可解决问题，说是这么说，但是在实际项目中，是有很多小坑在等着我们，这些小坑是我们在写代码的时候没有注意到，而且正常情况下不容易发现这些小坑，等项目写大了，某一天突然出问题了，排查问题非常困难，到时候肯定是抓瞎，需要费很大的精力去排查问题。  </p>
+<h3 id="3-常见问题总结"><a href="#3-常见问题总结" class="headerlink" title="3. 常见问题总结"></a>3. 常见问题总结</h3><p>从上面的内容中可以看出，Spring Boot 中使用事务非常简单，<code>@Transactional</code> 注解即可解决问题，说是这么说，但是在实际项目中，是有很多小坑在等着我们，这些小坑是我们在写代码的时候没有注意到，而且正常情况下不容易发现这些小坑，等项目写大了，某一天突然出问题了，排查问题非常困难，到时候肯定是抓瞎，需要费很大的精力去排查问题。  </p>
 <p>这一小节，我专门针对实际项目中经常出现的，和事务相关的细节做一下总结，希望读者在读完之后，能够落实到自己的项目中，能有所受益。</p>
-<h3 id="3-1-异常并没有被-”捕获“-到"><a href="#3-1-异常并没有被-”捕获“-到" class="headerlink" title="3.1 异常并没有被 ”捕获“ 到"></a>3.1 异常并没有被 ”捕获“ 到</h3><p>首先要说的，就是异常并没有被 ”捕获“ 到，导致事务并没有回滚。我们在业务层代码中，也许已经考虑到了异常的存在，或者编辑器已经提示我们需要抛出异常，但是这里面有个需要注意的地方：并不是说我们把异常抛出来了，有异常了事务就会回滚，我们来看一个例子：</p>
+<h4 id="3-1-异常并没有被-”捕获“-到"><a href="#3-1-异常并没有被-”捕获“-到" class="headerlink" title="3.1 异常并没有被 ”捕获“ 到"></a>3.1 异常并没有被 ”捕获“ 到</h4><p>首先要说的，就是异常并没有被 ”捕获“ 到，导致事务并没有回滚。我们在业务层代码中，也许已经考虑到了异常的存在，或者编辑器已经提示我们需要抛出异常，但是这里面有个需要注意的地方：并不是说我们把异常抛出来了，有异常了事务就会回滚，我们来看一个例子：</p>
 <pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Service</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">UserServiceImpl</span> <span class="token keyword">implements</span> <span class="token class-name">UserService</span> <span class="token punctuation">{</span>
 
@@ -2210,7 +2210,7 @@ User <span class="token function">getUser</span><span class="token punctuation">
 </code></pre>
 <p>我们看上面这个代码，其实并没有什么问题，手动抛出一个 <code>SQLException</code> 来模拟实际中操作数据库发生的异常，在这个方法中，既然抛出了异常，那么事务应该回滚，实际却不如此，读者可以使用我源码中 controller 的接口，通过 postman 测试一下，就会发现，仍然是可以插入一条用户数据的。  </p>
 <p>那么问题出在哪呢？因为 Spring Boot 默认的事务规则是遇到运行异常（RuntimeException）和程序错误（Error）才会回滚。比如上面我们的例子中抛出的 RuntimeException 就没有问题，但是抛出 SQLException 就无法回滚了。针对非运行时异常，如果要进行事务回滚的话，可以在 <code>@Transactional</code> 注解中使用 <code>rollbackFor</code> 属性来指定异常，比如 <code>@Transactional(rollbackFor = Exception.class)</code>，这样就没有问题了，所以在实际项目中，一定要指定异常。</p>
-<h3 id="3-2-异常被-”吃“-掉"><a href="#3-2-异常被-”吃“-掉" class="headerlink" title="3.2 异常被 ”吃“ 掉"></a>3.2 异常被 ”吃“ 掉</h3><p>这个标题很搞笑，异常怎么会被吃掉呢？还是回归到现实项目中去，我们在处理异常时，有两种方式，要么抛出去，让上一层来捕获处理；要么把异常 try catch 掉，在异常出现的地方给处理掉。就因为有这中 try…catch，所以导致异常被 ”吃“ 掉，事务无法回滚。我们还是看上面那个例子，只不过简单修改一下代码：</p>
+<h4 id="3-2-异常被-”吃“-掉"><a href="#3-2-异常被-”吃“-掉" class="headerlink" title="3.2 异常被 ”吃“ 掉"></a>3.2 异常被 ”吃“ 掉</h4><p>这个标题很搞笑，异常怎么会被吃掉呢？还是回归到现实项目中去，我们在处理异常时，有两种方式，要么抛出去，让上一层来捕获处理；要么把异常 try catch 掉，在异常出现的地方给处理掉。就因为有这中 try…catch，所以导致异常被 ”吃“ 掉，事务无法回滚。我们还是看上面那个例子，只不过简单修改一下代码：</p>
 <pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Service</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">UserServiceImpl</span> <span class="token keyword">implements</span> <span class="token class-name">UserService</span> <span class="token punctuation">{</span>
 
@@ -2233,7 +2233,7 @@ User <span class="token function">getUser</span><span class="token punctuation">
 </code></pre>
 <p>读者可以使用我源码中 controller 的接口，通过 postman 测试一下，就会发现，仍然是可以插入一条用户数据，说明事务并没有因为抛出异常而回滚。这个细节往往比上面那个坑更难以发现，因为我们的思维很容易导致 try…catch 代码的产生，一旦出现这种问题，往往排查起来比较费劲，所以我们平时在写代码时，一定要多思考，多注意这种细节，尽量避免给自己埋坑。  </p>
 <p>那这种怎么解决呢？直接往上抛，给上一层来处理即可，千万不要在事务中把异常自己 ”吃“ 掉。</p>
-<h3 id="3-3-事务的范围"><a href="#3-3-事务的范围" class="headerlink" title="3.3 事务的范围"></a>3.3 事务的范围</h3><p>事务范围这个东西比上面两个坑埋的更深！我之所以把这个也写上，是因为这是我之前在实际项目中遇到的，该场景在这个课程中我就不模拟了，我写一个 demo 让大家看一下，把这个坑记住即可，以后在写代码时，遇到并发问题，就会注意这个坑了，那么这节课也就有价值了。  </p>
+<h4 id="3-3-事务的范围"><a href="#3-3-事务的范围" class="headerlink" title="3.3 事务的范围"></a>3.3 事务的范围</h4><p>事务范围这个东西比上面两个坑埋的更深！我之所以把这个也写上，是因为这是我之前在实际项目中遇到的，该场景在这个课程中我就不模拟了，我写一个 demo 让大家看一下，把这个坑记住即可，以后在写代码时，遇到并发问题，就会注意这个坑了，那么这节课也就有价值了。  </p>
 <p>我来写个 demo：</p>
 <pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Service</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">UserServiceImpl</span> <span class="token keyword">implements</span> <span class="token class-name">UserService</span> <span class="token punctuation">{</span>
@@ -2253,11 +2253,11 @@ User <span class="token function">getUser</span><span class="token punctuation">
 <p>但是在压测时，就会出现上面的问题，数据库中确实有两条同一用户的信息，分析其原因，在于事务的范围和锁的范围问题。  </p>
 <p>从上面方法中可以看到，方法上是加了事务的，那么也就是说，在执行该方法开始时，事务启动，执行完了后，事务关闭。但是 synchronized 没有起作用，其实根本原因是因为事务的范围比锁的范围大。也就是说，在加锁的那部分代码执行完之后，锁释放掉了，但是事务还没结束，此时另一个线程进来了，事务没结束的话，第二个线程进来时，数据库的状态和第一个线程刚进来是一样的。即由于mysql Innodb引擎的默认隔离级别是可重复读（在同一个事务里，SELECT的结果是事务开始时时间点的状态），线程二事务开始的时候，线程一还没提交完成，导致读取的数据还没更新。第二个线程也做了插入动作，导致了脏数据。  </p>
 <p>这个问题可以避免，第一，把事务去掉即可（不推荐）；第二，在调用该 service 的地方加锁，保证锁的范围比事务的范围大即可。</p>
-<h2 id="4-总结-4"><a href="#4-总结-4" class="headerlink" title="4. 总结"></a>4. 总结</h2><p>本章主要总结了 Spring Boot 中如何使用事务，只要使用 <code>@Transactional</code> 注解即可使用，非常简单方便。除此之外，重点总结了三个在实际项目中可能遇到的坑点，这非常有意义，因为事务这东西不出问题还好，出了问题比较难以排查，所以总结的这三点注意事项，希望能帮助到开发中的朋友。</p>
+<h3 id="4-总结-4"><a href="#4-总结-4" class="headerlink" title="4. 总结"></a>4. 总结</h3><p>本章主要总结了 Spring Boot 中如何使用事务，只要使用 <code>@Transactional</code> 注解即可使用，非常简单方便。除此之外，重点总结了三个在实际项目中可能遇到的坑点，这非常有意义，因为事务这东西不出问题还好，出了问题比较难以排查，所以总结的这三点注意事项，希望能帮助到开发中的朋友。</p>
 <p>课程源代码下载地址：<a target="_blank" rel="noopener" href="https://gitee.com/eson15/springboot_study">戳我下载</a></p>
-<h1 id="第12课：Spring-Boot中使用监听器"><a href="#第12课：Spring-Boot中使用监听器" class="headerlink" title="第12课：Spring Boot中使用监听器"></a>第12课：Spring Boot中使用监听器</h1><h2 id="1-监听器介绍"><a href="#1-监听器介绍" class="headerlink" title="1. 监听器介绍"></a>1. 监听器介绍</h2><p>什么是 web 监听器？web 监听器是一种 Servlet 中特殊的类，它们能帮助开发者监听 web 中特定的事件，比如 ServletContext, HttpSession, ServletRequest 的创建和销毁；变量的创建、销毁和修改等。可以在某些动作前后增加处理，实现监控。</p>
-<h2 id="2-Spring-Boot中监听器的使用"><a href="#2-Spring-Boot中监听器的使用" class="headerlink" title="2. Spring Boot中监听器的使用"></a>2. Spring Boot中监听器的使用</h2><p>web 监听器的使用场景很多，比如监听 servlet 上下文用来初始化一些数据、监听 http session 用来获取当前在线的人数、监听客户端请求的 servlet request 对象来获取用户的访问信息等等。这一节中，我们主要通过这三个实际的使用场景来学习一下 Spring Boot 中监听器的使用。</p>
-<h3 id="2-1-监听Servlet上下文对象"><a href="#2-1-监听Servlet上下文对象" class="headerlink" title="2.1 监听Servlet上下文对象"></a>2.1 监听Servlet上下文对象</h3><p>监听 servlet 上下文对象可以用来初始化数据，用于缓存。什么意思呢？我举一个很常见的场景，比如用户在点击某个站点的首页时，一般都会展现出首页的一些信息，而这些信息基本上或者大部分时间都保持不变的，但是这些信息都是来自数据库。如果用户的每次点击，都要从数据库中去获取数据的话，用户量少还可以接受，如果用户量非常大的话，这对数据库也是一笔很大的开销。  </p>
+<h2 id="第12课：Spring-Boot中使用监听器"><a href="#第12课：Spring-Boot中使用监听器" class="headerlink" title="第12课：Spring Boot中使用监听器"></a>第12课：Spring Boot中使用监听器</h2><h3 id="1-监听器介绍"><a href="#1-监听器介绍" class="headerlink" title="1. 监听器介绍"></a>1. 监听器介绍</h3><p>什么是 web 监听器？web 监听器是一种 Servlet 中特殊的类，它们能帮助开发者监听 web 中特定的事件，比如 ServletContext, HttpSession, ServletRequest 的创建和销毁；变量的创建、销毁和修改等。可以在某些动作前后增加处理，实现监控。</p>
+<h3 id="2-Spring-Boot中监听器的使用"><a href="#2-Spring-Boot中监听器的使用" class="headerlink" title="2. Spring Boot中监听器的使用"></a>2. Spring Boot中监听器的使用</h3><p>web 监听器的使用场景很多，比如监听 servlet 上下文用来初始化一些数据、监听 http session 用来获取当前在线的人数、监听客户端请求的 servlet request 对象来获取用户的访问信息等等。这一节中，我们主要通过这三个实际的使用场景来学习一下 Spring Boot 中监听器的使用。</p>
+<h4 id="2-1-监听Servlet上下文对象"><a href="#2-1-监听Servlet上下文对象" class="headerlink" title="2.1 监听Servlet上下文对象"></a>2.1 监听Servlet上下文对象</h4><p>监听 servlet 上下文对象可以用来初始化数据，用于缓存。什么意思呢？我举一个很常见的场景，比如用户在点击某个站点的首页时，一般都会展现出首页的一些信息，而这些信息基本上或者大部分时间都保持不变的，但是这些信息都是来自数据库。如果用户的每次点击，都要从数据库中去获取数据的话，用户量少还可以接受，如果用户量非常大的话，这对数据库也是一笔很大的开销。  </p>
 <p>针对这种首页数据，大部分都不常更新的话，我们完全可以把它们缓存起来，每次用户点击的时候，我们都直接从缓存中拿，这样既可以提高首页的访问速度，又可以降低服务器的压力。如果做的更加灵活一点，可以再加个定时器，定期的来更新这个首页缓存。就类似与 CSDN 个人博客首页中排名的变化一样。</p>
 <p>下面我们针对这个功能，来写一个 demo，在实际中，读者可以完全套用该代码，来实现自己项目中的相关逻辑。首先写一个 Service，模拟一下从数据库查询数据：</p>
 <pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Service</span>
@@ -2308,7 +2308,7 @@ User <span class="token function">getUser</span><span class="token punctuation">
 <span class="token punctuation">}</span>
 </code></pre>
 <p>启动项目，在浏览器中输入 <code>http://localhost:8080/listener/user</code> 测试一下即可，如果正常返回 user 信息，那么说明数据已经缓存成功。不过 application 这种是缓存在内存中，对内存会有消耗，后面的课程中我会讲到 redis，到时候再给大家介绍一下 redis 的缓存。</p>
-<h3 id="2-2-监听HTTP会话-Session对象"><a href="#2-2-监听HTTP会话-Session对象" class="headerlink" title="2.2 监听HTTP会话 Session对象"></a>2.2 监听HTTP会话 Session对象</h3><p>监听器还有一个比较常用的地方就是用来监听 session 对象，来获取在线用户数量，现在有很多开发者都有自己的网站，监听 session 来获取当前在下用户数量是个很常见的使用场景，下面来介绍一下如何来使用。</p>
+<h4 id="2-2-监听HTTP会话-Session对象"><a href="#2-2-监听HTTP会话-Session对象" class="headerlink" title="2.2 监听HTTP会话 Session对象"></a>2.2 监听HTTP会话 Session对象</h4><p>监听器还有一个比较常用的地方就是用来监听 session 对象，来获取在线用户数量，现在有很多开发者都有自己的网站，监听 session 来获取当前在下用户数量是个很常见的使用场景，下面来介绍一下如何来使用。</p>
 <pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
  * 使用HttpSessionListener统计在线用户数的监听器
  * @author shengwu ni
@@ -2375,7 +2375,7 @@ User <span class="token function">getUser</span><span class="token punctuation">
 <span class="token punctuation">}</span>
 </code></pre>
 <p>可以看出，该处理逻辑是让服务器记得原来那个 session，即把原来的 sessionId 记录在浏览器中，下次再打开时，把这个 sessionId 传过去，这样服务器就不会重新再创建了。重启一下服务器，在浏览器中再次测试一下，即可避免上面的问题。</p>
-<h3 id="2-3-监听客户端请求Servlet-Request对象"><a href="#2-3-监听客户端请求Servlet-Request对象" class="headerlink" title="2.3 监听客户端请求Servlet Request对象"></a>2.3 监听客户端请求Servlet Request对象</h3><p>使用监听器获取用户的访问信息比较简单，实现 ServletRequestListener 接口即可，然后通过 request 对象获取一些信息。如下：</p>
+<h4 id="2-3-监听客户端请求Servlet-Request对象"><a href="#2-3-监听客户端请求Servlet-Request对象" class="headerlink" title="2.3 监听客户端请求Servlet Request对象"></a>2.3 监听客户端请求Servlet Request对象</h4><p>使用监听器获取用户的访问信息比较简单，实现 ServletRequestListener 接口即可，然后通过 request 对象获取一些信息。如下：</p>
 <pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
  * 使用ServletRequestListener获取访问信息
  * @author shengwu ni
@@ -2413,8 +2413,8 @@ User <span class="token function">getUser</span><span class="token punctuation">
     <span class="token keyword">return</span> <span class="token string">"success"</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<h2 id="3-Spring-Boot中自定义事件监听"><a href="#3-Spring-Boot中自定义事件监听" class="headerlink" title="3. Spring Boot中自定义事件监听"></a>3. Spring Boot中自定义事件监听</h2><p>在实际项目中，我们往往需要自定义一些事件和监听器来满足业务场景，比如在微服务中会有这样的场景：微服务 A 在处理完某个逻辑之后，需要通知微服务 B 去处理另一个逻辑，或者微服务 A 处理完某个逻辑之后，需要将数据同步到微服务 B，这种场景非常普遍，这个时候，我们可以自定义事件以及监听器来监听，一旦监听到微服务 A 中的某事件发生，就去通知微服务 B 处理对应的逻辑。</p>
-<h3 id="3-1-自定义事件"><a href="#3-1-自定义事件" class="headerlink" title="3.1 自定义事件"></a>3.1 自定义事件</h3><p>自定义事件需要继承 ApplicationEvent 对象，在事件中定义一个 User 对象来模拟数据，构造方法中将 User 对象传进来初始化。如下：</p>
+<h3 id="3-Spring-Boot中自定义事件监听"><a href="#3-Spring-Boot中自定义事件监听" class="headerlink" title="3. Spring Boot中自定义事件监听"></a>3. Spring Boot中自定义事件监听</h3><p>在实际项目中，我们往往需要自定义一些事件和监听器来满足业务场景，比如在微服务中会有这样的场景：微服务 A 在处理完某个逻辑之后，需要通知微服务 B 去处理另一个逻辑，或者微服务 A 处理完某个逻辑之后，需要将数据同步到微服务 B，这种场景非常普遍，这个时候，我们可以自定义事件以及监听器来监听，一旦监听到微服务 A 中的某事件发生，就去通知微服务 B 处理对应的逻辑。</p>
+<h4 id="3-1-自定义事件"><a href="#3-1-自定义事件" class="headerlink" title="3.1 自定义事件"></a>3.1 自定义事件</h4><p>自定义事件需要继承 ApplicationEvent 对象，在事件中定义一个 User 对象来模拟数据，构造方法中将 User 对象传进来初始化。如下：</p>
 <pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
  * 自定义事件
  * @author shengwu ni
@@ -2432,7 +2432,7 @@ User <span class="token function">getUser</span><span class="token punctuation">
     <span class="token comment" spellcheck="true">// 省去get、set方法</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<h3 id="3-2-自定义监听器"><a href="#3-2-自定义监听器" class="headerlink" title="3.2 自定义监听器"></a>3.2 自定义监听器</h3><p>接下来，自定义一个监听器来监听上面定义的 MyEvent 事件，自定义监听器需要实现 <code>ApplicationListener</code> 接口即可。如下：</p>
+<h4 id="3-2-自定义监听器"><a href="#3-2-自定义监听器" class="headerlink" title="3.2 自定义监听器"></a>3.2 自定义监听器</h4><p>接下来，自定义一个监听器来监听上面定义的 MyEvent 事件，自定义监听器需要实现 <code>ApplicationListener</code> 接口即可。如下：</p>
 <pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
  * 自定义监听器，监听MyEvent事件
  * @author shengwu ni
@@ -2485,11 +2485,11 @@ User <span class="token function">getUser</span><span class="token punctuation">
 <span class="token punctuation">}</span>
 </code></pre>
 <p>在浏览器中输入 <code>http://localhost:8080/listener/publish</code>，然后观察一下控制台打印的用户名和密码，即可说明自定义监听器已经生效。</p>
-<h2 id="4-总结-5"><a href="#4-总结-5" class="headerlink" title="4. 总结"></a>4. 总结</h2><p>本课系统的介绍了监听器原理，以及在 Spring Boot 中如何使用监听器，列举了监听器的三个常用的案例，有很好的实战意义。最后讲解了项目中如何自定义事件和监听器，并结合微服务中常见的场景，给出具体的代码模型，均能运用到实际项目中去，希望读者认真消化。</p>
+<h3 id="4-总结-5"><a href="#4-总结-5" class="headerlink" title="4. 总结"></a>4. 总结</h3><p>本课系统的介绍了监听器原理，以及在 Spring Boot 中如何使用监听器，列举了监听器的三个常用的案例，有很好的实战意义。最后讲解了项目中如何自定义事件和监听器，并结合微服务中常见的场景，给出具体的代码模型，均能运用到实际项目中去，希望读者认真消化。</p>
 <p>课程源代码下载地址：<a target="_blank" rel="noopener" href="https://gitee.com/eson15/springboot_study">戳我下载</a></p>
-<h1 id="第13课：Spring-Boot中使用拦截器"><a href="#第13课：Spring-Boot中使用拦截器" class="headerlink" title="第13课：Spring Boot中使用拦截器"></a>第13课：Spring Boot中使用拦截器</h1><p>拦截器的原理很简单，是 AOP 的一种实现，专门拦截对动态资源的后台请求，即拦截对控制层的请求。使用场景比较多的是判断用户是否有权限请求后台，更拔高一层的使用场景也有，比如拦截器可以结合 websocket 一起使用，用来拦截 websocket 请求，然后做相应的处理等等。拦截器不会拦截静态资源，Spring Boot 的默认静态目录为 resources/static，该目录下的静态页面、js、css、图片等等，不会被拦截（也要看如何实现，有些情况也会拦截，我在下文会指出）。</p>
-<h2 id="1-拦截器的快速使用"><a href="#1-拦截器的快速使用" class="headerlink" title="1. 拦截器的快速使用"></a>1. 拦截器的快速使用</h2><p>使用拦截器很简单，只需要两步即可：定义拦截器和配置拦截器。在配置拦截器中，Spring Boot 2.0 以后的版本和之前的版本有所不同，我会重点讲解一下这里可能出现的坑。</p>
-<h3 id="1-1-定义拦截器"><a href="#1-1-定义拦截器" class="headerlink" title="1.1 定义拦截器"></a>1.1 定义拦截器</h3><p>定义拦截器，只需要实现 <code>HandlerInterceptor</code> 接口，<code>HandlerInterceptor</code> 接口是所有自定义拦截器或者 Spring Boot 提供的拦截器的鼻祖，所以，首先来了解下该接口。该接口中有三个方法： <code>preHandle(……)</code>、<code>postHandle(……)</code> 和 <code>afterCompletion(……)</code> 。</p>
+<h2 id="第13课：Spring-Boot中使用拦截器"><a href="#第13课：Spring-Boot中使用拦截器" class="headerlink" title="第13课：Spring Boot中使用拦截器"></a>第13课：Spring Boot中使用拦截器</h2><p>拦截器的原理很简单，是 AOP 的一种实现，专门拦截对动态资源的后台请求，即拦截对控制层的请求。使用场景比较多的是判断用户是否有权限请求后台，更拔高一层的使用场景也有，比如拦截器可以结合 websocket 一起使用，用来拦截 websocket 请求，然后做相应的处理等等。拦截器不会拦截静态资源，Spring Boot 的默认静态目录为 resources/static，该目录下的静态页面、js、css、图片等等，不会被拦截（也要看如何实现，有些情况也会拦截，我在下文会指出）。</p>
+<h3 id="1-拦截器的快速使用"><a href="#1-拦截器的快速使用" class="headerlink" title="1. 拦截器的快速使用"></a>1. 拦截器的快速使用</h3><p>使用拦截器很简单，只需要两步即可：定义拦截器和配置拦截器。在配置拦截器中，Spring Boot 2.0 以后的版本和之前的版本有所不同，我会重点讲解一下这里可能出现的坑。</p>
+<h4 id="1-1-定义拦截器"><a href="#1-1-定义拦截器" class="headerlink" title="1.1 定义拦截器"></a>1.1 定义拦截器</h4><p>定义拦截器，只需要实现 <code>HandlerInterceptor</code> 接口，<code>HandlerInterceptor</code> 接口是所有自定义拦截器或者 Spring Boot 提供的拦截器的鼻祖，所以，首先来了解下该接口。该接口中有三个方法： <code>preHandle(……)</code>、<code>postHandle(……)</code> 和 <code>afterCompletion(……)</code> 。</p>
 <blockquote>
 <p><code>preHandle(……)</code> 方法：该方法的执行时机是，当某个 url 已经匹配到对应的 Controller 中的某个方法，且在这个方法执行之前。所以 <code>preHandle(……)</code> 方法可以决定是否将请求放行，这是通过返回值来决定的，返回 true 则放行，返回 false 则不会向后执行。<br><code>postHandle(……)</code> 方法：该方法的执行时机是，当某个 url 已经匹配到对应的 Controller 中的某个方法，且在执行完了该方法，但是在 DispatcherServlet 视图渲染之前。所以在这个方法中有个 ModelAndView 参数，可以在此做一些修改动作。<br><code>afterCompletion(……)</code> 方法：顾名思义，该方法是在整个请求处理完成后（包括视图渲染）执行，这时做一些资源的清理工作，这个方法只有在 <code>preHandle(……)</code> 被成功执行后并且返回 true 才会被执行。  </p>
 </blockquote>
@@ -2526,7 +2526,7 @@ User <span class="token function">getUser</span><span class="token punctuation">
 <span class="token punctuation">}</span>
 </code></pre>
 <p>OK，到此为止，拦截器已经定义完成，接下来就是对该拦截器进行拦截配置。</p>
-<h3 id="1-2-配置拦截器"><a href="#1-2-配置拦截器" class="headerlink" title="1.2 配置拦截器"></a>1.2 配置拦截器</h3><p>在 Spring Boot 2.0 之前，我们都是直接继承 WebMvcConfigurerAdapter 类，然后重写 <code>addInterceptors</code> 方法来实现拦截器的配置。但是在 Spring Boot 2.0 之后，该方法已经被废弃了（当然，也可以继续用），取而代之的是 WebMvcConfigurationSupport 方法，如下：</p>
+<h4 id="1-2-配置拦截器"><a href="#1-2-配置拦截器" class="headerlink" title="1.2 配置拦截器"></a>1.2 配置拦截器</h4><p>在 Spring Boot 2.0 之前，我们都是直接继承 WebMvcConfigurerAdapter 类，然后重写 <code>addInterceptors</code> 方法来实现拦截器的配置。但是在 Spring Boot 2.0 之后，该方法已经被废弃了（当然，也可以继续用），取而代之的是 WebMvcConfigurationSupport 方法，如下：</p>
 <pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Configuration</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MyInterceptorConfig</span> <span class="token keyword">extends</span> <span class="token class-name">WebMvcConfigurationSupport</span> <span class="token punctuation">{</span>
 
@@ -2554,7 +2554,7 @@ User <span class="token function">getUser</span><span class="token punctuation">
 整个请求都处理完咯，DispatcherServlet也渲染了对应的视图咯，此时我可以做一些清理的工作了
 </code></pre>
 <p>可以看出拦截器已经生效，并能看出其执行顺序。</p>
-<h3 id="1-3-解决静态资源被拦截问题"><a href="#1-3-解决静态资源被拦截问题" class="headerlink" title="1.3 解决静态资源被拦截问题"></a>1.3 解决静态资源被拦截问题</h3><p>上文中已经介绍了拦截器的定义和配置，但是这样是否就没问题了呢？其实不然，如果使用上面这种配置的话，我们会发现一个缺陷，那就是静态资源被拦截了。可以在 resources/static/ 目录下放置一个图片资源或者 html 文件，然后启动项目直接访问，即可看到无法访问的现象。</p>
+<h4 id="1-3-解决静态资源被拦截问题"><a href="#1-3-解决静态资源被拦截问题" class="headerlink" title="1.3 解决静态资源被拦截问题"></a>1.3 解决静态资源被拦截问题</h4><p>上文中已经介绍了拦截器的定义和配置，但是这样是否就没问题了呢？其实不然，如果使用上面这种配置的话，我们会发现一个缺陷，那就是静态资源被拦截了。可以在 resources/static/ 目录下放置一个图片资源或者 html 文件，然后启动项目直接访问，即可看到无法访问的现象。</p>
 <p>也就是说，虽然 Spring Boot 2.0 废弃了WebMvcConfigurerAdapter，但是 WebMvcConfigurationSupport 又会导致默认的静态资源被拦截，这就需要我们手动将静态资源放开。</p>
 <p>如何放开呢？除了在 MyInterceptorConfig 配置类中重写 <code>addInterceptors</code> 方法外，还需要再重写一个方法：<code>addResourceHandlers</code>，将静态资源放开：</p>
 <pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
@@ -2580,7 +2580,7 @@ User <span class="token function">getUser</span><span class="token punctuation">
 </code></pre>
 <p>这样就非常方便了，实现 WebMvcConfigure 接口的话，不会拦截 Spring Boot 默认的静态资源。</p>
 <p>这两种方式都可以，具体他们之间的细节，感兴趣的读者可以做进一步的研究，由于这两种方式的不同，继承 WebMvcConfigurationSupport 类的方式可以用在前后端分离的项目中，后台不需要访问静态资源（就不需要放开静态资源了）；实现 WebMvcConfigure 接口的方式可以用在非前后端分离的项目中，因为需要读取一些图片、css、js文件等等。</p>
-<h2 id="2-拦截器使用实例"><a href="#2-拦截器使用实例" class="headerlink" title="2. 拦截器使用实例"></a>2. 拦截器使用实例</h2><h3 id="2-1-判断用户有没有登录"><a href="#2-1-判断用户有没有登录" class="headerlink" title="2.1 判断用户有没有登录"></a>2.1 判断用户有没有登录</h3><p>一般用户登录功能我们可以这么做，要么往 session 中写一个 user，要么针对每个 user 生成一个 token，第二种要更好一点，那么针对第二种方式，如果用户登录成功了，每次请求的时候都会带上该用户的 token，如果未登录，则没有该 token，服务端可以检测这个 token 参数的有无来判断用户有没有登录，从而实现拦截功能。我们改造一下 <code>preHandle</code> 方法，如下：</p>
+<h3 id="2-拦截器使用实例"><a href="#2-拦截器使用实例" class="headerlink" title="2. 拦截器使用实例"></a>2. 拦截器使用实例</h3><h4 id="2-1-判断用户有没有登录"><a href="#2-1-判断用户有没有登录" class="headerlink" title="2.1 判断用户有没有登录"></a>2.1 判断用户有没有登录</h4><p>一般用户登录功能我们可以这么做，要么往 session 中写一个 user，要么针对每个 user 生成一个 token，第二种要更好一点，那么针对第二种方式，如果用户登录成功了，每次请求的时候都会带上该用户的 token，如果未登录，则没有该 token，服务端可以检测这个 token 参数的有无来判断用户有没有登录，从而实现拦截功能。我们改造一下 <code>preHandle</code> 方法，如下：</p>
 <pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Override</span>
 <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">preHandle</span><span class="token punctuation">(</span>HttpServletRequest request<span class="token punctuation">,</span> HttpServletResponse response<span class="token punctuation">,</span> Object handler<span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception <span class="token punctuation">{</span>
 
@@ -2601,7 +2601,7 @@ User <span class="token function">getUser</span><span class="token punctuation">
 <span class="token punctuation">}</span>
 </code></pre>
 <p>重启项目，在浏览器中输入 <code>localhost:8080/interceptor/test</code> 后查看控制台日志，发现被拦截，如果在浏览器中输入 <code>localhost:8080/interceptor/test?token=123</code> 即可正常往下走。</p>
-<h3 id="2-2-取消拦截操作"><a href="#2-2-取消拦截操作" class="headerlink" title="2.2 取消拦截操作"></a>2.2 取消拦截操作</h3><p>根据上文，如果我要拦截所有 <code>/admin</code> 开头的 url 请求的话，需要在拦截器配置中添加这个前缀，但是在实际项目中，可能会有这种场景出现：某个请求也是 <code>/admin</code> 开头的，但是不能拦截，比如 <code>/admin/login</code> 等等，这样的话又需要去配置。那么，可不可以做成一个类似于开关的东西，哪里不需要拦截，我就在哪里弄个开关上去，做成这种灵活的可插拔的效果呢？</p>
+<h4 id="2-2-取消拦截操作"><a href="#2-2-取消拦截操作" class="headerlink" title="2.2 取消拦截操作"></a>2.2 取消拦截操作</h4><p>根据上文，如果我要拦截所有 <code>/admin</code> 开头的 url 请求的话，需要在拦截器配置中添加这个前缀，但是在实际项目中，可能会有这种场景出现：某个请求也是 <code>/admin</code> 开头的，但是不能拦截，比如 <code>/admin/login</code> 等等，这样的话又需要去配置。那么，可不可以做成一个类似于开关的东西，哪里不需要拦截，我就在哪里弄个开关上去，做成这种灵活的可插拔的效果呢？</p>
 <p>是可以的，我们可以定义一个注解，该注解专门用来取消拦截操作，如果某个 Controller 中的方法我们不需要拦截掉，即可在该方法上加上我们自定义的注解即可，下面先定义一个注解：</p>
 <pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
  * 该注解用来指定某个方法不用拦截
@@ -2631,12 +2631,12 @@ User <span class="token function">getUser</span><span class="token punctuation">
 <span class="token punctuation">}</span>
 </code></pre>
 <p>Controller 中的方法代码可以参见源码，重启项目在浏览器中输入 <code>http://localhost:8080/interceptor/test2?token=123</code> 测试一下，可以看出，加了该注解的方法不会被拦截。</p>
-<h2 id="3-总结-1"><a href="#3-总结-1" class="headerlink" title="3. 总结"></a>3. 总结</h2><p>本节主要介绍了 Spring Boot 中拦截器的使用，从拦截器的创建、配置，到拦截器对静态资源的影响，都做了详细的分析。Spring Boot 2.0 之后拦截器的配置支持两种方式，可以根据实际情况选择不同的配置方式。最后结合实际中的使用，举了两个常用的场景，希望读者能够认真消化，掌握拦截器的使用。</p>
+<h3 id="3-总结-1"><a href="#3-总结-1" class="headerlink" title="3. 总结"></a>3. 总结</h3><p>本节主要介绍了 Spring Boot 中拦截器的使用，从拦截器的创建、配置，到拦截器对静态资源的影响，都做了详细的分析。Spring Boot 2.0 之后拦截器的配置支持两种方式，可以根据实际情况选择不同的配置方式。最后结合实际中的使用，举了两个常用的场景，希望读者能够认真消化，掌握拦截器的使用。</p>
 <p>课程源代码下载地址：<a target="_blank" rel="noopener" href="https://gitee.com/eson15/springboot_study">戳我下载</a></p>
-<h1 id="第14课：Spring-Boot-中集成Redis"><a href="#第14课：Spring-Boot-中集成Redis" class="headerlink" title="第14课：Spring Boot 中集成Redis"></a>第14课：Spring Boot 中集成Redis</h1><h2 id="1-Redis-介绍"><a href="#1-Redis-介绍" class="headerlink" title="1. Redis 介绍"></a>1. Redis 介绍</h2><p>Redis 是一种非关系型数据库（NoSQL），NoSQL 是以 key-value 的形式存储的，和传统的关系型数据库不一样，不一定遵循传统数据库的一些基本要求，比如说 SQL 标准，ACID 属性，表结构等等，这类数据库主要有以下特点：非关系型的、分布式的、开源的、水平可扩展的。<br>NoSQL 使用场景有：对数据高并发读写、对海量数据的高效率存储和访问、对数据的高可扩展性和高可用性等等。<br>Redis 的 key 可以是字符串、哈希、链表、集合和有序集合。value 类型很多，包括 String、list、set、zset。这些数据类型都支持 push/pop、add/remove、取交集和并集以及更多更丰富的操作，Redis 也支持各种不同方式的排序。为了保证效率，数据都是在缓存在内存中，它也可以周期性的把更新的数据写入磁盘或者把修改操作写入追加的记录文件中。 有了 redis 有哪些好处呢？举个比较简单的例子，看下图： </p>
+<h2 id="第14课：Spring-Boot-中集成Redis"><a href="#第14课：Spring-Boot-中集成Redis" class="headerlink" title="第14课：Spring Boot 中集成Redis"></a>第14课：Spring Boot 中集成Redis</h2><h3 id="1-Redis-介绍"><a href="#1-Redis-介绍" class="headerlink" title="1. Redis 介绍"></a>1. Redis 介绍</h3><p>Redis 是一种非关系型数据库（NoSQL），NoSQL 是以 key-value 的形式存储的，和传统的关系型数据库不一样，不一定遵循传统数据库的一些基本要求，比如说 SQL 标准，ACID 属性，表结构等等，这类数据库主要有以下特点：非关系型的、分布式的、开源的、水平可扩展的。<br>NoSQL 使用场景有：对数据高并发读写、对海量数据的高效率存储和访问、对数据的高可扩展性和高可用性等等。<br>Redis 的 key 可以是字符串、哈希、链表、集合和有序集合。value 类型很多，包括 String、list、set、zset。这些数据类型都支持 push/pop、add/remove、取交集和并集以及更多更丰富的操作，Redis 也支持各种不同方式的排序。为了保证效率，数据都是在缓存在内存中，它也可以周期性的把更新的数据写入磁盘或者把修改操作写入追加的记录文件中。 有了 redis 有哪些好处呢？举个比较简单的例子，看下图： </p>
 <p><img src="https://images.gitbook.cn/4258b9c0-9f93-11e8-a34f-d93da92347ea" alt="Redis使用场景"></p>
 <p>Redis 集群和 Mysql 是同步的，首先会从 redis 中获取数据，如果 redis 挂了，再从 mysql 中获取数据，这样网站就不会挂掉。更多关于 redis 的介绍以及使用场景，可以谷歌和百度，在这就不赘述了。</p>
-<h2 id="2-Redis-安装"><a href="#2-Redis-安装" class="headerlink" title="2. Redis 安装"></a>2. Redis 安装</h2><p>本课程是在 vmvare 虚拟机中来安装的 redis （centos 7），学习的时候如果有自己的阿里云服务器，也可以在阿里云中来安装 redis，都可以。只要能 ping 的通云主机或者虚拟机的 ip，然后在虚拟机或者云主机中放行对应的端口（或者关掉防火墙）即可访问 redis。下面来介绍一下 redis 的安装过程：</p>
+<h3 id="2-Redis-安装"><a href="#2-Redis-安装" class="headerlink" title="2. Redis 安装"></a>2. Redis 安装</h3><p>本课程是在 vmvare 虚拟机中来安装的 redis （centos 7），学习的时候如果有自己的阿里云服务器，也可以在阿里云中来安装 redis，都可以。只要能 ping 的通云主机或者虚拟机的 ip，然后在虚拟机或者云主机中放行对应的端口（或者关掉防火墙）即可访问 redis。下面来介绍一下 redis 的安装过程：</p>
 <ul>
 <li>安装 gcc 编译</li>
 </ul>
@@ -2685,7 +2685,7 @@ make install
 <pre><code>get name
 </code></pre>
 <p>如果正常获取到 CSDN，则说明没有问题。</p>
-<h2 id="3-Spring-Boot-集成-Redis"><a href="#3-Spring-Boot-集成-Redis" class="headerlink" title="3. Spring Boot 集成 Redis"></a>3. Spring Boot 集成 Redis</h2><h3 id="3-1-依赖导入"><a href="#3-1-依赖导入" class="headerlink" title="3.1 依赖导入"></a>3.1 依赖导入</h3><p>Spring Boot 集成 redis 很方便，只需要导入一个 redis 的 starter 依赖即可。如下：</p>
+<h3 id="3-Spring-Boot-集成-Redis"><a href="#3-Spring-Boot-集成-Redis" class="headerlink" title="3. Spring Boot 集成 Redis"></a>3. Spring Boot 集成 Redis</h3><h4 id="3-1-依赖导入"><a href="#3-1-依赖导入" class="headerlink" title="3.1 依赖导入"></a>3.1 依赖导入</h4><p>Spring Boot 集成 redis 很方便，只需要导入一个 redis 的 starter 依赖即可。如下：</p>
 <pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-boot-starter-data-redis<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
@@ -2698,7 +2698,7 @@ make install
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
 </code></pre>
 <p>这里也导入阿里巴巴的 fastjson 是为了在后面我们要存一个实体，为了方便把实体转换成 json 字符串存进去。</p>
-<h3 id="3-2-Redis-配置"><a href="#3-2-Redis-配置" class="headerlink" title="3.2 Redis 配置"></a>3.2 Redis 配置</h3><p>导入了依赖之后，我们在 application.yml 文件里配置 redis：</p>
+<h4 id="3-2-Redis-配置"><a href="#3-2-Redis-配置" class="headerlink" title="3.2 Redis 配置"></a>3.2 Redis 配置</h4><p>导入了依赖之后，我们在 application.yml 文件里配置 redis：</p>
 <pre class=" language-yml"><code class="language-yml">server:
   port: 8080
 spring:
@@ -2721,9 +2721,9 @@ spring:
         # 等待可用连接的最大时间，单位毫秒，默认值为-1，表示永不超时。如果超过等待时间，则直接抛出JedisConnectionException
         max-wait: 2000
 </code></pre>
-<h3 id="3-3-常用-api-介绍"><a href="#3-3-常用-api-介绍" class="headerlink" title="3.3 常用 api 介绍"></a>3.3 常用 api 介绍</h3><p>Spring Boot 对 redis 的支持已经非常完善了，丰富的 api 已经足够我们日常的开发，这里我介绍几个最常用的供大家学习，其他 api 希望大家自己多学习，多研究。用到会去查即可。</p>
+<h4 id="3-3-常用-api-介绍"><a href="#3-3-常用-api-介绍" class="headerlink" title="3.3 常用 api 介绍"></a>3.3 常用 api 介绍</h4><p>Spring Boot 对 redis 的支持已经非常完善了，丰富的 api 已经足够我们日常的开发，这里我介绍几个最常用的供大家学习，其他 api 希望大家自己多学习，多研究。用到会去查即可。</p>
 <p>有两个 redis 模板：RedisTemplate 和 StringRedisTemplate。我们不使用 RedisTemplate，RedisTemplate 提供给我们操作对象，操作对象的时候，我们通常是以 json 格式存储，但在存储的时候，会使用 Redis 默认的内部序列化器；导致我们存进里面的是乱码之类的东西。当然了，我们可以自己定义序列化，但是比较麻烦，所以使用 StringRedisTemplate 模板。StringRedisTemplate 主要给我们提供字符串操作，我们可以将实体类等转成 json 字符串即可，在取出来后，也可以转成相应的对象，这就是上面我导入了阿里 fastjson 的原因。</p>
-<h4 id="3-3-1-redis-string-类型"><a href="#3-3-1-redis-string-类型" class="headerlink" title="3.3.1 redis:string 类型"></a>3.3.1 redis:string 类型</h4><p>新建一个 RedisService，注入 StringRedisTemplate，使用 <code>stringRedisTemplate.opsForValue()</code> 可以获取 <code>ValueOperations&lt;String, String&gt;</code> 对象，通过该对象即可读写 redis 数据库了。如下：</p>
+<h5 id="3-3-1-redis-string-类型"><a href="#3-3-1-redis-string-类型" class="headerlink" title="3.3.1 redis:string 类型"></a>3.3.1 redis:string 类型</h5><p>新建一个 RedisService，注入 StringRedisTemplate，使用 <code>stringRedisTemplate.opsForValue()</code> 可以获取 <code>ValueOperations&lt;String, String&gt;</code> 对象，通过该对象即可读写 redis 数据库了。如下：</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RedisService</span> <span class="token punctuation">{</span>
 
     <span class="token annotation punctuation">@Resource</span>
@@ -2775,7 +2775,7 @@ spring:
 <pre><code>我的微信公众号为：程序员私房菜
 用户信息：&#123;&quot;password&quot;:&quot;123456&quot;,&quot;username&quot;:&quot;CSDN&quot;&#125;
 </code></pre>
-<h4 id="3-3-2-redis-hash-类型"><a href="#3-3-2-redis-hash-类型" class="headerlink" title="3.3.2 redis:hash 类型"></a>3.3.2 redis:hash 类型</h4><p>hash 类型其实原理和 string 一样的，但是有两个 key，使用 <code>stringRedisTemplate.opsForHash()</code> 可以获取 <code>HashOperations&lt;String, Object, Object&gt;</code> 对象。比如我们要存储订单信息，所有订单信息都放在 order 下，针对不同用户的订单实体，可以通过用户的 id 来区分，这就相当于两个 key 了。</p>
+<h5 id="3-3-2-redis-hash-类型"><a href="#3-3-2-redis-hash-类型" class="headerlink" title="3.3.2 redis:hash 类型"></a>3.3.2 redis:hash 类型</h5><p>hash 类型其实原理和 string 一样的，但是有两个 key，使用 <code>stringRedisTemplate.opsForHash()</code> 可以获取 <code>HashOperations&lt;String, Object, Object&gt;</code> 对象。比如我们要存储订单信息，所有订单信息都放在 order 下，针对不同用户的订单实体，可以通过用户的 id 来区分，这就相当于两个 key 了。</p>
 <pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Service</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RedisService</span> <span class="token punctuation">{</span>
 
@@ -2821,7 +2821,7 @@ spring:
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<h4 id="3-3-3-redis-list-类型"><a href="#3-3-3-redis-list-类型" class="headerlink" title="3.3.3 redis:list 类型"></a>3.3.3 redis:list 类型</h4><p>使用 <code>stringRedisTemplate.opsForList()</code> 可以获取 <code>ListOperations&lt;String, String&gt; listOperations</code>  redis 列表对象，该列表是个简单的字符串列表，可以支持从左侧添加，也可以支持从右侧添加，一个列表最多包含 2 ^ 32 -1 个元素。</p>
+<h5 id="3-3-3-redis-list-类型"><a href="#3-3-3-redis-list-类型" class="headerlink" title="3.3.3 redis:list 类型"></a>3.3.3 redis:list 类型</h5><p>使用 <code>stringRedisTemplate.opsForList()</code> 可以获取 <code>ListOperations&lt;String, String&gt; listOperations</code>  redis 列表对象，该列表是个简单的字符串列表，可以支持从左侧添加，也可以支持从右侧添加，一个列表最多包含 2 ^ 32 -1 个元素。</p>
 <pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Service</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RedisService</span> <span class="token punctuation">{</span>
 
@@ -2873,9 +2873,9 @@ spring:
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<h2 id="4-总结-6"><a href="#4-总结-6" class="headerlink" title="4. 总结"></a>4. 总结</h2><p>本节主要介绍了 redis 的使用场景、安装过程，以及 Spring Boot 中集成 redis 的详细步骤。在实际项目中，通常都用 redis 作为缓存，在查询数据库的时候，会先从 redis 中查找，如果有信息，则从 redis 中取；如果没有，则从数据库中查，并且同步到 redis 中，下次 redis 中就有了。更新和删除也是如此，都需要同步到 redis。redis 在高并发场景下运用的很多。</p>
+<h3 id="4-总结-6"><a href="#4-总结-6" class="headerlink" title="4. 总结"></a>4. 总结</h3><p>本节主要介绍了 redis 的使用场景、安装过程，以及 Spring Boot 中集成 redis 的详细步骤。在实际项目中，通常都用 redis 作为缓存，在查询数据库的时候，会先从 redis 中查找，如果有信息，则从 redis 中取；如果没有，则从数据库中查，并且同步到 redis 中，下次 redis 中就有了。更新和删除也是如此，都需要同步到 redis。redis 在高并发场景下运用的很多。</p>
 <p>课程源代码下载地址：<a target="_blank" rel="noopener" href="https://gitee.com/eson15/springboot_study">戳我下载</a></p>
-<h1 id="第15课：-Spring-Boot中集成ActiveMQ"><a href="#第15课：-Spring-Boot中集成ActiveMQ" class="headerlink" title="第15课： Spring Boot中集成ActiveMQ"></a>第15课： Spring Boot中集成ActiveMQ</h1><h2 id="1-JMS-和-ActiveMQ-介绍"><a href="#1-JMS-和-ActiveMQ-介绍" class="headerlink" title="1. JMS 和 ActiveMQ 介绍"></a>1. JMS 和 ActiveMQ 介绍</h2><h3 id="1-1-JMS-是啥"><a href="#1-1-JMS-是啥" class="headerlink" title="1.1 JMS 是啥"></a>1.1 JMS 是啥</h3><p>百度百科的解释：</p>
+<h2 id="第15课：-Spring-Boot中集成ActiveMQ"><a href="#第15课：-Spring-Boot中集成ActiveMQ" class="headerlink" title="第15课： Spring Boot中集成ActiveMQ"></a>第15课： Spring Boot中集成ActiveMQ</h2><h3 id="1-JMS-和-ActiveMQ-介绍"><a href="#1-JMS-和-ActiveMQ-介绍" class="headerlink" title="1. JMS 和 ActiveMQ 介绍"></a>1. JMS 和 ActiveMQ 介绍</h3><h4 id="1-1-JMS-是啥"><a href="#1-1-JMS-是啥" class="headerlink" title="1.1 JMS 是啥"></a>1.1 JMS 是啥</h4><p>百度百科的解释：</p>
 <blockquote>
 <p>JMS 即 Java 消息服务（Java Message Service）应用程序接口，是一个Java平台中关于面向消息中间件（MOM）的 API，用于在两个应用程序之间，或分布式系统中发送消息，进行异步通信。Java 消息服务是一个与具体平台无关的 API，绝大多数 MOM 提供商都对 JMS 提供支持。</p>
 </blockquote>
@@ -2884,15 +2884,15 @@ spring:
 <p>连接工厂：ConnectionFactory<br>JMS连接：Connection<br>JMS会话：Session<br>JMS目的：Destination<br>JMS生产者：Producer<br>JMS消费者：Consumer<br>JMS消息两种类型：点对点和发布/订阅。  </p>
 </blockquote>
 <p>可以看出 JMS 实际上和 JDBC 有点类似，JDBC 是可以用来访问许多不同关系数据库的 API，而 JMS 则提供同样与厂商无关的访问方法，以访问消息收发服务。本文主要使用 ActiveMQ。</p>
-<h3 id="1-2-ActiveMQ"><a href="#1-2-ActiveMQ" class="headerlink" title="1.2 ActiveMQ"></a>1.2 ActiveMQ</h3><p>ActiveMQ 是 Apache 的一个能力强劲的开源消息总线。ActiveMQ 完全支持JMS1.1和J2EE 1.4规范，尽管 JMS 规范出台已经是很久的事情了，但是 JMS 在当今的 Java EE 应用中间仍然扮演着特殊的地位。ActiveMQ 用在异步消息的处理上，所谓异步消息即消息发送者无需等待消息接收者的处理以及返回，甚至无需关心消息是否发送成功。   </p>
+<h4 id="1-2-ActiveMQ"><a href="#1-2-ActiveMQ" class="headerlink" title="1.2 ActiveMQ"></a>1.2 ActiveMQ</h4><p>ActiveMQ 是 Apache 的一个能力强劲的开源消息总线。ActiveMQ 完全支持JMS1.1和J2EE 1.4规范，尽管 JMS 规范出台已经是很久的事情了，但是 JMS 在当今的 Java EE 应用中间仍然扮演着特殊的地位。ActiveMQ 用在异步消息的处理上，所谓异步消息即消息发送者无需等待消息接收者的处理以及返回，甚至无需关心消息是否发送成功。   </p>
 <p>异步消息主要有两种目的地形式，队列（queue）和主题（topic），队列用于点对点形式的消息通信，主题用于发布/订阅式的消息通信。本章节主要来学习一下在 Spring Boot 中如何使用这两种形式的消息。</p>
-<h2 id="2-ActiveMQ安装"><a href="#2-ActiveMQ安装" class="headerlink" title="2. ActiveMQ安装"></a>2. ActiveMQ安装</h2><p>使用 ActiveMQ 首先需要去官网下载，官网地址为：<a target="_blank" rel="noopener" href="http://activemq.apache.org/">http://activemq.apache.org/</a><br>本课程使用的版本是 apache-activemq-5.15.3，下载后解压缩会有一个名为 apache-activemq-5.15.3 的文件夹，没错，这就安装好了，非常简单，开箱即用。打开文件夹会看到里面有个 <code>activemq-all-5.15.3.jar</code>，这个 jar 我们是可以加进工程里的，但是使用 maven 的话，这个 jar 我们不需要。</p>
+<h3 id="2-ActiveMQ安装"><a href="#2-ActiveMQ安装" class="headerlink" title="2. ActiveMQ安装"></a>2. ActiveMQ安装</h3><p>使用 ActiveMQ 首先需要去官网下载，官网地址为：<a target="_blank" rel="noopener" href="http://activemq.apache.org/">http://activemq.apache.org/</a><br>本课程使用的版本是 apache-activemq-5.15.3，下载后解压缩会有一个名为 apache-activemq-5.15.3 的文件夹，没错，这就安装好了，非常简单，开箱即用。打开文件夹会看到里面有个 <code>activemq-all-5.15.3.jar</code>，这个 jar 我们是可以加进工程里的，但是使用 maven 的话，这个 jar 我们不需要。</p>
 <p>在使用 ActiveMQ 之前，首先得先启动，刚才解压后的目录中有个 bin 目录，里面有 win32 和 win64 两个目录，根据自己电脑选择其中一个打开运行里面的 activemq.bat 即可启动 ActiveMQ。<br>消息生产者生产消息发布到queue中，然后消息消费者从queue中取出，并且消费消息。这里需要注意：消息被消费者消费以后，queue中不再有存储，所以消息消费者不可消费到已经被消费的消息。Queue支持存在多个消息消费者，但是对一个消息而言，只会有一个消费者可以消费<br>启动完成后，在浏览器中输入 <code>http://127.0.0.1:8161/admin/</code> 来访问 ActiveMQ 的服务器，用户名和密码是 admin/admin。如下：</p>
 <p><img src="https://images.gitbook.cn/cfb9c460-aa94-11e8-888f-df33be8ed191" alt="activemq"></p>
 <p>我们可以看到有 Queues 和 Topics 这两个选项，这两个选项分别是点对点消息和发布/订阅消息的查看窗口。何为点对点消息和发布/订阅消息呢？</p>
 <p>点对点消息：消息生产者生产消息发布到 queue 中，然后消息消费者从 queue 中取出，并且消费消息。这里需要注意：消息被消费者消费以后，queue 中不再有存储，所以消息消费者不可消费到已经被消费的消息。Queue 支持存在多个消息消费者，但是对一个消息而言，只会有一个消费者可以消费。</p>
 <p>发布/订阅消息：消息生产者（发布）将消息发布到 topic 中，同时有多个消息消费者（订阅）消费该消息。和点对点方式不同，发布到 topic 的消息会被所有订阅者消费。下面分析具体的实现方式。</p>
-<h2 id="3-ActiveMQ集成"><a href="#3-ActiveMQ集成" class="headerlink" title="3. ActiveMQ集成"></a>3. ActiveMQ集成</h2><h3 id="3-1-依赖导入和配置"><a href="#3-1-依赖导入和配置" class="headerlink" title="3.1 依赖导入和配置"></a>3.1 依赖导入和配置</h3><p>在 Spring Boot 中集成 ActiveMQ 需要导入如下 starter 依赖：</p>
+<h3 id="3-ActiveMQ集成"><a href="#3-ActiveMQ集成" class="headerlink" title="3. ActiveMQ集成"></a>3. ActiveMQ集成</h3><h4 id="3-1-依赖导入和配置"><a href="#3-1-依赖导入和配置" class="headerlink" title="3.1 依赖导入和配置"></a>3.1 依赖导入和配置</h4><p>在 Spring Boot 中集成 ActiveMQ 需要导入如下 starter 依赖：</p>
 <pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-boot-starter-activemq<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
@@ -2908,7 +2908,7 @@ spring:
       # 如果此处设置为true，需要添加activemq-pool的依赖包，否则会自动配置失败，无法注入JmsMessagingTemplate
       enabled: false
 </code></pre>
-<h3 id="3-2-Queue-和-Topic-的创建"><a href="#3-2-Queue-和-Topic-的创建" class="headerlink" title="3.2 Queue 和 Topic 的创建"></a>3.2 Queue 和 Topic 的创建</h3><p>首先我们需要创建两种消息 Queue 和 Topic，这两种消息的创建，我们放到 ActiveMqConfig 中来创建，如下：</p>
+<h4 id="3-2-Queue-和-Topic-的创建"><a href="#3-2-Queue-和-Topic-的创建" class="headerlink" title="3.2 Queue 和 Topic 的创建"></a>3.2 Queue 和 Topic 的创建</h4><p>首先我们需要创建两种消息 Queue 和 Topic，这两种消息的创建，我们放到 ActiveMqConfig 中来创建，如下：</p>
 <pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
  * activemq的配置
  * @author  shengwu ni
@@ -2936,7 +2936,7 @@ spring:
 <span class="token punctuation">}</span>
 </code></pre>
 <p>可以看出创建 Queue 和 Topic 两种消息，分别使用 <code>new ActiveMQQueue</code> 和 <code>new ActiveMQTopic</code> 来创建，分别跟上对应消息的名称即可。这样在其他地方就可以直接将这两种消息作为组件注入进来了。</p>
-<h3 id="3-3-消息的发送接口"><a href="#3-3-消息的发送接口" class="headerlink" title="3.3 消息的发送接口"></a>3.3 消息的发送接口</h3><p>在 Spring Boot 中，我们只要注入 JmsMessagingTemplate 模板即可快速发送消息，如下：</p>
+<h4 id="3-3-消息的发送接口"><a href="#3-3-消息的发送接口" class="headerlink" title="3.3 消息的发送接口"></a>3.3 消息的发送接口</h4><p>在 Spring Boot 中，我们只要注入 JmsMessagingTemplate 模板即可快速发送消息，如下：</p>
 <pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
  * 消息发送者
  * @author shengwu ni
@@ -2953,7 +2953,7 @@ spring:
 <span class="token punctuation">}</span>
 </code></pre>
 <p><code>convertAndSend</code> 方法中第一个参数是消息发送的目的地，第二个参数是具体的消息内容。</p>
-<h3 id="3-4-点对点消息生产与消费"><a href="#3-4-点对点消息生产与消费" class="headerlink" title="3.4 点对点消息生产与消费"></a>3.4 点对点消息生产与消费</h3><h4 id="3-4-1-点对点消息的生产"><a href="#3-4-1-点对点消息的生产" class="headerlink" title="3.4.1 点对点消息的生产"></a>3.4.1 点对点消息的生产</h4><p>消息的生产，我们放到 Controller 中来做，由于上面已经生成了 Queue 消息的组件，所以在 Controller 中我们直接注入进来即可。然后调用上文的消息发送方法 <code>sendMessage</code> 即可成功生产一条消息。</p>
+<h4 id="3-4-点对点消息生产与消费"><a href="#3-4-点对点消息生产与消费" class="headerlink" title="3.4 点对点消息生产与消费"></a>3.4 点对点消息生产与消费</h4><h5 id="3-4-1-点对点消息的生产"><a href="#3-4-1-点对点消息的生产" class="headerlink" title="3.4.1 点对点消息的生产"></a>3.4.1 点对点消息的生产</h5><p>消息的生产，我们放到 Controller 中来做，由于上面已经生成了 Queue 消息的组件，所以在 Controller 中我们直接注入进来即可。然后调用上文的消息发送方法 <code>sendMessage</code> 即可成功生产一条消息。</p>
 <pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
  * ActiveMQ controller
  * @author shengwu ni
@@ -2978,7 +2978,7 @@ spring:
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<h4 id="3-4-2-点对点消息的消费"><a href="#3-4-2-点对点消息的消费" class="headerlink" title="3.4.2 点对点消息的消费"></a>3.4.2 点对点消息的消费</h4><p>点对点消息的消费很简单，只要我们指定目的地即可，jms 监听器一直在监听是否有消息过来，如果有，则消费。</p>
+<h5 id="3-4-2-点对点消息的消费"><a href="#3-4-2-点对点消息的消费" class="headerlink" title="3.4.2 点对点消息的消费"></a>3.4.2 点对点消息的消费</h5><p>点对点消息的消费很简单，只要我们指定目的地即可，jms 监听器一直在监听是否有消息过来，如果有，则消费。</p>
 <pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
  * 消息消费者
  * @author shengwu ni
@@ -2997,10 +2997,10 @@ spring:
 <span class="token punctuation">}</span>
 </code></pre>
 <p>可以看出，使用 <code>@JmsListener</code> 注解来指定要监听的目的地，在消息接收方法内部，我们可以根据具体的业务需求做相应的逻辑处理即可。</p>
-<h4 id="3-4-3-测试一下"><a href="#3-4-3-测试一下" class="headerlink" title="3.4.3 测试一下"></a>3.4.3 测试一下</h4><p>启动项目，在浏览器中输入：<code>http://localhost:8081/activemq/send/queue</code>，观察控制台的输出日志，出现下面的日志说明消息发送和消费成功。</p>
+<h5 id="3-4-3-测试一下"><a href="#3-4-3-测试一下" class="headerlink" title="3.4.3 测试一下"></a>3.4.3 测试一下</h5><p>启动项目，在浏览器中输入：<code>http://localhost:8081/activemq/send/queue</code>，观察控制台的输出日志，出现下面的日志说明消息发送和消费成功。</p>
 <pre><code>收到的消息为：Queue: hello activemq!
 </code></pre>
-<h3 id="3-5-发布-订阅消息的生产和消费"><a href="#3-5-发布-订阅消息的生产和消费" class="headerlink" title="3.5 发布/订阅消息的生产和消费"></a>3.5 发布/订阅消息的生产和消费</h3><h4 id="3-5-1-发布-订阅消息的生产"><a href="#3-5-1-发布-订阅消息的生产" class="headerlink" title="3.5.1 发布/订阅消息的生产"></a>3.5.1 发布/订阅消息的生产</h4><p>和点对点消息一样，我们注入 topic 并调用 producer 的 <code>sendMessage</code> 方法即可发送订阅消息，如下，不再赘述：</p>
+<h4 id="3-5-发布-订阅消息的生产和消费"><a href="#3-5-发布-订阅消息的生产和消费" class="headerlink" title="3.5 发布/订阅消息的生产和消费"></a>3.5 发布/订阅消息的生产和消费</h4><h5 id="3-5-1-发布-订阅消息的生产"><a href="#3-5-1-发布-订阅消息的生产" class="headerlink" title="3.5.1 发布/订阅消息的生产"></a>3.5.1 发布/订阅消息的生产</h5><p>和点对点消息一样，我们注入 topic 并调用 producer 的 <code>sendMessage</code> 方法即可发送订阅消息，如下，不再赘述：</p>
 <pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@RestController</span>
 <span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">"/activemq"</span><span class="token punctuation">)</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ActiveMqController</span> <span class="token punctuation">{</span>
@@ -3021,7 +3021,7 @@ spring:
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<h4 id="3-5-2-发布-订阅消息的消费"><a href="#3-5-2-发布-订阅消息的消费" class="headerlink" title="3.5.2 发布/订阅消息的消费"></a>3.5.2 发布/订阅消息的消费</h4><p>发布/订阅消息的消费和点对点不同，订阅消息支持多个消费者一起消费。其次，Spring Boot 中默认的时点对点消息，所以在使用 topic 时，会不起作用，我们需要在配置文件 application.yml 中添加一个配置：</p>
+<h5 id="3-5-2-发布-订阅消息的消费"><a href="#3-5-2-发布-订阅消息的消费" class="headerlink" title="3.5.2 发布/订阅消息的消费"></a>3.5.2 发布/订阅消息的消费</h5><p>发布/订阅消息的消费和点对点不同，订阅消息支持多个消费者一起消费。其次，Spring Boot 中默认的时点对点消息，所以在使用 topic 时，会不起作用，我们需要在配置文件 application.yml 中添加一个配置：</p>
 <pre class=" language-yml"><code class="language-yml">spring:
   jms:
     pub-sub-domain: true
@@ -3070,14 +3070,14 @@ spring:
 <span class="token punctuation">}</span>
 </code></pre>
 <p>指定 containerFactory 属性为上面我们自己配置的 topicListenerContainer 即可。由于 topic 消息可以多个消费，所以该消费的类可以拷贝几个一起测试一下，这里我就不贴代码了，可以参考我的源码测试。</p>
-<h4 id="3-5-3-测试一下"><a href="#3-5-3-测试一下" class="headerlink" title="3.5.3 测试一下"></a>3.5.3 测试一下</h4><p>启动项目，在浏览器中输入：<code>http://localhost:8081/activemq/send/topic</code>，观察控制台的输出日志，出现下面的日志说明消息发送和消费成功。</p>
+<h5 id="3-5-3-测试一下"><a href="#3-5-3-测试一下" class="headerlink" title="3.5.3 测试一下"></a>3.5.3 测试一下</h5><p>启动项目，在浏览器中输入：<code>http://localhost:8081/activemq/send/topic</code>，观察控制台的输出日志，出现下面的日志说明消息发送和消费成功。</p>
 <pre><code>收到的消息为：Topic: hello activemq!
 收到的消息为：Topic: hello activemq!
 </code></pre>
-<h2 id="4-总结-7"><a href="#4-总结-7" class="headerlink" title="4. 总结"></a>4. 总结</h2><p>本章主要介绍了 jms 和 activemq 的相关概念、activemq 的安装与启动。详细分析了 Spring Boot 中点对点消息和发布/订阅消息两种方式的配置、消息生产和消费方式。ActiveMQ 是能力强劲的开源消息总线，在异步消息的处理上很有用，希望大家好好消化一下。</p>
+<h3 id="4-总结-7"><a href="#4-总结-7" class="headerlink" title="4. 总结"></a>4. 总结</h3><p>本章主要介绍了 jms 和 activemq 的相关概念、activemq 的安装与启动。详细分析了 Spring Boot 中点对点消息和发布/订阅消息两种方式的配置、消息生产和消费方式。ActiveMQ 是能力强劲的开源消息总线，在异步消息的处理上很有用，希望大家好好消化一下。</p>
 <p>课程源代码下载地址：<a target="_blank" rel="noopener" href="https://gitee.com/eson15/springboot_study">戳我下载</a></p>
-<h1 id="第16课：Spring-Boot中集成-Shiro"><a href="#第16课：Spring-Boot中集成-Shiro" class="headerlink" title="第16课：Spring Boot中集成 Shiro"></a>第16课：Spring Boot中集成 Shiro</h1><p>Shiro 是一个强大、简单易用的 Java 安全框架，主要用来更便捷的认证，授权，加密，会话管等等，可为任何应用提供安全保障。本课程主要来介绍 Shiro 的认证和授权功能。</p>
-<h2 id="1-Shiro-三大核心组件"><a href="#1-Shiro-三大核心组件" class="headerlink" title="1. Shiro 三大核心组件"></a>1. Shiro 三大核心组件</h2><p>Shiro 有三大核心的组件：<code>Subject</code>、<code>SecurityManager</code> 和 <code>Realm</code>。先来看一下它们之间的关系。</p>
+<h2 id="第16课：Spring-Boot中集成-Shiro"><a href="#第16课：Spring-Boot中集成-Shiro" class="headerlink" title="第16课：Spring Boot中集成 Shiro"></a>第16课：Spring Boot中集成 Shiro</h2><p>Shiro 是一个强大、简单易用的 Java 安全框架，主要用来更便捷的认证，授权，加密，会话管等等，可为任何应用提供安全保障。本课程主要来介绍 Shiro 的认证和授权功能。</p>
+<h3 id="1-Shiro-三大核心组件"><a href="#1-Shiro-三大核心组件" class="headerlink" title="1. Shiro 三大核心组件"></a>1. Shiro 三大核心组件</h3><p>Shiro 有三大核心的组件：<code>Subject</code>、<code>SecurityManager</code> 和 <code>Realm</code>。先来看一下它们之间的关系。</p>
 <p><img src="https://images.gitbook.cn/2dd0f5f0-af4a-11e8-a51c-93c39f2785b1" alt="三大核心组件的关系"></p>
 <ol>
 <li>Subject：认证主体。它包含两个信息：Principals 和 Credentials。看一下这两个信息具体是什么。<blockquote>
@@ -3092,26 +3092,26 @@ spring:
 <li><p>Realms：Realms 是一个域，它是连接 Shiro 和具体应用的桥梁，当需要与安全数据交互的时候，比如用户账户、访问控制等，Shiro 就会从一个或多个 Realms 中去查找。我们一般会自己定制 Realm，这在下文会详细说明。</p>
 </li>
 </ol>
-<h2 id="1-Shiro-身份和权限认证"><a href="#1-Shiro-身份和权限认证" class="headerlink" title="1. Shiro 身份和权限认证"></a>1. Shiro 身份和权限认证</h2><h3 id="1-2-Shiro-身份认证"><a href="#1-2-Shiro-身份认证" class="headerlink" title="1.2 Shiro 身份认证"></a>1.2 Shiro 身份认证</h3><p>我们来分析一下 Shiro 身份认证的过程，看一下官方的一个认证图：</p>
+<h4 id="1-1-Shiro-身份认证"><a href="#1-1-Shiro-身份认证" class="headerlink" title="1.1 Shiro 身份认证"></a>1.1 Shiro 身份认证</h4><p>我们来分析一下 Shiro 身份认证的过程，看一下官方的一个认证图：</p>
 <p><img src="https://images.gitbook.cn/f21c53a0-af4f-11e8-a51c-93c39f2785b1" alt="认证过程"></p>
 <p>Step1：应用程序代码在调用 <code>Subject.login(token)</code> 方法后，传入代表最终用户的身份和凭证的 AuthenticationToken 实例 token。 </p>
 <p>Step2：将 Subject 实例委托给应用程序的 SecurityManager（Shiro的安全管理）来开始实际的认证工作。这里开始真正的认证工作了。 </p>
 <p>Step3，4，5：然后 SecurityManager 就会根据具体的 realm 去进行安全认证了。 从图中可以看出，realm 可以自定义（Custom Realm）。</p>
-<h3 id="1-3-Shiro-权限认证"><a href="#1-3-Shiro-权限认证" class="headerlink" title="1.3 Shiro 权限认证"></a>1.3 Shiro 权限认证</h3><p>权限认证，也就是访问控制，即在应用中控制谁能访问哪些资源。在权限认证中，最核心的三个要素是：权限，角色和用户。</p>
+<h4 id="1-2-Shiro-权限认证"><a href="#1-2-Shiro-权限认证" class="headerlink" title="1.2 Shiro 权限认证"></a>1.2 Shiro 权限认证</h4><p>权限认证，也就是访问控制，即在应用中控制谁能访问哪些资源。在权限认证中，最核心的三个要素是：权限，角色和用户。</p>
 <blockquote>
 <p>权限（permission）：即操作资源的权利，比如访问某个页面，以及对某个模块的数据的添加，修改，删除，查看的权利；<br>角色（role）：指的是用户担任的的角色，一个角色可以有多个权限；<br>用户（user）：在 Shiro 中，代表访问系统的用户，即上面提到的 Subject 认证主体。</p>
 </blockquote>
 <p>它们之间的的关系可以用下图来表示： </p>
 <p><img src="https://images.gitbook.cn/44a68bc0-af75-11e8-85ef-dd986da3511e" alt="用户、角色和权限的关系"></p>
 <p>一个用户可以有多个角色，而不同的角色可以有不同的权限，也可由有相同的权限。比如说现在有三个角色，1是普通角色，2也是普通角色，3是管理员，角色1只能查看信息，角色2只能添加信息，管理员都可以，而且还可以删除信息，类似于这样。</p>
-<h2 id="2-Spring-Boot-集成-Shiro-过程"><a href="#2-Spring-Boot-集成-Shiro-过程" class="headerlink" title="2. Spring Boot 集成 Shiro 过程"></a>2. Spring Boot 集成 Shiro 过程</h2><h3 id="2-1-依赖导入-2"><a href="#2-1-依赖导入-2" class="headerlink" title="2.1 依赖导入"></a>2.1 依赖导入</h3><p>Spring Boot 2.0.3 集成 Shiro 需要导入如下 starter 依赖：</p>
+<h3 id="2-Spring-Boot-集成-Shiro-过程"><a href="#2-Spring-Boot-集成-Shiro-过程" class="headerlink" title="2. Spring Boot 集成 Shiro 过程"></a>2. Spring Boot 集成 Shiro 过程</h3><h4 id="2-1-依赖导入-2"><a href="#2-1-依赖导入-2" class="headerlink" title="2.1 依赖导入"></a>2.1 依赖导入</h4><p>Spring Boot 2.0.3 集成 Shiro 需要导入如下 starter 依赖：</p>
 <pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.apache.shiro<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>shiro-spring<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>1.4.0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
 </code></pre>
-<h3 id="2-2-数据库表数据初始化"><a href="#2-2-数据库表数据初始化" class="headerlink" title="2.2 数据库表数据初始化"></a>2.2 数据库表数据初始化</h3><p>这里主要涉及到三张表：用户表、角色表和权限表，其实在 demo 中，我们完全可以自己模拟一下，不用建表，但是为了更加接近实际情况，我们还是加入 mybatis，来操作数据库。下面是数据库表的脚本。</p>
+<h4 id="2-2-数据库表数据初始化"><a href="#2-2-数据库表数据初始化" class="headerlink" title="2.2 数据库表数据初始化"></a>2.2 数据库表数据初始化</h4><p>这里主要涉及到三张表：用户表、角色表和权限表，其实在 demo 中，我们完全可以自己模拟一下，不用建表，但是为了更加接近实际情况，我们还是加入 mybatis，来操作数据库。下面是数据库表的脚本。</p>
 <pre class=" language-sql"><code class="language-sql"><span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> <span class="token punctuation">`</span>t_role<span class="token punctuation">`</span> <span class="token punctuation">(</span>
   <span class="token punctuation">`</span>id<span class="token punctuation">`</span> <span class="token keyword">int</span><span class="token punctuation">(</span><span class="token number">11</span><span class="token punctuation">)</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">AUTO_INCREMENT</span> <span class="token keyword">COMMENT</span> <span class="token string">'主键'</span><span class="token punctuation">,</span>
   <span class="token punctuation">`</span>rolename<span class="token punctuation">`</span> <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span> <span class="token keyword">DEFAULT</span> <span class="token boolean">NULL</span> <span class="token keyword">COMMENT</span> <span class="token string">'角色名称'</span><span class="token punctuation">,</span>
@@ -3141,7 +3141,7 @@ spring:
 <p>t_role 表：<br>|id|rolename|<br>|:–:|:–:|<br>|1|admin|<br>|2|teacher|<br>|3|student|</p>
 <p>t_permission 表：<br>|id|permissionname|role_id|<br>|:–:|:–:|:–:|<br>|1|<code>user:*</code>|1|<br>|2|<code>student:*</code>|2|</p>
 <p>解释一下这里的权限：<code>user:*</code>表示权限可以是 <code>user:create</code> 或者其他，<code>*</code> 处表示一个占位符，我们可以自己定义，具体的会在下文 Shiro 配置那里说明。</p>
-<h3 id="2-2-自定义-Realm"><a href="#2-2-自定义-Realm" class="headerlink" title="2.2 自定义 Realm"></a>2.2 自定义 Realm</h3><p>有了数据库表和数据之后，我们开始自定义 realm，自定义 realm 需要继承 AuthorizingRealm 类，因为该类封装了很多方法，它也是一步步继承自 Realm 类的，继承了 AuthorizingRealm 类后，需要重写两个方法：</p>
+<h4 id="2-2-自定义-Realm"><a href="#2-2-自定义-Realm" class="headerlink" title="2.2 自定义 Realm"></a>2.2 自定义 Realm</h4><p>有了数据库表和数据之后，我们开始自定义 realm，自定义 realm 需要继承 AuthorizingRealm 类，因为该类封装了很多方法，它也是一步步继承自 Realm 类的，继承了 AuthorizingRealm 类后，需要重写两个方法：</p>
 <blockquote>
 <p><code>doGetAuthenticationInfo()</code> 方法：用来验证当前登录的用户，获取认证信息<br><code>doGetAuthorizationInfo()</code> 方法：用来为当前登陆成功的用户授予权限和角色</p>
 </blockquote>
@@ -3186,7 +3186,7 @@ spring:
 <span class="token punctuation">}</span>
 </code></pre>
 <p>从上面两个方法中可以看出：验证身份的时候是根据用户输入的用户名先从数据库中查出该用户名对应的用户，这时候并没有涉及到密码，也就是说到这一步的时候，即使用户输入的密码不对，也是可以查出来该用户的，然后将该用户的正确信息封装到 authcInfo 中返回给 Shiro，接下来就是Shiro的事了，它会根据这里面的真实信息与用户前台输入的用户名和密码进行校验， 这个时候也要校验密码了，如果校验通过就让用户登录，否则跳转到指定页面。同理，权限验证的时候也是先根据用户名从数据库中获取与该用户名有关的角色和权限，然后封装到 authorizationInfo 中返回给 Shiro。</p>
-<h3 id="2-3-Shiro-配置"><a href="#2-3-Shiro-配置" class="headerlink" title="2.3 Shiro 配置"></a>2.3 Shiro 配置</h3><p>自定义的 realm 写好了，接下来需要对 Shiro 进行配置了。我们主要配置三个东西：自定义 realm、安全管理器 SecurityManager 和 Shiro 过滤器。如下：</p>
+<h4 id="2-3-Shiro-配置"><a href="#2-3-Shiro-配置" class="headerlink" title="2.3 Shiro 配置"></a>2.3 Shiro 配置</h4><p>自定义的 realm 写好了，接下来需要对 Shiro 进行配置了。我们主要配置三个东西：自定义 realm、安全管理器 SecurityManager 和 Shiro 过滤器。如下：</p>
 <p>配置自定义 realm：</p>
 <pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Configuration</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ShiroConfig</span> <span class="token punctuation">{</span>
@@ -3285,7 +3285,7 @@ spring:
 <p>默认登录的 url：身份认证失败会访问该 url<br>认证成功之后要跳转的 url<br>权限认证失败会访问该 url<br>需要拦截或者放行的 url：这些都放在一个 map 中</p>
 </blockquote>
 <p>从上述代码中可以看出，在 map 中，针对不同的 url，有不同的权限要求，这里总结一下常用的几个权限。<br>|Filter|说明|<br>|:–:|:–:|<br>|anon|开放权限，可以理解为匿名用户或游客，可以直接访问的|<br>|authc|需要身份认证的|<br>|logout|注销，执行后会直接跳转到 <code>shiroFilterFactoryBean.setLoginUrl();</code> 设置的 url，即登录页面|<br>|roles[admin]|参数可写多个，表示是某个或某些角色才能通过，多个参数时写 roles[“admin，user”]，当有多个参数时必须每个参数都通过才算通过|<br>|perms[user]|参数可写多个，表示需要某个或某些权限才能通过，多个参数时写 perms[“user, admin”]，当有多个参数时必须每个参数都通过才算通过|</p>
-<h3 id="2-4-使用-Shiro-进行认证"><a href="#2-4-使用-Shiro-进行认证" class="headerlink" title="2.4 使用 Shiro 进行认证"></a>2.4 使用 Shiro 进行认证</h3><p>到这里，我们对 Shiro 的准备工作都做完了，接下来开始使用 Shiro 进行认证工作。我们首先来设计几个接口：</p>
+<h4 id="2-4-使用-Shiro-进行认证"><a href="#2-4-使用-Shiro-进行认证" class="headerlink" title="2.4 使用 Shiro 进行认证"></a>2.4 使用 Shiro 进行认证</h4><p>到这里，我们对 Shiro 的准备工作都做完了，接下来开始使用 Shiro 进行认证工作。我们首先来设计几个接口：</p>
 <blockquote>
 <p>接口一： 使用 <code>http://localhost:8080/user/admin</code> 来验证身份认证<br>接口二： 使用 <code>http://localhost:8080/user/student</code> 来验证角色认证<br>接口三： 使用 <code>http://localhost:8080/user/teacher</code> 来验证权限认证<br>接口四： 使用 <code>http://localhost:8080/user/login</code> 来实现用户登录</p>
 </blockquote>
@@ -3293,7 +3293,7 @@ spring:
 <blockquote>
 <p>流程一： 直接访问接口一（此时还未登录），认证失败，跳转到 login.html 页面让用户登录，登录会请求接口四，实现用户登录功能，此时 Shiro 已经保存了用户信息了。<br>流程二： 再次访问接口一（此时用户已经登录），认证成功，跳转到 success.html 页面，展示用户信息。<br>流程三： 访问接口二，测试角色认证是否成功。<br>流程四： 访问接口三，测试权限认证是否成功。</p>
 </blockquote>
-<h4 id="2-4-1-身份、角色、权限认证接口"><a href="#2-4-1-身份、角色、权限认证接口" class="headerlink" title="2.4.1 身份、角色、权限认证接口"></a>2.4.1 身份、角色、权限认证接口</h4><pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Controller</span>
+<h5 id="2-4-1-身份、角色、权限认证接口"><a href="#2-4-1-身份、角色、权限认证接口" class="headerlink" title="2.4.1 身份、角色、权限认证接口"></a>2.4.1 身份、角色、权限认证接口</h5><pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Controller</span>
 <span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">"/user"</span><span class="token punctuation">)</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">UserController</span> <span class="token punctuation">{</span>
 
@@ -3330,7 +3330,7 @@ spring:
 <span class="token punctuation">}</span>
 </code></pre>
 <p>这三个接口很简单，直接返回到指定页面展示即可，只要认证成功就会正常跳转，如果认证失败，就会跳转到上文 ShrioConfig 中配置的页面进行展示。</p>
-<h4 id="2-4-2-用户登录接口"><a href="#2-4-2-用户登录接口" class="headerlink" title="2.4.2 用户登录接口"></a>2.4.2 用户登录接口</h4><pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Controller</span>
+<h5 id="2-4-2-用户登录接口"><a href="#2-4-2-用户登录接口" class="headerlink" title="2.4.2 用户登录接口"></a>2.4.2 用户登录接口</h5><pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Controller</span>
 <span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">"/user"</span><span class="token punctuation">)</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">UserController</span> <span class="token punctuation">{</span>
 
@@ -3362,18 +3362,18 @@ spring:
 <span class="token punctuation">}</span>
 </code></pre>
 <p>我们重点分析一下这个登录接口，首先会根据前端传过来的用户名和密码，创建一个 token，然后使用 SecurityUtils 来创建一个认证主体，接下来开始调用 <code>subject.login(token)</code> 开始进行身份认证了，注意这里传了刚刚创建的 token，就如注释中所述，这一步会跳转到我们自定义的 realm 中，进入 <code>doGetAuthenticationInfo</code> 方法，所以到这里，您就会明白该方法中那个参数 token 了。然后就是上文分析的那样，开始进行身份认证。</p>
-<h4 id="2-4-3-测试一下"><a href="#2-4-3-测试一下" class="headerlink" title="2.4.3 测试一下"></a>2.4.3 测试一下</h4><p>最后，启动项目，测试一下：<br>浏览器请求 <code>http://localhost:8080/user/admin</code> 会进行身份认证，因为此时未登录，所以会跳转到 IndexController 中的 <code>/login</code> 接口，然后跳转到 <code>login.html</code> 页面让我们登录，使用用户名密码为 csdn/123456 登录之后，我们在浏览器中请求 <code>http://localhost:8080/user/student</code> 接口，会进行角色认证，因为数据库中 csdn1 的用户角色是 admin，所以和配置中的吻合，认证通过；我们再请求 <code>http://localhost:8080/user/teacher</code> 接口，会进行权限认证，因为数据库中 csdn1 的用户权限为 <code>user:*</code>，满足配置中的 <code>user:create</code>，所以认证通过。</p>
+<h5 id="2-4-3-测试一下"><a href="#2-4-3-测试一下" class="headerlink" title="2.4.3 测试一下"></a>2.4.3 测试一下</h5><p>最后，启动项目，测试一下：<br>浏览器请求 <code>http://localhost:8080/user/admin</code> 会进行身份认证，因为此时未登录，所以会跳转到 IndexController 中的 <code>/login</code> 接口，然后跳转到 <code>login.html</code> 页面让我们登录，使用用户名密码为 csdn/123456 登录之后，我们在浏览器中请求 <code>http://localhost:8080/user/student</code> 接口，会进行角色认证，因为数据库中 csdn1 的用户角色是 admin，所以和配置中的吻合，认证通过；我们再请求 <code>http://localhost:8080/user/teacher</code> 接口，会进行权限认证，因为数据库中 csdn1 的用户权限为 <code>user:*</code>，满足配置中的 <code>user:create</code>，所以认证通过。</p>
 <p>接下来，我们点退出，系统会注销重新让我们登录，我们使用 csdn2 这个用户来登录，重复上述操作，当在进行角色认证和权限认证这两步时，就认证不通过了，因为数据库中 csdn2 这个用户存的角色和权限与配置中的不同，所以认证不通过。</p>
-<h2 id="3-总结-2"><a href="#3-总结-2" class="headerlink" title="3. 总结"></a>3. 总结</h2><p>本节主要介绍了 Shiro 安全框架与 Spring Boot 的整合。先介绍了 Shiro 的三大核心组件已经它们的作用；然后介绍了 Shiro 的身份认证、角色认证和权限认证；最后结合代码，详细介绍了 Spring Boot 中是如何整合 Shiro 的，并设计了一套测试流程，逐步分析 Shiro 的工作流程和原理，让读者更直观地体会出 Shiro 的整套工作流程。Shiro 使用的很广泛，希望读者将其掌握，并能运用到实际项目中。</p>
+<h3 id="3-总结-2"><a href="#3-总结-2" class="headerlink" title="3. 总结"></a>3. 总结</h3><p>本节主要介绍了 Shiro 安全框架与 Spring Boot 的整合。先介绍了 Shiro 的三大核心组件已经它们的作用；然后介绍了 Shiro 的身份认证、角色认证和权限认证；最后结合代码，详细介绍了 Spring Boot 中是如何整合 Shiro 的，并设计了一套测试流程，逐步分析 Shiro 的工作流程和原理，让读者更直观地体会出 Shiro 的整套工作流程。Shiro 使用的很广泛，希望读者将其掌握，并能运用到实际项目中。</p>
 <p>课程源代码下载地址：<a target="_blank" rel="noopener" href="https://gitee.com/eson15/springboot_study">戳我下载</a></p>
-<h1 id="第17课：Spring-Boot中集成Lucence"><a href="#第17课：Spring-Boot中集成Lucence" class="headerlink" title="第17课：Spring Boot中集成Lucence"></a>第17课：Spring Boot中集成Lucence</h1><h2 id="1-Lucence-和全文检索"><a href="#1-Lucence-和全文检索" class="headerlink" title="1. Lucence 和全文检索"></a>1. Lucence 和全文检索</h2><p>Lucene 是什么？看一下百度百科：</p>
+<h2 id="第17课：Spring-Boot中集成Lucence"><a href="#第17课：Spring-Boot中集成Lucence" class="headerlink" title="第17课：Spring Boot中集成Lucence"></a>第17课：Spring Boot中集成Lucence</h2><h3 id="1-Lucence-和全文检索"><a href="#1-Lucence-和全文检索" class="headerlink" title="1. Lucence 和全文检索"></a>1. Lucence 和全文检索</h3><p>Lucene 是什么？看一下百度百科：</p>
 <blockquote>
 <p>Lucene是一套用于全文检索和搜寻的开源程式库，由 Apache 软件基金会支持和提供。Lucene 提供了一个简单却强大的应用程式接口，能够做全文索引和搜寻。在 Java 开发环境里 Lucene 是一个成熟的免费开源工具。就其本身而言，Lucene 是当前以及最近几年最受欢迎的免费 Java 信息检索程序库。——《百度百科》</p>
 </blockquote>
-<h3 id="1-1-全文检索"><a href="#1-1-全文检索" class="headerlink" title="1.1 全文检索"></a>1.1 全文检索</h3><p>这里提到了全文检索的概念，我们先来分析一下什么是全文检索，理解了全文检索之后，再理解 Lucene 的原理就非常简单了。  </p>
+<h4 id="1-1-全文检索"><a href="#1-1-全文检索" class="headerlink" title="1.1 全文检索"></a>1.1 全文检索</h4><p>这里提到了全文检索的概念，我们先来分析一下什么是全文检索，理解了全文检索之后，再理解 Lucene 的原理就非常简单了。  </p>
 <p>何为全文检索？举个例子，比如现在要在一个文件中查找某个字符串，最直接的想法就是从头开始检索，查到了就OK，这种对于小数据量的文件来说，很实用，但是对于大数据量的文件来说，就有点吃力了。或者说找包含某个字符串的文件，也是这样，如果在一个拥有几十个 G 的硬盘中找那效率可想而知，是很低的。   </p>
 <p>文件中的数据是属于非结构化数据，也就是说它没有什么结构可言，要解决上面提到的效率问题，首先我们得将非结构化数据中的一部分信息提取出来，重新组织，使其变得有一定结构，然后对这些有一定结构的数据进行搜索，从而达到搜索相对较快的目的。这就叫全文搜索。即先建立索引，再对索引进行搜索的过程。 </p>
-<h3 id="1-2-Lucene-建立索引的方式"><a href="#1-2-Lucene-建立索引的方式" class="headerlink" title="1.2 Lucene 建立索引的方式"></a>1.2 Lucene 建立索引的方式</h3><p>那么 Lucene 中是如何建立索引的呢？假设现在有两篇文章，内容如下：</p>
+<h4 id="1-2-Lucene-建立索引的方式"><a href="#1-2-Lucene-建立索引的方式" class="headerlink" title="1.2 Lucene 建立索引的方式"></a>1.2 Lucene 建立索引的方式</h4><p>那么 Lucene 中是如何建立索引的呢？假设现在有两篇文章，内容如下：</p>
 <blockquote>
 <p>文章1的内容为：Tom lives in Guangzhou, I live in Guangzhou too.<br>文章2的内容为：He once lived in Shanghai.</p>
 </blockquote>
@@ -3427,7 +3427,7 @@ spring:
 </tbody></table>
 <p>以上就是Lucene 索引结构中最核心的部分。它的关键字是按字符顺序排列的，因此 Lucene 可以用二元搜索算法快速定位关键词。实现时 Lucene 将上面三列分别作为词典文件（Term Dictionary）、频率文件（frequencies）和位置文件（positions）保存。其中词典文件不仅保存有每个关键词，还保留了指向频率文件和位置文件的指针，通过指针可以找到该关键字的频率信息和位置信息。<br>搜索的过程是先对词典二元查找、找到该词，通过指向频率文件的指针读出所有文章号，然后返回结果，然后就可以在具体的文章中根据出现位置找到该词了。所以 Lucene 在第一次建立索引的时候可能会比较慢，但是以后就不需要每次都建立索引了，就快了。</p>
 <p>理解了 Lucene 的分词原理，接下来我们在 Spring Boot 中集成 Lucene 并实现索引和搜索的功能。</p>
-<h2 id="2-Spring-Boot-中集成-Lucence"><a href="#2-Spring-Boot-中集成-Lucence" class="headerlink" title="2. Spring Boot 中集成 Lucence"></a>2. Spring Boot 中集成 Lucence</h2><h3 id="2-1-依赖导入-3"><a href="#2-1-依赖导入-3" class="headerlink" title="2.1 依赖导入"></a>2.1 依赖导入</h3><p>首先需要导入 Lucene 的依赖，它的依赖有好几个，如下：</p>
+<h3 id="2-Spring-Boot-中集成-Lucence"><a href="#2-Spring-Boot-中集成-Lucence" class="headerlink" title="2. Spring Boot 中集成 Lucence"></a>2. Spring Boot 中集成 Lucence</h3><h4 id="2-1-依赖导入-3"><a href="#2-1-依赖导入-3" class="headerlink" title="2.1 依赖导入"></a>2.1 依赖导入</h4><p>首先需要导入 Lucene 的依赖，它的依赖有好几个，如下：</p>
 <pre class=" language-xml"><code class="language-xml"><span class="token comment" spellcheck="true">&lt;!-- Lucence核心包 --></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.apache.lucene<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
@@ -3464,8 +3464,8 @@ spring:
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
 </code></pre>
 <p>最后一个依赖是用来支持中文分词的，因为默认是支持英文的。那个高亮的分词依赖是最后我要做一个搜索，然后将搜到的内容高亮显示，模拟当前互联网上的做法，大家可以运用到实际项目中去。</p>
-<h3 id="2-2-快速入门"><a href="#2-2-快速入门" class="headerlink" title="2.2 快速入门"></a>2.2 快速入门</h3><p>根据上文的分析，全文检索有两个步骤，先建立索引，再检索。所以为了测试这个过程，我新建两个 java 类，一个用来建立索引的，另一个用来检索。</p>
-<h4 id="2-2-1-建立索引"><a href="#2-2-1-建立索引" class="headerlink" title="2.2.1 建立索引"></a>2.2.1 建立索引</h4><p>我们自己弄几个文件，放到 <code>D:\lucene\data</code> 目录下，新建一个 Indexer 类来实现建立索引功能。首先在构造方法中初始化标准分词器和写索引实例。</p>
+<h4 id="2-2-快速入门"><a href="#2-2-快速入门" class="headerlink" title="2.2 快速入门"></a>2.2 快速入门</h4><p>根据上文的分析，全文检索有两个步骤，先建立索引，再检索。所以为了测试这个过程，我新建两个 java 类，一个用来建立索引的，另一个用来检索。</p>
+<h5 id="2-2-1-建立索引"><a href="#2-2-1-建立索引" class="headerlink" title="2.2.1 建立索引"></a>2.2.1 建立索引</h5><p>我们自己弄几个文件，放到 <code>D:\lucene\data</code> 目录下，新建一个 Indexer 类来实现建立索引功能。首先在构造方法中初始化标准分词器和写索引实例。</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Indexer</span> <span class="token punctuation">{</span>
 
     <span class="token comment" spellcheck="true">/**
@@ -3578,8 +3578,7 @@ spring:
 共索引了2个文件
 </code></pre>
 <p>然后我们去 <code>D:\lucene\</code> 目录下可以看到一些索引文件，这些文件不能删除，删除了就需要重新构建索引，否则没了索引，就无法去检索内容了。</p>
-<p>####2.2.2 检索内容</p>
-<p>上面把这两个文件的索引建立好了，接下来我们就可以写检索程序了，在这两个文件中查找特定的词。</p>
+<h5 id="2-2-2-检索内容"><a href="#2-2-2-检索内容" class="headerlink" title="2.2.2 检索内容"></a>2.2.2 检索内容</h5><p>上面把这两个文件的索引建立好了，接下来我们就可以写检索程序了，在这两个文件中查找特定的词。</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Searcher</span> <span class="token punctuation">{</span>
 
     <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">search</span><span class="token punctuation">(</span>String indexDir<span class="token punctuation">,</span> String q<span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception <span class="token punctuation">{</span>
@@ -3634,8 +3633,8 @@ spring:
 D:\lucene\data\catalina.properties
 </code></pre>
 <p>可以看出，耗时了23毫秒在两个文件中找到了 security 这个字符串，并输出了文件的名称。上面的代码我写的很详细，这个代码已经比较全了，可以用在生产环境上。</p>
-<h3 id="2-3-中文分词检索高亮实战"><a href="#2-3-中文分词检索高亮实战" class="headerlink" title="2.3 中文分词检索高亮实战"></a>2.3 中文分词检索高亮实战</h3><p>上文已经写了建立索引和检索的代码，但是在实际项目中，我们往往是结合页面做一些查询结果的展示，比如我要查某个关键字，查到了之后，将相关的信息点展示出来，并将查询的关键字高亮等等。这种需求在实际项目中非常常见，而且大多数网站中都会有这种效果。所以这一小节我们就使用 Lucene 来实现这种效果。</p>
-<h4 id="2-3-1-中文分词"><a href="#2-3-1-中文分词" class="headerlink" title="2.3.1 中文分词"></a>2.3.1 中文分词</h4><p>我们新建一个 ChineseIndexer 类来建立中文索引，建立过程和英文索引一样的，不同的地方在于使用的是中文分词器。除此之外，这里我们不用通过读取文件去建立索引，我们模拟一下用字符串来建立，因为在实际项目中，绝大部分情况是获取到一些文本字符串，然后根据一些关键字去查询相关内容等等。代码如下：</p>
+<h4 id="2-3-中文分词检索高亮实战"><a href="#2-3-中文分词检索高亮实战" class="headerlink" title="2.3 中文分词检索高亮实战"></a>2.3 中文分词检索高亮实战</h4><p>上文已经写了建立索引和检索的代码，但是在实际项目中，我们往往是结合页面做一些查询结果的展示，比如我要查某个关键字，查到了之后，将相关的信息点展示出来，并将查询的关键字高亮等等。这种需求在实际项目中非常常见，而且大多数网站中都会有这种效果。所以这一小节我们就使用 Lucene 来实现这种效果。</p>
+<h5 id="2-3-1-中文分词"><a href="#2-3-1-中文分词" class="headerlink" title="2.3.1 中文分词"></a>2.3.1 中文分词</h5><p>我们新建一个 ChineseIndexer 类来建立中文索引，建立过程和英文索引一样的，不同的地方在于使用的是中文分词器。除此之外，这里我们不用通过读取文件去建立索引，我们模拟一下用字符串来建立，因为在实际项目中，绝大部分情况是获取到一些文本字符串，然后根据一些关键字去查询相关内容等等。代码如下：</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ChineseIndexer</span> <span class="token punctuation">{</span>
 
     <span class="token comment" spellcheck="true">/**
@@ -3696,7 +3695,7 @@ D:\lucene\data\catalina.properties
 <span class="token punctuation">}</span>
 </code></pre>
 <p>这里我们用 id、city、desc 分别代表 id、城市名称和城市描述，用他们作为关键字来建立索引，后面我们获取内容的时候，主要来获取城市描述。南京的描述我故意写的长一点，因为下文检索的时候，根据不同的关键字会检索到不同部分的信息，有个权重的概念在里面。<br>然后执行一下 main 方法，将索引保存到 <code>D:\lucene2\</code> 中。 </p>
-<h4 id="2-3-2-中文分词查询"><a href="#2-3-2-中文分词查询" class="headerlink" title="2.3.2 中文分词查询"></a>2.3.2 中文分词查询</h4><p>中文分词查询代码逻辑和默认的查询差不多，有一些区别在于，我们需要将查询出来的关键字标红加粗等需要处理，需要计算出一个得分片段，这是什么意思呢？比如我搜索 “南京文化” 跟搜索 “南京文明”，这两个搜索结果应该根据关键字出现的位置，返回的结果不一样才对，这在下文会测试。我们先看一下代码和注释：</p>
+<h5 id="2-3-2-中文分词查询"><a href="#2-3-2-中文分词查询" class="headerlink" title="2.3.2 中文分词查询"></a>2.3.2 中文分词查询</h5><p>中文分词查询代码逻辑和默认的查询差不多，有一些区别在于，我们需要将查询出来的关键字标红加粗等需要处理，需要计算出一个得分片段，这是什么意思呢？比如我搜索 “南京文化” 跟搜索 “南京文明”，这两个搜索结果应该根据关键字出现的位置，返回的结果不一样才对，这在下文会测试。我们先看一下代码和注释：</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ChineseSearch</span> <span class="token punctuation">{</span>
 
     <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> Logger logger <span class="token operator">=</span> LoggerFactory<span class="token punctuation">.</span><span class="token function">getLogger</span><span class="token punctuation">(</span>ChineseSearch<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -3757,7 +3756,7 @@ D:\lucene\data\catalina.properties
 <span class="token punctuation">}</span>
 </code></pre>
 <p>每一步的注释我写的很详细，在这就不赘述了。接下来我们来测试一下效果。</p>
-<h4 id="2-3-3-测试一下"><a href="#2-3-3-测试一下" class="headerlink" title="2.3.3 测试一下"></a>2.3.3 测试一下</h4><p>这里我们使用 thymeleaf 来写个简单的页面来展示获取到的数据，并高亮展示。在 controller 中我们指定索引的目录和需要查询的字符串，如下：</p>
+<h5 id="2-3-3-测试一下"><a href="#2-3-3-测试一下" class="headerlink" title="2.3.3 测试一下"></a>2.3.3 测试一下</h5><p>这里我们使用 thymeleaf 来写个简单的页面来展示获取到的数据，并高亮展示。在 controller 中我们指定索引的目录和需要查询的字符串，如下：</p>
 <pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Controller</span>
 <span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">"/lucene"</span><span class="token punctuation">)</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">IndexController</span> <span class="token punctuation">{</span>
@@ -3798,14 +3797,14 @@ D:\lucene\data\catalina.properties
 <p>再将 controller 中的搜索关键字改成 “南京文明”，看下命中的效果。</p>
 <p><img src="https://images.gitbook.cn/8ef8a4a0-b377-11e8-911d-27cc5f059829" alt="南京文明"></p>
 <p>可以看出，不同的关键词，它会计算一个得分片段，也就是说不同的关键字会命中不同位置的内容，然后将关键字根据我们自己设定的形式高亮显示。从结果中可以看出，Lucene 也可以很智能的将关键字拆分命中，这在实际项目中会很好用。</p>
-<h2 id="3-总结-3"><a href="#3-总结-3" class="headerlink" title="3. 总结"></a>3. 总结</h2><p>本节课首先详细的分析了全文检索的理论规则，然后结合 Lucene，系统的讲述了在 Spring Boot 的集成步骤，首先快速带领大家从直观上感受 Lucene 如何建立索引已经如果检索，其次通过中文检索的具体实例，展示了 Lucene 在全文检索中的广泛应用。Lucene 不难，主要就是步骤比较多，代码不用死记硬背，拿到项目中根据实际情况做对应的修改即可。</p>
+<h3 id="3-总结-3"><a href="#3-总结-3" class="headerlink" title="3. 总结"></a>3. 总结</h3><p>本节课首先详细的分析了全文检索的理论规则，然后结合 Lucene，系统的讲述了在 Spring Boot 的集成步骤，首先快速带领大家从直观上感受 Lucene 如何建立索引已经如果检索，其次通过中文检索的具体实例，展示了 Lucene 在全文检索中的广泛应用。Lucene 不难，主要就是步骤比较多，代码不用死记硬背，拿到项目中根据实际情况做对应的修改即可。</p>
 <p>课程源代码下载地址：<a target="_blank" rel="noopener" href="https://gitee.com/eson15/springboot_study">戳我下载</a></p>
-<h1 id="第18课：Spring-Boot搭建实际项目开发中的架构"><a href="#第18课：Spring-Boot搭建实际项目开发中的架构" class="headerlink" title="第18课：Spring Boot搭建实际项目开发中的架构"></a>第18课：Spring Boot搭建实际项目开发中的架构</h1><p>前面的课程中，我主要给大家讲解了 Spring Boot 中常用的一些技术点，这些技术点在实际项目中可能不会全部用得到，因为不同的项目可能使用的技术不同，但是希望大家都能掌握如何使用，并能自己根据实际项目中的需求进行相应的扩展。</p>
+<h2 id="第18课：Spring-Boot搭建实际项目开发中的架构"><a href="#第18课：Spring-Boot搭建实际项目开发中的架构" class="headerlink" title="第18课：Spring Boot搭建实际项目开发中的架构"></a>第18课：Spring Boot搭建实际项目开发中的架构</h2><p>前面的课程中，我主要给大家讲解了 Spring Boot 中常用的一些技术点，这些技术点在实际项目中可能不会全部用得到，因为不同的项目可能使用的技术不同，但是希望大家都能掌握如何使用，并能自己根据实际项目中的需求进行相应的扩展。</p>
 <p>不知道大家了不了解单片机，单片机里有个最小系统，这个最小系统搭建好了之后，就可以在此基础上进行人为的扩展。这节课我们要做的就是搭建一个 “Spring Boot 最小系统架构” 。拿着这个架构，可以在此基础上根据实际需求做相应的扩展。</p>
 <p>从零开始搭建一个环境，主要要考虑几点：统一封装的数据结构、可调式的接口、json的处理、模板引擎的使用（本文不写该项，因为现在大部分项目都前后端分离了，但是考虑到也还有非前后端分离的项目，所以我在源代码里也加上了 thymeleaf）、持久层的集成、拦截器（这个也是可选的）和全局异常处理。一般包括这些东西的话，基本上一个 Spring Boot 项目环境就差不多了，然后就是根据具体情况来扩展了。</p>
 <p>结合前面的课程和以上的这些点，本节课手把手带领大家搭建一个实际项目开发中可用的 Spring Boot 架构。整个项目工程如下图所示，学习的时候，可以结合我的源码，这样效果会更好。</p>
 <p><img src="https://images.gitbook.cn/6f23c980-b89e-11e8-87f1-559c9b456754" alt="工程架构"></p>
-<h2 id="1-统一的数据封装"><a href="#1-统一的数据封装" class="headerlink" title="1. 统一的数据封装"></a>1. 统一的数据封装</h2><p>由于封装的 json 数据的类型不确定，所以在定义统一的 json 结构时，我们需要用到泛型。统一的 json 结构中属性包括数据、状态码、提示信息即可，构造方法可以根据实际业务需求做相应的添加即可，一般来说，应该有默认的返回结构，也应该有用户指定的返回结构。如下：</p>
+<h3 id="1-统一的数据封装"><a href="#1-统一的数据封装" class="headerlink" title="1. 统一的数据封装"></a>1. 统一的数据封装</h3><p>由于封装的 json 数据的类型不确定，所以在定义统一的 json 结构时，我们需要用到泛型。统一的 json 结构中属性包括数据、状态码、提示信息即可，构造方法可以根据实际业务需求做相应的添加即可，一般来说，应该有默认的返回结构，也应该有用户指定的返回结构。如下：</p>
 <pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
  * 统一返回对象
  * @author shengwu ni
@@ -3869,7 +3868,7 @@ D:\lucene\data\catalina.properties
 <span class="token punctuation">}</span>
 </code></pre>
 <p>大家可以根据自己项目中所需要的一些东西，合理的修改统一结构中的字段信息。</p>
-<h2 id="2-json的处理"><a href="#2-json的处理" class="headerlink" title="2. json的处理"></a>2. json的处理</h2><p>Json 处理工具很多，比如阿里巴巴的 fastjson，不过 fastjson 对有些未知类型的 null 无法转成空字符串，这可能是 fastjson 自身的缺陷，可扩展性也不是太好，但是使用起来方便，使用的人也蛮多的。这节课里面我们主要集成 Spring Boot 自带的 jackson。主要是对 jackson 做一下对 null 的配置即可，然后就可以在项目中使用了。</p>
+<h3 id="2-json的处理"><a href="#2-json的处理" class="headerlink" title="2. json的处理"></a>2. json的处理</h3><p>Json 处理工具很多，比如阿里巴巴的 fastjson，不过 fastjson 对有些未知类型的 null 无法转成空字符串，这可能是 fastjson 自身的缺陷，可扩展性也不是太好，但是使用起来方便，使用的人也蛮多的。这节课里面我们主要集成 Spring Boot 自带的 jackson。主要是对 jackson 做一下对 null 的配置即可，然后就可以在项目中使用了。</p>
 <pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
  * jacksonConfig
  * @author shengwu ni
@@ -3892,7 +3891,7 @@ D:\lucene\data\catalina.properties
 <span class="token punctuation">}</span>
 </code></pre>
 <p>这里先不测试，等下面 swagger2 配置好了之后，我们一起来测试一下。</p>
-<h2 id="3-swagger2在线可调式接口"><a href="#3-swagger2在线可调式接口" class="headerlink" title="3. swagger2在线可调式接口"></a>3. swagger2在线可调式接口</h2><p>有了 swagger，开发人员不需要给其他人员提供接口文档，只要告诉他们一个 Swagger 地址，即可展示在线的 API 接口文档，除此之外，调用接口的人员还可以在线测试接口数据，同样地，开发人员在开发接口时，同样也可以利用 Swagger 在线接口文档测试接口数据，这给开发人员提供了便利。使用 swagger 需要对其进行配置：</p>
+<h3 id="3-swagger2在线可调式接口"><a href="#3-swagger2在线可调式接口" class="headerlink" title="3. swagger2在线可调式接口"></a>3. swagger2在线可调式接口</h3><p>有了 swagger，开发人员不需要给其他人员提供接口文档，只要告诉他们一个 Swagger 地址，即可展示在线的 API 接口文档，除此之外，调用接口的人员还可以在线测试接口数据，同样地，开发人员在开发接口时，同样也可以利用 Swagger 在线接口文档测试接口数据，这给开发人员提供了便利。使用 swagger 需要对其进行配置：</p>
 <pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
  * swagger配置
  * @author shengwu ni
@@ -3949,7 +3948,7 @@ D:\lucene\data\catalina.properties
 <span class="token punctuation">}</span>
 </code></pre>
 <p>然后启动项目，在浏览器中输入 <code>localhost:8080/swagger-ui.html</code> 即可看到 swagger 接口文档页面，调用一下上面这个接口，即可看到返回的 json 数据。</p>
-<h2 id="4-持久层集成"><a href="#4-持久层集成" class="headerlink" title="4. 持久层集成"></a>4. 持久层集成</h2><p>每个项目中是必须要有持久层的，与数据库交互，这里我们主要来集成 mybatis，集成 mybatis 首先要在 application.yml 中进行配置。</p>
+<h3 id="4-持久层集成"><a href="#4-持久层集成" class="headerlink" title="4. 持久层集成"></a>4. 持久层集成</h3><p>每个项目中是必须要有持久层的，与数据库交互，这里我们主要来集成 mybatis，集成 mybatis 首先要在 application.yml 中进行配置。</p>
 <pre class=" language-yml"><code class="language-yml"># 服务端口号
 server:
   port: 8080
@@ -3994,7 +3993,7 @@ mybatis:
 <span class="token punctuation">}</span>
 </code></pre>
 <p>关于 service 层我就不在文章中写代码了，大家可以结合我的源代码学习，这一节主要带领大家来搭建一个 Spring Boot 空架构。最后别忘了在启动类上添加注解扫描 <code>@MapperScan(&quot;com.itcodai.course18.dao&quot;)</code></p>
-<h2 id="5-拦截器"><a href="#5-拦截器" class="headerlink" title="5. 拦截器"></a>5. 拦截器</h2><p>拦截器在项目中使用的是非常多的（但不是绝对的），比如拦截一些置顶的 url，做一些判断和处理等等。除此之外，还需要将常用的静态页面或者 swagger 页面放行，不能将这些静态资源给拦截了。首先先自定义一个拦截器。</p>
+<h3 id="5-拦截器"><a href="#5-拦截器" class="headerlink" title="5. 拦截器"></a>5. 拦截器</h3><p>拦截器在项目中使用的是非常多的（但不是绝对的），比如拦截一些置顶的 url，做一些判断和处理等等。除此之外，还需要将常用的静态页面或者 swagger 页面放行，不能将这些静态资源给拦截了。首先先自定义一个拦截器。</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MyInterceptor</span> <span class="token keyword">implements</span> <span class="token class-name">HandlerInterceptor</span> <span class="token punctuation">{</span>
 
     <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> Logger logger <span class="token operator">=</span> LoggerFactory<span class="token punctuation">.</span><span class="token function">getLogger</span><span class="token punctuation">(</span>MyInterceptor<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -4037,7 +4036,7 @@ mybatis:
 </blockquote>
 <p>上面代码中配置的 <code>/**</code> 是对所有 url 都进行了拦截，但我们实现了 WebMvcConfigurer 接口，不会导致 Spring Boot 对上面这些目录下的静态资源实施拦截。但是我们平时访问的 swagger 会被拦截，所以要将其放行。swagger 页面在 swagger-resources 目录下，放行该目录下所有文件即可。</p>
 <p>然后在浏览器中输入一下 swagger 页面，若能正常显示 swagger，说明放行成功。同时可以根据后台打印的日志判断代码执行的顺序。</p>
-<h2 id="6-全局异常处理"><a href="#6-全局异常处理" class="headerlink" title="6. 全局异常处理"></a>6. 全局异常处理</h2><p>全局异常处理是每个项目中必须用到的东西，在具体的异常中，我们可能会做具体的处理，但是对于没有处理的异常，一般会有一个统一的全局异常处理。在异常处理之前，最好维护一个异常提示信息枚举类，专门用来保存异常提示信息的。如下：</p>
+<h3 id="6-全局异常处理"><a href="#6-全局异常处理" class="headerlink" title="6. 全局异常处理"></a>6. 全局异常处理</h3><p>全局异常处理是每个项目中必须用到的东西，在具体的异常中，我们可能会做具体的处理，但是对于没有处理的异常，一般会有一个统一的全局异常处理。在异常处理之前，最好维护一个异常提示信息枚举类，专门用来保存异常提示信息的。如下：</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">enum</span> BusinessMsgEnum <span class="token punctuation">{</span>
     <span class="token comment" spellcheck="true">/** 参数异常 */</span>
     <span class="token function">PARMETER_EXCEPTION</span><span class="token punctuation">(</span><span class="token string">"102"</span><span class="token punctuation">,</span> <span class="token string">"参数异常!"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
@@ -4119,9 +4118,9 @@ mybatis:
 <span class="token punctuation">}</span>
 </code></pre>
 <p>其中，BusinessErrorException 是自定义的业务异常，继承一下 RuntimeException 即可，具体可以看我的源代码，文章中就不贴代码了。<br>在 UserController 中有个 testException 方法，用来测试全局异常的，打开 swagger 页面，调用一下该接口，可以看出返回用户提示信息：”系统发生异常，请联系管理员！“。当然了，实际情况中，需要根据不同的业务提示不同的信息。</p>
-<h2 id="7-总结"><a href="#7-总结" class="headerlink" title="7. 总结"></a>7. 总结</h2><p>本文主要手把手带领大家快速搭建一个项目中可以使用的 Spring Boot 空架构，主要从统一封装的数据结构、可调式的接口、json的处理、模板引擎的使用（代码中体现）、持久层的集成、拦截器和全局异常处理。一般包括这些东西的话，基本上一个 Spring Boot 项目环境就差不多了，然后就是根据具体情况来扩展了。</p>
+<h3 id="7-总结"><a href="#7-总结" class="headerlink" title="7. 总结"></a>7. 总结</h3><p>本文主要手把手带领大家快速搭建一个项目中可以使用的 Spring Boot 空架构，主要从统一封装的数据结构、可调式的接口、json的处理、模板引擎的使用（代码中体现）、持久层的集成、拦截器和全局异常处理。一般包括这些东西的话，基本上一个 Spring Boot 项目环境就差不多了，然后就是根据具体情况来扩展了。</p>
 <p>课程源代码下载地址：<a target="_blank" rel="noopener" href="https://gitee.com/eson15/springboot_study">戳我下载</a></p>
-<h1 id="附：作者信息"><a href="#附：作者信息" class="headerlink" title="附：作者信息"></a>附：作者信息</h1><p>本课程首发于 CSDN GitChat 达人课，该文档为课程详细笔记<br>作者：倪升武（武哥）<br>微信公众号：武哥聊编程</p>
+<h2 id="附：作者信息"><a href="#附：作者信息" class="headerlink" title="附：作者信息"></a>附：作者信息</h2><p>本课程首发于 CSDN GitChat 达人课，该文档为课程详细笔记<br>作者：倪升武（武哥）<br>微信公众号：武哥聊编程</p>
 <blockquote>
 <p>版权申明：本课程已经免费，但版权属于 CSDN 和作者，未经允许，不得将该笔记用于商业用途，否则追究法律责任。</p>
 </blockquote>
