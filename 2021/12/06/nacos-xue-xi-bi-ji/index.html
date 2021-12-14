@@ -411,7 +411,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-12-11
+                    2021-12-14
                 </div>
                 
 
@@ -440,7 +440,7 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="1-nacos简介"><a href="#1-nacos简介" class="headerlink" title="1-nacos简介"></a>1-nacos简介</h1><p>Nacos一个更易于构建云原生应用的动态服务发现、配置管理和服务管理平台。</p>
+                <h2 id="1-nacos简介"><a href="#1-nacos简介" class="headerlink" title="1-nacos简介"></a>1-nacos简介</h2><p>Nacos一个更易于构建云原生应用的动态服务发现、配置管理和服务管理平台。</p>
 <p><strong>功能：</strong></p>
 <p><strong>1，动态配置服务</strong></p>
 <p>动态配置服务让您能够以中心化、外部化和动态化的方式管理所有环境的配置。动态配置消除了配置变更时重新部署应用和服务的需要。配置中心化管理让实现无状态服务更简单，也让按需弹性扩展服务更容易。</p>
@@ -452,7 +452,7 @@
 <p>通过支持权重路由，动态DNS服务能让您轻松实现中间层负载均衡、更灵活的路由策略、流量控制以及简单数据中心内网的简单DNS解析服务。动态DNS服务还能让您更容易地实现以DNS协议为基础的服务发现，以消除耦合到厂商私有服务发现API上的风险。</p>
 <p>Nacos中文官方站点：</p>
 <p><a target="_blank" rel="noopener" href="https://nacos.io/zh-cn/">https://nacos.io/zh-cn/</a></p>
-<h1 id="2-nacos-server安装"><a href="#2-nacos-server安装" class="headerlink" title="2-nacos server安装"></a>2-nacos server安装</h1><p>Nacos Server依赖于java环境运行，jdk用1.8以上；</p>
+<h2 id="2-nacos-server安装"><a href="#2-nacos-server安装" class="headerlink" title="2-nacos server安装"></a>2-nacos server安装</h2><p>Nacos Server依赖于java环境运行，jdk用1.8以上；</p>
 <p>安装：</p>
 <p><a target="_blank" rel="noopener" href="https://nacos.io/zh-cn/docs/quick-start.html">https://nacos.io/zh-cn/docs/quick-start.html</a></p>
 <p> 默认启动是集群方式：</p>
@@ -474,7 +474,7 @@
 <p>db.pool.config.minimumIdle=2</p>
 <p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/suvork5cyii=1.png" alt="img"></p>
 <p>执行sql脚本；</p>
-<h1 id="3-配置中心入门实例"><a href="#3-配置中心入门实例" class="headerlink" title="3-配置中心入门实例"></a>3-配置中心入门实例</h1><p><a target="_blank" rel="noopener" href="https://github.com/alibaba/spring-cloud-alibaba/wiki/%E7%89%88%E6%9C%AC%E8%AF%B4%E6%98%8E">https://github.com/alibaba/spring-cloud-alibaba/wiki/%E7%89%88%E6%9C%AC%E8%AF%B4%E6%98%8E</a></p>
+<h2 id="3-配置中心入门实例"><a href="#3-配置中心入门实例" class="headerlink" title="3-配置中心入门实例"></a>3-配置中心入门实例</h2><p><a target="_blank" rel="noopener" href="https://github.com/alibaba/spring-cloud-alibaba/wiki/%E7%89%88%E6%9C%AC%E8%AF%B4%E6%98%8E">https://github.com/alibaba/spring-cloud-alibaba/wiki/%E7%89%88%E6%9C%AC%E8%AF%B4%E6%98%8E</a></p>
 <p>springcloudalibaba springcloud springboot版本</p>
 <p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/ru5erkjggg==1.png" alt="img"></p>
 <p>我们选用 </p>
@@ -488,9 +488,9 @@
 <p>@EnableDiscoveryClient</p>
 <p>通过@Value 读取配置：</p>
 <p>通过@RefreshScope刷新读取最新配置；</p>
-<h1 id="4-配置中心数据模型"><a href="#4-配置中心数据模型" class="headerlink" title="4-配置中心数据模型"></a>4-配置中心数据模型</h1><p>Nacos 数据模型 Key 由三元组唯一确定, Namespace默认是空串，公共命名空间（public），分组默认是 DEFAULT_GROUP。</p>
+<h2 id="4-配置中心数据模型"><a href="#4-配置中心数据模型" class="headerlink" title="4-配置中心数据模型"></a>4-配置中心数据模型</h2><p>Nacos 数据模型 Key 由三元组唯一确定, Namespace默认是空串，公共命名空间（public），分组默认是 DEFAULT_GROUP。</p>
 <p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/aelftksuqmcc1.png" alt="img"></p>
-<h1 id="5-加载多配置集"><a href="#5-加载多配置集" class="headerlink" title="5-加载多配置集"></a>5-加载多配置集</h1><p>有时候为了多模块项目的配置共享，我们需要进行配置拆分以及加载多配置集；</p>
+<h2 id="5-加载多配置集"><a href="#5-加载多配置集" class="headerlink" title="5-加载多配置集"></a>5-加载多配置集</h2><p>有时候为了多模块项目的配置共享，我们需要进行配置拆分以及加载多配置集；</p>
 <p>比如我们有10个业务模块项目；mysql，redis，reabbitmq等配置都是一样的，为了统一管理，我们在nacos配置中心需要单独的搞成一个通用配置，然后供主项目引入；</p>
 <p>案例：</p>
 <p>抽取公共配置：</p>
@@ -521,7 +521,7 @@
 <p>spring.cloud.nacos.config.extension-configs[3].data-id=oa.properties</p>
 <p>spring.cloud.nacos.config.extension-configs[3].group=OA_GROUP</p>
 <p>spring.cloud.nacos.config.extension-configs[3].refresh=true</p>
-<h1 id="6-配置中心其他功能"><a href="#6-配置中心其他功能" class="headerlink" title="6-配置中心其他功能"></a>6-配置中心其他功能</h1><p>1，配置导出和导入；</p>
+<h2 id="6-配置中心其他功能"><a href="#6-配置中心其他功能" class="headerlink" title="6-配置中心其他功能"></a>6-配置中心其他功能</h2><p>1，配置导出和导入；</p>
 <p>2，配置克隆功能；</p>
 <p>3，历史版本，可以进行版本回滚；</p>
 <p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/suvork5cyii=3.png" alt="img"></p>
@@ -530,13 +530,13 @@
 
 
 
-<h1 id="7-服务注册于发现简介"><a href="#7-服务注册于发现简介" class="headerlink" title="7-服务注册于发现简介"></a>7-服务注册于发现简介</h1><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/ru5erkjggg==2.png" alt="img"></p>
+<h2 id="7-服务注册于发现简介"><a href="#7-服务注册于发现简介" class="headerlink" title="7-服务注册于发现简介"></a>7-服务注册于发现简介</h2><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/ru5erkjggg==2.png" alt="img"></p>
 <p>大的分布式微服务项目会根据业务，把项目拆分成多个业务模块项目，然后互相调用；</p>
 <p>如何互相调用呢？</p>
 <p>这里我们每个项目模块都需要去nacos服务注册中心注册下，登记下每个项目自身的地址和端口，然后其他的项目模块就可以通过Nacos找到需要调用的其他模块项目的地址了；</p>
 <p>这样就可以实现服务的发现和调用；</p>
 <p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/ru5erkjggg==3.png" alt="img"></p>
-<h1 id="8-服务注册发现"><a href="#8-服务注册发现" class="headerlink" title="8-服务注册发现"></a>8-服务注册发现</h1><p>引入依赖：</p>
+<h2 id="8-服务注册发现"><a href="#8-服务注册发现" class="headerlink" title="8-服务注册发现"></a>8-服务注册发现</h2><p>引入依赖：</p>
 <pre class=" language-xml"><code class="language-xml"><span class="token comment" spellcheck="true">&lt;!-- 服务注册/发现--></span>
 
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
@@ -558,7 +558,7 @@
 <p> 启动类加主机：</p>
 <p>@EnableDiscoveryClient</p>
 <p>能够让注册中心发现</p>
-<h1 id="9-openfeign服务调用实现"><a href="#9-openfeign服务调用实现" class="headerlink" title="9-openfeign服务调用实现"></a>9-openfeign服务调用实现</h1><p>引入依赖： </p>
+<h2 id="9-openfeign服务调用实现"><a href="#9-openfeign服务调用实现" class="headerlink" title="9-openfeign服务调用实现"></a>9-openfeign服务调用实现</h2><p>引入依赖： </p>
 <pre class=" language-xml"><code class="language-xml"><span class="token comment" spellcheck="true">&lt;!-- openfeign --></span>
 
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
@@ -589,8 +589,8 @@
 <p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/clipboard-163879683166511.png" alt="img"></p>
 <p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/clipboard-163879686919321.png" alt="img"></p>
 <p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/clipboard-163879689431432.png" alt="img"></p>
-<h1 id="10-服务领域模型"><a href="#10-服务领域模型" class="headerlink" title="10-服务领域模型"></a>10-服务领域模型</h1><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/aelftksuqmcc2.png" alt="img"></p>
-<h1 id="11-nocas高可用集群"><a href="#11-nocas高可用集群" class="headerlink" title="11-nocas高可用集群"></a>11-nocas高可用集群</h1><p>为了防止一个nacos崩掉，我们可以搞个3个或者3个以上的nacos集群部署，实现高可用；</p>
+<h2 id="10-服务领域模型"><a href="#10-服务领域模型" class="headerlink" title="10-服务领域模型"></a>10-服务领域模型</h2><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/aelftksuqmcc2.png" alt="img"></p>
+<h2 id="11-nocas高可用集群"><a href="#11-nocas高可用集群" class="headerlink" title="11-nocas高可用集群"></a>11-nocas高可用集群</h2><p>为了防止一个nacos崩掉，我们可以搞个3个或者3个以上的nacos集群部署，实现高可用；</p>
 <p> startup.bat Model改成cluster集群模式</p>
 <p>nacos程序文件复制三分，端口分别搞成 8848，8849 ， 8850；</p>
 <p>修改 application.properties 端口改下；</p>

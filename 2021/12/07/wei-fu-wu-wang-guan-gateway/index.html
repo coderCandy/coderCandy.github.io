@@ -410,7 +410,7 @@ API 网关是一个处于应用程序或服务（提供 REST API 接口服务）
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-12-07
+                    2021-12-14
                 </div>
                 
 
@@ -440,16 +440,16 @@ API 网关是一个处于应用程序或服务（提供 REST API 接口服务）
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <p><strong>微服务网关Gateway</strong></p>
-<h1 id="1-Gateway简介"><a href="#1-Gateway简介" class="headerlink" title="1.Gateway简介"></a><strong>1.Gateway简介</strong></h1><h2 id="1-1-API网关介绍"><a href="#1-1-API网关介绍" class="headerlink" title="1.1 API网关介绍"></a><strong>1.1 API网关介绍</strong></h2><p>网关的角色是作为一个 API 架构，用来保护、增强和控制对于 API 服务的访问。</p>
+<h2 id="1-Gateway简介"><a href="#1-Gateway简介" class="headerlink" title="1.Gateway简介"></a><strong>1.Gateway简介</strong></h2><h3 id="1-1-API网关介绍"><a href="#1-1-API网关介绍" class="headerlink" title="1.1 API网关介绍"></a><strong>1.1 API网关介绍</strong></h3><p>网关的角色是作为一个 API 架构，用来保护、增强和控制对于 API 服务的访问。</p>
 <p>API 网关是一个处于应用程序或服务（提供 REST API 接口服务）之前的系统，用来管理授权、访问控制和流量限制等，这样 REST API 接口服务就被 API 网关保护起来，对所有的调用者透明。因此，隐藏在API 网关后面的业务系统就可以专注于创建和管理服务，而不用去处理这些策略性的基础设施。</p>
 <p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211207184503468.png" alt="image-20211207184503468"></p>
-<h2 id="1-2-API网关作用"><a href="#1-2-API网关作用" class="headerlink" title="1.2 API网关作用"></a><strong>1.2 API网关作用</strong></h2><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211207184832889.png" alt="image-20211207184832889"></p>
+<h3 id="1-2-API网关作用"><a href="#1-2-API网关作用" class="headerlink" title="1.2 API网关作用"></a><strong>1.2 API网关作用</strong></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211207184832889.png" alt="image-20211207184832889"></p>
 <p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211207184905615.png" alt="image-20211207184905615"></p>
-<h2 id="1-3-API网关开源实现"><a href="#1-3-API网关开源实现" class="headerlink" title="1.3 API网关开源实现"></a><strong>1.3 API网关开源实现</strong></h2><p>用于实现API网关的技术有很多，大致分为这么几类：</p>
+<h3 id="1-3-API网关开源实现"><a href="#1-3-API网关开源实现" class="headerlink" title="1.3 API网关开源实现"></a><strong>1.3 API网关开源实现</strong></h3><p>用于实现API网关的技术有很多，大致分为这么几类：</p>
 <p>通用反向代理：Nginx、Haproxy、……</p>
 <p>网络编程框架：Netty、Servlet、……</p>
 <p>API网关框架：Spring Cloud Gateway、Zuul、Zuul2、……</p>
-<h2 id="1-4-Gateway网关介绍"><a href="#1-4-Gateway网关介绍" class="headerlink" title="1.4 Gateway网关介绍"></a><strong>1.4 Gateway网关介绍</strong></h2><p><a target="_blank" rel="noopener" href="https://spring.io/projects/spring-cloud-gateway">https://spring.io/projects/spring-cloud-gateway</a></p>
+<h3 id="1-4-Gateway网关介绍"><a href="#1-4-Gateway网关介绍" class="headerlink" title="1.4 Gateway网关介绍"></a><strong>1.4 Gateway网关介绍</strong></h3><p><a target="_blank" rel="noopener" href="https://spring.io/projects/spring-cloud-gateway">https://spring.io/projects/spring-cloud-gateway</a></p>
 <p>Spring Cloud Gateway是Spring官方基于Spring 5.0，Spring Boot 2.0和Project Reactor等技术开发的网关，Spring Cloud Gateway旨在为微服务架构提供一种简单而有效的统一的API路由管理方式。</p>
 <p>Spring Cloud Gateway作为Spring Cloud生态系中的网关，目标是替代ZUUL，其不仅提供统一的路由方式，并且基于Filter链的方式提供了网关基本的功能，例如：安全，监控/埋点，和限流等。</p>
 <p>spring Cloud Gateway 可以看做是一个 Zuul 1.x 的升级版和代替品，比 Zuul 2 更早的使用 Netty 实现异步 IO，从而实现了一个简单、比 Zuul 1.x 更高效的、与 Spring Cloud 紧密配合的 API 网关。</p>
@@ -467,14 +467,14 @@ API 网关是一个处于应用程序或服务（提供 REST API 接口服务）
 </ul>
 <p>官网文档：</p>
 <p><a target="_blank" rel="noopener" href="https://docs.spring.io/spring-cloud-gateway/docs/2.2.7.RELEASE/reference/html/">https://docs.spring.io/spring-cloud-gateway/docs/2.2.7.RELEASE/reference/html/</a></p>
-<h1 id="2-Gateway工作原理"><a href="#2-Gateway工作原理" class="headerlink" title="2.Gateway工作原理"></a><strong>2.Gateway工作原理</strong></h1><p>下图从总体上概述了Spring Cloud Gateway的工作方式：</p>
+<h2 id="2-Gateway工作原理"><a href="#2-Gateway工作原理" class="headerlink" title="2.Gateway工作原理"></a><strong>2.Gateway工作原理</strong></h2><p>下图从总体上概述了Spring Cloud Gateway的工作方式：</p>
 <p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211207185219169.png" alt="image-20211207185219169"></p>
 <p>客户端向Spring Cloud Gateway发出请求。如果网关处理程序映射确定请求与路由匹配，则将其发送到网关Web处理程序。该处理程序通过特定于请求的过滤器链来运行请求。筛选器由虚线分隔的原因是，筛选器可以在发送代理请求之前和之后都运行逻辑。所有“前置”过滤器逻辑均被执行。然后发出代理请求。发出代理请求后，将运行“后”过滤器逻辑。</p>
 <p><strong>三个概念：</strong></p>
 <p>路由：路由是构建网关的基本模块，它由ID，目标URI，一系列的断言Predicates和过滤器Filters组成，如果断言为true，则匹配该路由。</p>
 <p>断言：参考Java8的java.util.function.Predicate，开发人员可以匹配HTTP请求中的所有内容，例如请求头或请求参数，如果请求与断言相匹配则进行路由。</p>
 <p>过滤：Spring框架中GatewayFilter的实例，使用过滤器，可以载请求被路由前或者后对请求进行修改。</p>
-<h1 id="3-Gateway-HelloWorld快速入门"><a href="#3-Gateway-HelloWorld快速入门" class="headerlink" title="3.Gateway HelloWorld快速入门"></a><strong>3.Gateway HelloWorld快速入门</strong></h1><p>我们搞两个服务，分别是product产品服务项目，以及order订单服务项目，我们搞个小案例，搞一个网关，统一对path请求地址进行管理；</p>
+<h2 id="3-Gateway-HelloWorld快速入门"><a href="#3-Gateway-HelloWorld快速入门" class="headerlink" title="3.Gateway HelloWorld快速入门"></a><strong>3.Gateway HelloWorld快速入门</strong></h2><p>我们搞两个服务，分别是product产品服务项目，以及order订单服务项目，我们搞个小案例，搞一个网关，统一对path请求地址进行管理；</p>
 <p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211207185340253.png" alt="image-20211207185340253"></p>
 <p>gateway依赖：</p>
 <pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span> 
@@ -504,29 +504,29 @@ API 网关是一个处于应用程序或服务（提供 REST API 接口服务）
 
         <span class="token key atrule">gateway</span><span class="token punctuation">:</span> 
 
-            <span class="token key atrule">routes</span><span class="token punctuation">:</span> <span class="token comment" spellcheck="true"># 路由规则定义 </span>
+            <span class="token key atrule">routes</span><span class="token punctuation">:</span> <span class="token comment" spellcheck="true">## 路由规则定义 </span>
 
-                <span class="token punctuation">-</span> <span class="token key atrule">id</span><span class="token punctuation">:</span> product<span class="token punctuation">-</span>service <span class="token comment" spellcheck="true"># 路由ID </span>
+                <span class="token punctuation">-</span> <span class="token key atrule">id</span><span class="token punctuation">:</span> product<span class="token punctuation">-</span>service <span class="token comment" spellcheck="true">## 路由ID </span>
 
-                <span class="token key atrule">uri</span><span class="token punctuation">:</span> http<span class="token punctuation">:</span>//localhost<span class="token punctuation">:</span>8080/ <span class="token comment" spellcheck="true"># 路由地址 </span>
+                <span class="token key atrule">uri</span><span class="token punctuation">:</span> http<span class="token punctuation">:</span>//localhost<span class="token punctuation">:</span>8080/ <span class="token comment" spellcheck="true">## 路由地址 </span>
 
-                <span class="token key atrule">predicates</span><span class="token punctuation">:</span> <span class="token comment" spellcheck="true"># 断言规则 </span>
+                <span class="token key atrule">predicates</span><span class="token punctuation">:</span> <span class="token comment" spellcheck="true">## 断言规则 </span>
 
                 <span class="token punctuation">-</span> Path=/product/** 
                 
 
-                <span class="token punctuation">-</span> <span class="token key atrule">id</span><span class="token punctuation">:</span> order<span class="token punctuation">-</span>service <span class="token comment" spellcheck="true"># 路由ID </span>
+                <span class="token punctuation">-</span> <span class="token key atrule">id</span><span class="token punctuation">:</span> order<span class="token punctuation">-</span>service <span class="token comment" spellcheck="true">## 路由ID </span>
 
-                <span class="token key atrule">uri</span><span class="token punctuation">:</span> http<span class="token punctuation">:</span>//localhost<span class="token punctuation">:</span>8081/ <span class="token comment" spellcheck="true"># 路由地址 </span>
+                <span class="token key atrule">uri</span><span class="token punctuation">:</span> http<span class="token punctuation">:</span>//localhost<span class="token punctuation">:</span>8081/ <span class="token comment" spellcheck="true">## 路由地址 </span>
 
-                <span class="token key atrule">predicates</span><span class="token punctuation">:</span> <span class="token comment" spellcheck="true"># 断言规则 </span>
+                <span class="token key atrule">predicates</span><span class="token punctuation">:</span> <span class="token comment" spellcheck="true">## 断言规则 </span>
 
                 <span class="token punctuation">-</span> Path=/order/**
 </code></pre>
-<h1 id="4-Gateway路由规则"><a href="#4-Gateway路由规则" class="headerlink" title="4.Gateway路由规则"></a><strong>4.Gateway路由规则</strong></h1><h2 id="4-1-路由断言工厂"><a href="#4-1-路由断言工厂" class="headerlink" title="4.1 路由断言工厂"></a><strong>4.1</strong> <strong>路由断言工厂</strong></h2><p> Spring Cloud Gateway将路由作为Spring WebFlux HandlerMapping 基础架构的一部分进行匹配。Spring Cloud Gateway包括许多内置的路由断言工厂。所有这些断言都与HTTP请求的不同属性匹配。您可以将多个路由断言工厂与逻辑 and 语句结合使用。</p>
+<h2 id="4-Gateway路由规则"><a href="#4-Gateway路由规则" class="headerlink" title="4.Gateway路由规则"></a><strong>4.Gateway路由规则</strong></h2><h3 id="4-1-路由断言工厂"><a href="#4-1-路由断言工厂" class="headerlink" title="4.1 路由断言工厂"></a><strong>4.1</strong> <strong>路由断言工厂</strong></h3><p> Spring Cloud Gateway将路由作为Spring WebFlux HandlerMapping 基础架构的一部分进行匹配。Spring Cloud Gateway包括许多内置的路由断言工厂。所有这些断言都与HTTP请求的不同属性匹配。您可以将多个路由断言工厂与逻辑 and 语句结合使用。</p>
 <p> 路由断言工厂RoutePredicateFactory包含的主要实现类如图所示，包含Datetime、Cookie、Header、Host、Method、Path、Query、RemoteAddr、Weight等类型的路由断言。</p>
 <p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211207185908571.png" alt="image-20211207185908571"></p>
-<h2 id="4-2-日期时间路由匹配规则"><a href="#4-2-日期时间路由匹配规则" class="headerlink" title="4.2 日期时间路由匹配规则"></a><strong>4.2</strong> <strong>日期时间路由匹配规则</strong></h2><p>匹配指定日期时间之后的请求 After</p>
+<h3 id="4-2-日期时间路由匹配规则"><a href="#4-2-日期时间路由匹配规则" class="headerlink" title="4.2 日期时间路由匹配规则"></a><strong>4.2</strong> <strong>日期时间路由匹配规则</strong></h3><p>匹配指定日期时间之后的请求 After</p>
 <pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">spring</span><span class="token punctuation">:</span> 
 
     <span class="token key atrule">application</span><span class="token punctuation">:</span> 
@@ -591,7 +591,7 @@ API 网关是一个处于应用程序或服务（提供 REST API 接口服务）
 
                 20T06<span class="token punctuation">:</span>06<span class="token punctuation">:</span>06+08<span class="token punctuation">:</span>00<span class="token punctuation">[</span>Asia/Shanghai<span class="token punctuation">]</span>
 </code></pre>
-<h2 id="4-3-Cookie路由匹配规则"><a href="#4-3-Cookie路由匹配规则" class="headerlink" title="4.3 Cookie路由匹配规则"></a><strong>4.3 Cookie路由匹配规则</strong></h2><p>所述Cookie路由断言工厂采用两个参数，该cookiename和regexp（其是Java正则表达式）。该断言匹配具有给定名称且其值与正则表达式匹配的cookie。以下示例配置cookie路由断言工厂：</p>
+<h3 id="4-3-Cookie路由匹配规则"><a href="#4-3-Cookie路由匹配规则" class="headerlink" title="4.3 Cookie路由匹配规则"></a><strong>4.3 Cookie路由匹配规则</strong></h3><p>所述Cookie路由断言工厂采用两个参数，该cookiename和regexp（其是Java正则表达式）。该断言匹配具有给定名称且其值与正则表达式匹配的cookie。以下示例配置cookie路由断言工厂：</p>
 <pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">spring</span><span class="token punctuation">:</span> 
 
     <span class="token key atrule">application</span><span class="token punctuation">:</span> 
@@ -612,7 +612,7 @@ API 网关是一个处于应用程序或服务（提供 REST API 接口服务）
 
                     <span class="token punctuation">-</span> Cookie=token<span class="token punctuation">,</span> \d+ 
 </code></pre>
-<h2 id="4-4-Header路由匹配规则"><a href="#4-4-Header路由匹配规则" class="headerlink" title="4.4 Header路由匹配规则"></a><strong>4.4 Header路由匹配规则</strong></h2><p>所述 Header ；路由断言工厂采用两个参数，报头 name 和一个 regexp （其是Java正则表达式）。该断言与具有给定名称的头信息匹配，该标头的值与正则表达式匹配。以下示例配置Header路由断言：</p>
+<h3 id="4-4-Header路由匹配规则"><a href="#4-4-Header路由匹配规则" class="headerlink" title="4.4 Header路由匹配规则"></a><strong>4.4 Header路由匹配规则</strong></h3><p>所述 Header ；路由断言工厂采用两个参数，报头 name 和一个 regexp （其是Java正则表达式）。该断言与具有给定名称的头信息匹配，该标头的值与正则表达式匹配。以下示例配置Header路由断言：</p>
 <pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">spring</span><span class="token punctuation">:</span> 
 
     <span class="token key atrule">application</span><span class="token punctuation">:</span> 
@@ -633,7 +633,7 @@ API 网关是一个处于应用程序或服务（提供 REST API 接口服务）
 
                     <span class="token punctuation">-</span> Header=X<span class="token punctuation">-</span>Request<span class="token punctuation">-</span>Id<span class="token punctuation">,</span> \d+ 
 </code></pre>
-<h2 id="4-5-Host路由匹配规则"><a href="#4-5-Host路由匹配规则" class="headerlink" title="4.5 Host路由匹配规则"></a><strong>4.5 Host路由匹配规则</strong></h2><p>该 Host 路由断言工厂需要一个参数：主机名的列表 patterns 。该模式是带有.分隔符的Ant样式的模式。断言与 Host 匹配模式的标头匹配。以下示例配置主机路由断言：</p>
+<h3 id="4-5-Host路由匹配规则"><a href="#4-5-Host路由匹配规则" class="headerlink" title="4.5 Host路由匹配规则"></a><strong>4.5 Host路由匹配规则</strong></h3><p>该 Host 路由断言工厂需要一个参数：主机名的列表 patterns 。该模式是带有.分隔符的Ant样式的模式。断言与 Host 匹配模式的标头匹配。以下示例配置主机路由断言：</p>
 <pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">spring</span><span class="token punctuation">:</span> 
 
     <span class="token key atrule">application</span><span class="token punctuation">:</span> 
@@ -654,7 +654,7 @@ API 网关是一个处于应用程序或服务（提供 REST API 接口服务）
 
                        <span class="token punctuation">-</span> Host=**.somehost.org<span class="token punctuation">,</span>**.anotherhost.org
 </code></pre>
-<h2 id="4-6-Method路由匹配规则"><a href="#4-6-Method路由匹配规则" class="headerlink" title="4.6 Method路由匹配规则"></a><strong>4.6 Method路由匹配规则</strong></h2><p>所述 Method 路由断言厂需要 methods 的参数，它是一个或多个参数：HTTP方法来匹配。以下示例配置方法路由断言：</p>
+<h3 id="4-6-Method路由匹配规则"><a href="#4-6-Method路由匹配规则" class="headerlink" title="4.6 Method路由匹配规则"></a><strong>4.6 Method路由匹配规则</strong></h3><p>所述 Method 路由断言厂需要 methods 的参数，它是一个或多个参数：HTTP方法来匹配。以下示例配置方法路由断言：</p>
 <pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">spring</span><span class="token punctuation">:</span> 
 
     <span class="token key atrule">application</span><span class="token punctuation">:</span> 
@@ -675,7 +675,7 @@ API 网关是一个处于应用程序或服务（提供 REST API 接口服务）
 
                     <span class="token punctuation">-</span> Method=GET<span class="token punctuation">,</span>POST 
 </code></pre>
-<h2 id="4-7-Path路由匹配规则"><a href="#4-7-Path路由匹配规则" class="headerlink" title="4.7 Path路由匹配规则"></a><strong>4.7 Path路由匹配规则</strong></h2><p>该 Path 路由断言厂有两个参数：春天的列表 PathMatcher patterns 和一个可选的标志叫matchOptionalTrailingSeparator 。以下示例配置路径路由断言：</p>
+<h3 id="4-7-Path路由匹配规则"><a href="#4-7-Path路由匹配规则" class="headerlink" title="4.7 Path路由匹配规则"></a><strong>4.7 Path路由匹配规则</strong></h3><p>该 Path 路由断言厂有两个参数：春天的列表 PathMatcher patterns 和一个可选的标志叫matchOptionalTrailingSeparator 。以下示例配置路径路由断言：</p>
 <pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">spring</span><span class="token punctuation">:</span> 
 
     <span class="token key atrule">application</span><span class="token punctuation">:</span> 
@@ -696,7 +696,7 @@ API 网关是一个处于应用程序或服务（提供 REST API 接口服务）
 
                     <span class="token punctuation">-</span> Path=/product/<span class="token punctuation">{</span>segment<span class="token punctuation">}</span> 
 </code></pre>
-<h2 id="4-8-Query路由匹配规则"><a href="#4-8-Query路由匹配规则" class="headerlink" title="4.8 Query路由匹配规则"></a><strong>4.8 Query路由匹配规则</strong></h2><p>所述 Query 路由断言工厂采用两个参数：所要求的 param 和可选的 regexp （其是Java正则表达式）。</p>
+<h3 id="4-8-Query路由匹配规则"><a href="#4-8-Query路由匹配规则" class="headerlink" title="4.8 Query路由匹配规则"></a><strong>4.8 Query路由匹配规则</strong></h3><p>所述 Query 路由断言工厂采用两个参数：所要求的 param 和可选的 regexp （其是Java正则表达式）。</p>
 <p>以下示例配置查询路由断言：</p>
 <pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">spring</span><span class="token punctuation">:</span> 
 
@@ -719,7 +719,7 @@ API 网关是一个处于应用程序或服务（提供 REST API 接口服务）
                     <span class="token punctuation">-</span> Query=green
 </code></pre>
 <p>如果请求包含 green 查询参数，则前面的路由匹配。</p>
-<h2 id="4-9-RemoteAddr路由匹配规则"><a href="#4-9-RemoteAddr路由匹配规则" class="headerlink" title="4.9 RemoteAddr路由匹配规则"></a><strong>4.9 RemoteAddr路由匹配规则</strong></h2><p>所述 RemoteAddr 路由断言工厂需要的列表（分钟尺寸1） sources ，其是CIDR的表示法（IPv4或IPv6）的字符串，如 192.168.0.1/16 （其中 192.168.0.1 是一个IP地址和 16 一个子网掩码）。下面的示例配置RemoteAddr路由断言：</p>
+<h3 id="4-9-RemoteAddr路由匹配规则"><a href="#4-9-RemoteAddr路由匹配规则" class="headerlink" title="4.9 RemoteAddr路由匹配规则"></a><strong>4.9 RemoteAddr路由匹配规则</strong></h3><p>所述 RemoteAddr 路由断言工厂需要的列表（分钟尺寸1） sources ，其是CIDR的表示法（IPv4或IPv6）的字符串，如 192.168.0.1/16 （其中 192.168.0.1 是一个IP地址和 16 一个子网掩码）。下面的示例配置RemoteAddr路由断言：</p>
 <pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">spring</span><span class="token punctuation">:</span> 
 
     <span class="token key atrule">cloud</span><span class="token punctuation">:</span> 
@@ -738,7 +738,7 @@ API 网关是一个处于应用程序或服务（提供 REST API 接口服务）
 
 </code></pre>
 <p>如果请求的远程地址为上面配置，则此路由匹配192.168.1.10。</p>
-<h2 id="4-10-Weight-路由匹配规则"><a href="#4-10-Weight-路由匹配规则" class="headerlink" title="4.10 Weight****路由匹配规则"></a><strong>4.10 Weight****路由匹配规则</strong></h2><p>该 Weight 路由断言工厂有两个参数： group 和 weight （一个int）。权重是按组计算的。以下示例配置权重路由断言：</p>
+<h3 id="4-10-Weight-路由匹配规则"><a href="#4-10-Weight-路由匹配规则" class="headerlink" title="4.10 Weight****路由匹配规则"></a><strong>4.10 Weight****路由匹配规则</strong></h3><p>该 Weight 路由断言工厂有两个参数： group 和 weight （一个int）。权重是按组计算的。以下示例配置权重路由断言：</p>
 <pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">spring</span><span class="token punctuation">:</span> 
 
     <span class="token key atrule">cloud</span><span class="token punctuation">:</span> 
@@ -764,18 +764,18 @@ API 网关是一个处于应用程序或服务（提供 REST API 接口服务）
                 <span class="token punctuation">-</span> Weight=group1<span class="token punctuation">,</span> <span class="token number">2</span>
 </code></pre>
 <p>这条路线会将大约80％的流量转发到weighthigh.org，将大约20％的流量转发到weightlow.org。</p>
-<h1 id="5-Gateway过滤器"><a href="#5-Gateway过滤器" class="headerlink" title="5.Gateway过滤器"></a><strong>5.Gateway过滤器</strong></h1><p>Gateway分为Pre类型的过滤器和Post类型的过滤器。</p>
+<h2 id="5-Gateway过滤器"><a href="#5-Gateway过滤器" class="headerlink" title="5.Gateway过滤器"></a><strong>5.Gateway过滤器</strong></h2><p>Gateway分为Pre类型的过滤器和Post类型的过滤器。</p>
 <ul>
 <li>Pre类型的过滤器在请求转发到后端微服务之前执行，在Pre类型过滤器链中可以做鉴权、限流等操作。</li>
 <li>Post类型的过滤器在请求执行完成之后、将结果返回给客户端之前执行。</li>
 </ul>
 <p>在Spring Cloud Gateway中内置了很多Filter，Filter有两种实现，分别是GatewayFilter和GlobalFilter。GlobalFilter全局过滤器会应用到所有的路由上，而GatewayFilter只会应用到单个路由或者一个分组的路由上。</p>
-<h2 id="5-1-Gateway过滤器工厂介绍"><a href="#5-1-Gateway过滤器工厂介绍" class="headerlink" title="5.1 Gateway过滤器工厂介绍"></a><strong>5.1 Gateway过滤器工厂介绍</strong></h2><p>过滤器 有 20 多个 实现 类， 包括 头部 过滤器、 路径 类 过滤器、 Hystrix 过滤器 和 变更 请求 URL 的过滤器， </p>
+<h3 id="5-1-Gateway过滤器工厂介绍"><a href="#5-1-Gateway过滤器工厂介绍" class="headerlink" title="5.1 Gateway过滤器工厂介绍"></a><strong>5.1 Gateway过滤器工厂介绍</strong></h3><p>过滤器 有 20 多个 实现 类， 包括 头部 过滤器、 路径 类 过滤器、 Hystrix 过滤器 和 变更 请求 URL 的过滤器， </p>
 <p>还有 参数 和 状态 码 等 其他 类型 的 过滤器。</p>
 <p>内置的过滤器工厂有22个实现类，包括 头部过滤器、路径过滤器、Hystrix 过滤器 、请求URL 变更过滤器，还有参数和状态码等其他类型的过滤器。根据过滤器工厂的用途来划分，可以分为以下几种：</p>
 <p>Header、Parameter、Path、Body、Status、Session、Redirect、Retry、RateLimiter和Hystrix</p>
 <p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211207193337412.png" alt="image-20211207193337412"></p>
-<h2 id="5-2-AddRequestParameter-GatewayFilter-Factory"><a href="#5-2-AddRequestParameter-GatewayFilter-Factory" class="headerlink" title="5.2 AddRequestParameter GatewayFilter Factory"></a><strong>5.2 AddRequestParameter GatewayFilter Factory</strong></h2><pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">spring</span><span class="token punctuation">:</span> 
+<h3 id="5-2-AddRequestParameter-GatewayFilter-Factory"><a href="#5-2-AddRequestParameter-GatewayFilter-Factory" class="headerlink" title="5.2 AddRequestParameter GatewayFilter Factory"></a><strong>5.2 AddRequestParameter GatewayFilter Factory</strong></h3><pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">spring</span><span class="token punctuation">:</span> 
 
     <span class="token key atrule">application</span><span class="token punctuation">:</span> 
 
@@ -800,7 +800,7 @@ API 网关是一个处于应用程序或服务（提供 REST API 接口服务）
                     <span class="token punctuation">-</span> AddRequestParameter=info<span class="token punctuation">,</span> hehe
 </code></pre>
 <p>添加请求参数（属于前置过滤网关）</p>
-<h2 id="5-3-RewritePath-GatewayFilter-Factory"><a href="#5-3-RewritePath-GatewayFilter-Factory" class="headerlink" title="5.3 RewritePath GatewayFilter Factory"></a><strong>5.3 RewritePath GatewayFilter Factory</strong></h2><pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">spring</span><span class="token punctuation">:</span> 
+<h3 id="5-3-RewritePath-GatewayFilter-Factory"><a href="#5-3-RewritePath-GatewayFilter-Factory" class="headerlink" title="5.3 RewritePath GatewayFilter Factory"></a><strong>5.3 RewritePath GatewayFilter Factory</strong></h3><pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">spring</span><span class="token punctuation">:</span> 
 
     <span class="token key atrule">application</span><span class="token punctuation">:</span> 
 
@@ -827,7 +827,7 @@ API 网关是一个处于应用程序或服务（提供 REST API 接口服务）
                     <span class="token punctuation">-</span> RewritePath=/api<span class="token punctuation">-</span>gateway(<span class="token punctuation">?</span>&lt;segment<span class="token punctuation">></span>/<span class="token punctuation">?</span>.*)<span class="token punctuation">,</span> $\<span class="token punctuation">{</span>segment<span class="token punctuation">}</span> 
 </code></pre>
 <p>将/api-gateway/product/请求重写成/product/请求（属于前置过滤网关）</p>
-<h2 id="5-4-SetStatus-GatewayFilter-Factory"><a href="#5-4-SetStatus-GatewayFilter-Factory" class="headerlink" title="5.4 SetStatus GatewayFilter Factory"></a><strong>5.4 SetStatus GatewayFilter Factory</strong></h2><pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">spring</span><span class="token punctuation">:</span> 
+<h3 id="5-4-SetStatus-GatewayFilter-Factory"><a href="#5-4-SetStatus-GatewayFilter-Factory" class="headerlink" title="5.4 SetStatus GatewayFilter Factory"></a><strong>5.4 SetStatus GatewayFilter Factory</strong></h3><pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">spring</span><span class="token punctuation">:</span> 
 
     <span class="token key atrule">application</span><span class="token punctuation">:</span> 
 
@@ -857,7 +857,7 @@ API 网关是一个处于应用程序或服务（提供 REST API 接口服务）
 
 </code></pre>
 <p>无论哪种情况，响应的HTTP状态都设置为456（属于后置过滤网关）</p>
-<h2 id="5-5-AddResponseHeader-GatewayFilter-Factory"><a href="#5-5-AddResponseHeader-GatewayFilter-Factory" class="headerlink" title="5.5 AddResponseHeader GatewayFilter Factory"></a><strong>5.5 AddResponseHeader GatewayFilter Factory</strong></h2><pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">spring</span><span class="token punctuation">:</span> 
+<h3 id="5-5-AddResponseHeader-GatewayFilter-Factory"><a href="#5-5-AddResponseHeader-GatewayFilter-Factory" class="headerlink" title="5.5 AddResponseHeader GatewayFilter Factory"></a><strong>5.5 AddResponseHeader GatewayFilter Factory</strong></h3><pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">spring</span><span class="token punctuation">:</span> 
 
     <span class="token key atrule">application</span><span class="token punctuation">:</span> 
 
@@ -889,13 +889,13 @@ API 网关是一个处于应用程序或服务（提供 REST API 接口服务）
 </code></pre>
 <p>返回信息，添加header头信息（属于后置过滤网关）</p>
 <p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211207194220636.png" alt="image-20211207194220636"></p>
-<h2 id="5-6-gateway全局过滤器GlobalFilter"><a href="#5-6-gateway全局过滤器GlobalFilter" class="headerlink" title="5.6 gateway全局过滤器GlobalFilter"></a><strong>5.6 gateway全局过滤器GlobalFilter</strong></h2><p>全局过滤器不需要在配置文件中配置，作用在所有的路由上。我们可以用它来实现很多统一化处理的业务需求，比如负载均衡，统一过滤，路径转发，监控，日志等等。</p>
+<h3 id="5-6-gateway全局过滤器GlobalFilter"><a href="#5-6-gateway全局过滤器GlobalFilter" class="headerlink" title="5.6 gateway全局过滤器GlobalFilter"></a><strong>5.6 gateway全局过滤器GlobalFilter</strong></h3><p>全局过滤器不需要在配置文件中配置，作用在所有的路由上。我们可以用它来实现很多统一化处理的业务需求，比如负载均衡，统一过滤，路径转发，监控，日志等等。</p>
 <p>全局过滤器加上网关过滤器组成过滤器链，该过滤器链的执行顺序是根据@Order注解指定的数字大小，从小到大进行排序，数字越小，优先级越高。</p>
 <p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211207194243941.png" alt="image-20211207194243941"></p>
 <p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211207194313528.png" alt="image-20211207194313528"></p>
-<h2 id="5-7-自定义过滤器"><a href="#5-7-自定义过滤器" class="headerlink" title="5.7 自定义过滤器"></a><strong>5.7</strong> <strong>自定义过滤器</strong></h2><p>Spring Cloud Gateway提供了过滤器的扩展功能，开发者可以根据实际业务需求来自定义</p>
+<h3 id="5-7-自定义过滤器"><a href="#5-7-自定义过滤器" class="headerlink" title="5.7 自定义过滤器"></a><strong>5.7</strong> <strong>自定义过滤器</strong></h3><p>Spring Cloud Gateway提供了过滤器的扩展功能，开发者可以根据实际业务需求来自定义</p>
 <p>GatewayFilter网关过滤器或者GlobalFilter全局过滤器。</p>
-<h3 id="5-7-1-自定义GatewayFilter"><a href="#5-7-1-自定义GatewayFilter" class="headerlink" title="5.7.1 自定义GatewayFilter"></a><strong>5.7.1</strong> <strong>自定义GatewayFilter</strong></h3><p>实现 GatewayFilter , Ordered 接口，以及配置类</p>
+<h4 id="5-7-1-自定义GatewayFilter"><a href="#5-7-1-自定义GatewayFilter" class="headerlink" title="5.7.1 自定义GatewayFilter"></a><strong>5.7.1</strong> <strong>自定义GatewayFilter</strong></h4><p>实现 GatewayFilter , Ordered 接口，以及配置类</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>java1234<span class="token punctuation">.</span>filter<span class="token punctuation">;</span> 
 
 <span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>cloud<span class="token punctuation">.</span>gateway<span class="token punctuation">.</span>filter<span class="token punctuation">.</span>GatewayFilter<span class="token punctuation">;</span> 
@@ -994,7 +994,7 @@ API 网关是一个处于应用程序或服务（提供 REST API 接口服务）
 
 <span class="token punctuation">}</span>
 </code></pre>
-<h3 id="5-7-2-自定义GlobalFilter"><a href="#5-7-2-自定义GlobalFilter" class="headerlink" title="5.7.2 自定义GlobalFilter"></a><strong>5.7.2</strong> <strong>自定义GlobalFilter</strong></h3><p>实现 GlobalFilter , Ordered 接口，加上@Component注解即可；</p>
+<h4 id="5-7-2-自定义GlobalFilter"><a href="#5-7-2-自定义GlobalFilter" class="headerlink" title="5.7.2 自定义GlobalFilter"></a><strong>5.7.2</strong> <strong>自定义GlobalFilter</strong></h4><p>实现 GlobalFilter , Ordered 接口，加上@Component注解即可；</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>java1234<span class="token punctuation">.</span>filter<span class="token punctuation">;</span> 
 
 <span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>cloud<span class="token punctuation">.</span>gateway<span class="token punctuation">.</span>filter<span class="token punctuation">.</span>GatewayFilterChain<span class="token punctuation">;</span> 
@@ -1047,8 +1047,8 @@ API 网关是一个处于应用程序或服务（提供 REST API 接口服务）
 
 <span class="token punctuation">}</span>
 </code></pre>
-<h1 id="6-Gateway网关限流"><a href="#6-Gateway网关限流" class="headerlink" title="6.Gateway网关限流"></a><strong>6.Gateway网关限流</strong></h1><p>gateway默认给我们提供了限流实现，也就是网关拦截器RequestRateLimiter。</p>
-<h2 id="6-1-令牌桶限流算法"><a href="#6-1-令牌桶限流算法" class="headerlink" title="6.1 令牌桶限流算法"></a><strong>6.1</strong> <strong>令牌桶限流算法</strong></h2><p>RequestRateLimiter底层实现是令牌桶算法；</p>
+<h2 id="6-Gateway网关限流"><a href="#6-Gateway网关限流" class="headerlink" title="6.Gateway网关限流"></a><strong>6.Gateway网关限流</strong></h2><p>gateway默认给我们提供了限流实现，也就是网关拦截器RequestRateLimiter。</p>
+<h3 id="6-1-令牌桶限流算法"><a href="#6-1-令牌桶限流算法" class="headerlink" title="6.1 令牌桶限流算法"></a><strong>6.1</strong> <strong>令牌桶限流算法</strong></h3><p>RequestRateLimiter底层实现是令牌桶算法；</p>
 <p>令牌桶内存储令牌，令牌桶需要设置令牌容量，也就是系统最大的并发大；</p>
 <p>以一定的速率生成令牌（具体速率根据系统性能设置），放到令牌桶，如果桶慢了，则丢弃；</p>
 <p>客户端来一个请求，则先去令牌桶获取令牌，拿到令牌，则处理请求，否则 丢弃或者返回失败；</p>
