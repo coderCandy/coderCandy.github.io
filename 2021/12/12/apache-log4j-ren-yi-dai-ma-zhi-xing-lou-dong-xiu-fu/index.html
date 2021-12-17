@@ -406,14 +406,14 @@ https://github.com/apache/logging-log4j2/releases/tag/log4j-2.15.0-rc2
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-12-14
+                    2021-12-17
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    676
+                    814
                 </div>
                 
 
@@ -486,6 +486,9 @@ https://github.com/apache/logging-log4j2/releases/tag/log4j-2.15.0-rc2
 <h3 id="安全建议"><a href="#安全建议" class="headerlink" title="安全建议"></a>安全建议</h3><p>1、排查应用是否引入了Apache log4j-core Jar包，若存在依赖引入，且在受影响版本范围内，则可能存在漏洞影响。请尽快升级Apache Log4j2所有相关应用到最新的 log4j-2.15.0-rc2 版本，地址 <a target="_blank" rel="noopener" href="https://github.com/apache/logging-log4j2/releases/tag/log4j-2.15.0-rc2">https://github.com/apache/logging-log4j2/releases/tag/log4j-2.15.0-rc2</a></p>
 <p>2、升级已知受影响的应用及组件，如 spring-boot-starter-log4j2/Apache Struts2/Apache Solr/Apache Druid/Apache Flink</p>
 <p>3、可升级jdk版本至6u211 / 7u201 / 8u191 / 11.0.1以上，可以在一定程度上限制JNDI等漏洞利用方式。</p>
+<h3 id="Log4j2-发新版本2-16-0-完全删除Message-Lookups的支持，加固漏洞防御"><a href="#Log4j2-发新版本2-16-0-完全删除Message-Lookups的支持，加固漏洞防御" class="headerlink" title="Log4j2 发新版本2.16.0 完全删除Message Lookups的支持，加固漏洞防御"></a>Log4j2 发新版本2.16.0 完全删除Message Lookups的支持，加固漏洞防御</h3><p>2.16.0 更新内容<br>默认禁用JNDI的访问，用户需要通过配置log4j2.enableJndi参数开启<br>默认允许协议限制为：java、ldap、ldaps，并将ldap协议限制为仅可访问Java原始对象<br>Message Lookups被完全移除，加固漏洞的防御<br>java项目 fhadmin.cn<br>更多细节，可以通过官网查看：logging.apache.org/log4j/2.x/</p>
+<h3 id="Spring-Boot用户如何升级"><a href="#Spring-Boot用户如何升级" class="headerlink" title="Spring Boot用户如何升级"></a>Spring Boot用户如何升级</h3><p>可以通过下图了解具体如何修改：</p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img_work/59a77bd3894f7d78c54fd7b40a45ffa4.png" alt="img"></p>
 
                 
             </div>
