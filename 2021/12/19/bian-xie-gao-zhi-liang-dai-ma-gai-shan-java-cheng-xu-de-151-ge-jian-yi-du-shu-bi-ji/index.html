@@ -455,7 +455,7 @@
 </code></pre>
 <p>   肯定会有人说：这么简单的例子还能出错？运行结果肯定是22！实践是检验真理的唯一标准，将其Run一下看看，或许你会很奇怪，结果是2，而不是22.难道是编译器出问题了，少了个”2”?</p>
 <p>   因为赋给变量i的值就是数字”1”,只是后面加了长整型变量的标示字母”l”而已。别说是我挖坑让你跳，如果有类似程序出现在项目中，当你试图通过阅读代码来理解作者的思想时，此情景就可能会出现。所以为了让你的程序更容易理解，字母”l”(包括大写字母”O”)尽量不要和数字混用，以免使读者的理解和程序意图产生偏差。如果字母和数字混合使用，字母”l”务必大写，字母”O”则增加注释。</p>
-<p>==<strong>注意：字母”l”作为长整型标志时务必大写</strong>。==</p>
+<p>**$\color{red}{注意：字母l作为长整型标志时务必大写。}$**​​</p>
 <h3 id="建议2：莫让常量蜕变成变量"><a href="#建议2：莫让常量蜕变成变量" class="headerlink" title="建议2：莫让常量蜕变成变量"></a>建议2：莫让常量蜕变成变量</h3><p>​    常量蜕变成变量？你胡扯吧，加了final和static的常量怎么可能会变呢？不可能为此赋值的呀。真的不可能吗？看看如下代码：</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>Random<span class="token punctuation">;</span>
 
@@ -475,7 +475,7 @@
 </code></pre>
 <p>​    RAND_CONST是常量吗?它的值会变吗？绝对会变！这种常量的定义方式是绝对不可取的，常量就是常量，在编译期就必须确定其值，不应该在运行期更改，否则程序的可读性会非常差，甚至连作者自己都不能确定在运行期发生了何种神奇的事情。</p>
 <p>  甭想着使用常量会变的这个功能来实现序列号算法、随机种子生成，除非这真的是项目中的唯一方案，否则就放弃吧，常量还是当常量使用。</p>
-<p>==<strong>注意：务必让常量的值在运行期保持不变。</strong>==</p>
+<p><strong>$\color{red}{注意：务必让常量的值在运行期保持不变。}$​</strong></p>
 <h3 id="建议3：三元操作符的类型务必一致"><a href="#建议3：三元操作符的类型务必一致" class="headerlink" title="建议3：三元操作符的类型务必一致"></a>建议3：三元操作符的类型务必一致</h3><p>​    三元操作符是if-else的简化写法，在项目中使用它的地方很多，也非常好用，但是好用又简单的东西并不表示就可以随意使用，看看如下代码:</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">test03</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">80</span><span class="token punctuation">;</span>
@@ -498,8 +498,8 @@
 </li>
 </ol>
 <p>   转换规则：从存储范围小的类型到存储范围大的类型。<br>   <strong>具体规则为：byte→short(char)→int→long→float→double</strong></p>
-<p>==<strong>知道什么原因了，相应的解决办法也就有了：保证三元操作符中的两个操作数类型一致，避免此错误的发生。</strong>==</p>
-<h3 id="建议4：避免带有变长参数的方法重载"><a href="#建议4：避免带有变长参数的方法重载" class="headerlink" title="建议4：避免带有变长参数的方法重载"></a>建议4：避免带有变长参数的方法重载</h3><p>​    在项目和系统开发中，为了提高方法的灵活度和可复用性，我们经常要传递不确定数量的参数到方法中，在JAVA5之前常用的设计技巧就是把形参定义成Collection类型或其子类类型，或者数组类型，这种方法的缺点就是需要对空参数进行判断和筛选，比如实参为null值和长度为0的Collection或数组。而Java5引入了变长参数(varags)就是为了更好地挺好方法的复用性，让方法的调用者可以”随心所欲”地传递实参数量，当然变长参数也是要遵循一定规则的，比如==变长参数必须是方法中的最后一个参数；一个方法不能定义多个变长参数==等，这些基本规则需要牢记，但是即使记住了这些规则，仍然有可能出现错误，看如下代码:</p>
+<p><strong>$\color{red}{知道什么原因了，相应的解决办法也就有了：保证三元操作符中的两个操作数类型一致，避免此错误的发生。}$​</strong></p>
+<h3 id="建议4：避免带有变长参数的方法重载"><a href="#建议4：避免带有变长参数的方法重载" class="headerlink" title="建议4：避免带有变长参数的方法重载"></a>建议4：避免带有变长参数的方法重载</h3><p>​    在项目和系统开发中，为了提高方法的灵活度和可复用性，我们经常要传递不确定数量的参数到方法中，在JAVA5之前常用的设计技巧就是把形参定义成Collection类型或其子类类型，或者数组类型，这种方法的缺点就是需要对空参数进行判断和筛选，比如实参为null值和长度为0的Collection或数组。而Java5引入了变长参数(varags)就是为了更好地挺好方法的复用性，让方法的调用者可以”随心所欲”地传递实参数量，当然变长参数也是要遵循一定规则的，比如<strong>变长参数必须是方法中的最后一个参数；一个方法不能定义多个变长参数</strong>等，这些基本规则需要牢记，但是即使记住了这些规则，仍然有可能出现错误，看如下代码:</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Client</span> <span class="token punctuation">{</span>
     <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         Client client <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Client</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -531,7 +531,7 @@
 <p>　　业务逻辑清楚了，我们来仔细看看这两个方法，它们是重载吗?当然是了，重载的定义是：”方法名相同，参数类型或数量不同”，很明显这两个方法是重载。但是这个重载有点特殊，calPrice(int price ,int… discounts)的参数范畴覆盖了calPrice（int price,int discount）的参数范畴。那问题就出来了：对于calPrice(499,75)这样的计算，到底该调用哪个方法来处理呢？</p>
 <p>　　我们知道java编译器是很聪明的，它在编译时会根据方法签名来确定调用那个方法，比如：calPrice（499,75,95）这个调用，很明显75和95会被转成一个包含两个元素的数组，并传递到calPrice（int price,int…discounts）中，因为只有这一个方法符合这个实参类型，这很容易理解。但是我们现在面对的是calPrice(499,75)调用，这个75既可以被编译成int类型的75，也可以被编译成int数组{75}，即只包含一个元素的数组。那到底该调用哪一个方法呢？运行结果是:”简单折扣后的价格是：374.25”。看来调用了第一个方法，为什么会调用第一个方法，而不是第二个变长方法呢？因为java在编译时，首先会根据实参的数量和类型（这里2个实参，都为int类型，注意没有转成int数组）来进行处理，也就是找到calPrice(int price,int discount)方法，而且确认他是否符合方法签名条件。现在的问题是编译器为什么会首先根据两个int类型的实参而不是一个int类型，一个int数组类型的实参来查找方法呢？</p>
 <p>　　因为int是一个原生数据类型，而数组本身是一个对象，编译器想要”偷懒”,于是它会从最简单的开始”猜想”，只要符合编译条件的即可通过，于是就出现了此问题。</p>
-<p>　　问题阐述清楚了，为了让我们的程序能被”人类”看懂，还是==<strong>慎重考虑变长参数的方法重载</strong>==吧，否则让人伤脑筋不说，说不定哪天就陷入这类小陷阱里了。</p>
+<p>　　问题阐述清楚了，为了让我们的程序能被”人类”看懂，还是<strong>慎重考虑变长参数的方法重载</strong>吧，否则让人伤脑筋不说，说不定哪天就陷入这类小陷阱里了。</p>
 <h3 id="建议5：别让null值和空值威胁到变长方法"><a href="#建议5：别让null值和空值威胁到变长方法" class="headerlink" title="建议5：别让null值和空值威胁到变长方法"></a>建议5：别让null值和空值威胁到变长方法</h3><p>上一建议讲解了变长参数的重载问题，本建议会继续讨论变长参数的重载问题，上一建议的例子是变长参数的范围覆盖了非变长参数的范围，这次讨论两个都是变长参数的方法说起，代码如下:</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Client5</span> <span class="token punctuation">{</span>
 
@@ -603,7 +603,7 @@
 <p>该程序中sub.fun(100, 50)报错，提示找不到fun(int,int)方法。这太奇怪了：子类继承了父类的所有属性和方法，甭管是私有的还是公开的访问权限，同样的参数，同样的方法名，通过父类调用没有任何问题，通过子类调用，却编译不过，为啥？难到是没继承下来？或者子类缩小了父类方法的前置条件？如果是这样，就不应该覆写，@Override就应该报错呀。</p>
 <p>　　事实上，<strong>base对象是把子类对象做了向上转型，形参列表由父类决定，由于是变长参数，在编译时,base.fun(100, 50);中的50这个实参会被编译器”猜测”而编译成”{50}”数组，再由子类Sub执行</strong>。我们再来看看直接调用子类的情况，这时编译器并不会把”50”座类型转换因为数组本身也是一个对象，编译器还没有聪明到要在两个没有继承关系的类之间转换，要知道JAVA是要求严格的类型匹配的，类型不匹配编译器自然就会拒绝执行，并给予错误提示。</p>
 <p>　　这是个特例，覆写的方法参数列表竟然与父类不相同，这违背了覆写的定义，并且会引发莫名其妙的错误。所以读者在对变长参数进行覆写时，如果要使用次类似的方法，请仔细想想是不是要一定如此。</p>
-<p>​    ==<strong>注意：覆写的方法参数与父类相同，不仅仅是类型、数量，还包括显示形式.</strong>==</p>
+<p><strong>$\color{red}{注意：覆写的方法参数与父类相同，不仅仅是类型、数量，还包括显示形式.}$​</strong></p>
 <h3 id="建议7：警惕自增的陷阱"><a href="#建议7：警惕自增的陷阱" class="headerlink" title="建议7：警惕自增的陷阱"></a>建议7：警惕自增的陷阱</h3><p>​    记得大学刚开始学C语言时，老师就说：自增有两种形式，分别是i++和++i,i++表示的先赋值后加1，++i是先加1后赋值，这样理解了很多年也木有问题，直到遇到如下代码，我才怀疑我的理解是不是错了:　　　　</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Client7</span> <span class="token punctuation">{</span>
     <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -747,7 +747,7 @@
 </code></pre>
 <p>以上代码中定义了一个String类型的常量PI，又定义了一个abs方法，与静态导入的相同。首先说好消息，代码没有报错，接下来是坏消息:我们不知道那个属性和方法别调用了，因为常量名和方法名相同，到底调用了那一个方法呢？运行之后结果为：</p>
 <p>　　PI = “祖冲之”，abs(-100) = 0;<br>　　很明显是本地的方法被调用了，为何不调用Math类中的属性和方法呢？那是因为编译器有一个**”最短路径”原则:如果能够在本类中查找到相关的变量、常量、方法、就不会去其它包或父类、接口中查找，以确保本类中的属性、方法优先。**</p>
-<p>​    ==<strong>因此，如果要变更一个被静态导入的方法，最好的办法是在原始类中重构，而不是在本类中覆盖.</strong>==</p>
+<p>**$\color{red}{因此，如果要变更一个被静态导入的方法，最好的办法是在原始类中重构，而不是在本类中覆盖.}$**​​</p>
 <h3 id="建议11：养成良好习惯，显示声明UID"><a href="#建议11：养成良好习惯，显示声明UID" class="headerlink" title="建议11：养成良好习惯，显示声明UID"></a>建议11：养成良好习惯，显示声明UID</h3><p>​    我们编写一个实现了Serializable接口（序列化标志接口）的类，Eclipse马上就会给一个黄色警告：需要添加一个Serial Version ID。为什么要增加？他是怎么计算出来的？有什么用?下面就来解释该问题。</p>
 <p>　　类实现Serializable接口的目的是为了可持久化，比如网络传输或本地存储，为系统的分布和异构部署提供先决条件支持。若没有序列化，现在我们熟悉的远程调用、对象数据库都不可能存在，我们来看一个简单的序列化类：</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">import</span> java<span class="token punctuation">.</span>io<span class="token punctuation">.</span>Serializable<span class="token punctuation">;</span>
@@ -833,7 +833,7 @@
 <p>　但是，有时候我们需要一点特例场景，例如我的类改变不大，JVM是否可以把我以前的对象反序列化回来？就是依据显示声明的serialVersionUID，向JVM撒谎说”我的类版本没有变化”，如此我买你编写的类就实现了向上兼容，我们修改Person类,里面添加private static final long serialVersionUID = 1867341609628930239L;</p>
 <p>　　刚开始生产者和消费者持有的Person类一致，都是V1.0，某天生产者的Person类变更了，增加了一个“年龄”属性，升级为V2.0，由于种种原因（比如程序员疏忽，升级时间窗口不同等）消费端的Person类还是V1.0版本，添加的代码为 priavte int age;以及对应的setter和getter方法。</p>
 <p>　　此时虽然生产这和消费者对应的类版本不同，但是显示声明的serialVersionUID相同，序列化也是可以运行的，所带来的业务问题就是消费端不能读取到新增的业务属性(age属性而已)。通过此例，我们反序列化也实现了版本向上兼容的功能，使用V1.0版本的应用访问了一个V2.0的对象，这无疑提高了代码的健壮性。我们在编写序列化类代码时随手添加一个serialVersionUID字段，也不会带来太多的工作量，但它却可以在关键时候发挥异乎寻常的作用。</p>
-<p>​    ==<strong>显示声明serialVersionUID可以避免对象的不一致，但尽量不要以这种方式向JVM撒谎。</strong>==</p>
+<p><strong>$\color{red}{显示声明serialVersionUID可以避免对象的不一致，但尽量不要以这种方式向JVM撒谎。}$​</strong></p>
 <h3 id="建议12：避免用序列化类在构造函数中为不变量赋值"><a href="#建议12：避免用序列化类在构造函数中为不变量赋值" class="headerlink" title="建议12：避免用序列化类在构造函数中为不变量赋值"></a>建议12：避免用序列化类在构造函数中为不变量赋值</h3><p>​    我们知道带有final标识的属性是不变量，也就是只能赋值一次，不能重复赋值，但是在序列化类中就有点复杂了，比如这个类：</p>
 <pre class=" language-java"><code class="language-java"> <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Person</span> <span class="token keyword">implements</span> <span class="token class-name">Serializable</span> <span class="token punctuation">{</span>
      <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token keyword">long</span> serialVersionUID <span class="token operator">=</span> 1867341609628930239L<span class="token punctuation">;</span>
@@ -878,7 +878,7 @@
 </code></pre>
 <p>现在问题出来了，打印出来的结果是”程咬金” 还是”秦叔宝”？答案是:”程咬金”。final类型的变量不是会重新计算嘛，打印出来的应该是秦叔宝才对呀。为什么会是程咬金？这是因为这里触及到了反序列化的两一个原则:<strong>反序列化时构造函数不会执行.</strong></p>
 <p>　　反序列化的执行过程是这样的：JVM从数据流中获取一个Object对象，然后根据数据流中的类文件描述信息(在序列化时，保存到磁盘的对象文件中包含了类描述信息，注意是描述信息，不是类)查看，发现是final变量，需要重新计算，于是引用Person类中的perName值，而此时JVM又发现perName竟没有赋值，不能引用，于是它很聪明的不再初始化，保持原值状态，所以结果就是”程咬金”了。</p>
-<p>​    ==<strong>注意：在序列化类中不使用构造函数为final变量赋值.</strong>==</p>
+<p><strong>$\color{red}{注意：在序列化类中不使用构造函数为final变量赋值.}$​</strong></p>
 <h3 id="建议13：避免为final变量复杂赋值"><a href="#建议13：避免为final变量复杂赋值" class="headerlink" title="建议13：避免为final变量复杂赋值"></a>建议13：避免为final变量复杂赋值</h3><p>​    为final变量赋值还有另外一种方式：通过方法赋值，及直接在声明时通过方法的返回值赋值，还是以Person类为例来说明，代码如下:</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Person</span> <span class="token keyword">implements</span> <span class="token class-name">Serializable</span> <span class="token punctuation">{</span>
     <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token keyword">long</span> serialVersionUID <span class="token operator">=</span> 1867341609628930239L<span class="token punctuation">;</span>
@@ -910,11 +910,11 @@
 <p>　　(2).非瞬态(transient关键字)和非静态(static关键字)的实体变量值</p>
 <p>　　注意，这里的值如果是一个基本类型，好说，就是一个简单值保存下来；如果是复杂对象，也简单，连该对象和关联类信息一起保存，并且持续递归下去（关联类也必须实现Serializable接口，否则会出现序列化异常），也就是递归到最后，还是基本数据类型的保存。</p>
 <p>　　正是因为这两个原因，一个持久化的对象文件会比一个class类文件大很多，有兴趣的读者可以自己测试一下，体积确实膨胀了不少。</p>
-<p>==<strong>总结一下：反序列化时final变量在以下情况下不会被重新赋值:</strong>==</p>
+<p><strong>总结一下：反序列化时final变量在以下情况下不会被重新赋值:</strong></p>
 <ol>
-<li>==<strong>通过构造函数为final变量赋值</strong>==</li>
-<li>==<strong>通过方法返回值为final变量赋值</strong>==</li>
-<li>==<strong>final修饰的属性不是基本类型</strong>==</li>
+<li><strong>通过构造函数为final变量赋值</strong></li>
+<li><strong>通过方法返回值为final变量赋值</strong></li>
+<li><strong>final修饰的属性不是基本类型</strong></li>
 </ol>
 <h3 id="建议14：使用序列化类的私有方法巧妙解决部分属性持久化问题"><a href="#建议14：使用序列化类的私有方法巧妙解决部分属性持久化问题" class="headerlink" title="建议14：使用序列化类的私有方法巧妙解决部分属性持久化问题"></a>建议14：使用序列化类的私有方法巧妙解决部分属性持久化问题</h3><p>​    部分属性持久化问题看似很简单，只要把不需要持久化的属性加上瞬态关键字(transient关键字)即可。这是一种解决方案，但有时候行不通。例如一个计税系统和一个HR系统，通过RMI(Remote Method Invocation,远程方法调用)对接，计税系统需要从HR系统获得人员的姓名和基本工资，以作为纳税的依据，而HR系统的工资分为两部分：基本工资和绩效工资，基本工资没什么秘密，绩效工资是保密的，不能泄露到外系统，这明显是连个相互关联的类，先看看薪水类Salary的代码：　　</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Salary</span> <span class="token keyword">implements</span> <span class="token class-name">Serializable</span> <span class="token punctuation">{</span>
@@ -1195,9 +1195,9 @@
 <p>　　Java的动态编译对源提供了多个渠道。比如，可以是字符串，文本文件，字节码文件，还有存放在数据库中的明文代码或者字节码。汇总一句话，只要符合Java规范的就可以在运行期动态加载，其实现方式就是实现JavaFileObject接口，重写getCharContent、openInputStream、openOutputStream，或者实现JDK已经提供的两个SimpleJavaFileObject、ForwardingJavaFileObject,具体代码可以参考上个例子。</p>
 <p>　　动态编译虽然是很好的工具，让我们可以更加自如的控制编译过程，但是在我们目前所接触的项目中还是使用较少。原因很简单，静态编译已经能够帮我们处理大部分的工作，甚至是全部的工作，即使真的需要动态编译，也有很好的替代方案，比如Jruby、Groovy等无缝的脚本语言。另外，我们在使用动态编译时，需要注意以下几点：</p>
 <ol>
-<li>**==在框架中谨慎使用==**：比如要在struts中使用动态编译，动态实现一个类，它若继承自ActionSupport就希望它成为一个Action。能做到，但是debug很困难；再比如在Spring中，写一个动态类，要让它注入到Spring容器中，这是需要花费老大功夫的。</li>
-<li>**==不要在要求性能高的项目中使用==**：如果你在web界面上提供了一个功能，允许上传一个java文件然后运行，那就等于说:”我的机器没有密码，大家都可以看看”，这是非常典型的注入漏洞，只要上传一个恶意Java程序就可以让你所有的安全工作毁于一旦。</li>
-<li>**==记录动态编译过程==**：建议记录源文件，目标文件，编译过程，执行过程等日志，不仅仅是为了诊断，还是为了安全和审计，对Java项目来说，空中编译和运行时很不让人放心的，留下这些依据可以很好地优化程序。</li>
+<li><strong>在框架中谨慎使用</strong>：比如要在struts中使用动态编译，动态实现一个类，它若继承自ActionSupport就希望它成为一个Action。能做到，但是debug很困难；再比如在Spring中，写一个动态类，要让它注入到Spring容器中，这是需要花费老大功夫的。</li>
+<li><strong>不要在要求性能高的项目中使用</strong>：如果你在web界面上提供了一个功能，允许上传一个java文件然后运行，那就等于说:”我的机器没有密码，大家都可以看看”，这是非常典型的注入漏洞，只要上传一个恶意Java程序就可以让你所有的安全工作毁于一旦。</li>
+<li><strong>记录动态编译过程</strong>：建议记录源文件，目标文件，编译过程，执行过程等日志，不仅仅是为了诊断，还是为了安全和审计，对Java项目来说，空中编译和运行时很不让人放心的，留下这些依据可以很好地优化程序。</li>
 </ol>
 <h3 id="建议18：避免instanceof非预期结果"><a href="#建议18：避免instanceof非预期结果" class="headerlink" title="建议18：避免instanceof非预期结果"></a>建议18：避免instanceof非预期结果</h3><p> instanceof是一个简单的二元操作符，它是用来判断一个对象是否是一个类的实现，其操作类似于&gt;=、==，非常简单，我们看段程序，代码如下:　</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>Date<span class="token punctuation">;</span>
@@ -1325,7 +1325,8 @@
 <p>　　对于final修饰的类(即非基本类型)，编译器会认为它不是稳定态的（Mutable Status），编译时建立的则是引用关系（该类型也叫作Soft Final）。如果Client类引入的常量是一个类或实例，及时不重新编译也会输出最新值。</p>
 <p>　　<strong>千万不可小看了这点知识，细坑也能绊倒大象，比如在一个web项目中，开发人员修改了一个final类型的值（基本类型）考虑到重新发布的风险较大，或者是审批流程过于繁琐，反正是为了偷懒，于是直接采用替换class类文件的方式发布，替换完毕后应用服务器自动重启，然后简单测试一下，一切Ok，可运行几天后发现业务数据对不上，有的类(引用关系的类)使用了旧值，有的类（继承关系的类）使用的是新值，而且毫无头绪，让人一筹莫展，其实问题的根源就在于此。</strong></p>
 <p>　　还有个小问题没有说明，我们的例子为什么不在IDE工具(比如Eclipse)中运行呢？那是因为在IDE中设置了自动编译不能重现此问题，若修改了Constant类，IDE工具会自动编译所有的引用类,”智能”化屏蔽了该问题，但潜在的风险其实仍然存在，我记得Eclipse应该有个设置自动编译的入口，有兴趣大家可以自己尝试一下。</p>
-<p>​    ==<strong>注意：发布应用系统时禁止使用类文件替换方式，整体WAR包发布才是万全之策。但我觉得应特殊情况特殊对待，并不可以偏概全，大家以为呢？</strong>==</p>
+<p><strong>$\color{red}{注意：发布应用系统时禁止使用类文件替换方式，整体WAR包发布才是万全之策。但我觉得应特殊情况特殊对待，}$​​​​</strong></p>
+<p><strong>$\color{red}{并不可以偏概全，大家以为呢？}$​</strong></p>
 <h2 id="第2章-基本类型"><a href="#第2章-基本类型" class="headerlink" title="第2章 基本类型"></a>第2章 基本类型</h2><p>​    不积跬步，无以至千里；不积小流，无以成江海。——荀子《劝学篇》</p>
 <p>​    Java中的基本数据类型（Primitive Data Types）有8个：byte、char、short、int、long、float、double、boolean，它们是Java最基本的单元，我们的每一段程序中都有它们的身影，但我们对如此熟悉的“伙伴”又了解多少呢？积少成多，积土成山，本章我们就来一探这最基本的8个数据类型。</p>
 <h3 id="建议21：用偶判断，不用奇判断"><a href="#建议21：用偶判断，不用奇判断" class="headerlink" title="建议21：用偶判断，不用奇判断"></a>建议21：用偶判断，不用奇判断</h3><p>​    判断一个数是奇数还是偶数是小学里的基本知识，能够被2整除的整数是偶数，不能被2整除的数是奇数，这规则简单明了，还有什么可考虑的？好，我们来看一个例子，代码如下：　</p>
@@ -1354,7 +1355,7 @@
 <span class="token punctuation">}</span>
 </code></pre>
 <p>看到这段程序，大家都会心的笑了，原来Java这么处理取余计算的呀，根据上面的模拟取余可知，当输入-1的时候，运算结果为-1，当然不等于1了，所以它就被判定为偶数了，也就是我们的判断失误了。问题明白了，修正也很简单，改为判断是否是偶数即可。代码如下：   i % 2 == 0 ? “偶数” : “奇数”;</p>
-<p>==<strong>注意：对于基础知识，我们应该”知其然，并知其所以然”。</strong>==</p>
+<p><strong>$\color{red}{注意：对于基础知识，我们应该”知其然，并知其所以然”}$​</strong></p>
 <h3 id="建议22：用整数类型处理货币"><a href="#建议22：用整数类型处理货币" class="headerlink" title="建议22：用整数类型处理货币"></a>建议22：用整数类型处理货币</h3><p>在日常生活中，最容易接触到的小数就是货币，比如，你付给售货员10元钱购买一个9.6元的零食，售货员应该找你0.4元，也就是4毛钱才对，我们来看下面的程序：</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Client22</span> <span class="token punctuation">{</span>
     <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -1402,8 +1403,8 @@
 <p>　　long dis2 = LIGHT_SPEED * 60L * 8;</p>
 <p>　　60L是一个长整型，乘出来的结果也是一个长整型的（此乃Java的基本转换规则，向数据范围大的方向转换，也就是加宽类型），在还没有超过int类型的范围时就已经转换为long型了，彻底解决了越界问题。在实际开发中，更通用的做法是主动声明类型转化(注意，不是强制类型转换)代码如下：</p>
 <p>　　long dis2 = 1L * LIGHT_SPEED * 60L * 8</p>
-<p>　　**==既然期望的结果是long型，那就让第一个参与的参数也是Long(1L)吧==**，也就说明”嗨”我已经是长整型了，你们都跟着我一块转为长整型吧。</p>
-<p>==<strong>注意：基本类型转换时，使用主动声明方式减少不必要的Bug.</strong>==</p>
+<p>　　<strong>既然期望的结果是long型，那就让第一个参与的参数也是Long(1L)吧</strong>，也就说明”嗨”我已经是长整型了，你们都跟着我一块转为长整型吧。</p>
+<p><strong>$\color{red}{注意：基本类型转换时，使用主动声明方式减少不必要的Bug.}$​</strong></p>
 <h3 id="建议24：边界还是边界"><a href="#建议24：边界还是边界" class="headerlink" title="建议24：边界还是边界"></a>建议24：边界还是边界</h3><p>​    某商家生产的电子产品非常畅销，需要提前30天预订才能抢到手，同时还规定了一个会员可拥有的最多产品数量，目的是为了防止囤积压货肆意加价。会员的预订过程是这样的：先登录官方网站，选择产品型号，然后设置需要预订的数量，提交，符合规则即提示下单成功，不符合规则提示下单失败，后台的处理模拟如下：</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>Scanner<span class="token punctuation">;</span>
 
@@ -1843,7 +1844,7 @@
     <span class="token keyword">return</span> count<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<p>​    上面以Integer和int为例说明了拆箱问题，其它7个包装对象的拆箱过程也存在着同样的问题。包装对象和拆箱对象可以自由转换，这不假，但是要剔除null值，null值并不能转换为基本类型。对于此问题，我们谨记一点：**==包装类型参与运算时，要做null值校验==**。</p>
+<p>​    上面以Integer和int为例说明了拆箱问题，其它7个包装对象的拆箱过程也存在着同样的问题。包装对象和拆箱对象可以自由转换，这不假，但是要剔除null值，null值并不能转换为基本类型。对于此问题，我们谨记一点：$\color{red}{包装类型参与运算时，要做null值校验。}$</p>
 <h3 id="建议27：谨慎包装类型的大小比较"><a href="#建议27：谨慎包装类型的大小比较" class="headerlink" title="建议27：谨慎包装类型的大小比较"></a>建议27：谨慎包装类型的大小比较</h3><p>​    基本类型是可以比较大小的，其所对应的包装类型都实现了Comparable接口，也说明了此问题，那我们来比较一下两个包装类型的大小，代码如下：</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Client27</span> <span class="token punctuation">{</span>
     <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -1863,7 +1864,7 @@
 <p>　　false false false</p>
 <p>　　竟然是3个false，也就是说两个值之间不相等，也没大小关系，这个也太奇怪了吧。不奇怪，我们来一 一解释：</p>
 <ol>
-<li>i==j：在java中”==”是用来判断两个操作数是否有相等关系的，如果是基本类型则判断值是否相等，如果是对象则判断是否是一个对象的两个引用，也就是地址是否相等，这里很明显是两个对象，两个地址不可能相等。</li>
+<li>i= =j：在java中”= =”是用来判断两个操作数是否有相等关系的，如果是基本类型则判断值是否相等，如果是对象则判断是否是一个对象的两个引用，也就是地址是否相等，这里很明显是两个对象，两个地址不可能相等。</li>
 <li>i&gt;j 和 i&lt;j：在Java中，”&gt;” 和 “&lt;” 用来判断两个数字类型的大小关系，注意只能是数字类型的判断，对于Integer包装类型，是根据其intValue()方法的返回值(也就是其相应的基本类型)进行比较的(其它包装类型是根据相应的value值比较的，如doubleValue,floatValue等)，那很显然，两者不肯能有大小关系的。</li>
 </ol>
 <p>问题清楚了，修改总是比较容易的，直接使用Integer的实例compareTo方法即可，但是这类问题的产生更应该说是习惯问题，只要是两个对象之间的比较就应该采用相应的方法，而不是通过Java的默认机制来处理，除非你确定对此非常了解。</p>
@@ -1893,7 +1894,7 @@
 <span class="token punctuation">}</span>
 </code></pre>
 <p>输入多个数字，然后按照3中不同的方式产生Integer对象，判断其是否相等，注意这里使用了”==”，这说明判断的不是同一个对象。我们输入三个数字127、128、555，结果如下：</p>
-<p>　　<strong>127</strong><br><strong>=====127 的相等判断=====</strong><br> <strong>new 产生的对象：false</strong><br> <strong>基本类型转换的对象：true</strong><br> <strong>valueOf产生的对象：true</strong><br><strong>128</strong><br><strong>=====128 的相等判断=====</strong><br> <strong>new 产生的对象：false</strong><br> <strong>基本类型转换的对象：false</strong><br> <strong>valueOf产生的对象：false</strong><br><strong>555</strong><br><strong>=====555 的相等判断=====</strong><br> <strong>new 产生的对象：false</strong><br> <strong>基本类型转换的对象：false</strong><br> <strong>valueOf产生的对象：false</strong></p>
+<p>　　<strong>127</strong><br><strong>= = = = =127 的相等判断 = = == =</strong><br> <strong>new 产生的对象：false</strong><br> <strong>基本类型转换的对象：true</strong><br> <strong>valueOf产生的对象：true</strong><br><strong>128</strong><br><strong>= = = = =128 的相等判断= = = = =</strong><br> <strong>new 产生的对象：false</strong><br> <strong>基本类型转换的对象：false</strong><br> <strong>valueOf产生的对象：false</strong><br><strong>555</strong><br><strong>= = = = =555 的相等判断= = = = =</strong><br> <strong>new 产生的对象：false</strong><br> <strong>基本类型转换的对象：false</strong><br> <strong>valueOf产生的对象：false</strong></p>
 <p>很不可思议呀，数字127的比较结果竟然和其它两个数字不同，它的装箱动作所产生的对象竟然是同一个对象，valueOf产生的也是同一个对象，但是大于127的数字和128和555的比较过程中产生的却不是同一个对象，这是为什么？我们来一个一个解释。</p>
 <p>(1)、new产生的Integer对象</p>
 <p>　　　　new声明的就是要生成一个新的对象，没二话，这是两个对象，地址肯定不等，比较结果为false。</p>
@@ -1963,7 +1964,7 @@
 <p>​    cache是IntegerCache内部类的一个静态数组，容纳的是-128到127之间的Integer对象。通过valueOf产生包装对象时，如果int参数在-128到127之间，则直接从整型池中获得对象，不在该范围内的int类型则通过new生成包装对象。</p>
 <p>　　明白了这一点，要理解上面的输出结果就迎刃而解了，127的包装对象是直接从整型池中获得的，不管你输入多少次127这个数字，获得的对象都是同一个，那地址自然是相等的。而128、555超出了整型池范围，是通过new产生一个新的对象，地址不同，当然也就不相等了。</p>
 <p>　　以上的理解也是整型池的原理，整型池的存在不仅仅提高了系统性能，同时也节约了内存空间，这也是我们使用整型池的原因，也就是在声明包装对象的时候使用valueOf生成，而不是通过构造函数来生成的原因。顺便提醒大家，在判断对象是否相等的时候，最好使用equals方法，避免使用”==”产生非预期效果。</p>
-<p>==<strong>注意：通过包装类型的valueOf生成的包装实例可以显著提高空间和时间性能。</strong>==</p>
+<p><strong>$\color{red}{注意：通过包装类型的valueOf生成的包装实例可以显著提高空间和时间性能。}$​</strong>​</p>
 <h3 id="建议29：优先选择基本类型"><a href="#建议29：优先选择基本类型" class="headerlink" title="建议29：优先选择基本类型"></a>建议29：优先选择基本类型</h3><p>​    包装类型是一个类，它提供了诸如构造方法，类型转换，比较等非常实用的功能，而且在Java5之后又实现了与基本类型的转换，这使包装类型如虎添翼，更是应用广泛了，在开发中包装类型已经随处可见，但无论是从安全性、性能方面来说，还是从稳定性方面来说，基本类型都是首选方案。我们看一段代码：</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Client29</span> <span class="token punctuation">{</span>
     <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -2009,7 +2010,7 @@
 <p>　　(2)、由于没有testMethod(Integer i)方法，编译器会”聪明”的把Integer对象转换成int。</p>
 <p>　　(3)、int自动拓宽为long，编译结束</p>
 <p>　　使用包装类型确实有方便的方法，但是也引起一些不必要的困惑，比如我们这个例子，如果testMethod()的两个重载方法使用的是基本类型，而且实参也是基本类型，就不会产生以上问题，而且程序的可读性更强。自动装箱(拆箱)虽然很方便，但引起的问题也非常严重，我们甚至都不知道执行的是哪个方法。</p>
-<p>==<strong>注意：重申，基本类型优先考虑。</strong>==</p>
+<p><strong>$\color{red}{注意：重申，基本类型优先考虑。}$​</strong></p>
 <h3 id="建议30：不要随便设置随机种子"><a href="#建议30：不要随便设置随机种子" class="headerlink" title="建议30：不要随便设置随机种子"></a>建议30：不要随便设置随机种子</h3><p>​    随机数用的地方比较多，比如加密，混淆计算，我们使用随机数期望获得一个唯一的、不可仿造的数字，以避免产生相同的业务数据造成混乱。在Java项目中通常是通过Math.random方法和Random类来获得随机数的，我们来看一段代码：</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>Random<span class="token punctuation">;</span>
 
@@ -2044,7 +2045,7 @@
 <p>　　看完上面两个规则，我们再来看这个例子，会发现问题就出在有参构造上，Random类的默认种子(无参构造)是System.nonoTime()的返回值(JDK1.5版本以前默认种子是System.currentTimeMillis()的返回值)，注意这个值是距离某一个固定时间点的纳秒数，不同的操作系统和硬件有不同的固定时间点，也就是说不同的操作系统其纳秒值是不同的，而同一个操作系统纳秒值也会不同，随机数自然也就不同了.(顺便说下，System.nonoTime不能用于计算日期，那是因为”固定”的时间是不确定的，纳秒值甚至可能是负值，这点与System.currentTiemMillis不同)。</p>
 <p>　　new Random(1000)显示的<strong>设置了随机种子</strong>为1000，运行多次，虽然实例不同，但都会获得相同的四个随机数，所以，除非必要，否则不要设置随机种子。</p>
 <p>　　顺便提一下，在Java中有两种方法可以获得不同的随机数：通过，java.util.Random类获得随机数的原理和Math.random方法相同，Math.random方法也是通过生成一个Random类的实例，然后委托nextDouble()方法的，两者殊途同归，没有差别。</p>
-<p>==<strong>注意：若非必要，不要设置随机数种子。</strong>==</p>
+<p><strong>$\color{red}{注意：若非必要，不要设置随机数种子}$​</strong></p>
 
                 
             </div>
