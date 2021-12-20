@@ -416,7 +416,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    29.8k
+                    36.7k
                 </div>
                 
 
@@ -2115,7 +2115,393 @@
 <p>4、父类的构造函数；</p>
 <p>5、子类的变量和代码块（先声明的先执行）；</p>
 <p>6、子类的构造函数。</p>
-<h3 id="建议33：不要覆写静态方法"><a href="#建议33：不要覆写静态方法" class="headerlink" title="建议33：不要覆写静态方法"></a>建议33：不要覆写静态方法</h3>
+<h3 id="建议33：不要覆写静态方法"><a href="#建议33：不要覆写静态方法" class="headerlink" title="建议33：不要覆写静态方法"></a>建议33：不要覆写静态方法</h3><p>​    我们知到在Java中可以通过覆写(Override)来增强或减弱父类的方法和行为，但覆写是针对非静态方法(也叫做实例方法，只有生成实例才能调用的方法)的，不能针对静态方法(static修饰的方法，也叫做类方法)，为什么呢？我们看一个例子，代码如下：　</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Client33</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        Base base <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Sub</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//调用非静态方法</span>
+        base<span class="token punctuation">.</span><span class="token function">doAnything</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//调用静态方法</span>
+        base<span class="token punctuation">.</span><span class="token function">doSomething</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Base</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// 我是父类静态方法</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">doSomething</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"我是父类静态方法"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">// 父类非静态方法</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">doAnything</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"我是父类非静态方法"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Sub</span> <span class="token keyword">extends</span> <span class="token class-name">Base</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// 子类同名、同参数的静态方法</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">doSomething</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"我是子类静态方法"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">// 覆写父类非静态方法</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">doAnything</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"我是子类非静态方法"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>​    注意看程序，子类的doAnything方法覆写了父类方法，真没有问题，那么doSomething方法呢？它与父类的方法名相同，输入、输出也相同，按道理来说应该是覆写，不过到底是不是覆写呢？我们看看输出结果：  <strong>我是子类非静态方法   我是父类静态方法</strong></p>
+<p>　　这个结果很让人困惑，同样是调用子类方法，一个执行了父类方法，两者的差别仅仅是有无static修饰，却得到不同的结果，原因何在呢？</p>
+<p>　　我们知道一个实例对象有两个类型：表面类型(Apparent Type)和实际类型(Actual Type)，表面类型是声明的类型，实际类型是对象产生时的类型，比如我们例子，变量base的表面类型是Base，实际类型是Sub。<strong>对于非静态方法，它是根据对象的实际类型来执行的</strong>，也就是执行了Sub类中的doAnything方法。而对于静态方法来说就比较特殊了，<strong>首先静态方法不依赖实例对象，它是通过类名来访问的</strong>；其次，可以通过对象访问静态方法，如果是通过对象访问静态方法，JVM则会通过对象的表面类型查找静态方法的入口，继而执行之。因此上面的程序打印出”我是父类非静态方法”，也就不足为奇了。</p>
+<p>　　在子类中构建与父类方法相同的方法名、输入参数、输出参数、访问权限(权限可以扩大)，并且父类，子类都是静态方法，此种行为叫做隐藏(Hide),它与覆写有两点不同：</p>
+<p>　　(1)、表现形式不同：隐藏用于静态方法，覆写用于非静态方法，在代码上的表现是@Override注解可用于覆写，不可用于隐藏。</p>
+<p>　　(2)、职责不同：隐藏的目的是为了抛弃父类的静态方法，重现子类方法，例如我们的例子，Sub.doSomething的出现是为了遮盖父类的Base.doSomething方法，也就是i期望父类的静态方法不要做破坏子类的业务行为，而覆写是将父类的的行为增强或减弱，延续父类的职责。</p>
+<p>　　解释了这么多，我们回头看看本建议的标题，静态方法不能覆写，可以再续上一句话，虽然不能覆写，但可以隐藏。顺便说一下，通过实例对象访问静态方法或静态属性不是好习惯，它给代码带来了”坏味道”，建议大家阅之戒之。</p>
+<h3 id="建议34：构造函数尽量简化"><a href="#建议34：构造函数尽量简化" class="headerlink" title="建议34：构造函数尽量简化"></a>建议34：构造函数尽量简化</h3><p>​    我们知道通过new关键字生成的对象必然会调用构造函数，构造函数的简繁情况会直接影响实例对象的创建是否繁琐，在项目开发中，我们一般都会制定构造函数尽量简单，尽可能不抛异常，尽量不做复杂运算等规范，那如果一个构造函数确实复杂了会怎么样？我们开看一段代码：</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Client34</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        Server s<span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SimpleServer</span><span class="token punctuation">(</span><span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">abstract</span> <span class="token keyword">class</span> <span class="token class-name">Server</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">final</span> <span class="token keyword">static</span> <span class="token keyword">int</span> DEFAULT_PORT <span class="token operator">=</span> <span class="token number">40000</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token function">Server</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// 获得子类提供的端口号</span>
+        <span class="token keyword">int</span> port <span class="token operator">=</span> <span class="token function">getPort</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"端口号："</span> <span class="token operator">+</span> port<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">/* 进行监听动作 */</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">// 由子类提供端口号，并作可用性检查</span>
+    <span class="token keyword">protected</span> <span class="token keyword">abstract</span> <span class="token keyword">int</span> <span class="token function">getPort</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">SimpleServer</span> <span class="token keyword">extends</span> <span class="token class-name">Server</span> <span class="token punctuation">{</span>
+    <span class="token keyword">private</span> <span class="token keyword">int</span> port <span class="token operator">=</span> <span class="token number">100</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">// 初始化传递一个端口号</span>
+    <span class="token keyword">public</span> <span class="token function">SimpleServer</span><span class="token punctuation">(</span><span class="token keyword">int</span> _port<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        port <span class="token operator">=</span> _port<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">// 检查端口是否有效，无效则使用默认端口，这里使用随机数模拟</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">protected</span> <span class="token keyword">int</span> <span class="token function">getPort</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> Math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">></span> <span class="token number">0.5</span> <span class="token operator">?</span> port <span class="token operator">:</span> DEFAULT_PORT<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+</code></pre>
+<p>​    该代码是一个服务类的简单模拟程序，Server类实现了服务器的创建逻辑，子类要在生成实例对象时传递一个端口号即可创建一个监听端口的服务，该代码的意图如下：</p>
+<ol>
+<li>通过SimpleServer的构造函数接收端口参数；</li>
+<li>子类的构造函数默认调用父类的构造函数；</li>
+<li>父类构造函数调用子类的getPort方法获得端口号；</li>
+<li>父类的构造函数建立端口监听机制；</li>
+<li>对象创建完毕，服务监听启动，正常运行。</li>
+</ol>
+<p>　　貌似很合理，再仔细看看代码，确实与我们的意图相吻合，那我们尝试多次运行看看，输出结果要么是”端口号：40000”，要么是”端口号：0”,永远不会出现”端口号：100”或是”端口号：1000”,这就奇怪了，40000还好说，那个0是怎么冒出来的呢？怠慢什么地方出现了问题呢？</p>
+<p>　　要解释这个问题，我们首先要说说子类是如何实例化的。子类实例化时，会首先初始化父类(注意这里是初始化，不是生成父类对象)，也就是初始化父类的变量，调用父类的构造函数，然后才会初始化子类的变量，调用子类的构造函数，最后生成一个实例对象。了解了相关知识，我们再来看看上面的程序，其执行过程如下：</p>
+<ol>
+<li>子类SimpleServer的构造函数接收int类型的参数1000；</li>
+<li>父类初始化常量，也就是DEFAULT_PORT初始化，并设置值为40000;</li>
+<li>执行父类无参构造函数，也就是子类有参构造函数默认包含了super()方法；</li>
+<li>父类无参构造函数执行到“int port = getPort() ”方法，调用子类的getPort方法实现；</li>
+<li>子类的getPort方法返回port值(注意，此时port变量还没有赋值，是0)或DEFAULT_PORT(此时已经是40000)了；</li>
+<li>父类初始化完毕，开始初始化子类的实例变量，port值赋值100；</li>
+<li>执行子类构造函数，port值被重新赋值为1000；</li>
+<li>子类SimpleServer实例化结束，对象创建完毕。</li>
+</ol>
+<p>　　终于清楚了，在类初始化时getPort方法返回值还没有赋值，port只是获得了默认初始值(int类型的实例变量默认初始值是0)，因此Server永远监听的是40000端口(0端口是没有意义的)。这个问题的产生从浅处说是类元素初始顺序导致的，从深处说是因为构造函数太复杂引起的。构造函数用作初始化变量，声明实例的上下文，这都是简单实现的，没有任何问题，但我们的例子却实现了一个复杂的逻辑，而这放在构造函数里就不合适了。</p>
+<p>　　问题知道了，修改也很简单，把父类的无参构造函数中的所有实现都移动到一个叫做start的方法中，将SimpleServer类初始化完毕，再调用其start方法即可实现服务器的启动工作，简洁而又直观，这也是大部分JEE服务器的实现方式。</p>
+<p>**<font color='red' >注意：构造函数简化，再简化，应该达到”一眼洞穿”的境界</font>**。</p>
+<h3 id="建议35：避免在构造函数中初始化其它类"><a href="#建议35：避免在构造函数中初始化其它类" class="headerlink" title="建议35：避免在构造函数中初始化其它类"></a>建议35：避免在构造函数中初始化其它类</h3><p>​    构造函数是一个类初始化必须执行的代码，它决定着类初始化的效率，如果构造函数比较复杂，而且还关联了其它类，则可能产生想不到的问题，我们来看如下代码：</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Client35</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        Son son <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Son</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        son<span class="token punctuation">.</span><span class="token function">doSomething</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">// 父类</span>
+<span class="token keyword">class</span> <span class="token class-name">Father</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token function">Father</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">new</span> <span class="token class-name">Other</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">// 相关类</span>
+<span class="token keyword">class</span> <span class="token class-name">Other</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token function">Other</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">new</span> <span class="token class-name">Son</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">// 子类</span>
+<span class="token keyword">class</span> <span class="token class-name">Son</span> <span class="token keyword">extends</span> <span class="token class-name">Father</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">doSomething</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Hi, show me Something!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>​    这段代码并不复杂，只是在构造函数中初始化了其它类，想想看这段代码的运行结果是什么？会打印出”Hi ，show me Something!”吗？</p>
+<p>　　答案是这段代码不能运行，报StatckOverflowError异常，栈(Stack)内存溢出，这是因为声明变量son时，调用了Son的无参构造函数，JVM又默认调用了父类的构造函数，接着Father又初始化了Other类，而Other类又调用了Son类，于是一个死循环就诞生了，知道内存被消耗完停止。</p>
+<p>　　大家可能觉得这样的场景不会出现在开发中，我们来思考这样的场景，Father是由框架提供的，Son类是我们自己编写的扩展代码，而Other类则是框架要求的拦截类(Interceptor类或者Handle类或者Hook方法)，再来看看问题，这种场景不可能出现吗?　　</p>
+<p>　　可能大家会觉得这样的场景不会出现，这种问题只要系统一运行就会发现，不可能对项目产生影响。</p>
+<p>　　那是因为我们这里展示的代码比较简单，很容易一眼洞穿，一个项目中的构造函数可不止一两个，类之间的关系也不会这么简单，要想瞥一眼就能明白是否有缺陷这对所有人员来说都是不可能完成的任务，解决此类问题最好的办法就是：不要在构造函数中声明初始化其他类，养成良好习惯。</p>
+<h3 id="建议36：使用构造代码块精简程序"><a href="#建议36：使用构造代码块精简程序" class="headerlink" title="建议36：使用构造代码块精简程序"></a>建议36：使用构造代码块精简程序</h3><p>什么叫做代码块(Code Block)？用大括号把多行代码封装在一起，形成一个独立的数据体，实现特定算法的代码集合即为代码块，一般来说代码快不能单独运行的，必须要有运行主体。在Java中一共有四种类型的代码块：</p>
+<ol>
+<li>普通代码块：就是在方法后面使用”{}”括起来的代码片段，它不能单独运行，必须通过方法名调用执行；</li>
+<li>静态代码块：在类中使用static修饰，并用”{}”括起来的代码片段，用于静态变量初始化或对象创建前的环境初始化。</li>
+<li>同步代码块：使用synchronized关键字修饰，并使用”{}”括起来的代码片段，它表示同一时间只能有一个线程进入到该方法块中，是一种多线程保护机制。</li>
+<li>构造代码块：在类中没有任何前缀和后缀,并使用”{}”括起来的代码片段；</li>
+</ol>
+<p>　　我么知道一个类中至少有一个构造函数(如果没有，编译器会无私的为其创建一个无参构造函数)，构造函数是在对象生成时调用的，那现在为你来了：构造函数和代码块是什么关系，构造代码块是在什么时候执行的？在回答这个问题之前，我们先看看编译器是如何处理构造代码块的，看如下代码：</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Client36</span> <span class="token punctuation">{</span>
+
+    <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// 构造代码块</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"执行构造代码块"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token function">Client36</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"执行无参构造"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token function">Client36</span><span class="token punctuation">(</span>String name<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"执行有参构造"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>　这是一段非常简单的代码，它包含了构造代码块、无参构造、有参构造，我们知道代码块不具有独立执行能力，那么编译器是如何处理构造代码块的呢？很简单，编译器会把构造代码块插入到每个构造函数的最前端，上面的代码等价于：</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Client36</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">public</span> <span class="token function">Client36</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"执行构造代码块"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"执行无参构造"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token function">Client36</span><span class="token punctuation">(</span>String name<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"执行构造代码块"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"执行有参构造"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>​    每个构造函数的最前端都被插入了构造代码块，很显然，在通过new关键字生成一个实例时会先执行构造代码块，然后再执行其他代码，也就是说：构造代码块会在每个构造函数内首先执行（需要注意的是：构造代码块不是在构造函数之前运行的，它依托于构造函数的执行），明白了这一点，我们就可以把构造代码块应用到如下场景中：</p>
+<ol>
+<li>初始化实例变量(Instance Variable):<strong>如果每个构造函数都要初始化变量，可以通过构造代码块来实现。</strong>当然也可以通过定义一个方法，然后在每个构造函数中调用该方法来实现，没错，可以解决，但是要在每个构造函数中都调用该方法，而这就是其缺点，若采用构造代码块的方式则不用定义和调用，会直接由编译器写入到每个构造函数中，这才是解决此问题的绝佳方式。</li>
+<li>初始化实例环境：一个对象必须在适当的场景下才能存在，如果没有适当的场景，则就需要在创建该对象的时候创建次场景，例如在JEE开发中，要产生HTTP Request必须首先建立HTTP Session，在创建HTTP Request时就可以通过构造代码块来检查HTTP Session是否已经存在，不存在则创建之。</li>
+</ol>
+<p>　　以上两个场景利用了构造代码块的两个特性：在每个构造函数中都运行和在构造函数中它会首先运行。很好的利用构造代码块的这连个特性不仅可以减少代码量，还可以让程序更容易阅读，特别是当所有的构造函数都要实现逻辑，而且这部分逻辑有很复杂时，这时就可以通过编写多个构造代码块来实现。每个代码块完成不同的业务逻辑（当然了构造函数尽量简单，这是基本原则），按照业务顺序一次存放，这样在创建实例对象时JVM就会按照顺序依次执行，实现复杂对象的模块化创建。</p>
+<h3 id="建议37：构造代码块会想你所想"><a href="#建议37：构造代码块会想你所想" class="headerlink" title="建议37：构造代码块会想你所想"></a>建议37：构造代码块会想你所想</h3><p>​    上一建议中我们提议使用构造代码块来简化代码，并且也了解到编译器会自动把构造代码块插入到各个构造函数中，那我们接下来看看，编译器是不是足够聪明，能为我们解决真实的开发问题，有这样一个案例，统计一个类的实例变量数。你可要说了，这很简单，在每个构造函数中加入一个对象计数器补救解决了嘛？或者我们使用上一建议介绍的，使用构造代码块也可以，确实如此，我们来看如下代码是否可行：</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Client37</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">new</span> <span class="token class-name">Student</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">new</span> <span class="token class-name">Student</span><span class="token punctuation">(</span><span class="token string">"张三"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">new</span> <span class="token class-name">Student</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"实例对象数量："</span><span class="token operator">+</span>Student<span class="token punctuation">.</span><span class="token function">getNumOfObjects</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Student</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// 对象计数器</span>
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">int</span> numOfObjects <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+    <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// 构造代码块，计算产生的对象数量</span>
+        numOfObjects<span class="token operator">++</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token function">Student</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">// 有参构造调用无参构造</span>
+    <span class="token keyword">public</span> <span class="token function">Student</span><span class="token punctuation">(</span>String stuName<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">// 有参构造不调用无参构造</span>
+    <span class="token keyword">public</span> <span class="token function">Student</span><span class="token punctuation">(</span><span class="token keyword">int</span> stuAge<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+    <span class="token punctuation">}</span>
+    <span class="token comment" spellcheck="true">//返回在一个JVM中，创建了多少实例对象</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">int</span> <span class="token function">getNumOfObjects</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> numOfObjects<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>​    这段代码可行吗？能计算出实例对象的数量吗？如果编译器把构造代码块插入到各个构造函数中，那带有String形参的构造函数就可能有问题，它会调用无参构造，那通过它生成的Student对象就会执行两次构造代码块：一次是无参构造函数调用构造代码块，一次是执行自身的构造代码块，这样的话计算就不准确了，main函数实际在内存中产生了3个对象，但结果确是4。不过真的是这样吗？我们运行之后，结果是：</p>
+<p>　　实例对象数量：3；</p>
+<p>　　实例对象的数量还是3，程序没有问题，奇怪吗？不奇怪，上一建议是说编译器会把构造代码块插入到每一个构造函数中，但是有一个例外的情况没有说明：如果遇到this关键字(也就是构造函数调用自身的其它构造函数时)，则不插入构造代码块，对于我们的例子来说，编译器在编译时发现String形参的构造函数调用了无参构造，于是放弃插入构造代码块，所以只执行了一次构造代码块。</p>
+<p>　　那Java编译器为何如此聪明？这还要从构造代码块的诞生说起，构造代码块是为了提取构造函数的共同量，减少各个构造函数的代码产生的，因此，Java就很聪明的认为把代码插入到this方法的构造函数中即可，而调用其它的构造函数则不插入，确保每个构造函数只执行一次构造代码块。</p>
+<p>　　还有一点需要说明，大家千万不要以为this是特殊情况，那super也会类似处理了，其实不会，在构造块的处理上，super方法没有任何特殊的地方，编译器只把构造代码块插入到super方法之后执行而已。仅此不同。</p>
+<p>　　注意：放心的使用构造代码块吧，Java已经想你所想了。</p>
+<h3 id="建议38：使用静态内部类提高封装性"><a href="#建议38：使用静态内部类提高封装性" class="headerlink" title="建议38：使用静态内部类提高封装性"></a>建议38：使用静态内部类提高封装性</h3><p>​        Java中的嵌套类(Nested Class)分为两种：静态内部类(也叫静态嵌套类，Static Nested Class)和内部类(Inner Class)。本次主要看看静态内部类。什么是静态内部类呢？是内部类，并且是静态(static修饰)的即为静态内部类，只有在是静态内部类的情况下才能把static修饰符放在类前，其它任何时候static都是不能修饰类的。</p>
+<p>　　静态内部类的形式很好理解，但是为什么需要静态内部类呢？那是因为静态内部类有两个优点：<strong>加强了类的封装和提高了代码的可读性</strong>，我们通过下面代码来解释这两个优点。</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Person</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// 姓名</span>
+    <span class="token keyword">private</span> String name<span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// 家庭</span>
+    <span class="token keyword">private</span> Home home<span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token function">Person</span><span class="token punctuation">(</span>String _name<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        name <span class="token operator">=</span> _name<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">/* home、name的setter和getter方法略 */</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">class</span> <span class="token class-name">Home</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// 家庭地址</span>
+        <span class="token keyword">private</span> String address<span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// 家庭电话</span>
+        <span class="token keyword">private</span> String tel<span class="token punctuation">;</span>
+
+        <span class="token keyword">public</span> <span class="token function">Home</span><span class="token punctuation">(</span>String _address<span class="token punctuation">,</span> String _tel<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            address <span class="token operator">=</span> _address<span class="token punctuation">;</span>
+            tel <span class="token operator">=</span> _tel<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment" spellcheck="true">/* address、tel的setter和getter方法略 */</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>​    其中，Person类中定义了一个静态内部类Home,它表示的意思是”人的家庭信息”，由于Home类封装了家庭信息，不用再Person中再定义homeAddr,homeTel等属性，这就使封装性提高了。同时我们仅仅通过代码就可以分析出Person和Home之间的强关联关系，也就是说语义增强了，可读性提高了。所以在使用时就会非常清楚它表达的含义。</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// 定义张三这个人</span>
+    Person p <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token string">"张三"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// 设置张三的家庭信息</span>
+    p<span class="token punctuation">.</span><span class="token function">setHome</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Home</span><span class="token punctuation">(</span><span class="token string">"北京"</span><span class="token punctuation">,</span> <span class="token string">"010"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span>
+</code></pre>
+<p>​        定义张三这个人，然后通过Person.Home类设置张三的家庭信息，这是不是就和我们真是世界的情形相同了？先登记人的主要信息，然后登记人员的分类信息。可能你由要问了，这和我们一般定义的类有神么区别呢？又有什么吸引人的地方呢？如下所示：</p>
+<ol>
+<li>提高封装性：从代码的位置上来讲，静态内部类放置在外部类内，其代码层意义就是，静态内部类是外部类的子行为或子属性，两者之间保持着一定的关系，比如在我们的例子中，看到Home类就知道它是Person的home信息。</li>
+<li>提高代码的可读性：相关联的代码放在一起，可读性肯定提高了。</li>
+<li>形似内部，神似外部：静态内部类虽然存在于外部类内，而且编译后的类文件也包含外部类(格式是：外部类+$+内部类)，但是它可以脱离外部类存在，也就说我们仍然可以通过new Home()声明一个home对象，只是需要导入”Person.Home”而已。　　</li>
+</ol>
+<p>　　解释了这么多，大家可能会觉得外部类和静态内部类之间是组合关系(Composition)了，这是错误的，外部类和静态内部类之间有强关联关系，这仅仅表现在”字面上”，而深层次的抽象意义则依类的设计.</p>
+<p>　　那静态类内部类和普通内部类有什么区别呢？下面就来说明一下：</p>
+<ol>
+<li><strong>静态内部类不持有外部类的引用</strong>：在普通内部类中，我们可以直接访问外部类的属性、方法，即使是private类型也可以访问，这是因为内部类持有一个外部类的引用，可以自由访问。而静态内部类，则只可以访问外部类的静态方法和静态属性(如果是private权限也能访问，这是由其代码位置决定的)，其它的则不能访问。</li>
+<li><strong>静态内部类不依赖外部类</strong>：普通内部类与外部类之间是相互依赖关系，内部类实例不能脱离外部类实例，也就是说它们会同生共死，一起声明，一起被垃圾回收，而静态内部类是可以独立存在的，即使外部类消亡了，静态内部类也是可以存在的。</li>
+<li><strong>普通内部类不能声明static的方法和变量</strong>：普通内部类不能声明static的方法和变量，注意这里说的是变量，常量(也就是final static 修饰的属性)还是可以的，而静态内部类形似外部类，没有任何限制。</li>
+</ol>
+<h3 id="建议39：使用匿名类的构造函数"><a href="#建议39：使用匿名类的构造函数" class="headerlink" title="建议39：使用匿名类的构造函数"></a>建议39：使用匿名类的构造函数</h3><p>阅读如下代码，看上是否可以编译：　</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    List list1<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    List list2<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+    List list3<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>list1<span class="token punctuation">.</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> list2<span class="token punctuation">.</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>list2<span class="token punctuation">.</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> list3<span class="token punctuation">.</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>list1<span class="token punctuation">.</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> list3<span class="token punctuation">.</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+```
+
+注意ArrayList后面的不通点：list1变量后面什么都没有，list2后面有一对<span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>list3后面有两个嵌套的<span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>这段程序能否编译呢？若能编译，那输结果是什么呢？
+
+　　答案是能编译，输出的是<span class="token number">3</span>个<span class="token boolean">false</span>。list1很容易理解，就是生命了ArrayList的实例对象，那list2和list3代表的是什么呢？
+
+　　<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>、list2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>：list2代表的是一个匿名类的声明和赋值，它定义了一个继承于ArrayList的匿名类，只是没有任何覆写的方法而已，其代码类似于：　
+
+```java
+<span class="token comment" spellcheck="true">// 定义一个继承ArrayList的内部类</span>
+<span class="token keyword">class</span> <span class="token class-name">Sub</span> <span class="token keyword">extends</span> <span class="token class-name">ArrayList</span> <span class="token punctuation">{</span>
+
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">// 声明和赋值</span>
+List list2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Sub</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+```
+
+　<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>、list3 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">}</span>：这个语句就有点奇怪了，带了两对<span class="token punctuation">{</span><span class="token punctuation">}</span>，我们分开解释就明白了，这也是一个匿名类的定义，它的代码类似于
+
+```java
+<span class="token comment" spellcheck="true">// 定义一个继承ArrayList的内部类</span>
+<span class="token keyword">class</span> <span class="token class-name">Sub</span> <span class="token keyword">extends</span> <span class="token class-name">ArrayList</span> <span class="token punctuation">{</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">//初始化代码块</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">// 声明和赋值</span>
+List list3 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Sub</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>​    看到了吧，就是多了一个初始化块而已，起到构造函数的功能，我们知道一个类肯定有一个构造函数，而且构造函数的名称和类名相同，那问题来了：匿名类的构造函数是什么呢？它没有名字呀！很显然，初始化块就是它的构造函数。当然，一个类中的构造函数块可以是多个，也就是说会出现如下代码：</p>
+<pre><code>List list4 = new ArrayList()&#123;&#123;&#125; &#123;&#125; &#123;&#125; &#123;&#125; &#123;&#125;&#125;;
+</code></pre>
+<p>上面的代码是正确无误，没有任何问题的，现在清楚了，<strong>匿名类虽然没有名字，但也是可以有构造函数的</strong>，它用构造函数块来代替构造函数，那上面的3个输出就很明显了：虽然父类相同，但是类还是不同的。　　</p>
+<h3 id="建议40：匿名类的构造函数很特殊"><a href="#建议40：匿名类的构造函数很特殊" class="headerlink" title="建议40：匿名类的构造函数很特殊"></a>建议40：匿名类的构造函数很特殊</h3><p>​    在上一建议中我们讲到匿名类虽然没有名字，但可以有一个初始化块来充当构造函数，那这个构造函数是否就和普通的构造函数完全不一样呢？我们来看一个例子，设计一个计算器，进行加减运算，代码如下：</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Calculator</span> <span class="token punctuation">{</span>
+    <span class="token keyword">enum</span> Ops <span class="token punctuation">{</span>
+        ADD<span class="token punctuation">,</span> SUB
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">int</span> i<span class="token punctuation">,</span> j<span class="token punctuation">,</span> result<span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">// 无参构造</span>
+    <span class="token keyword">public</span> <span class="token function">Calculator</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">// 有参构造</span>
+    <span class="token keyword">public</span> <span class="token function">Calculator</span><span class="token punctuation">(</span><span class="token keyword">int</span> _i<span class="token punctuation">,</span> <span class="token keyword">int</span> _j<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        i <span class="token operator">=</span> _i<span class="token punctuation">;</span>
+        j <span class="token operator">=</span> _j<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">// 设置符号，是加法运算还是减法运算</span>
+    <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">setOperator</span><span class="token punctuation">(</span>Ops _ops<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        result <span class="token operator">=</span> _ops<span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>Ops<span class="token punctuation">.</span>ADD<span class="token punctuation">)</span> <span class="token operator">?</span> i <span class="token operator">+</span> j <span class="token operator">:</span> i <span class="token operator">-</span> j<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">// 取得运算结果</span>
+    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">getResult</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> result<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+</code></pre>
+<p>　代码的意图是，通过构造函数传递两个int类型的数字，然后根据设置的操作符(加法还是减法)进行运算，编写一个客户端调用：</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    Calculator c1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Calculator</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token punctuation">{</span>
+            <span class="token function">setOperator</span><span class="token punctuation">(</span>Ops<span class="token punctuation">.</span>ADD<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>c1<span class="token punctuation">.</span><span class="token function">getResult</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>​    这段匿名类的代码非常清晰：接收两个参数1和2，然后设置一个操作符号，计算其值，结果是3，这毫无疑问，但是这中间隐藏着一个问题：带有参数的匿名类声明时到底调用的是哪一个构造函数呢？我们把这段程序模拟一下：</p>
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">//加法计算</span>
+<span class="token keyword">class</span> <span class="token class-name">Add</span> <span class="token keyword">extends</span> <span class="token class-name">Calculator</span><span class="token punctuation">{</span>
+    <span class="token punctuation">{</span>
+        <span class="token function">setOperator</span><span class="token punctuation">(</span>Ops<span class="token punctuation">.</span>ADD<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment" spellcheck="true">//覆写父类的构造方法</span>
+    <span class="token keyword">public</span> <span class="token function">Add</span><span class="token punctuation">(</span><span class="token keyword">int</span> _i<span class="token punctuation">,</span> <span class="token keyword">int</span> _j<span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>　匿名类和这个Add类等价吗？可能有人会说：上面只是把匿名类增加了一个名字，其它的都没有改动，那肯定是等价了，毫无疑问 ，那好，编写一个客户端调用Add类的方法看看。代码就略了，因为很简单new Add，然后调用父类的getResult方法就可以了，经过测试，输出结果为0（为什么而是0？这很容易，有参构造没有赋值）。这说明两者不等价，不过，原因何在呢？</p>
+<p>　　因为匿名类的构造函数特殊处理机制，一般类(也就是没有显示名字的类)的所有构造函数默认都是调用父类的无参构造函数的，而匿名类因为没有名字，只能由构造代码块代替，也就无所谓有参和无参的构造函数了，它在初始化时直接调用了父类的同参数构造函数，然后再调用了自己的构造代码块，也就是说上面的匿名类和下面的代码是等价的：　　</p>
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">//加法计算</span>
+<span class="token keyword">class</span> <span class="token class-name">Add</span> <span class="token keyword">extends</span> <span class="token class-name">Calculator</span><span class="token punctuation">{</span>
+    <span class="token punctuation">{</span>
+        <span class="token function">setOperator</span><span class="token punctuation">(</span>Ops<span class="token punctuation">.</span>ADD<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment" spellcheck="true">//覆写父类的构造方法</span>
+    <span class="token keyword">public</span> <span class="token function">Add</span><span class="token punctuation">(</span><span class="token keyword">int</span> _i<span class="token punctuation">,</span> <span class="token keyword">int</span> _j<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">super</span><span class="token punctuation">(</span>_i<span class="token punctuation">,</span>_j<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>​    它会首先调用父类有两个参数的构造函数，而不是无参构造，这是匿名类的构造函数与普通类的差别，但是这一点也确实鲜有人仔细琢磨，因为它的处理机制符合习惯呀，我传递两个参数，就是希望先调用父类有两个参数的构造，然后再执行我自己的构造函数，而Java的处理机制也正是如此处理的。</p>
+
                 
             </div>
             <hr/>
