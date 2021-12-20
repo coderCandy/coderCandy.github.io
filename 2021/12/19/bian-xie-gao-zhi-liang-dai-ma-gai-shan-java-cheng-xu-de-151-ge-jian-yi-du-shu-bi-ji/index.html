@@ -416,7 +416,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    28.2k
+                    29.8k
                 </div>
                 
 
@@ -2046,7 +2046,76 @@
 <p>　　new Random(1000)显示的<strong>设置了随机种子</strong>为1000，运行多次，虽然实例不同，但都会获得相同的四个随机数，所以，除非必要，否则不要设置随机种子。</p>
 <p>　　顺便提一下，在Java中有两种方法可以获得不同的随机数：通过，java.util.Random类获得随机数的原理和Math.random方法相同，Math.random方法也是通过生成一个Random类的实例，然后委托nextDouble()方法的，两者殊途同归，没有差别。</p>
 <p><strong>$\color{red}{注意：若非必要，不要设置随机数种子}$​</strong></p>
+<h2 id="第3章-类、对象及方法"><a href="#第3章-类、对象及方法" class="headerlink" title="第3章 类、对象及方法"></a>第3章 类、对象及方法</h2><p>​    书读得多而不思考，你会觉得自己知道的很多。书读得多而思考，你会觉得自己不懂的越来越多。——伏尔泰</p>
+<p>​    在面向对象编程（Object-Oriented Programming，OOP）的世界里，类和对象是真实世界的描述工具，方法是行为和动作的展示形式，封装、继承、多态则是其多姿多彩的主要实现方式，如此，OOP才会像现在这样繁荣昌盛、欣欣向荣。本章主要讲述关于Java类、对象、方法的种种规则、限制及建议，让读者在面向对象编程的世界中走得更远，飞得更高。</p>
+<h3 id="建议31：在接口中不要存在实现代码"><a href="#建议31：在接口中不要存在实现代码" class="headerlink" title="建议31：在接口中不要存在实现代码"></a>建议31：在接口中不要存在实现代码</h3><p>​    看到这样的标题，大家是否感到郁闷呢？接口中有实现代码吗？这怎么可能呢？确实，接口中可以声明常量，声明抽象方法，可以继承父接口，但就是不能有具体实现，因为接口是一种契约(Contract),是一种框架性协议，这表明它的实现类都是同一种类型，或者具备相似特征的一个集合体。对于一般程序，接口确实没有任何实现，但是在那些特殊的程序中就例外了，阅读如下代码：　</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Client31</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">//调用接口的实现</span>
+        B<span class="token punctuation">.</span>s<span class="token punctuation">.</span><span class="token function">doSomeThing</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 
+<span class="token comment" spellcheck="true">// 在接口中存在实现代码</span>
+<span class="token keyword">interface</span> <span class="token class-name">B</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">final</span> S s <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">S</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">doSomeThing</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"我在接口中实现了"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">// 被实现的接口</span>
+<span class="token keyword">interface</span> <span class="token class-name">S</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">doSomeThing</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>​    仔细看main方法，注意那个B接口。它调用了接口常量，在没有实现任何显示实现类的情况下，它竟然打印出了结果，那B接口中的s常量(接口是S)是在什么地方被实现的呢？答案在B接口中。</p>
+<p>　　在B接口中声明了一个静态常量s，其值是一个匿名内部类(Anonymous Inner Class)的实例对象，就是该匿名内部类（当然，也可以不用匿名，直接在接口中是实现内部类也是允许的）实现了S接口。你看，在接口中也存在着实现代码吧！</p>
+<p>　　这确实很好，很强大，但是在一般的项目中，此类代码是严禁出现的，原因很简单：这是一种非常不好的编码习惯，接口是用来干什么的？接口是一个契约，不仅仅约束着实现，同时也是一个保证，保证提供的服务(常量和方法)是稳定的、可靠的，如果把实现代码写到接口中，那接口就绑定了可能变化的因素，这会导致实现不再稳定和可靠，是随时都可能被抛弃、被更改、被重构的。所以，接口中虽然可以有实现，但应避免使用。</p>
+<p><strong>$\color{red}{注意：接口中不能出现实现代码。}$​</strong></p>
+<h3 id="建议32：静态变量一定要先声明后赋值"><a href="#建议32：静态变量一定要先声明后赋值" class="headerlink" title="建议32：静态变量一定要先声明后赋值"></a>建议32：静态变量一定要先声明后赋值</h3><p>​    这个标题是否像上一个建议的标题一样让人郁闷呢？什么叫做变量一定要先声明后赋值？Java中的变量不都是先声明后使用的吗？难道还能先使用后声明?能不能暂且不说，我们看一个例子，代码如下：</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Client32</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">static</span> <span class="token punctuation">{</span>
+        i <span class="token operator">=</span> <span class="token number">100</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>这段程序很简单，输出100嘛，对，确实是100，我们稍稍修改一下，代码如下：</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Client32</span> <span class="token punctuation">{</span>
+    <span class="token keyword">static</span> <span class="token punctuation">{</span>
+        i <span class="token operator">=</span> <span class="token number">100</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>　注意变量 i 的声明和赋值调换了位置，现在的问题是：这段程序能否编译？如过可以编译，输出是多少？还要注意，这个变量i可是先使用(也就是赋值)后声明的。</p>
+<p>　　答案是：可以编译，没有任何问题，输出结果为1。对，输出是 1 不是100.仅仅调换了位置，输出就变了，而且变量 i 还是先使用后声明的，难道颠倒了？</p>
+<p>　　这要从静态变量的诞生说起，静态变量是类加载时被分配到数据区(Data Area)的，它在内存中只有一个拷贝，不会被分配多次，其后的所有赋值操作都是值改变，地址则保持不变。我们知道JVM初始化变量是先声明空间，然后再赋值，也就是说：在JVM中是分开执行的，等价于：</p>
+<p>　　int i ; //分配空间</p>
+<p>　　i = 100; //赋值</p>
+<p>　　静态变量是在类初始化的时候首先被加载的，JVM会去查找类中所有的静态声明，然后分配空间，注意这时候只是完成了地址空间的分配，还没有赋值，之后JVM会根据类中静态赋值(包括静态类赋值和静态块赋值)的先后顺序来执行。对于程序来说，就是先声明了int类型的地址空间，并把地址传递给了i，然后按照类的先后顺序执行赋值操作，首先执行静态块中i = 100,接着执行 i = 1,那最后的结果就是 i =1了。</p>
+<p>　　哦，如此而已，如果有多个静态块对 i 继续赋值呢？i 当然还是等于1了，谁的位置最靠后谁有最终的决定权。</p>
+<p>　　有些程序员喜欢把变量定义放到类最底部，如果这是实例变量还好说，没有任何问题，但如果是静态变量，而且还在静态块中赋值了，那这结果就和期望的不一样了，所以遵循Java通用的开发规范”变量先声明后赋值使用”，是一个良好的编码风格。</p>
+<p><strong>$\color{red}{注意：再次重申变量要先声明后使用，这不是一句废话。}$​</strong></p>
+<p>执行顺序：</p>
+<p>1、父类静态变量和静态代码块（先声明的先执行）；</p>
+<p>2、子类静态变量和静态代码块（先声明的先执行）；</p>
+<p>3、父类的变量和代码块（先声明的先执行）；</p>
+<p>4、父类的构造函数；</p>
+<p>5、子类的变量和代码块（先声明的先执行）；</p>
+<p>6、子类的构造函数。</p>
+<h3 id="建议33：不要覆写静态方法"><a href="#建议33：不要覆写静态方法" class="headerlink" title="建议33：不要覆写静态方法"></a>建议33：不要覆写静态方法</h3>
                 
             </div>
             <hr/>
