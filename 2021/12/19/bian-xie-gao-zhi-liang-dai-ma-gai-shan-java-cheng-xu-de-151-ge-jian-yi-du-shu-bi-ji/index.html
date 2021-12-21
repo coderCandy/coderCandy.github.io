@@ -409,14 +409,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-12-20
+                    2021-12-21
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    36.7k
+                    45.6k
                 </div>
                 
 
@@ -2501,7 +2501,522 @@ List list3 <span class="token operator">=</span> <span class="token keyword">new
 <span class="token punctuation">}</span>
 </code></pre>
 <p>​    它会首先调用父类有两个参数的构造函数，而不是无参构造，这是匿名类的构造函数与普通类的差别，但是这一点也确实鲜有人仔细琢磨，因为它的处理机制符合习惯呀，我传递两个参数，就是希望先调用父类有两个参数的构造，然后再执行我自己的构造函数，而Java的处理机制也正是如此处理的。</p>
+<h3 id="建议41：让多重继承成为现实"><a href="#建议41：让多重继承成为现实" class="headerlink" title="建议41：让多重继承成为现实"></a>建议41：让多重继承成为现实</h3><p>​    在Java中一个类可以多重实现，但不能多重继承，也就是说一个类能够同时实现多个接口，但不 能同时继承多个类。但有时候我们确实需要继承多个类，比如希望拥有多个类的行为功能，就很难使用单继承来解决问题了(当然，使用多继承是可以解决的)。幸 运的是Java中提供的内部类可以曲折的解决此问题，我们来看一个案例，定义一个父亲、母亲接口，描述父亲强壮、母亲温柔的理想情形，代码如下：　</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">Father</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">strong</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
+<span class="token keyword">interface</span> <span class="token class-name">Mother</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">kind</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>​    其中strong和kind的返回值表示强壮和温柔的指数，指数越高强壮和温柔也就越高，这与游戏中设置人物的属性是一样的，我们继续开看父亲、母亲这两个实现：　</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">FatherImpl</span> <span class="token keyword">implements</span> <span class="token class-name">Father</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// 父亲的强壮指数为8</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">strong</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token number">8</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">MotherImpl</span> <span class="token keyword">implements</span> <span class="token class-name">Mother</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// 母亲的温柔指数为8</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">kind</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token number">8</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+</code></pre>
+<p>父亲的强壮指数为8，母亲的温柔指数也为8，门当户对，那他们生的儿子和女儿一定更优秀了，我们看看儿子类，代码如下：</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">Son</span> <span class="token keyword">extends</span> <span class="token class-name">FatherImpl</span> <span class="token keyword">implements</span> <span class="token class-name">Mother</span> <span class="token punctuation">{</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">strong</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// 儿子比父亲强壮</span>
+        <span class="token keyword">return</span> <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">strong</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">kind</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">MotherSpecial</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">kind</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">class</span> <span class="token class-name">MotherSpecial</span> <span class="token keyword">extends</span> <span class="token class-name">MotherImpl</span> <span class="token punctuation">{</span>
+        <span class="token annotation punctuation">@Override</span>
+        <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">kind</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment" spellcheck="true">// 儿子的温柔指数降低了</span>
+            <span class="token keyword">return</span> <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">kind</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>​    儿子继承自父亲，变得比父亲更强壮了(覆写父类strong方法)，同时儿子也具有母亲的优点，只是 温柔指数降低了。注意看，这里构造了MotherSpecial类继承母亲类，也就是获得了母亲类的行为和方法，这也是内部类的一个重要特性：内部类可以 继承一个与外部类无关的类，保证了内部类的独立性，正是基于这一点，多重继承才会成为可能。MotherSpecial的这种内部类叫做成员内部类(也叫 作实例内部类，Instance Inner Class)，我们再来看看女儿类，代码如下：</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">Daughter</span> <span class="token keyword">extends</span> <span class="token class-name">MotherImpl</span> <span class="token keyword">implements</span> <span class="token class-name">Father</span> <span class="token punctuation">{</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">strong</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">FatherImpl</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token annotation punctuation">@Override</span>
+            <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">strong</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token comment" spellcheck="true">//女儿的强壮指数降低了</span>
+                <span class="token keyword">return</span> <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">strong</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">2</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">.</span><span class="token function">strong</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+</code></pre>
+<p>​    女儿继承了目前的温柔指数，同时又覆写了父亲的强壮指数，不多解释。注意看覆写的strong方法，这里是创建了一个匿名内部类(Anonymous Inner Class)来覆写父类的方法，以完成继承父亲行为的功能。</p>
+<p>　　多重继承指的是一个类可以同时从多与一个的父亲那里继承行为与特征，按照这个定义，我们的儿子类、女儿类都实现了从父亲和母亲那里继承所有的功能，应该属于多重继承，这完全归功于内部类，大家在需要用到多重继承的时候，可以思考一下内部类。</p>
+<p>　 　在现实生活中，也确实存在多重继承的问题，上面的例子说后人继承了父亲也继承了母亲的行为和特征，再比如我国的特产动物”四不像”（学名麋鹿），其外 形” 似鹿非鹿，似马非马，似牛非牛，似驴非驴 “，这你想要用单继承实现就比较麻烦了，如果用多继承则可以很好地解决此问题：定义鹿、马、牛、驴　四个类，然后建立麋鹿类的多个内部类，继承他们即可。 　　</p>
+<h3 id="建议42：让工具类不可实例化"><a href="#建议42：让工具类不可实例化" class="headerlink" title="建议42：让工具类不可实例化"></a>建议42：让工具类不可实例化</h3><p>​    Java项目中使用的工具类非常多，比如JDK自己的工具类 java.lang.Math、java.util.Collections等都是我们经常用到的。工具类的方法和属性都是静态的，不需要生成实例即可访 问，而且JDK也做了很好的处理，由于不希望被初始化，于是就设置了构造函数private的访问权限，表示出了类本身之外，谁都不能产生一个实例，我们 来看一下java.lang.Math代码：</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">final</span> <span class="token keyword">class</span> <span class="token class-name">Math</span> <span class="token punctuation">{</span>
+
+    <span class="token comment" spellcheck="true">/**
+     * Don't let anyone instantiate this class.
+     */</span>
+    <span class="token keyword">private</span> <span class="token function">Math</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>​    之所以要将”Don’t let anyone instantiate this class.” 留下来，是因为Math的构造函数设置为了private：我就是一个工具类，我只想要其它类通过类名来访问，我不想你通过实例对象来访问。这在平台型或 框架项目中已经足够了。但是如果已经告诉你不要这么做了，你还要生成一个Math对象实例来访问静态方法和属性(Java的反射是如此的发达，修改个构造 函数的访问权限易如反掌)，那我就不保证正确性了，隐藏问题随时都有可能爆发！那我们在项目中有没有更好地限制办法呢？有，即不仅仅设置成private 权限，还抛出异常，代码如下：　</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">UtilsClazz</span><span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token function">UtilsClazz</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Error</span><span class="token punctuation">(</span><span class="token string">"Don't instantiate "</span><span class="token operator">+</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>​    如此，才能保证一个工具类不会实例化，并且保证了所有的访问都是通过类名来进行的。需要注意的一点是，此工具类最好不要做集成的打算，因为如果子类可以实例化的话，就要调用父类的构造函数，可是父类没有可以被访问的构造函数，于是问题就会出现。　</p>
+<p><strong><font color='red' >注意：如果一个类不允许实例化，就要保证”平常” 渠道都不能实例它。</font></strong>　</p>
+<h3 id="建议43：避免对象的浅拷贝"><a href="#建议43：避免对象的浅拷贝" class="headerlink" title="建议43：避免对象的浅拷贝"></a>建议43：避免对象的浅拷贝</h3><p>​    我们知道一个类实现了Cloneable接口就表示它具备了被拷贝的能力。如果在覆写clone()方法就会完全具备拷贝能力。拷贝是在内存中运行的， 所以在性能方面比直接通过new生成的对象要快很多，特别是在大对象的生成上，这会使得性能的提升非常显著。但是对象拷贝也有一个比较容易忽略的问题：<strong>浅拷贝(Shadow Clone,也叫作影子拷贝)存在对象属性拷贝不彻底的问题</strong>。我们来看这样一段代码：　　</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Person</span> <span class="token keyword">implements</span> <span class="token class-name">Cloneable</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// 定义父亲</span>
+        Person f <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token string">"父亲"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// 定义大儿子</span>
+        Person s1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token string">"大儿子"</span><span class="token punctuation">,</span> f<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// 小儿子的信息时通过大儿子拷贝过来的</span>
+        Person s2 <span class="token operator">=</span> s1<span class="token punctuation">.</span><span class="token function">clone</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        s2<span class="token punctuation">.</span><span class="token function">setName</span><span class="token punctuation">(</span><span class="token string">"小儿子"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>s1<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">" 的父亲是 "</span> <span class="token operator">+</span> s1<span class="token punctuation">.</span><span class="token function">getFather</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>s2<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">" 的父亲是 "</span> <span class="token operator">+</span> s2<span class="token punctuation">.</span><span class="token function">getFather</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment" spellcheck="true">// 姓名</span>
+    <span class="token keyword">private</span> String name<span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// 父亲</span>
+    <span class="token keyword">private</span> Person father<span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token function">Person</span><span class="token punctuation">(</span>String _name<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        name <span class="token operator">=</span> _name<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token function">Person</span><span class="token punctuation">(</span>String _name<span class="token punctuation">,</span> Person _parent<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        name <span class="token operator">=</span> _name<span class="token punctuation">;</span>
+        father <span class="token operator">=</span> _parent<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> Person <span class="token function">clone</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        Person p <span class="token operator">=</span> null<span class="token punctuation">;</span>
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+            p <span class="token operator">=</span> <span class="token punctuation">(</span>Person<span class="token punctuation">)</span> <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">clone</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">CloneNotSupportedException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> p<span class="token punctuation">;</span>
+
+    <span class="token punctuation">}</span>
+
+  <span class="token comment" spellcheck="true">/*setter和getter方法略*/</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>​    程序中我们描述了这样一个场景：一个父亲，有两个儿子，大小儿子同根同种，所以小儿子的对象就通过拷贝大儿子的对象来生成，运行输出结果如下：</p>
+<p>  　<strong>大儿子 的父亲是 父亲</strong><br>      <strong>小儿子 的父亲是 父亲</strong></p>
+<p>　　这很正确，没有问题。突然有一天，父亲心血来潮想让大儿子去认个干爹，也就是大儿子的父亲名称需要重新设置一下，代码如下：</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// 定义父亲</span>
+    Person f <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token string">"父亲"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// 定义大儿子</span>
+    Person s1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token string">"大儿子"</span><span class="token punctuation">,</span> f<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// 小儿子的信息时通过大儿子拷贝过来的</span>
+    Person s2 <span class="token operator">=</span> s1<span class="token punctuation">.</span><span class="token function">clone</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    s2<span class="token punctuation">.</span><span class="token function">setName</span><span class="token punctuation">(</span><span class="token string">"小儿子"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">//认干爹</span>
+    s1<span class="token punctuation">.</span><span class="token function">getFather</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">setName</span><span class="token punctuation">(</span><span class="token string">"干爹"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>s1<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">" 的父亲是 "</span> <span class="token operator">+</span> s1<span class="token punctuation">.</span><span class="token function">getFather</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>s2<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">" 的父亲是 "</span> <span class="token operator">+</span> s2<span class="token punctuation">.</span><span class="token function">getFather</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>​    大儿子重新设置了父亲名称，我们期望的输出结果是：将大儿子的父亲名称修改为干爹，小儿子的父亲名称保持不变。运行一下结果如下：</p>
+<p>　  <strong>大儿子 的父亲是 干爹</strong><br>      <strong>小儿子 的父亲是 干爹</strong></p>
+<p>　　怎么回事，小儿子的父亲也成了”干爹”？两个儿子都木有了，这老子估计被要被气死了！出现这个问题的原因就在于clone方法，我们知道所有类都继承自 Object，Object提供了一个对象拷贝的默认方法，即页面代码中 的super.clone()方法，但是该方法是有缺陷的，他提供的是一种浅拷贝，也就是说它并不会把对象的所有属性全部拷贝一份，而是有选择的拷贝，它 的<strong>拷贝规则</strong>如下：</p>
+<ol>
+<li><strong><font color='red' >基本类型：如果变量是基本类型，则拷贝其值。比如int、float等</font></strong></li>
+<li><strong><font color='red' >对 象：如果变量是一个实例对象，则拷贝其地址引用，也就是说此时拷贝出的对象与原有对象共享该实例变量，不受访问权限的控制，这在Java中是很疯狂的，因 为它突破了访问权限的定义：一个private修饰的变量，竟然可以被两个不同的实例对象访问，这让java的访问权限体系情何以堪。</font></strong></li>
+<li><strong><font color='red' >String字符串：这个比较特殊，拷贝的也是一个地址，是个引用，但是在修改时，它会从字符串池(String pool)中重新生成新的字符串，原有的字符串对象保持不变，在此处我们可以认为String是一个基本类型。</font></strong></li>
+</ol>
+<p>　　明白了这三个原则，上面的例子就很清晰了。小儿子的对象是通过大儿子拷贝而来的，其父亲是同一个人，也就是同一个对象，大儿子修改了父亲的名称后，小儿子也很跟着修改了——于是，父亲的两个儿子都没了。其实要更正也很简单，clone方法的代码如下：</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> Person <span class="token function">clone</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    Person p <span class="token operator">=</span> null<span class="token punctuation">;</span>
+    <span class="token keyword">try</span> <span class="token punctuation">{</span>
+        p <span class="token operator">=</span> <span class="token punctuation">(</span>Person<span class="token punctuation">)</span> <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">clone</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        p<span class="token punctuation">.</span><span class="token function">setFather</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span>p<span class="token punctuation">.</span><span class="token function">getFather</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">CloneNotSupportedException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> p<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>　　然后再运行，小儿子的父亲就不会是干爹了，如此就实现了对象的深拷贝(Deep Clone)，保证拷贝出来的对象自成一体，不受”母体”影响，和new生成的对象没有什么区别。</p>
+<p>　　<strong><font color='red' >注意：浅拷贝只是Java提供的一种简单拷贝机制，不便于直接使用。</font></strong></p>
+<h3 id="建议44：推荐使用序列化对象的拷贝"><a href="#建议44：推荐使用序列化对象的拷贝" class="headerlink" title="建议44：推荐使用序列化对象的拷贝"></a>建议44：推荐使用序列化对象的拷贝</h3><p>　上一建议说了对象的浅拷贝问题，试下Cloneable接口就具备了拷贝能力，那我们开思考这样一个问题：如果一个项目中有大量的对象是通过拷贝生成 的，那我们该如何处理呢？每个类都系而一个clone方法，并且还有深拷贝？想想这是何等巨大的工作量呀！是否有更好的方法呢？</p>
+<p>　　其实，可以通过序列化方式来处理，在内存中通过字节流的拷贝来实现，也就是把母对象写到一个字节流中，再从字节流中将其读出来，这样就可以重建一个对象了，该新对象与母对象之间不存在引用共享的问题，也就相当于深拷贝了一个对象，代码如下：　</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">import</span> java<span class="token punctuation">.</span>io<span class="token punctuation">.</span>ByteArrayInputStream<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>io<span class="token punctuation">.</span>ByteArrayOutputStream<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>io<span class="token punctuation">.</span>IOException<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>io<span class="token punctuation">.</span>ObjectInputStream<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>io<span class="token punctuation">.</span>ObjectOutputStream<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>io<span class="token punctuation">.</span>Serializable<span class="token punctuation">;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">final</span> <span class="token keyword">class</span> <span class="token class-name">CloneUtils</span> <span class="token punctuation">{</span>
+    <span class="token keyword">private</span> <span class="token function">CloneUtils</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Error</span><span class="token punctuation">(</span>CloneUtils<span class="token punctuation">.</span><span class="token keyword">class</span> <span class="token operator">+</span> <span class="token string">" cannot instance "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">// 拷贝一个对象</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token operator">&lt;</span>T <span class="token keyword">extends</span> <span class="token class-name">Serializable</span><span class="token operator">></span> T <span class="token function">clone</span><span class="token punctuation">(</span>T obj<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// 拷贝产生的对象</span>
+        T cloneObj <span class="token operator">=</span> null<span class="token punctuation">;</span>
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+            <span class="token comment" spellcheck="true">// 读取对象字节数据</span>
+            ByteArrayOutputStream baos <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ByteArrayOutputStream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            ObjectOutputStream oos <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ObjectOutputStream</span><span class="token punctuation">(</span>baos<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            oos<span class="token punctuation">.</span><span class="token function">writeObject</span><span class="token punctuation">(</span>cloneObj<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            oos<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token comment" spellcheck="true">// 分配内存空间，写入原始对象，生成新对象</span>
+            ByteArrayInputStream bais <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ByteArrayInputStream</span><span class="token punctuation">(</span>baos<span class="token punctuation">.</span><span class="token function">toByteArray</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            ObjectInputStream ois <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ObjectInputStream</span><span class="token punctuation">(</span>bais<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token comment" spellcheck="true">// 返回新对象， 并做类型转换</span>
+            cloneObj <span class="token operator">=</span> <span class="token punctuation">(</span>T<span class="token punctuation">)</span> ois<span class="token punctuation">.</span><span class="token function">readObject</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            ois<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">ClassNotFoundException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IOException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> cloneObj<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>​    此工具类要求被拷贝的对象实现了Serializable　接口，否则是没办法拷贝的（当然，使用反射是另一种技巧），上一建议中的例子只是稍微修改一下即可实现深拷贝，代码如下</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Person</span> <span class="token keyword">implements</span> <span class="token class-name">Serializable</span><span class="token punctuation">{</span>
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token keyword">long</span> serialVersionUID <span class="token operator">=</span> 4989174799049521302L<span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">/*删除掉clone方法，其它代码保持不变*/</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>​    被拷贝的类只要实现Serializable这个标志性接口即可，不需要任何实现，当然serialVersionUID常量还是要加上去的，然后我们就可以通过CloneUtils工具进行对象的深拷贝了，用词方法进行对象拷贝时需要注意两点：</p>
+<ol>
+<li>对象的内部属性都是可序列化的：如果有内部属性不可序列化，则会抛出序列化异常，这会让调试者很纳闷，生成一个对象怎么回出现序列化异常呢？从这一点考虑，也需要把CloneUtils工具的异常进行细化处理。</li>
+<li>注 意方法和属性的特殊修饰符：比如final，static变量的序列化问题会被引入对象的拷贝中，这点需要特别注意，同时 transient变量（瞬态变量，不进行序列化的变量）也会影响到拷贝的效果。当然，采用序列化拷贝时还有一个更简单的方法，即使用Apache下的 commons工具包中SerializationUtils类，直接使用更加简洁.</li>
+</ol>
+<h3 id="建议45：覆写equals方法时不要识别不出自己"><a href="#建议45：覆写equals方法时不要识别不出自己" class="headerlink" title="建议45：覆写equals方法时不要识别不出自己"></a>建议45：覆写equals方法时不要识别不出自己</h3><p>​    我们在写一个JavaBean时，经常会覆写equals方 法，其目的是根据业务规则判断两个对象是否相等，比如我们写一个Person类，然后根据姓名判断两个实例对象是否相同时，这在DAO（Data Access Objects）层是经常用到的。具体操作时先从数据库中获得两个DTO(Data Transfer Object,数据传输对象)，然后判断他们是否相等的，代码如下：</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Person</span> <span class="token punctuation">{</span>
+    <span class="token keyword">private</span> String name<span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token function">Person</span><span class="token punctuation">(</span>String _name<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        name <span class="token operator">=</span> _name<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> String <span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> name<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setName</span><span class="token punctuation">(</span>String name<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> name<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">equals</span><span class="token punctuation">(</span>Object obj<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>obj <span class="token keyword">instanceof</span> <span class="token class-name">Person</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            Person p <span class="token operator">=</span> <span class="token punctuation">(</span>Person<span class="token punctuation">)</span> obj<span class="token punctuation">;</span>
+            <span class="token keyword">return</span> name<span class="token punctuation">.</span><span class="token function">equalsIgnoreCase</span><span class="token punctuation">(</span>p<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">trim</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+</code></pre>
+<p>​    覆写的equals方法做了多个校验，考虑到Web上传递过来的对象有可能输入了前后空格，所以用trim方法剪切了一下，看看代码有没有问题，我们写一个main：</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    Person p1<span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token string">"张三"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Person p2<span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token string">"张三  "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    List<span class="token operator">&lt;</span>Person<span class="token operator">></span> list<span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span>Person<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>p1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>p2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"列表中是否包含张三："</span><span class="token operator">+</span>list<span class="token punctuation">.</span><span class="token function">contains</span><span class="token punctuation">(</span>p1<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"列表中是否包含张三："</span><span class="token operator">+</span>list<span class="token punctuation">.</span><span class="token function">contains</span><span class="token punctuation">(</span>p2<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>​    上面的代码产生了两个Person对象(注意p2变量中的那个张三后面有一个空格)，然后放到list中，最后判断list是否包含了这两个对象。看上去没有问题，应该打印出两个true才对，但是结果却是：</p>
+<p>　   <strong>列表中是否包含张三：true</strong><br>      <strong>列表中是否包含张三：false</strong>　　</p>
+<p>　 　刚刚放到list中的对象竟然说没有，这太让人失望了，原因何在呢？list类检查是否包含元素时时通过调用对象的equals方法来判断的，也就是说 contains(p2)传递进去，会依次执行p2.equals(p1),p2.equals(p2),只有一个返回true，结果都是true，可惜 的是比较结果都是false，那问题出来了：难道</p>
+<p>p2.equals(p2)因为false不成？</p>
+<p>　　还真说对了，p2.equals(p2)确实是false，看看我们的equals方法，它把第二个参数进行了剪切！也就是说比较的如下等式：</p>
+<pre><code>&quot;张三  &quot;.equalsIgnoreCase(&quot;张三&quot;);
+</code></pre>
+<p>​    注意前面的那个张三，是有空格的，那结果肯定是false了，错误也就此产生了，这是一个想做好事却办成了 “坏事” 的典型案例，它违背了equlas方法的**<font color='red' >自反性原则：对于任何非空引用x，x.equals(x)应该返回true</font>**，问题直到了，解决非常简单，只要把trim()去掉即可。注意解决的只是当前问题，该equals方法还存在其它问题。</p>
+<h3 id="建议46：equals应该考虑null值情景"><a href="#建议46：equals应该考虑null值情景" class="headerlink" title="建议46：equals应该考虑null值情景"></a>建议46：equals应该考虑null值情景</h3><p>继续45建议的问题，我们解决了覆写equals的自反性问题，是不是就完美了呢？在把main方法重构一下：</p>
+<pre><code>public static void main(String[] args) &#123;
+        Person p1= new Person(&quot;张三&quot;);
+        Person p2= new Person(null);
+　　/*其它部分没有任何修改，不再赘述*/
+&#125;
+</code></pre>
+<p>　    很小的改动，大家肯定晓得了运行结果是包”空指针”异常。原因也很简单：null.equalsIgnoreCase方法自然报错，此处就是为了说明覆写equals方法遵循的一个原则—</p>
+<p>　　<strong><font color='red' >对称性原则：对于任何引用x和y的情形，如果x.equals(y),把么y.equals(x)也应该返回true。</font></strong></p>
+<p>　　解决也很简单，前面加上非空判断即可，很简单，就不贴代码了。</p>
+<h3 id="建议47：在equals中使用getClass进行类型判断"><a href="#建议47：在equals中使用getClass进行类型判断" class="headerlink" title="建议47：在equals中使用getClass进行类型判断"></a>建议47：在equals中使用getClass进行类型判断</h3><p>​    本节我们继续讨论覆写equals的问题，这次我们编写一个员工Employee类继承Person类，这很正常，员工也是人嘛，而且在JavaBean中继承也很多见，代码如下：</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Employee</span> <span class="token keyword">extends</span> <span class="token class-name">Person</span> <span class="token punctuation">{</span>
+    <span class="token keyword">private</span> <span class="token keyword">int</span> id<span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token function">Employee</span><span class="token punctuation">(</span>String _name<span class="token punctuation">,</span> <span class="token keyword">int</span> _id<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">super</span><span class="token punctuation">(</span>_name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        id <span class="token operator">=</span> _id<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">getId</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> id<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setId</span><span class="token punctuation">(</span><span class="token keyword">int</span> id<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>id <span class="token operator">=</span> id<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">equals</span><span class="token punctuation">(</span>Object obj<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>obj <span class="token keyword">instanceof</span> <span class="token class-name">Employee</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            Employee e <span class="token operator">=</span> <span class="token punctuation">(</span>Employee<span class="token punctuation">)</span> obj<span class="token punctuation">;</span>
+            <span class="token keyword">return</span> <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> e<span class="token punctuation">.</span><span class="token function">getId</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> id<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Person</span> <span class="token punctuation">{</span>
+    <span class="token keyword">private</span> String name<span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token function">Person</span><span class="token punctuation">(</span>String _name<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        name <span class="token operator">=</span> _name<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> String <span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> name<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setName</span><span class="token punctuation">(</span>String name<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> name<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">equals</span><span class="token punctuation">(</span>Object obj<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>obj <span class="token keyword">instanceof</span> <span class="token class-name">Person</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            Person p <span class="token operator">=</span> <span class="token punctuation">(</span>Person<span class="token punctuation">)</span> obj<span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>null <span class="token operator">==</span> p<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">||</span> null <span class="token operator">==</span> name<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+                <span class="token keyword">return</span> name<span class="token punctuation">.</span><span class="token function">equalsIgnoreCase</span><span class="token punctuation">(</span>p<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>​    员工类增加了工号ID属性，同时也覆写了equals方法，只有在姓名和ID都相同的情况下才表示同一个员工，这是为了避免一个公司中出现同名同姓员工的情况。看看上面的代码，这里的条件已经相当完善了，应该不会出错了，那我们测试一下，代码如下：</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    Employee e1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Employee</span><span class="token punctuation">(</span><span class="token string">"张三"</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Employee e2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Employee</span><span class="token punctuation">(</span><span class="token string">"张三"</span><span class="token punctuation">,</span> <span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Person p1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token string">"张三"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>p1<span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>e1<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>p1<span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>e2<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>e1<span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>e2<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>​    上面定义了两个员工和一个社会闲杂人员，虽然他们同名同姓，但肯定不是同一个，输出都应该是false，但运行之后结果为： true true false</p>
+<p>　　很不给力呀，p1竟然等于e1，也等于e2,为什么不是同一个类的两个实例竟然也会相等呢？这很简单，因为p1.equals(e1)是调用父类Person的equals方法进行判断的，它使用的是instanceof关键字检查e1是否是Person的实例，由于两者村子继承关系，那结果当然是true了，相等也就没有任何问题了，但是反过来就不成立了，e1和e2是不可能等于p1，这也是<strong>违反对称性原则</strong>的一个典型案例。</p>
+<p>　　更玄的是p1与e1、e2相等，但e1和e2却不相等，似乎一个简单的符号传递都不能实现，这才是我们分析的重点：e1.equals(e2)调用的是子类Employee的equals方法，不仅仅要判断姓名相同，还要判断Id相同，两者工号是不同的，不相等也是自然的了。等式不传递是因为违反了equals的传递性原则，<strong>传递性原则指的是对于实例对象x、y、z来说，如果x.equals(y)返回true，y.equals(z)返回true，那么x.equals(z)也应该返回true。</strong></p>
+<p>　　这种情况发生的关键是父类引用了instanceof关键字，它是用来判断一个类的实例对象的，这很容易让子类钻空子。想要解决也很简单，使用getClass来代替instanceof进行类型判断，Person的equals方法修改后如下所示：</p>
+<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Override</span>
+<span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">equals</span><span class="token punctuation">(</span>Object obj<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>null <span class="token operator">!=</span> obj <span class="token operator">&amp;&amp;</span> obj<span class="token punctuation">.</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        Person p <span class="token operator">=</span> <span class="token punctuation">(</span>Person<span class="token punctuation">)</span> obj<span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>null <span class="token operator">==</span> p<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">||</span> null <span class="token operator">==</span> name<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> name<span class="token punctuation">.</span><span class="token function">equalsIgnoreCase</span><span class="token punctuation">(</span>p<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>​    当然，考虑到Employee也有可能被继承，也需要把它的instanceof修改为getClass。总之，在覆写equals时建议使用getClass进行类型判断，而不要使用instanceof。</p>
+<h3 id="建议48：覆写equals方法必须覆写hashCode方法"><a href="#建议48：覆写equals方法必须覆写hashCode方法" class="headerlink" title="建议48：覆写equals方法必须覆写hashCode方法"></a>建议48：覆写equals方法必须覆写hashCode方法</h3><p>​    覆写equals方法必须覆写hasCode方法，这条规则基本上每个Javaer都知道，这也是JDK的API上反复说明的，不过为什么要则这么做呢？这两个方法之间什么关系呢？本建议就来解释该问题，我们先看看代码：</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Client48</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// Person类的实例作为map的key</span>
+        Map<span class="token operator">&lt;</span>Person<span class="token punctuation">,</span> Object<span class="token operator">></span> map <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token operator">&lt;</span>Person<span class="token punctuation">,</span> Object<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+            <span class="token punctuation">{</span>
+                <span class="token function">put</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token string">"张三"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">Object</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// Person类的实例作为List的元素</span>
+        List<span class="token operator">&lt;</span>Person<span class="token operator">></span> list <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span>Person<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token punctuation">{</span>
+                <span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token string">"张三"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">;</span>
+        <span class="token keyword">boolean</span> b1 <span class="token operator">=</span> list<span class="token punctuation">.</span><span class="token function">contains</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token string">"张三"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">boolean</span> b2 <span class="token operator">=</span> map<span class="token punctuation">.</span><span class="token function">containsKey</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token string">"张三"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>b1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>b2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>代码中的Person类与上一建议的Person相同，equals方法完美无缺。在这段代码中，我们在声明时直接调用方法赋值，这其实也是一个内部匿名类，现在的问题是b1和b2值是否都为true?</p>
+<p>　　我们先来看b1，Person类的equals覆写了，不再判断两个地址相等，而是根据人员的姓名来判断两个对象是否相等，所以不管我们的new Person(“张三”)产生了多少个对象，它们都是相等的。把张三放入List中，再检查List中是否包含，那结果肯定是true了。</p>
+<p>　　接下来看b2，我们把张三这个对象作为了Map的键（Key），放进去的是张三，检查的对象还是张三，那应该和List的结果相同了，但是很遗憾，结果为false。原因何在呢？</p>
+<p>　　<strong><font color='red' >原因就是HashMap的底层处理机制是以数组的方式保存Map条目的(Map Entry)的，这其中的关键是这个数组的下标处理机制：依据传入元素hashCode方法的返回值决定其数组的下标，如果该数组位置上已经有Map条目，并且与传入的值相等则不处理，若不相等则覆盖；如果数组位置没有条目，则插入，并加入到Map条目的链表中。同理，检查键是否存在也是根据哈希码确定位置，然后遍历查找键值的。</font></strong></p>
+<p>　　接着深入探讨，那对象元素的hashCode方法返回的是什么值呢？它是一个对象的哈希码，是由Object类的本地方法生成的，确保每个对象有一个哈希码（也是**<font color='red' >哈希算法的基本要求：任意输入k，通过一定算法f(k)，将其转换为非可逆的输出，对于两个输入k1和k2，要求若k1=k2，则必须f(k1)=f(k2)，但也允许k1 != k2 , f(k1)=f(k2)的情况存在</font>**）。</p>
+<p>　　那回到我们的例子上，由于我们没有覆写hashCode方法，两个张三对象的hashCode方法返回值(也就是哈希码)肯定是不相同的了，在HashMap的数组中也找不到对应的Map条目了，于是就返回了false。</p>
+<p>　　问题清楚了，修改也很简单，在Person类中重写一下hashCode方法即可，代码如下：　</p>
+<pre><code>class Person&#123;
+
+   @Override
+    public int hashCode() &#123;
+        return new HashCodeBuilder().append(name).toHashCode();
+    &#125;   
+
+&#125;
+</code></pre>
+<p>​    其中<strong>HashCodeBuilder是org.apache.commons.lang.builder包下的一个哈希码生成工具</strong>，使用起来非常方便，大家可以直接项目中集成(为何不直接写hashCode方法？因为哈希码的生成有很多种算法，自己写麻烦，事儿又多，所以必要的时候才取”拿来主义”，不重复造轮子是最好的办法。)</p>
+<h3 id="建议49：推荐覆写toString方法"><a href="#建议49：推荐覆写toString方法" class="headerlink" title="建议49：推荐覆写toString方法"></a>建议49：推荐覆写toString方法</h3><p>​    为什么要覆写toString方法，这个问题很简单，因为Java提供的默认toString方法不友好，打印出来看不懂，不覆写不行，看这样一段代码：　</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Client49</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token string">"张三"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Person</span> <span class="token punctuation">{</span>
+    <span class="token keyword">private</span> String name<span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token function">Person</span><span class="token punctuation">(</span>String _name<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        name <span class="token operator">=</span> _name<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> String <span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> name<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setName</span><span class="token punctuation">(</span>String name<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> name<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+</code></pre>
+<h3 id="建议49：推荐覆写toString方法-1"><a href="#建议49：推荐覆写toString方法-1" class="headerlink" title="建议49：推荐覆写toString方法"></a>建议49：推荐覆写toString方法</h3><p>​    为什么要覆写toString方法，这个问题很简单，因为Java提供的默认toString方法不友好，打印出来看不懂，不覆写不行，看这样一段代码：</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Client49</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token string">"张三"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Person</span> <span class="token punctuation">{</span>
+    <span class="token keyword">private</span> String name<span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token function">Person</span><span class="token punctuation">(</span>String _name<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        name <span class="token operator">=</span> _name<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> String <span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> name<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setName</span><span class="token punctuation">(</span>String name<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> name<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+</code></pre>
+<p>​    输出结果是：Perso@188edd79.如果机器不同，@后面的内容也会不同，但格式都是相同的：类名+@+hashCode,这玩意是给机器看的，人哪能看懂呀！这就是因为我们没有覆写Object类的toString方法的缘故，修改一下，代码如下：</p>
+<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Override</span>
+<span class="token keyword">public</span> String <span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> String<span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span><span class="token string">"%s.name=%s"</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>​        如此即就可以在需要的时候输出调试信息了，而且非常友好，特别是在bean流行的项目中(一般的Web项目就是这样)，有了这样的输出才能更好地debug，否则查找错误就有点麻烦！当然，当bean的属性较多时，自己实现就不可取了，不过可以直接使用apache的commons工具包中的ToStringBuilder类，简洁，实用又方便。可能有人会说，为什么通过println方法打印一个对象会调用toString方法？那是源于println的打印机制：如果是一个原始类型就直接打印，如果是一个类类型，则打印出其toString方法的返回值，如此而已。同时现在IDE也很先进，大家debug时也可查看对象的变量，但还是建议大家覆写toString方法，这样调试会更方便哦。</p>
+<h3 id="建议50：使用package-info类为包服务"><a href="#建议50：使用package-info类为包服务" class="headerlink" title="建议50：使用package-info类为包服务"></a>建议50：使用package-info类为包服务</h3><p>​    Java中有一个特殊的类：package-info类，它是专门为本包服务的，为什么说它特殊，主要体现在三个方面：</p>
+<ol>
+<li><p>它不能随便创建：在一般的IDE中，Eclipse、package-info等文件是不能随便被创建的，会报”Type name is notvalid”错误，类名无效。在Java中变量定义规范中规定如下字符是允许的：字母、数字、下划线，以及那个不怎么写的$符号，不过中划线可不在之列，那么怎么创建这个文件呢？很简单，用记事本创建一个，然后拷贝进去再改一下就成了，更直接的办法就是从别的项目中拷贝过来。</p>
+</li>
+<li><p>它服务的对象很特殊：一个类是一类或一组事物的描述，比如Dog这个类，就是描述”阿黄”的，那package-info这个类描述的是什么呢？它总是要有一个被描述或陈述的对象吧，它是描述和记录本包信息的。</p>
+</li>
+<li><p>package-info类不能有实现代码：package-info类再怎么特殊也是 一个类，也会被编译成 package-info.class,但是在package-info.java文件不能声明package-info类。　　　</p>
+<p>　package-info类还有几个特殊的地方，比如不可以继承，没有接口，没有类间关系(关联、组合、聚合等)等，Java中既然有这么特殊的一个类，那肯定有其特殊的作用了，我们来看看它的特殊作用，主要表现在以下三个方面：</p>
+</li>
+</ol>
+<ul>
+<li>声明友好类和包内访问常量：这个比较简单，而且很实用，比如一个包中有很多内部访问的类或常量，就可以统一放到package-info类中，这样很方便，便于集中管理，可以减少友好类到处游走的情况，代码如下：</li>
+</ul>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">PkgClazz</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">PkgConstant</span> <span class="token punctuation">{</span>
+    <span class="token keyword">static</span> <span class="token keyword">final</span> String PACKAGE_CONST <span class="token operator">=</span> <span class="token string">"ABC"</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>注意以上代码是放在package-info.java中的，虽然它没有编写package-info的实现，但是package-info.class类文件还是会生成。通过这样的定义，我们把一个包需要的常量和类都放置在本包下，在语义上和习惯上都能让程序员更适应。</p>
+<ul>
+<li>为在包上提供注解提供便利：比如我们要写一个注解(Annotation)，查看一下包下的对象，只要把注解标注到package-info文件中即可，而且在很多开源项目中也采用了此方法，比如struts2的@namespace、hibernate的@FilterDef等.</li>
+<li>提供包的整体注释说明：如果是分包开发，也就是说一个包实现了一个业务逻辑或功能点或模块或组件，则该包需要一个很好的说明文档，说明这个包是做什么用的，版本变迁历史，与其他包的逻辑关系等，package-info文件的作用在此就发挥出来了，这些都可以直接定义到此文件中，通过javadoc生成文档时，会吧这些说明作为包文档的首页，让读者更容易对该包有一个整体的认识。当然在这点上它与package.html的作用是相同的，不过package-info可以在代码中维护文档的完整性，并且可以实现代码与文档的同步更新。　　</li>
+</ul>
+<p>　　创建package-info,也可以利用IDE工具如下图：</p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img_202112/712052-20160913122230102-806179627.png" alt="img"></p>
+<p>解释了这么多，总结成一句话：在需要用到包的地方，就可以考虑一下package-info这个特殊类，也许能起到事半功倍的作用。</p>
+<h3 id="建议51：不要主动进行垃圾回收"><a href="#建议51：不要主动进行垃圾回收" class="headerlink" title="建议51：不要主动进行垃圾回收"></a>建议51：不要主动进行垃圾回收</h3><p>​    很久很久以前，在java1.1的年代里，我们经常会看到System.gc这样的调用—主动对垃圾进行回收，不过，在Java知识深入人心后，这样的代码就逐渐销声匿迹了—这是好现象，因为主动进行垃圾回收是一个非常危险的动作。</p>
+<p>　　之所以危险，是因为System.gc要停止所有的响应，才能检查内存中是否存在可以回收的对象，这对一个应用系统来说风险极大，如果是一个Web应用，所有的请求都会暂停，等待垃圾回收器执行完毕，若此时堆内存(heap)中的对象少的话还可以接受，一但对象较多（现在的web项目是越做越大，框架、工具也越来越多，加载到内存中的对象当然也就更多了），这个过程非常耗时，可能是0.01秒，也可能是1秒，甚至20秒，这就严重影响到业务的运行了。</p>
+<p>　　例如：我们写这样一段代码：new String(“abc”)，该对象没有任何引用，对JVM来说就是个垃圾对象。JVM的垃圾回收器线程第一次扫描（扫描时间不确定，在系统不繁忙的时候执行）时给它贴上一个标签，说”你是可以回收的”，第二次扫描时才真正的回收该对象，并释放内存空间，如果我们直接调用System.gc，则是说“嗨，你，那个垃圾回收器过来检查一下有没有垃圾对象，回收一下”。瞧瞧看，程序主动找来垃圾回收器，这意味着正在运行的系统要让出资源，以供垃圾回收器执行，想想看吧，它会把所有的对象都检查一遍，然后处理掉那些垃圾对象。注意哦，是检查每个对象。</p>
+<p>　　不要调用System.gc，即使<strong>经常出现内存溢出也不要调用</strong>，内存溢出是可分析的，是可以查找原因的，GC可不是一个好招数。</p>
+<h2 id="第4章-字符串"><a href="#第4章-字符串" class="headerlink" title="第4章 字符串"></a>第4章 字符串</h2><p>Although the world is full of suffering, it is full also of the overcoming of it.</p>
+<p>虽然世界充满了苦难，但总是能战胜的。——Hellen Keller（海伦·凯勒，美国作家）</p>
+<p>​    在Class的班级里，Object班主任问道，“大家知道谁是我们班最受欢迎的同学吗？”大家面面相觑，不解其意，既而交头接耳，窃窃私语，猛然间，所有的目光都投向了String同学，时光仿佛戛然而止，String诧异地左顾右盼，然后羞红了脸，慢慢地低下了头，同时右手缓缓地举起来，直至胳膊完全伸直，形成一个大大“1”字。</p>
+<h3 id="建议52：推荐使用String直接量赋值"><a href="#建议52：推荐使用String直接量赋值" class="headerlink" title="建议52：推荐使用String直接量赋值"></a>建议52：推荐使用String直接量赋值</h3><p>​    一般对象都是通过new关键字生成的，但是String还有第二种生成方式，也就是我们经常使用的直接声明方式，这种方式是极力推荐的，但不建议使用new String（”A”）的方式赋值。为什么呢？我们看如下代码：</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Client58</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        String str1 <span class="token operator">=</span> <span class="token string">"詹姆斯"</span><span class="token punctuation">;</span>
+        String str2 <span class="token operator">=</span> <span class="token string">"詹姆斯"</span><span class="token punctuation">;</span>
+        String str3 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">String</span><span class="token punctuation">(</span><span class="token string">"詹姆斯"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        String str4 <span class="token operator">=</span> str3<span class="token punctuation">.</span><span class="token function">intern</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// 两个直接量是否相等</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>str1 <span class="token operator">==</span> str2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// 直接量和对象是否相等</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>str1 <span class="token operator">==</span> str3<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// 经过intern处理后的对象与直接量是否相等</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>str1 <span class="token operator">==</span> str4<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>注意看上面的程序，我们使用”==”判断的是两个对象的引用地址是否相同，也就是判断是否为同一个对象，打印的结果是true,false,true。即有两个直接量是同一个对象(进过intern处理后的String与直接量是同一个对象)，但直接通过new生成的对象却与之不等，原因何在？</p>
+<p>　　原因是Java为了避免在一个系统中大量产生String对象(为什么会大量产生，因为String字符串是程序中最经常使用的类型)，于是就设计了一个字符串池(也叫作字符串常量池，String pool或String Constant Pool或String Literal Pool),在字符串池中容纳的都是String字符串对象，它的创建机制是这样的：创建一个字符串时，首先检查池中是否有字面值相等的字符串，如果有，则不再创建，直接返回池中该对象的引用，若没有则创建之，然后放到池中，并返回新建对象的引用，这个池和我们平常说的池非常接近。对于此例子来说，就是创建第一个”詹姆斯”字符串时，先检查字符串池中有没有该对象，发现没有，于是就创建了”詹姆斯”这个字符串并放到池中，待创建str2字符串时，由于池中已经有了该字符串，于是就直接返回了该对象的引用，此时，str1和str2指向的是同一个地址，所以使用”==”来判断那当然是相等的了。</p>
+<p>　　那为什么使用new String(“詹姆斯”)就不相等了呢？因为直接声明一个String对象是不检查字符串池的，也不会把对象放到字符串池中，那当然”==”为false了。</p>
+<p>　　那为什么intern方法处理后即又相等了呢？因为intern会检查当前对象在对象池中是否存在字面值相同的引用对象，如果有则返回池中的对象，如果没有则放置到对象池中，并返回当前对象。</p>
+<p>　　可能有人要问了，放到池中，是不是要考虑垃圾回收问题呀？不用考虑了，虽然Java的每个对象都保存在堆内存中但是字符串非常特殊，它在编译期已经决定了其存在JVM的常量池(Constant Pool),垃圾回收不会对它进行回收的。</p>
+<p>　　通过上面的介绍，我们发现Java在字符串的创建方面确实提供了非常好的机制，利用对象池不仅可以提高效率，同时减少了内存空间的占用，<strong>建议大家在开发中使用直接量赋值方式</strong>，除非必要才建立一个String对象。</p>
+<h3 id="建议53：注意方法中传递的参数要求"><a href="#建议53：注意方法中传递的参数要求" class="headerlink" title="建议53：注意方法中传递的参数要求"></a>建议53：注意方法中传递的参数要求</h3>
                 
             </div>
             <hr/>
