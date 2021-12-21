@@ -2892,14 +2892,12 @@ List list3 <span class="token operator">=</span> <span class="token keyword">new
 <p>　　接着深入探讨，那对象元素的hashCode方法返回的是什么值呢？它是一个对象的哈希码，是由Object类的本地方法生成的，确保每个对象有一个哈希码（也是**<font color='red' >哈希算法的基本要求：任意输入k，通过一定算法f(k)，将其转换为非可逆的输出，对于两个输入k1和k2，要求若k1=k2，则必须f(k1)=f(k2)，但也允许k1 != k2 , f(k1)=f(k2)的情况存在</font>**）。</p>
 <p>　　那回到我们的例子上，由于我们没有覆写hashCode方法，两个张三对象的hashCode方法返回值(也就是哈希码)肯定是不相同的了，在HashMap的数组中也找不到对应的Map条目了，于是就返回了false。</p>
 <p>　　问题清楚了，修改也很简单，在Person类中重写一下hashCode方法即可，代码如下：　</p>
-<pre><code>class Person&#123;
-
-   @Override
-    public int hashCode() &#123;
-        return new HashCodeBuilder().append(name).toHashCode();
-    &#125;   
-
-&#125;
+<pre class=" language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">Person</span><span class="token punctuation">{</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">hashCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">HashCodeBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toHashCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>   
+<span class="token punctuation">}</span>
 </code></pre>
 <p>​    其中<strong>HashCodeBuilder是org.apache.commons.lang.builder包下的一个哈希码生成工具</strong>，使用起来非常方便，大家可以直接项目中集成(为何不直接写hashCode方法？因为哈希码的生成有很多种算法，自己写麻烦，事儿又多，所以必要的时候才取”拿来主义”，不重复造轮子是最好的办法。)</p>
 <h3 id="建议49：推荐覆写toString方法"><a href="#建议49：推荐覆写toString方法" class="headerlink" title="建议49：推荐覆写toString方法"></a>建议49：推荐覆写toString方法</h3><p>​    为什么要覆写toString方法，这个问题很简单，因为Java提供的默认toString方法不友好，打印出来看不懂，不覆写不行，看这样一段代码：　</p>
