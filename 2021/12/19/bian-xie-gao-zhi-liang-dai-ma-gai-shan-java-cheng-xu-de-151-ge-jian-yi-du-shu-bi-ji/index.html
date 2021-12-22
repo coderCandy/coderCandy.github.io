@@ -3410,7 +3410,7 @@ sb<span class="token punctuation">.</span><span class="token function">append</s
 <span class="token punctuation">}</span>
 </code></pre>
 <p>​    第二个箱子里最后一个气球的颜色毫无疑问是被修改为蓝色了，不过我们是通过拷贝第一个箱子里的气球然后再修改的方式来实现的，那会对第一个箱子的气球颜色有影响吗？我们看看输出结果：</p>
-<p><img src="E:\Typora文档\images\712052-20160918231713713-622853231.png" alt="img"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img_202112/712052-20160918231713713-622853231.png" alt="img"></p>
 <p>​        最后一个气球颜色竟然也被修改了，我们只是希望修改第二个箱子的气球啊，这是为何？这是典型的浅拷贝(Shallow  Clone)问题，以前第一章序列化时讲过，但是这里与之有一点不同：数组中的元素没有实现Serializable接口。</p>
 <p>　　确实如此，通过copyOf方法产生的数组是一个浅拷贝，这与序列化的浅拷贝完全相同：基本类型是直接拷贝值，其它都是拷贝引用地址。需要说明的是，数组的clone方法也是与此相同的，同样是浅拷贝，而且集合的clone方法也都是浅拷贝，这就需要大家在拷贝时多留心了。</p>
 <p>　　问题找到了，解决办法也很简单，遍历box1的每个元素，重新生成一个气球(Balloon)对象，并放置到box2数组中，代码比较简单，不再赘述。</p>
