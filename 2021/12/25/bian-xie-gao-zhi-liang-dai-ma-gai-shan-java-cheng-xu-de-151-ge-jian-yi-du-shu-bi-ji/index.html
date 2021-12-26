@@ -416,7 +416,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    274
+                    10.1k
                 </div>
                 
 
@@ -440,7 +440,534 @@
             <div id="articleContent">
                 <p>《编写高质量代码 改善java程序的151个建议》读书笔记-下</p>
 <p>本篇博客记录《编写高质量代码 改善java程序的151个建议》这本书的读书笔记。方便自己查看，也方便大家查阅，在此感谢原书作者<a target="_blank" rel="noopener" href="https://weread.qq.com/web/reader/3cc32750597de83cc5abc31ke4d32d5015e4da3b7fbb1fa">秦小波</a>对java的独特见解，帮助java爱好者的成长。</p>
-<h2 id="第6章-枚举和注解"><a href="#第6章-枚举和注解" class="headerlink" title="第6章 枚举和注解"></a>第6章 枚举和注解</h2><h2 id="第7章-泛型和反射"><a href="#第7章-泛型和反射" class="headerlink" title="第7章 泛型和反射"></a>第7章 泛型和反射</h2><h2 id="第8章-异常"><a href="#第8章-异常" class="headerlink" title="第8章 异常"></a>第8章 异常</h2><p>大成若缺，其用不弊。大盈若冲，其用不穷。——老子《道德经》</p>
+<h2 id="第6章-枚举和注解"><a href="#第6章-枚举和注解" class="headerlink" title="第6章 枚举和注解"></a>第6章 枚举和注解</h2><p>日光之下，并无新事。——《圣经》</p>
+<p>​        枚举和注解都是在Java 1.5中引入的，虽然它们是后起之秀，但其功效不可小觑，枚举改变了常量的声明方式，注解耦合了数据和代码。本章就如何更好地使用注解和枚举提出了多条建议，以便读者能够在系统开发中更好地使用它们。</p>
+<h3 id="建议83：推荐使用枚举定义常量"><a href="#建议83：推荐使用枚举定义常量" class="headerlink" title="建议83：推荐使用枚举定义常量"></a>建议83：推荐使用枚举定义常量</h3><p>​        常量声明是每一个项目都不可或缺的，在Java1.5之前，我们只有两种方式的声明：类常量和接口常量，若在项目中使用的是Java1.5之前的版本，基本上都是如此定义的。不过，在1.5版本以后有了改进，即新增了一种常量声明方式：枚举声明常量，看如下代码：</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">enum</span> Season <span class="token punctuation">{</span>
+    Spring<span class="token punctuation">,</span> Summer<span class="token punctuation">,</span> Autumn<span class="token punctuation">,</span> Winter<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>​        这是一个简单的枚举常量命名，清晰又简单。顺便提一句，JLS(Java Language Specification，Java语言规范)提倡枚举项全部大写，字母之间用下划线分割，这也是从常量的角度考虑的(当然，使用类似类名的命名方式也是比较友好的)。</p>
+<p>　　那么枚举常量与我们经常使用的类常量和静态常量相比有什么优势？问得好，枚举的优点主要表现在四个方面：</p>
+<p>1.枚举常量简单：简不简单，我们来对比一下两者的定义和使用情况就知道了。先把Season枚举翻写成接口常量，代码如下：　</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">interface</span> <span class="token class-name">Season</span> <span class="token punctuation">{</span>
+    <span class="token keyword">int</span> SPRING <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> SUMMER <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> AUTUMN <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> WINTER <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>​        此处定义了春夏秋冬四个季节，类型都是int，这与Season枚举的排序值是相同的。首先对比一下两者的定义，枚举常量只需定义每个枚举项，不需要定义枚举值，而接口常量(或类常量)则必须定义值，否则编译不通过，即使我们不需要关注其值是多少也必须定义；其次，虽然两者被引用的方式相同(都是 “类名 . 属性”，如Season.SPRING),但是枚举表示的是一个枚举项，字面含义是春天，而接口常量确是一个int类型，虽然其字面含义也是春天，但在运算中我们势必要关注其int值。</p>
+<p>2.枚举常量属于稳态型</p>
+<p>　　例如我们要描述一下春夏秋冬是什么样子，使用接口常量应该是这样写。　　</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">describe</span><span class="token punctuation">(</span><span class="token keyword">int</span> s<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// s变量不能超越边界，校验条件</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>s <span class="token operator">>=</span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> s <span class="token operator">&lt;</span> <span class="token number">4</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">switch</span> <span class="token punctuation">(</span>s<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">case</span> Season<span class="token punctuation">.</span>SPRING<span class="token operator">:</span>
+                System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"this is spring"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">break</span><span class="token punctuation">;</span>
+            <span class="token keyword">case</span> Season<span class="token punctuation">.</span>SUMMER<span class="token operator">:</span>
+                System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"this is summer"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">break</span><span class="token punctuation">;</span>
+                <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>　　很简单，先使用switch语句判断哪一个是常量，然后输出。但问题是我们得对输入值进行检查，确定是否越界，如果常量非常庞大，校验输入就成了一件非常麻烦的事情，但这是一个不可逃避的过程，特别是如果我们的校验条件不严格，虽然编译能照样通过，但是运行期就会产生无法预知的后果。</p>
+<p>　　我们再来看看枚举常量是否能够避免校验的问题，代码如下：</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">describe</span><span class="token punctuation">(</span>Season s<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">switch</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">case</span> Spring<span class="token operator">:</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"this is "</span><span class="token operator">+</span>Season<span class="token punctuation">.</span>Spring<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token keyword">case</span> Summer<span class="token operator">:</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"this is summer"</span><span class="token operator">+</span>Season<span class="token punctuation">.</span>Summer<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">break</span><span class="token punctuation">;</span>
+            <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>不用校验，已经限定了是Season枚举，所以只能是Season类的四个实例，即春夏秋冬4个枚举项，想输入一个int类型或其它类型？门都没有！这是我们最看重枚举的地方：<strong>在编译期间限定类型，不允许发生越界的情况</strong>。</p>
+<p>3.枚举具有内置方法</p>
+<p>　　有一个简单的问题：如果要列出所有的季节常量，如何实现呢？接口常量或类常量可以通过反射来实现，这没错，只是虽然能实现，但会非常繁琐，大家可以自己写一个反射类实现此功能(当然，一个一个地动手打印出输出常量，也可以算是列出)。对于此类问题可以非常简单的解决，代码如下：　</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">query</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span>Season s <span class="token operator">:</span> Season<span class="token punctuation">.</span><span class="token function">values</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>通过values方法获得所有的枚举项，然后打印出来即可。如此简单，得益于枚举内置的方法，每个枚举都是java.lang.Enum的子类，该基类提供了诸如获得排序值的ordinal方法、compareTo比较方法等，大大简化了常量的访问。</p>
+<p>4.枚举可以自定义的方法</p>
+<p>　　这一点似乎并不是枚举的优点，类常量也可以有自己的方法呀，但关键是枚举常量不仅可以定义静态方法，还可以定义非静态方法，而且还能够从根本上杜绝常量类被实例化。比如我们要在常量定义中获得最舒服季节的方法，使用常量枚举的代码如下：　</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">enum</span> Season <span class="token punctuation">{</span>
+    Spring<span class="token punctuation">,</span> Summer<span class="token punctuation">,</span> Autumn<span class="token punctuation">,</span> Winter<span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> Season <span class="token function">getComfortableSeason</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> Spring<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>​    　我们知道，每个枚举项都是该枚举的一个实例，对于我们的例子来说，也就表示Spring其实是Season的一个实例，Summer也是其中一个实例，那我们在枚举中定义的静态方法既可以在类(也就是枚举Season)中引用，也可以在实例(也就是枚举项Spring、Summer、Autumn、Winter)中引用，看如下代码：</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"The most comfortable season is "</span><span class="token operator">+</span>Season<span class="token punctuation">.</span><span class="token function">getComfortableSeason</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>那如果使用类常量要如何实现呢？代码如下：　</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">Season</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">final</span> <span class="token keyword">static</span> <span class="token keyword">int</span> SPRING <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">final</span> <span class="token keyword">static</span> <span class="token keyword">int</span> SUMMER <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">final</span> <span class="token keyword">static</span> <span class="token keyword">int</span> AUTUMN <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">final</span> <span class="token keyword">static</span> <span class="token keyword">int</span> WINTER <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span>  <span class="token keyword">int</span> <span class="token function">getComfortableSeason</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> SPRING<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>想想看，我们怎么才能打印出”The most comfortable season is Spring” 这句话呢？除了使用switch和if判断之外没有其它办法了。</p>
+<p>　　虽然枚举在很多方面比接口常量和类常量好用，但是有一点它是比不上接口常量和类常量的，那就是继承，枚举类型是不能继承的，也就是说一个枚举常量定义完毕后，除非修改重构，否则无法做扩展，而接口常量和类常量则可以通过继承进行扩展。但是，一般常量在项目构建时就定义完毕了，很少会出现必须通过扩展才能实现业务逻辑的场景。</p>
+<p><strong><font color='red' >注意： 在项目中推荐使用枚举常量代替接口常量或类常量。</font></strong></p>
+<h3 id="建议84：使用构造函数协助描述枚举项"><a href="#建议84：使用构造函数协助描述枚举项" class="headerlink" title="建议84：使用构造函数协助描述枚举项"></a>建议84：使用构造函数协助描述枚举项</h3><p>​    　一般来说，我们经常使用的枚举项只有一个属性，即排序号，其默认值是从0、1、2……，这一点我们很熟悉，但是除了排序号之外，枚举还有一个(或多个)属性：枚举描述，他的含义是通过枚举的构造函数，声明每个枚举项(也就是枚举的实例)必须具有的属性和行为，这是对枚举项的描述或补充，目的是使枚举项描述的意义更加清晰准确。例如有这样一段代码：　</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">enum</span> Season <span class="token punctuation">{</span>
+    <span class="token function">Spring</span><span class="token punctuation">(</span><span class="token string">"春"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">Summer</span><span class="token punctuation">(</span><span class="token string">"夏"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">Autumn</span><span class="token punctuation">(</span><span class="token string">"秋"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">Winter</span><span class="token punctuation">(</span><span class="token string">"冬"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">private</span> String desc<span class="token punctuation">;</span>
+
+    <span class="token function">Season</span><span class="token punctuation">(</span>String _desc<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        desc <span class="token operator">=</span> _desc<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment" spellcheck="true">//获得枚举描述</span>
+    <span class="token keyword">public</span> String <span class="token function">getDesc</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> desc<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>​    其枚举选项是英文的，描述是中文的，如此设计使其表述的意义更加精确，方便了多个作者共同引用该常量。若不考虑描述的使用（即访问getDesc方法），它与如下接口定义的描述很相似：　</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">interface</span> <span class="token class-name">Season</span><span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">//春</span>
+    <span class="token keyword">int</span> SPRING <span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">//夏</span>
+    <span class="token keyword">int</span> SUMMER <span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">//......</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>​    　比较两段代码，很容易看出使用枚举项描述是一个很好的解决办法，非常简单、清晰。因为是一个描述(Description)，那我们在开发时就可以赋予更多的含义，比如可以通过枚举构造函数声明业务值，定义可选项，添加属性等，看如下代码：</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">enum</span> Role <span class="token punctuation">{</span>
+    <span class="token function">Admin</span><span class="token punctuation">(</span><span class="token string">"管理员"</span><span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">LifeTime</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">Scope</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">User</span><span class="token punctuation">(</span><span class="token string">"普通用户"</span><span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">LifeTime</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">Scope</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">private</span> String name<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> LifeTime lifeTime<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> Scope scope<span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">/* setter和getter方法略 */</span>
+
+    <span class="token function">Role</span><span class="token punctuation">(</span>String _name<span class="token punctuation">,</span> LifeTime _lifeTime<span class="token punctuation">,</span> Scope _scope<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        name <span class="token operator">=</span> _name<span class="token punctuation">;</span>
+        lifeTime <span class="token operator">=</span> _lifeTime<span class="token punctuation">;</span>
+        scope <span class="token operator">=</span> _scope<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">LifeTime</span> <span class="token punctuation">{</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">class</span> <span class="token class-name">Scope</span> <span class="token punctuation">{</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>　　这是一个角色定义类，描述了两个角色：管理员和普通用户，同时它还通过构造函数对这两个角色进行了描述：</p>
+<ul>
+<li>name：表示的是该角色的中文名称</li>
+<li>lifeTime：表示的是该角色的生命周期，也就是多长时间该角色失效</li>
+<li>scope：表示的该角色的权限范围</li>
+</ul>
+<p>　　大家可以看出，这样一个描述可以使开发者对Admin和User两个常量有一个立体多维度的认知，有名称，有周期，还有范围，而且还可以在程序中方便的获得此类属性。所以，推荐大家在枚举定义中为每个枚举项定义描述，特别是在大规模的项目开发中，大量的常量定义使用枚举项描述比在接口常量或类常量中增加注释的方式友好的多，简洁的多。</p>
+<h3 id="建议85：小心switch带来的空指针异常"><a href="#建议85：小心switch带来的空指针异常" class="headerlink" title="建议85：小心switch带来的空指针异常"></a>建议85：小心switch带来的空指针异常</h3><p>使用枚举定义常量时。会伴有大量switch语句判断，目的是为了每个枚举项解释其行为，例如这样一个方法：　</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">doSports</span><span class="token punctuation">(</span>Season season<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">switch</span> <span class="token punctuation">(</span>season<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">case</span> Spring<span class="token operator">:</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"春天放风筝"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token keyword">case</span> Summer<span class="token operator">:</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"夏天游泳"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token keyword">case</span> Autumn<span class="token operator">:</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"秋天是收获的季节"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token keyword">case</span> Winter<span class="token operator">:</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"冬天滑冰"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token keyword">default</span><span class="token operator">:</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"输出错误"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>上面的代码传入了一个Season类型的枚举，然后使用switch进行匹配，目的是输出每个季节的活动，现在的问题是这段代码又没有问题：</p>
+<p>　　我们先来看看它是如何被调用的，因为要传递进来的是Season类型，也就是一个实例对象，那当然允许为空了，我们就传递一个null值进去看看代码又没有问题，如下：</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">doSports</span><span class="token punctuation">(</span>null<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>　似乎会打印出“输出错误”，因为switch中没有匹配到指定值，所以会打印出defaut的代码块，是这样的吗？不是，运行后的结果如下：</p>
+<pre class=" language-java"><code class="language-java">Exception in thread <span class="token string">"main"</span> java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span>NullPointerException
+    at com<span class="token punctuation">.</span>book<span class="token punctuation">.</span>study85<span class="token punctuation">.</span>Client85<span class="token punctuation">.</span><span class="token function">doSports</span><span class="token punctuation">(</span>Client85<span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">8</span><span class="token punctuation">)</span>
+    at com<span class="token punctuation">.</span>book<span class="token punctuation">.</span>study85<span class="token punctuation">.</span>Client85<span class="token punctuation">.</span><span class="token function">main</span><span class="token punctuation">(</span>Client85<span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">28</span><span class="token punctuation">)</span>
+</code></pre>
+<p>　    竟然是空指针异常，也就是switch的那一行，怎么会有空指针呢？这就与枚举和switch的特性有关了，此问题也是在开发中经常发生的。我们知道，目前Java中的switch语句只能判断byte、short、char、int类型（JDk7允许使用String类型），这是Java编译器的限制。问题是为什么枚举类型也可以跟在switch后面呢？</p>
+<p>　　因为编译时，编译器判断出switch语句后跟的参数是枚举类型，然后就会根据枚举的排序值继续匹配，也就是或上面的代码与以下代码相同：　　</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">doSports</span><span class="token punctuation">(</span>Season season<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">switch</span> <span class="token punctuation">(</span>season<span class="token punctuation">.</span><span class="token function">ordinal</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">case</span> season<span class="token punctuation">.</span>Spring<span class="token punctuation">.</span><span class="token function">ordinal</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"春天放风筝"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token keyword">case</span> season<span class="token punctuation">.</span>Summer<span class="token punctuation">.</span><span class="token function">ordinal</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"夏天游泳"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">break</span><span class="token punctuation">;</span>
+            <span class="token comment" spellcheck="true">//......</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>​    看明白了吧，switch语句是先计算season变量的排序值，然后与枚举常量的每个排序值进行对比，在我们的例子中season是null，无法执行ordinal()方法，于是就报空指针异常了。问题清楚了，解决很简单，在doSports方法中判断输入参数是否为null即可。</p>
+<h3 id="建议86：在switch的default代码块中增加AssertionError错误"><a href="#建议86：在switch的default代码块中增加AssertionError错误" class="headerlink" title="建议86：在switch的default代码块中增加AssertionError错误"></a>建议86：在switch的default代码块中增加AssertionError错误</h3><p>​        switch后跟枚举类型，case后列出所有的枚举项，这是一个使用枚举的主流写法，那留着default语句似乎没有任何作用，程序已经列举了所有的可能选项，肯定不会执行到defaut语句，看上去纯属多余嘛！错了，这个default还是很有作用的。以我们定义的日志级别来说明，这是一个典型的枚举常量，如下所示:　</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">enum</span> LogLevel<span class="token punctuation">{</span>
+    DEBUG<span class="token punctuation">,</span>INFO<span class="token punctuation">,</span>WARN<span class="token punctuation">,</span>ERROR
+<span class="token punctuation">}</span>
+</code></pre>
+<p>　　一般在使用的时候，会通过switch语句来决定用户设置的日志级别，然后输出不同级别的日志代码，代码如下：　</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">switch</span><span class="token punctuation">(</span>LogLevel<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">case</span><span class="token operator">:</span>DEBUG<span class="token operator">:</span>
+        <span class="token comment" spellcheck="true">//.....</span>
+    <span class="token keyword">case</span><span class="token operator">:</span>INFO<span class="token operator">:</span>
+        <span class="token comment" spellcheck="true">//......</span>
+    <span class="token keyword">case</span><span class="token operator">:</span>WARN<span class="token operator">:</span>
+        <span class="token comment" spellcheck="true">//......</span>
+    <span class="token keyword">case</span><span class="token operator">:</span>ERROR<span class="token operator">:</span>
+        <span class="token comment" spellcheck="true">//......</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>　　由于把所有的枚举项都列举完了，不可能有其它值，所以就不需要default代码快了，这是普遍认识，但问题是我们的switch代码与枚举之间没有强制约束关系，也就是说两者只是在语义上建立了联系，并没有一个强制约束，比如LogLevel的枚举项发生变化了，增加了一个枚举项FATAL，如果此时我们对switch语句不做任何修改，编译虽不会出问题，但是运行期会发生非预期的错误：FATAL类型的日志没有输出。</p>
+<p>　　为了避免出现这类错误，建议在default后直接抛出一个AssertionError错误，其含义就是“不要跑到这里来，一跑到这里就会出问题”，这样可以保证在增加一个枚举项的情况下，若其它代码未修改，运行期马上就会出错，这样一来就很容易找到错误，方便立即排除。</p>
+<p>　　<strong>当然也有其它方法解决此问题，比如修改IDE工具，以Eclipse为例，可以把Java–&gt;Compiler—&gt;Errors/Warnings中的“Enum type constant not covered on ‘switch’ ”设置为Error级别，如果不判断所有的枚举项就不能编译通过。</strong></p>
+<h3 id="建议87：使用valueOf前必须进行校验"><a href="#建议87：使用valueOf前必须进行校验" class="headerlink" title="建议87：使用valueOf前必须进行校验"></a>建议87：使用valueOf前必须进行校验</h3><p>　　我们知道每个枚举项都是java.lang.Enum的子类，都可以访问Enum类提供的方法，比如hashCode、name、valueOf等，其中valueOf方法会把一个String类型的名称转换为枚举项，也就是在枚举项中查找出字面值与参数相等的枚举项。虽然这个方法简单，但是JDK却做了一个对于开发人员来说并不简单的处理，我们来看代码：　</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// 注意summer是小写</span>
+    List<span class="token operator">&lt;</span>String<span class="token operator">></span> params <span class="token operator">=</span> Arrays<span class="token punctuation">.</span><span class="token function">asList</span><span class="token punctuation">(</span><span class="token string">"Spring"</span><span class="token punctuation">,</span> <span class="token string">"summer"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span>String name <span class="token operator">:</span> params<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// 查找字面值与name相同的枚举项，其中Season是前面例子中枚举Season</span>
+        Season s <span class="token operator">=</span> Season<span class="token punctuation">.</span><span class="token function">valueOf</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>null <span class="token operator">!=</span> s<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment" spellcheck="true">// 有枚举项时</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token comment" spellcheck="true">// 没有该枚举项</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"无相关枚举项"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>　　这段程序看起来没什么错吧，其中考虑到从String转换为枚举类型可能存在着转换不成功的情况，比如没有匹配找到指定值，此时ValueOf的返回值应该为空，所以后面又跟着if…else判断输出。我们看看运行结果　</p>
+<pre class=" language-java"><code class="language-java">Spring
+Exception in thread <span class="token string">"main"</span> java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span>IllegalArgumentException<span class="token operator">:</span> No <span class="token keyword">enum</span> constant com<span class="token punctuation">.</span>book<span class="token punctuation">.</span>study01<span class="token punctuation">.</span>Season<span class="token punctuation">.</span>summer
+    at java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span>Enum<span class="token punctuation">.</span><span class="token function">valueOf</span><span class="token punctuation">(</span>Unknown Source<span class="token punctuation">)</span>
+    at com<span class="token punctuation">.</span>book<span class="token punctuation">.</span>study01<span class="token punctuation">.</span>Season<span class="token punctuation">.</span><span class="token function">valueOf</span><span class="token punctuation">(</span>Season<span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">1</span><span class="token punctuation">)</span>
+    at com<span class="token punctuation">.</span>book<span class="token punctuation">.</span>study85<span class="token punctuation">.</span>Client85<span class="token punctuation">.</span><span class="token function">main</span><span class="token punctuation">(</span>Client85<span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">14</span><span class="token punctuation">)</span>
+</code></pre>
+<p>　　报无效的参数异常，也就说我们的summer(注意s是小写)，无法转换为Season枚举，无法转换就 不转换嘛，那也别抛出IllegalArgumentException异常啊，一但抛出这个异常，后续的代码就不会执行了，这与我们的习惯不符合呀，例如我们从List中查找一个元素，即使不存在也不会报错，顶多indexOf方法返回-1。那么我们来深入分析一下该问题，valueOf方法的源代码如下：　</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token operator">&lt;</span>T <span class="token keyword">extends</span> <span class="token class-name">Enum</span><span class="token operator">&lt;</span>T<span class="token operator">>></span> T <span class="token function">valueOf</span><span class="token punctuation">(</span>Class<span class="token operator">&lt;</span>T<span class="token operator">></span> enumType<span class="token punctuation">,</span> String name<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">//通过反射，从常量列表中查找</span>
+    T result <span class="token operator">=</span> enumType<span class="token punctuation">.</span><span class="token function">enumConstantDirectory</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>result <span class="token operator">!=</span> null<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> result<span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>name <span class="token operator">==</span> null<span class="token punctuation">)</span>
+        <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">NullPointerException</span><span class="token punctuation">(</span><span class="token string">"Name is null"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">//最后抛出无效参数异常</span>
+    <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">IllegalArgumentException</span><span class="token punctuation">(</span><span class="token string">"No enum constant "</span> <span class="token operator">+</span> enumType<span class="token punctuation">.</span><span class="token function">getCanonicalName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"."</span> <span class="token operator">+</span> name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>　　valueOf方法先通过反射从枚举类的常量声明中查找，若找到就直接返回，若找不到则抛出无效参数异常。valueOf的本意是保护编码中的枚举安全性，使其不产生空枚举对象，简化枚举操作，但是却引入了一个我们无法避免的IllegalArgumentException异常。</p>
+<p>　　大家是否觉得此处的valueOf方法的源码不对，这里要输入两个参数，而我们的Season.valueOf只传递一个String类型的参数，真的是这样吗？是的，因为valueOf（String name）方法是不可见的，是JVM内置的方法，我们只有通过阅读公开的valueOf方法来了解其运行原理了。</p>
+<p>　　问题清楚了，有两个方法可以解决此问题：</p>
+<p>　　(1)、使用try……catch捕捉异常</p>
+<p>　　这里是最直接也是最简单的方式，产生IllegalArgumentException即可确认为没有同名的枚举的枚举项，代码如下：　</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">try</span><span class="token punctuation">{</span>    Season s <span class="token operator">=</span> Season<span class="token punctuation">.</span><span class="token function">valueOf</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">//有该枚举项时    System.out.println(s);}catch(Exception e){    e.printStackTrace();    System.out.println("无相关枚举项");}</span>
+</code></pre>
+<p>　　(2)、扩展枚举类：由于Enum类定义的方法基本上都是final类型的，所以不希望被覆写，我们可以学习String和List，通过增加一个contains方法来判断是否包含指定的枚举项，然后再继续转换，代码如下。</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">enum</span> Season <span class="token punctuation">{</span>
+    Spring<span class="token punctuation">,</span> Summer<span class="token punctuation">,</span> Autumn<span class="token punctuation">,</span> Winter<span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// 是否包含指定的枚举项</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">boolean</span> <span class="token function">contains</span><span class="token punctuation">(</span>String name<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// 所有的枚举值</span>
+        Season<span class="token punctuation">[</span><span class="token punctuation">]</span> season <span class="token operator">=</span> <span class="token function">values</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span>Season s <span class="token operator">:</span> season<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>s<span class="token punctuation">.</span><span class="token function">name</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>​    　Season枚举具备了静态方法contains后，就可以在valueOf前判断一下是否包含指定的枚举名称了，若包含则可以通过valueOf转换为枚举，若不包含则不转换。</p>
+<h3 id="建议88：用枚举实现工厂方法模式更简洁"><a href="#建议88：用枚举实现工厂方法模式更简洁" class="headerlink" title="建议88：用枚举实现工厂方法模式更简洁"></a>建议88：用枚举实现工厂方法模式更简洁</h3><p>​        工厂方法模式(Factory Method Pattern)是” 创建对象的接口，让子类决定实例化哪一个类，并使一个类的实例化延迟到其它子类”。工厂方法模式在我们的开发中经常会用到。下面以汽车制造为例，看看一般的工厂方法模式是如何实现的，代码如下：</p>
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">//抽象产品</span>
+<span class="token keyword">interface</span> <span class="token class-name">Car</span><span class="token punctuation">{</span>
+
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">//具体产品类</span>
+<span class="token keyword">class</span> <span class="token class-name">FordCar</span> <span class="token keyword">implements</span> <span class="token class-name">Car</span><span class="token punctuation">{</span>
+
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">//具体产品类</span>
+<span class="token keyword">class</span> <span class="token class-name">BuickCar</span> <span class="token keyword">implements</span> <span class="token class-name">Car</span><span class="token punctuation">{</span>
+
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">//工厂类</span>
+<span class="token keyword">class</span> <span class="token class-name">CarFactory</span><span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">//生产汽车</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> Car <span class="token function">createCar</span><span class="token punctuation">(</span>Class<span class="token operator">&lt;</span><span class="token operator">?</span> <span class="token keyword">extends</span> <span class="token class-name">Car</span><span class="token operator">></span> c<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> c<span class="token punctuation">.</span><span class="token function">newInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">InstantiationException</span> <span class="token operator">|</span> IllegalAccessException e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> null<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>　　这是最原始的工厂方法模式，有两个产品：福特汽车和别克汽车，然后通过工厂方法模式来生产。有了工厂方法模式，我们就不用关心一辆车具体是怎么生成的了，只要告诉工厂” 给我生产一辆福特汽车 “就可以了，下面是产出一辆福特汽车时客户端的代码：　</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>    <span class="token comment" spellcheck="true">//生产车辆    Car car = CarFactory.createCar(FordCar.class);}</span>
+</code></pre>
+<p>　　这就是我们经常使用的工厂方法模式，但经常使用并不代表就是最优秀、最简洁的。此处再介绍一种通过枚举实现工厂方法模式的方案，谁优谁劣你自行评价。枚举实现工厂方法模式有两种方法：</p>
+<p>(1)、枚举非静态方法实现工厂方法模式</p>
+<p>　　我们知道每个枚举项都是该枚举的实例对象，那是不是定义一个方法可以生成每个枚举项对应产品来实现此模式呢？代码如下：</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">enum</span> CarFactory <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// 定义生产类能生产汽车的类型</span>
+    FordCar<span class="token punctuation">,</span> BuickCar<span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// 生产汽车</span>
+    <span class="token keyword">public</span> Car <span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">switch</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">case</span> FordCar<span class="token operator">:</span>
+                <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">FordCar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">case</span> BuickCar<span class="token operator">:</span>
+                <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">BuickCar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">default</span><span class="token operator">:</span>
+                <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">AssertionError</span><span class="token punctuation">(</span><span class="token string">"无效参数"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>　　create是一个非静态方法，也就是只有通过FordCar、BuickCar枚举项才能访问。采用这种方式实现工厂方法模式时，客户端要生产一辆汽车就很简单了，代码如下：　</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// 生产车辆</span>
+    Car car <span class="token operator">=</span> CarFactory<span class="token punctuation">.</span>BuickCar<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>(2)、通过抽象方法生成产品</p>
+<p>　　枚举类型虽然不能继承，但是可以用abstract修饰其方法，此时就表示该枚举是一个抽象枚举，需要每个枚举项自行实现该方法，也就是说枚举项的类型是该枚举的一个子类，我们俩看代码：</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">enum</span> CarFactory <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// 定义生产类能生产汽车的类型</span>
+    FordCar<span class="token punctuation">{</span>
+        <span class="token keyword">public</span> Car <span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">FordCar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    BuickCar<span class="token punctuation">{</span>
+        <span class="token keyword">public</span> Car <span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">BuickCar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">//抽象生产方法</span>
+    <span class="token keyword">public</span> <span class="token keyword">abstract</span> Car <span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>​    　首先定义一个抽象制造方法create，然后每个枚举项自行实现，这种方式编译后会产生CarFactory的匿名子类，因为每个枚举项都要实现create抽象方法。客户端调用与上一个方案相同，不再赘述。</p>
+<p>　　大家可能会问，为什么要使用枚举类型的工厂方法模式呢？那是因为使用枚举类型的工厂方法模式有以下三个优点：</p>
+<ul>
+<li>避免错误调用的发生：一般工厂方法模式中的生产方法(也就是createCar方法)，可以接收三种类型的参数：类型参数(如我们的例子)、String参数(生产方法中判断String参数是需要生产什么产品)、int参数(根据int值判断需要生产什么类型的的产品)，这三种参数都是宽泛的数据类型，很容易发生错误(比如边界问题、null值问题)，而且出现这类错误编译器还不会报警，例如：</li>
+</ul>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>    <span class="token comment" spellcheck="true">// 生产车辆    Car car = CarFactory.createCar(Car.class);}</span>
+</code></pre>
+<p>​    　Car是一个接口，完全合乎createCar的要求，所以它在编译时不会报任何错误，但一运行就会报出InstantiationException异常，而使用枚举类型的工厂方法模式就不存在该问题了，不需要传递任何参数，只需要选择好生产什么类型的产品即可。</p>
+<ul>
+<li>性能好，使用简洁：枚举类型的计算时以int类型的计算为基础的，这是最基本的操作，性能当然会快，至于使用便捷，注意看客户端的调用，代码的字面意思就是” 汽车工厂，我要一辆别克汽车，赶快生产”。</li>
+<li>降低类间耦合：不管生产方法接收的是Class、String还是int的参数，都会成为客户端类的负担，这些类并不是客户端需要的，而是因为工厂方法的限制必须输入的，例如Class参数，对客户端main方法来说，他需要传递一个FordCar.class参数才能生产一辆福特汽车，除了在create方法中传递参数外，业务类不需要改Car的实现类。这严重违背了迪米特原则(Law of Demeter 简称LoD),也就是最少知识原则：一个对象应该对其它对象有最少的了解。</li>
+</ul>
+<p>　　而枚举类型的工厂方法就没有这种问题了，它只需要依赖工厂类就可以生产一辆符合接口的汽车，完全可以无视具体汽车类的存在。</p>
+<h3 id="建议89：枚举项的数量限制在64个以内"><a href="#建议89：枚举项的数量限制在64个以内" class="headerlink" title="建议89：枚举项的数量限制在64个以内"></a>建议89：枚举项的数量限制在64个以内</h3><p>　为了更好地使用枚举，Java提供了两个枚举集合：EnumSet和EnumMap，这两个集合使用的方法都比较简单，EnumSet表示其元素必须是某一枚举的枚举项，EnumMap表示Key值必须是某一枚举的枚举项，由于枚举类型的实例数量固定并且有限，相对来说EnumSet和EnumMap的效率会比其它Set和Map要高。</p>
+<p>   虽然EnumSet很好用，但是它有一个隐藏的特点，我们逐步分析。在项目中一般会把枚举用作常量定义，可能会定义非常多的枚举项，然后通过EnumSet访问、遍历，但它对不同的枚举数量有不同的处理方式。为了进行对比，我们定义两个枚举，一个数量等于64，一个是65（大于64即可，为什么是64而不是128,512呢，一会解释），代码如下：　</p>
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">//普通枚举项，数量等于64enum Const{    A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,    AA,BB,CC,DD,EE,FF,GG,HH,II,JJ,KK,LL,MM,NN,OO,PP,QQ,RR,SS,TT,UU,VV,WW,XX,YY,ZZ,    AAA,BBB,CCC,DDD,EEE,FFF,GGG,HHH,III,JJJ,KKK,LLL}//大枚举，数量超过64enum LargeConst{    A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,    AA,BB,CC,DD,EE,FF,GG,HH,II,JJ,KK,LL,MM,NN,OO,PP,QQ,RR,SS,TT,UU,VV,WW,XX,YY,ZZ,    AAAA,BBBB,CCCC,DDDD,EEEE,FFFF,GGGG,HHHH,IIII,JJJJ,KKKK,LLLL,MMMM}</span>
+</code></pre>
+<p>​    Const的枚举项数量是64，LagrgeConst的枚举项数量是65,接下来我们希望把这两个枚举转换为EnumSet，然后判断一下它们的class类型是否相同，代码如下：　</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Client89</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        EnumSet<span class="token operator">&lt;</span>Const<span class="token operator">></span> cs <span class="token operator">=</span> EnumSet<span class="token punctuation">.</span><span class="token function">allOf</span><span class="token punctuation">(</span>Const<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        EnumSet<span class="token operator">&lt;</span>LargeConst<span class="token operator">></span> lcs <span class="token operator">=</span> EnumSet<span class="token punctuation">.</span><span class="token function">allOf</span><span class="token punctuation">(</span>LargeConst<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//打印出枚举数量</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Const的枚举数量："</span><span class="token operator">+</span>cs<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"LargeConst的枚举数量："</span><span class="token operator">+</span>lcs<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//输出两个EnumSet的class</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>cs<span class="token punctuation">.</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>lcs<span class="token punctuation">.</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>​        程序很简单，现在的问题是：cs和lcs的class类型是否相同？应该相同吧，都是EnumSet类的工厂方法allOf生成的EnumSet类，而且JDK API也没有提示EnumSet有子类。我们来看看输出结果：</p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img_202112/712052-20160927105808235-1641372744.png" alt="img"></p>
+<p>​        很遗憾，两者不相等。就差一个元素，两者就不相等了？确实如此，这也是我们重点关注枚举项数量的原因。先来看看Java是如何处理的，首先跟踪allOf方法，其源码如下： 　</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token operator">&lt;</span>E <span class="token keyword">extends</span> <span class="token class-name">Enum</span><span class="token operator">&lt;</span>E<span class="token operator">>></span> EnumSet<span class="token operator">&lt;</span>E<span class="token operator">></span> <span class="token function">allOf</span><span class="token punctuation">(</span>Class<span class="token operator">&lt;</span>E<span class="token operator">></span> elementType<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">//生成一个空EnumSet</span>
+    EnumSet<span class="token operator">&lt;</span>E<span class="token operator">></span> result <span class="token operator">=</span> <span class="token function">noneOf</span><span class="token punctuation">(</span>elementType<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">//加入所有的枚举项</span>
+    result<span class="token punctuation">.</span><span class="token function">addAll</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> result<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>　　allOf通过noneOf方法首先生成了一个EnumSet对象，然后把所有的枚举都加进去，问题可能就出在EnumSet的生成上了，我们来看看noneOf的源码：　　</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token operator">&lt;</span>E <span class="token keyword">extends</span> <span class="token class-name">Enum</span><span class="token operator">&lt;</span>E<span class="token operator">>></span> EnumSet<span class="token operator">&lt;</span>E<span class="token operator">></span> <span class="token function">noneOf</span><span class="token punctuation">(</span>Class<span class="token operator">&lt;</span>E<span class="token operator">></span> elementType<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">//获得所有的枚举项</span>
+    Enum<span class="token punctuation">[</span><span class="token punctuation">]</span> universe <span class="token operator">=</span> <span class="token function">getUniverse</span><span class="token punctuation">(</span>elementType<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>universe <span class="token operator">==</span> null<span class="token punctuation">)</span>
+        <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">ClassCastException</span><span class="token punctuation">(</span>elementType <span class="token operator">+</span> <span class="token string">" not an enum"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">//枚举数量小于等于64</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>universe<span class="token punctuation">.</span>length <span class="token operator">&lt;=</span> <span class="token number">64</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">RegularEnumSet</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span>elementType<span class="token punctuation">,</span> universe<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">else</span>
+        <span class="token comment" spellcheck="true">//枚举数量大于64</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">JumboEnumSet</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span>elementType<span class="token punctuation">,</span> universe<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>​    看到这里，恍然大悟，Java原来是如此处理的：当枚举项数量小于等于64时，创建一个RegularEnumSet实例对象，大于64时则创建一个JumboEnumSet实例对象。</p>
+<p>　　为什么要如此处理呢？这还要看看这两个类之间的差异，首先看RegularEnumSet类，源码如下：</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">RegularEnumSet</span><span class="token operator">&lt;</span>E <span class="token keyword">extends</span> <span class="token class-name">Enum</span><span class="token operator">&lt;</span>E<span class="token operator">>></span> <span class="token keyword">extends</span> <span class="token class-name">EnumSet</span><span class="token operator">&lt;</span>E<span class="token operator">></span> <span class="token punctuation">{</span>    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token keyword">long</span> serialVersionUID <span class="token operator">=</span> 3411599620347842686L<span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">/**     * Bit vector representation of this set.  The 2^k bit indicates the     * presence of universe[k] in this set.     */</span>    <span class="token comment" spellcheck="true">//记录所有的枚举号，注意是long型    private long elements = 0L;   //构造函数    RegularEnumSet(Class&lt;E>elementType, Enum[] universe) {        super(elementType, universe);    }   //加入所有元素    void addAll() {        if (universe.length != 0)            elements = -1L >>> -universe.length;    }   //其它代码略}</span>
+</code></pre>
+<p>​        我们知道枚举项的排序值ordinal 是从0、1、2……依次递增的，没有重号，没有跳号，RegularEnumSet就是利用这一点把每个枚举项的ordinal映射到一个long类型的每个位置上的，注意看addAll方法的elements元素，它使用了无符号右移操作，并且操作数是负值，位移也是负值，这表示是负数(符号位是1)的”无符号左移”：符号位为0，并补充低位，简单的说，Java把一个不多于64个枚举项映射到了一个long类型变量上。这才是EnumSet处理的重点，其他的size方法、contains方法等都是根据elements方法等都是根据elements计算出来的。想想看，一个long类型的数字包含了所有的枚举项，其效率和性能能肯定是非常优秀的。</p>
+<p>　　我们知道long类型是64位的，所以RegularEnumSet类型也就只能负责枚举项的数量不大于64的枚举(这也是我们以64来举例，而不以128,512举例的原因)，大于64则由JumboEnumSet处理，我们看它是怎么处理的：　</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">JumboEnumSet</span><span class="token operator">&lt;</span>E <span class="token keyword">extends</span> <span class="token class-name">Enum</span><span class="token operator">&lt;</span>E<span class="token operator">>></span> <span class="token keyword">extends</span> <span class="token class-name">EnumSet</span><span class="token operator">&lt;</span>E<span class="token operator">></span> <span class="token punctuation">{</span>    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token keyword">long</span> serialVersionUID <span class="token operator">=</span> 334349849919042784L<span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">/**     * Bit vector representation of this set.  The ith bit of the jth     * element of this array represents the  presence of universe[64*j +i]     * in this set.     */</span>    <span class="token comment" spellcheck="true">//映射所有的枚举项    private long elements[];    // Redundant - maintained for performance    private int size = 0;    JumboEnumSet(Class&lt;E>elementType, Enum[] universe) {        super(elementType, universe);        //默认长度是枚举项数量除以64再加1        elements = new long[(universe.length + 63) >>> 6];    }    void addAll() {        //elements中每个元素表示64个枚举项        for (int i = 0; i &lt; elements.length; i++)            elements[i] = -1;        elements[elements.length - 1] >>>= -universe.length;        size = universe.length;    }}</span>
+</code></pre>
+<p>　　JumboEnumSet类把枚举项按照64个元素一组拆分成了多组，每组都映射到一个long类型的数字上，然后该数组再放置到elements数组中，简单来说JumboEnumSet类的原理与RegularEnumSet相似，只是JumboEnumSet使用了long数组容纳更多的枚举项。不过，这样的程序看着会不会觉得郁闷呢？其实这是因为我们在开发中很少使用位移操作。大家可以这样理解：RegularEnumSet是把每个枚举项映射到一个long类型数字的每个位上，JumboEnumSet是先按照64个一组进行拆分，然后每个组再映射到一个long类型数字的每个位上。</p>
+<p>　　从以上的分析可知，EnumSet提供的两个实现都是基本的数字类型操作，其性能肯定比其他的Set类型要好的多，特别是Enum的数量少于64的时候，那简直就是飞一般的速度。</p>
+<p>　　<strong>注意：枚举项数量不要超过64，否则建议拆分。</strong></p>
+<h3 id="建议90：小心注解继承"><a href="#建议90：小心注解继承" class="headerlink" title="建议90：小心注解继承"></a>建议90：小心注解继承</h3><p>　Java从1.5版本开始引入注解(Annotation),其目的是在不影响代码语义的情况下增强代码的可读性，并且不改变代码的执行逻辑，对于注解始终有两派争论，正方认为注解有益于数据与代码的耦合，”在有代码的周边集合数据”；反方认为注解把代码和数据混淆在一起，增加了代码的易变性，消弱了程序的健壮性和稳定性。这些争论暂且搁置，我们要说的是一个我们不常用的元注解(Meta-Annotation):@Inheruted,它表示一个注解是否可以自动继承，我们开看它如何使用。</p>
+<p>　　思考一个例子，比如描述鸟类，它有颜色、体型、习性等属性，我们以颜色为例，定义一个注解来修饰一下，代码如下：</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">import</span> java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>ElementType<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>Inherited<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>Retention<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>RetentionPolicy<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>Target<span class="token punctuation">;</span>
+
+<span class="token annotation punctuation">@Retention</span><span class="token punctuation">(</span>RetentionPolicy<span class="token punctuation">.</span>RUNTIME<span class="token punctuation">)</span>
+<span class="token annotation punctuation">@Target</span><span class="token punctuation">(</span>ElementType<span class="token punctuation">.</span>TYPE<span class="token punctuation">)</span>
+<span class="token annotation punctuation">@Inherited</span>
+<span class="token keyword">public</span> @<span class="token keyword">interface</span> <span class="token class-name">Desc</span> <span class="token punctuation">{</span>
+    <span class="token keyword">enum</span> Color <span class="token punctuation">{</span>
+        White<span class="token punctuation">,</span> Grayish<span class="token punctuation">,</span> Yellow
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">// 默认颜色是白色的</span>
+    Color <span class="token function">c</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">default</span> Color<span class="token punctuation">.</span>White<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>　该注解Desc前增加了三个注解：Retention表示的是该注解的保留级别，Target表示的是注解可以标注在什么地方，@Inherited表示该注解会被自动继承。注解定义完毕，我们把它标注在类上，代码如下：　</p>
+<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Desc</span><span class="token punctuation">(</span>c <span class="token operator">=</span> Color<span class="token punctuation">.</span>White<span class="token punctuation">)</span>
+<span class="token keyword">abstract</span> <span class="token keyword">class</span> <span class="token class-name">Bird</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">abstract</span> Color <span class="token function">getColor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">// 麻雀</span>
+<span class="token keyword">class</span> <span class="token class-name">Sparrow</span> <span class="token keyword">extends</span> <span class="token class-name">Bird</span> <span class="token punctuation">{</span>
+    <span class="token keyword">private</span> Color color<span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">// 默认是浅灰色</span>
+    <span class="token keyword">public</span> <span class="token function">Sparrow</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        color <span class="token operator">=</span> Color<span class="token punctuation">.</span>Grayish<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">// 构造函数定义鸟的颜色</span>
+    <span class="token keyword">public</span> <span class="token function">Sparrow</span><span class="token punctuation">(</span>Color _color<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        color <span class="token operator">=</span> _color<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> Color <span class="token function">getColor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> color<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">// 鸟巢，工厂方法模式</span>
+<span class="token keyword">enum</span> BirdNest <span class="token punctuation">{</span>
+    Sparrow<span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// 鸟类繁殖</span>
+    <span class="token keyword">public</span> Bird <span class="token function">reproduce</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        Desc bd <span class="token operator">=</span> Sparrow<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">.</span><span class="token function">getAnnotation</span><span class="token punctuation">(</span>Desc<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> bd <span class="token operator">==</span> null <span class="token operator">?</span> <span class="token keyword">new</span> <span class="token class-name">Sparrow</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token keyword">new</span> <span class="token class-name">Sparrow</span><span class="token punctuation">(</span>bd<span class="token punctuation">.</span><span class="token function">c</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>　　上面程序声明了一个Bird抽象类，并且标注了Desc注解，描述鸟类的颜色是白色，然后编写一个麻雀Sparrow类，它有两个构造函数，一个是默认的构造函数，也就是我们经常看到的麻雀是浅灰色的，另外一个构造函数是自定义麻雀的颜色，之后又定义了一个鸟巢(工厂方法模式)，它是专门负责鸟类繁殖的，它的生产方法reproduce会根据实现类注解信息生成不同颜色的麻雀。我们编写一个客户端调用，代码如下：　</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    Bird bird <span class="token operator">=</span> BirdNest<span class="token punctuation">.</span>Sparrow<span class="token punctuation">.</span><span class="token function">reproduce</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Color color <span class="token operator">=</span> bird<span class="token punctuation">.</span><span class="token function">getColor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Bird's color is :"</span> <span class="token operator">+</span> color<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>​    现在问题是这段客户端程序会打印出什么来？因为采用了工厂方法模式，它最主要的问题就是bird变量到底采用了那个构造函数来生成，是无参构造函数还是有参构造？如果我们单独看子类Sparrow，它没有被添加任何注释，那工厂方法中的bd变量就应该是null了，应该调用的是无参构造。是不是如此呢？我们来看运行结果：“Bird‘s Color is White ”；</p>
+<p>　　白色？这是我们添加到父类Bird上的颜色，为什么？这是因为我们在注解上加了@Inherited注解，它表示的意思是我们只要把注解@Desc加到父类Bird上，它的所有子类都会从父类继承@Desc注解，不需要显示声明，这与Java的继承有点不同，若Sparrow类继承了Bird却不用显示声明，只要@Desc注解释可自动继承的即可。</p>
+<p>　　采用@Inherited元注解有利有弊，利的地方是一个注解只要标注到父类，所有的子类都会自动具有父类相同的注解，整齐，统一而且便于管理，弊的地方是单单阅读子类代码，我们无从知道为何逻辑会被改变，因为子类没有显示标注该注解。总体上来说，使用@Inherited元注解弊大于利，特别是一个类的继承层次较深时，如果注解较多，则很难判断出那个注解对子类产生了逻辑劫持。</p>
+<h3 id="建议91：枚举和注解结合使用威力更大"><a href="#建议91：枚举和注解结合使用威力更大" class="headerlink" title="建议91：枚举和注解结合使用威力更大"></a>建议91：枚举和注解结合使用威力更大</h3><p>　　我们知道注解的写法和接口很类似，都采用了关键字interface，而且都不能有实现代码，常量定义默认都是public static final 类型的等，它们的主要不同点是：注解要在interface前加上@字符，而且不能继承，不能实现，这经常会给我们的开发带来些障碍。　　</p>
+<p>　　我们来分析一下ACL(Access Control  List,访问控制列表)设计案例，看看如何避免这些障碍，ACL有三个重要元素：</p>
+<ul>
+<li>资源，有哪些信息是要被控制起来的。</li>
+<li>权限级别，不同的访问者规划在不同的级别中。</li>
+<li>控制器(也叫鉴权人)，控制不同的级别访问不同的资源。</li>
+</ul>
+<p>　　鉴权人是整个ACL的设计核心，我们从最主要的鉴权人开始，代码如下：</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">interface</span> <span class="token class-name">Identifier</span><span class="token punctuation">{</span>    <span class="token comment" spellcheck="true">//无权访问时的礼貌语    String REFUSE_WORD  =  "您无权访问";    //鉴权    public  boolean identify();}</span>
+</code></pre>
+<p>​    　这是一个鉴权人接口，定义了一个常量和一个鉴权方法。接下来应该实现该鉴权方法，但问题是我们的权限级别和鉴权方法之间是紧耦合，若分拆成两个类显得有点啰嗦，怎么办？我们可以直接顶一个枚举来实现，代码如下：</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">enum</span> CommonIdentifier <span class="token keyword">implements</span> <span class="token class-name">Identifier</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// 权限级别</span>
+    Reader<span class="token punctuation">,</span> Author<span class="token punctuation">,</span> Admin<span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">identify</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>​    定义了一个通用鉴权者，使用的是枚举类型，并且实现了鉴权者接口。现在就剩下资源定义了，这很容易定义，资源就是我们写的类、方法等，之后再通过配置来决定哪些类、方法允许什么级别的访问，这里的问题是：怎么把资源和权限级别关联起来呢？使用XML配置文件？是个方法，但对我们的示例程序来说显得太繁重了，如果使用注解会更简洁些，不过这需要我们首先定义出权限级别的注解，代码如下：</p>
+<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Retention</span><span class="token punctuation">(</span>RetentionPolicy<span class="token punctuation">.</span>RUNTIME<span class="token punctuation">)</span>
+<span class="token annotation punctuation">@Target</span><span class="token punctuation">(</span>ElementType<span class="token punctuation">.</span>TYPE<span class="token punctuation">)</span>
+@<span class="token keyword">interface</span> <span class="token class-name">Access</span><span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">//什么级别可以访问，默认是管理员</span>
+    CommonIdentifier <span class="token function">level</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">default</span> CommonIdentifier<span class="token punctuation">.</span>Admin<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>​    　该注解释标注在类上面的，并且会保留到运行期。我们定义一个资源类，代码如下：　</p>
+<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Access</span><span class="token punctuation">(</span>level<span class="token operator">=</span>CommonIdentifier<span class="token punctuation">.</span>Author<span class="token punctuation">)</span>
+<span class="token keyword">class</span> <span class="token class-name">Foo</span><span class="token punctuation">{</span>
+    
+<span class="token punctuation">}</span>
+</code></pre>
+<p>　　Foo类只能是作者级别的人访问。场景都定义完毕了，那我们看看如何模拟ACL实现，代码如下：</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>    <span class="token comment" spellcheck="true">// 初始化商业逻辑    Foo b = new Foo();    // 获取注解    Access access = b.getClass().getAnnotation(Access.class);    // 没有Access注解或者鉴权失败    if (null == access || !access.level().identify()) {        // 没有Access注解或者鉴权失败        System.out.println(access.level().REFUSE_WORD);    }}</span>
+</code></pre>
+<p>　看看这段代码，简单，易读，而且如果我们是通过ClassLoader类来解释该注解的，那会使我们的开发更简洁，所有的开发人员只要增加注解即可解决访问控制问题。注意看加粗代码，access是一个注解类型，我们想使用Identifier接口的identity鉴权方法和REFUSE_WORD常量，但注解释不能集成的，那怎么办?此处，可通过枚举类型CommonIdentifier从中间做一个委派动作(Delegate),委派？你可以然identity返回一个对象，或者在Identifier上直接定义一个常量对象，那就是“赤裸裸” 的委派了。</p>
+<h3 id="建议92：注意-Override不同版本的区别"><a href="#建议92：注意-Override不同版本的区别" class="headerlink" title="建议92：注意@Override不同版本的区别"></a>建议92：注意@Override不同版本的区别</h3><p>　    @Override注解用于方法的覆写上，它是在编译器有效，也就是Java编译器在编译时会根据注解检查方法是否真的是覆写，如果不是就报错，拒绝编译。该注解可以很大程度地解决我们的误写问题，比如子类和父类的方法名少写一个字符，或者是数字0和字母O为区分出来等，这基本是每个程序员都曾将犯过的错误。在代码中加上@Override注解基本上可以杜绝出现此类问题，但是@Override有个版本问题，我们来看如下代码：</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">interface</span> <span class="token class-name">Foo</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">doSomething</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">FooImpl</span> <span class="token keyword">implements</span> <span class="token class-name">Foo</span><span class="token punctuation">{</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">doSomething</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>　这是一个简单的@Override示例，接口中定义了一个doSomething方法，实现类FooImpl实现此方法，并且在方法前加上了@Override注解。这段代码在Java1.6版本上编译没问题，虽然doSomething方法只是实现了接口的定义，严格来说并不是覆写，但@Override出现在这里可减少代码中出现的错误。</p>
+<p>　　可如果在Java1.5版本上编译此段代码可能会出现错误：</p>
+<p>　　　　　　The method doSomeThing() of type FooImpl must override  a superclass method </p>
+<p>　　注意，这是个错误，不能继续编译，原因是<strong>Java1.5版本的@Override是严格遵守覆写的定义</strong>：子类方法与父类方法必须具有相同的方法名、输出参数、输出参数(允许子类缩小)、访问权限(允许子类扩大)，父类必须是一个类，不能是接口，否则不能算是覆写。而这在Java1.6就开放了很多，实现接口的方法也可以加上@Override注解了，可以避免粗心大意导致方法名称与接口不一致的情况发生。</p>
+<p>　　在多环境部署应用时，需呀考虑@Override在不同版本下代表的意义，如果是Java1.6版本的程序移植到1.5版本环境中，就需要删除实现接口方法上的@Override注解。</p>
+<h2 id="第7章-泛型和反射"><a href="#第7章-泛型和反射" class="headerlink" title="第7章 泛型和反射"></a>第7章 泛型和反射</h2><h2 id="第8章-异常"><a href="#第8章-异常" class="headerlink" title="第8章 异常"></a>第8章 异常</h2><p>大成若缺，其用不弊。大盈若冲，其用不穷。——老子《道德经》</p>
 <p>​        不管人类的思维有多么缜密，也存在“智者千虑必有一失”的缺憾。无论计算机技术怎么发展，也不可能穷尽所有的情景—这个世界是不完美的，是有缺陷的，完美的世界只存在于理想中。</p>
 <p>​        对于软件帝国的缔造者来说，程序也是不完美的，异常情况随时都会出现，我们需要它为我们描述例外事件，需要它处理非预期的情景，需要它帮我们建立“完美世界”。</p>
 
@@ -710,11 +1237,12 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2021/12/25/bian-xie-gao-zhi-liang-dai-ma-gai-shan-java-cheng-xu-de-151-ge-jian-yi-du-shu-bi-ji-xia/">
+                <a href="/2021/12/25/bian-xie-gao-zhi-liang-dai-ma-gai-shan-java-cheng-xu-de-151-ge-jian-yi-du-shu-bi-ji/">
                     <div class="card-image">
                         
                         
@@ -730,9 +1258,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-12-25
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-12-25
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -745,6 +1273,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     

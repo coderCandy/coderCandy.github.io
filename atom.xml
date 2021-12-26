@@ -6,7 +6,7 @@
   <link href="https://codercandy.github.io/atom.xml" rel="self"/>
   
   <link href="https://codercandy.github.io/"/>
-  <updated>2021-12-26T11:36:32.913Z</updated>
+  <updated>2021-12-26T11:47:11.801Z</updated>
   <id>https://codercandy.github.io/</id>
   
   <author>
@@ -18,40 +18,10 @@
   
   <entry>
     <title>《编写高质量代码 改善java程序的151个建议》读书笔记-下</title>
-    <link href="https://codercandy.github.io/2021/12/25/bian-xie-gao-zhi-liang-dai-ma-gai-shan-java-cheng-xu-de-151-ge-jian-yi-du-shu-bi-ji-xia/"/>
-    <id>https://codercandy.github.io/2021/12/25/bian-xie-gao-zhi-liang-dai-ma-gai-shan-java-cheng-xu-de-151-ge-jian-yi-du-shu-bi-ji-xia/</id>
-    <published>2021-12-25T14:07:54.000Z</published>
-    <updated>2021-12-26T11:36:32.913Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;《编写高质量代码 改善java程序的151个建议》读书笔记-下&lt;/p&gt;
-&lt;p&gt;本篇博客记录《编写高质量代码 改善java程序的151个建议》这本书的读书笔记。方便自己查看，也方便大家查阅，在此感谢原书作者&lt;a</summary>
-        
-      
-    
-    
-    
-    <category term="学习" scheme="https://codercandy.github.io/categories/%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-    <category term="后端" scheme="https://codercandy.github.io/tags/%E5%90%8E%E7%AB%AF/"/>
-    
-    <category term="java" scheme="https://codercandy.github.io/tags/java/"/>
-    
-    <category term="读书笔记" scheme="https://codercandy.github.io/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>《编写高质量代码 改善java程序的151个建议》读书笔记-下</title>
     <link href="https://codercandy.github.io/2021/12/25/bian-xie-gao-zhi-liang-dai-ma-gai-shan-java-cheng-xu-de-151-ge-jian-yi-du-shu-bi-ji/"/>
     <id>https://codercandy.github.io/2021/12/25/bian-xie-gao-zhi-liang-dai-ma-gai-shan-java-cheng-xu-de-151-ge-jian-yi-du-shu-bi-ji/</id>
     <published>2021-12-25T14:07:54.000Z</published>
-    <updated>2021-12-26T11:40:10.421Z</updated>
+    <updated>2021-12-26T11:47:11.801Z</updated>
     
     
       
@@ -583,6 +553,32 @@
     <category term="前端" scheme="https://codercandy.github.io/tags/%E5%89%8D%E7%AB%AF/"/>
     
     <category term="Electron" scheme="https://codercandy.github.io/tags/Electron/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>第一篇博客</title>
+    <link href="https://codercandy.github.io/2021/12/05/di-yi-pian-bo-ke/"/>
+    <id>https://codercandy.github.io/2021/12/05/di-yi-pian-bo-ke/</id>
+    <published>2021-12-05T08:35:23.000Z</published>
+    <updated>2021-12-05T08:55:41.065Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;第一篇博客&lt;/p&gt;
+&lt;p&gt;​   </summary>
+        
+      
+    
+    
+    
+    <category term="生活" scheme="https://codercandy.github.io/categories/%E7%94%9F%E6%B4%BB/"/>
+    
+    
+    <category term="随笔" scheme="https://codercandy.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
