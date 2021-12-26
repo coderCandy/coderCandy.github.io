@@ -1321,7 +1321,8 @@ List<span class="token operator">&lt;</span><span class="token operator">?</span
 <p>　　“ ? super Integer “ 的意思是可以把所有的Integer父类型(自身、父类或接口) 作为泛型参数，这里看着就像是把一个Number类型的ArrayList赋值给了Integer类型的List，其外观类似于使用一个宽类型覆盖一个窄类型，它模拟了逆变的实现。</p>
 <p>　　泛型既不支持协变，也不支持逆变，带有泛型参数的子类型定义与我们经常使用的类类型也不相同，其基本类型关系如下表所示：</p>
 <p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img_202112/image-20211225195753140-16404334753096.png" alt="image-20211225195753140"></p>
-<h3 id="建议98：采用顺序是List中泛型顺序依次为T、-、Object"><a href="#建议98：采用顺序是List中泛型顺序依次为T、-、Object" class="headerlink" title="建议98：采用顺序是List中泛型顺序依次为T、?、Object"></a>建议98：采用顺序是List中泛型顺序依次为T、?、Object</h3><p>　**<font color='red' >List<T>、List<?>、List<Object>这三者都可以容纳所有的对象，但使用的顺序应该是首选List<T>，次之List<?>，最后选择List<Object></font>**，原因如下：</p>
+<h3 id="建议98：采用顺序是List中泛型顺序依次为T、-、Object"><a href="#建议98：采用顺序是List中泛型顺序依次为T、-、Object" class="headerlink" title="建议98：采用顺序是List中泛型顺序依次为T、?、Object"></a>建议98：采用顺序是List中泛型顺序依次为T、?、Object</h3><pre class=" language-java"><code class="language-java">　<span class="token comment" spellcheck="true">//List&lt;T>、List&lt;?>、List&lt;Object>这三者都可以容纳所有的对象，但使用的顺序应该是首选List&lt;T>，次之List&lt;?>，最后选择List&lt;Object>，原因如下：</span>
+</code></pre>
 <p>(1)、List<T>是确定的某一个类型</p>
 <pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">//　List&lt;T>表示的是List集合中的元素都为T类型，具体类型在运行期决定；List&lt;？>表示的是任意类型，与List&lt;T>类似，而List&lt;Object>则表示List集合中的所有元素为Object类型，因为Object是所有类的父类，所以List&lt;Object>也可以容纳所有的类类型，从这一字面意义上分析，List&lt;T>更符合习惯：编码者知道它是某一个类型，只是在运行期才确定而已。</span>
 </code></pre>
