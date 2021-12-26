@@ -1331,8 +1331,8 @@ List<span class="token operator">&lt;</span><span class="token operator">?</span
 <p>　　List<T>是只读类型的，不能进行增加、修改操作，因为编译器不知道List中容纳的是什么类型的元素，也就无法校验类型是否安全了，而且List&lt;?&gt;读取出的元素都是Object类型的，需要主动转型，所以它经常用于泛型方法的返回值。注意List&lt;？&gt;虽然无法增加，修改元素，但是却可以删除元素，比如执行remove、clear等方法，那是因为它的删除动作与泛型类型无关。</p>
 <pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">//　List&lt;Object> 也可以读写操作，但是它执行写入操作时需要向上转型(Up cast)，在读取数据的时候需要向下转型，而此时已经失去了泛型存在的意义了。</span>
 <span class="token comment" spellcheck="true">//打个比方，有一个篮子用来容纳物品，比如西瓜，番茄等.List&lt;?>的意思是说，“嘿，我这里有一个篮子，可以容纳固定类别的东西，比如西瓜，番茄等”。List&lt;?>的意思是说：“嘿，我有一个篮子，我可以容纳任何东西，只要是你想得到的”。而List&lt;Object>就更有意思了，它说" 嘿，我也有一个篮子，我可以容纳所有物质，只要你认为是物质的东西都可以容纳进来 "。</span>
+<span class="token comment" spellcheck="true">//推而广之，Dao&lt;T>应该比Dao&lt;？>、Dao&lt;Object>更先采用，Desc&lt;Person>则比Desc&lt;？>、Desc&lt;Object></span>
 </code></pre>
-<p>　　推而广之，Dao<T>应该比Dao&lt;？&gt;、Dao<Object>更先采用，Desc<Person>则比Desc&lt;？&gt;、Desc<Object></p>
 <h3 id="建议99：严格限定泛型类型采用多重界限"><a href="#建议99：严格限定泛型类型采用多重界限" class="headerlink" title="建议99：严格限定泛型类型采用多重界限"></a>建议99：严格限定泛型类型采用多重界限</h3><p>　　从哲学来说，很难描述一个具体的人，你可以描述他的长相、性格、工作等，但是人都是由多重身份的，估计只有使用多个And(与操作)将所有的描述串联起来才能描述一个完整的人，比如我，上班时我是一个职员，下班了坐公交车我是一个乘客，回家了我是父母的孩子，是儿子的父亲……角色时刻在变换。那如果我们要使用Java程序来对一类人进行管理，该如何做呢？比如在公交车费优惠系统中，对部分人员(如工资低于2500元的上班族并且是站立的乘客)车费打8折，该如何实现呢？</p>
 <p>　　注意这里的类型参数有两个限制条件：一个为上班族；二为乘客。具体到我们的程序中就应该是一个泛型参数具有两个上界(Upper Bound)，首先定义两个接口及实现类，代码如下：　</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">interface</span> <span class="token class-name">Staff</span> <span class="token punctuation">{</span>
