@@ -416,7 +416,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    25.2k
+                    25.1k
                 </div>
                 
 
@@ -1112,7 +1112,6 @@ Exception in thread <span class="token string">"main"</span> java<span class="to
 <pre class=" language-java"><code class="language-java">List<span class="token operator">&lt;</span>String<span class="token operator">></span><span class="token punctuation">[</span><span class="token punctuation">]</span> listArray <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">List</span><span class="token operator">&lt;</span>String<span class="token operator">></span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
 <span class="token comment" spellcheck="true">//    　原因很简单，可以声明一个带有泛型参数的数组，但不能初始化该数组，因为执行了类型擦除操作，List&lt;Object>[]与List&lt;String>[] 就是同一回事了，编译器拒绝如此声明。</span>
 </code></pre>
-<p>​    　原因很简单，可以声明一个带有泛型参数的数组，但不能初始化该数组，因为执行了类型擦除操作，List<Object>[]与List<String>[] 就是同一回事了，编译器拒绝如此声明。</p>
 <p>​        3.instanceof不允许存在泛型参数</p>
 <p>　　　　以下代码不能通过编译，原因一样，泛型类型被擦除了：　　</p>
 <pre class=" language-java"><code class="language-java">  List<span class="token operator">&lt;</span>String<span class="token operator">></span> list <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span>String<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
