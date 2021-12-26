@@ -33,6 +33,35 @@
     
     
     <entry>
+      <title>《编写高质量代码 改善java程序的151个建议》读书笔记-下</title>
+      <link href="/2021/12/25/bian-xie-gao-zhi-liang-dai-ma-gai-shan-java-cheng-xu-de-151-ge-jian-yi-du-shu-bi-ji/"/>
+      <url>/2021/12/25/bian-xie-gao-zhi-liang-dai-ma-gai-shan-java-cheng-xu-de-151-ge-jian-yi-du-shu-bi-ji/</url>
+      
+        <content type="html"><![CDATA[<p>《编写高质量代码 改善java程序的151个建议》读书笔记-下</p><p>本篇博客记录《编写高质量代码 改善java程序的151个建议》这本书的读书笔记。方便自己查看，也方便大家查阅，在此感谢原书作者<a href="https://weread.qq.com/web/reader/3cc32750597de83cc5abc31ke4d32d5015e4da3b7fbb1fa">秦小波</a>对java的独特见解，帮助java爱好者的成长。</p><h2 id="第6章-枚举和注解"><a href="#第6章-枚举和注解" class="headerlink" title="第6章 枚举和注解"></a>第6章 枚举和注解</h2><h2 id="第7章-泛型和反射"><a href="#第7章-泛型和反射" class="headerlink" title="第7章 泛型和反射"></a>第7章 泛型和反射</h2><h2 id="第8章-异常"><a href="#第8章-异常" class="headerlink" title="第8章 异常"></a>第8章 异常</h2><p>大成若缺，其用不弊。大盈若冲，其用不穷。——老子《道德经》</p><p>​        不管人类的思维有多么缜密，也存在“智者千虑必有一失”的缺憾。无论计算机技术怎么发展，也不可能穷尽所有的情景—这个世界是不完美的，是有缺陷的，完美的世界只存在于理想中。</p><p>​        对于软件帝国的缔造者来说，程序也是不完美的，异常情况随时都会出现，我们需要它为我们描述例外事件，需要它处理非预期的情景，需要它帮我们建立“完美世界”。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 学习 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 后端 </tag>
+            
+            <tag> java </tag>
+            
+            <tag> 读书笔记 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>员工的离职成本</title>
       <link href="/2021/12/19/yuan-gong-de-chi-zhi-cheng-ben/"/>
       <url>/2021/12/19/yuan-gong-de-chi-zhi-cheng-ben/</url>
