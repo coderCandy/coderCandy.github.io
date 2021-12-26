@@ -416,7 +416,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    25.1k
+                    30k
                 </div>
                 
 
@@ -1971,6 +1971,266 @@ String<span class="token punctuation">[</span><span class="token punctuation">]<
 <h2 id="第8章-异常"><a href="#第8章-异常" class="headerlink" title="第8章 异常"></a>第8章 异常</h2><p>大成若缺，其用不弊。大盈若冲，其用不穷。——老子《道德经》</p>
 <p>​        不管人类的思维有多么缜密，也存在“智者千虑必有一失”的缺憾。无论计算机技术怎么发展，也不可能穷尽所有的情景—这个世界是不完美的，是有缺陷的，完美的世界只存在于理想中。</p>
 <p>​        对于软件帝国的缔造者来说，程序也是不完美的，异常情况随时都会出现，我们需要它为我们描述例外事件，需要它处理非预期的情景，需要它帮我们建立“完美世界”。</p>
+<h3 id="建议110：提倡异常封装"><a href="#建议110：提倡异常封装" class="headerlink" title="建议110：提倡异常封装"></a>建议110：提倡异常封装</h3><p>Java语言的异常处理机制可以去确保程序的健壮性，提高系统的可用率，但是Java API提供的异常都是比较低级的(这里的低级是指 “ 低级别的 “ 异常)，只有开发人员才能看的懂，才明白发生了什么问题。而对于终端用户来说，这些异常基本上就是天书，与业务无关，是纯计算机语言的描述，那该怎么办？这就需要我们对异常进行封装了。异常封装有三方面的优点：</p>
+<p><strong>(1)、提高系统的友好性</strong></p>
+<p>　　例如，打开一个文件，如果文件不存在，则回报FileNotFoundException异常，如果该方法的编写者不做任何处理，直接抛到上层，则会降低系统的友好性，代码如下所示：</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">doStuff</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> FileNotFoundException <span class="token punctuation">{</span>
+    InputStream is <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FileInputStream</span><span class="token punctuation">(</span><span class="token string">"无效文件.txt"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">/* 文件操作 */</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>　　此时doStuff的友好性极差，出现异常时(如果文件不存在)，该方法直接把FileNotFoundException异常抛到上层应用中(或者是最终用户)，而上层应用(或用户要么自己处理)，要么接着抛，最终的结果就是让用户面对着” 天书 “ 式的文字发呆，用户不知道这是什么问题，只是知道系统告诉他” 哦，我出错了，什么错误？你自己看着办吧 “。</p>
+<p>　　解决办法就是封装异常，可以把异常的阅读者分为两类：开发人员和用户。开发人员查找问题，需要打印出堆栈信息，而用户则需要了解具体的业务原因，比如文件太大、不能同时编写文件等，代码如下：　</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">doStuff2</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> MyBussinessException<span class="token punctuation">{</span>
+    <span class="token keyword">try</span> <span class="token punctuation">{</span>
+        InputStream is <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FileInputStream</span><span class="token punctuation">(</span><span class="token string">"无效文件.txt"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">FileNotFoundException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">//方便开发人员和维护人员而设置的异常信息</span>
+        e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//抛出业务异常</span>
+        <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">MyBussinessException</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment" spellcheck="true">/* 文件操作 */</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p><strong>(2)、提高系统的可维护性</strong></p>
+<p>　　看如下代码：　</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span>  <span class="token keyword">void</span> <span class="token function">doStuff3</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">try</span><span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">//doSomething</span>
+    <span class="token punctuation">}</span><span class="token keyword">catch</span><span class="token punctuation">(</span>Exception e<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>   
+<span class="token punctuation">}</span>
+</code></pre>
+<p>　　这是大家很容易犯的错误，抛出异常是吧?分类处理多麻烦，就写一个catch块来处理所有的异常吧，而且还信誓旦旦的说” JVM会打印出栈中的错误信息 “，虽然这没错，但是该信息只有开发人员自己看的懂，维护人员看到这段异常时基本上无法处理，因为需要到代码逻辑中去分析问题。</p>
+<p>　　正确的做法是对异常进行分类处理，并进行封装输出，代码如下：　　</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span>  <span class="token keyword">void</span> <span class="token function">doStuff4</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">try</span><span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">//doSomething</span>
+    <span class="token punctuation">}</span><span class="token keyword">catch</span><span class="token punctuation">(</span>FileNotFoundException e<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"文件未找到，使用默认配置文件...."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token keyword">catch</span><span class="token punctuation">(</span>SecurityException e1<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">" 无权访问，可能原因是......"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        e1<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>　如此包装后，维护人员看到这样的异常就有了初步的判断，或者检查配置，或者初始化环境，不需要直接到代码层级去分析了。</p>
+<p><strong>(3)、解决Java异常机制自身的缺陷</strong></p>
+<p>　　Java中的异常一次只能抛出一个，比如doStuff方法有两个逻辑代码片段，如果在第一个逻辑片段中抛出异常，则第二个逻辑片段就不再执行了，也就无法抛出第二个异常了，现在的问题是：如何才能一次抛出两个(或多个)异常呢？</p>
+<p>　　其实，使用自行封装的异常可以解决该问题，代码如下：　</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">MyException</span> <span class="token keyword">extends</span> <span class="token class-name">Exception</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// 容纳所有的异常</span>
+    <span class="token keyword">private</span> List<span class="token operator">&lt;</span>Throwable<span class="token operator">></span> causes <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span>Throwable<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">// 构造函数，传递一个异常列表</span>
+    <span class="token keyword">public</span> <span class="token function">MyException</span><span class="token punctuation">(</span>List<span class="token operator">&lt;</span><span class="token operator">?</span> <span class="token keyword">extends</span> <span class="token class-name">Throwable</span><span class="token operator">></span> _causes<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        causes<span class="token punctuation">.</span><span class="token function">addAll</span><span class="token punctuation">(</span>_causes<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">// 读取所有的异常</span>
+    <span class="token keyword">public</span> List<span class="token operator">&lt;</span>Throwable<span class="token operator">></span> <span class="token function">getExceptions</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> causes<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>　　MyException异常只是一个异常容器，可以容纳多个异常，但它本身并不代表任何异常含义，它所解决的是一次抛出多个异常的问题，具体调用如下：</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">doStuff</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> MyException <span class="token punctuation">{</span>
+    List<span class="token operator">&lt;</span>Throwable<span class="token operator">></span> list <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span>Throwable<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// 第一个逻辑片段</span>
+    <span class="token keyword">try</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// Do Something</span>
+    <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment" spellcheck="true">// 第二个逻辑片段</span>
+    <span class="token keyword">try</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// Do Something</span>
+    <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment" spellcheck="true">// 检查是否有必要抛出异常</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>list<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">MyException</span><span class="token punctuation">(</span>list<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>　　这样一来，DoStuff方法的调用者就可以一次获得多个异常了，也能够为用户提供完整的例外情况说明。可能有人会问：这种情况会出现吗？怎么回要求一个方法抛出多个异常呢？</p>
+<p>　　绝对有可能出现，例如Web界面注册时，展现层依次把User对象传递到逻辑层，Register方法需要对各个Field进行校验并注册，例如用户名不能重复，密码必须符合密码策略等，不要出现用户第一次提交时系统显示” 用户名重复 “，在用户修改用户名再次提交后，系统又提示” 密码长度小于6位 “ 的情况，这种操作模式下的用户体验非常糟糕，最好的解决办法就是异常封装，建立异常容器，一次性地对User对象进行校验，然后返回所有的异常。</p>
+<h3 id="建议111：采用异常链传递异常"><a href="#建议111：采用异常链传递异常" class="headerlink" title="建议111：采用异常链传递异常"></a>建议111：采用异常链传递异常</h3><p>　　设计模式中有一个模式叫做责任链模式(Chain of Responsibility) ,它的目的是将多个对象连成一条链，并沿着这条链传递该请求，直到有对象处理它为止，异常的传递处理也应该采用责任链模式。</p>
+<p>　　上一建议中我们提出了异常需要封装，但仅仅封装还是不够的，还需要传递异常。我们知道，一个系统友好性的标志是用户对该系统的” 粘性”，粘性越高，系统越友好，粘性越低系统友好性越差，那问题是怎么提高系统的“粘性”呢？友好的界面和功能是一个方面，另外一个方面就是系统出现非预期情况的处理方式了。</p>
+<p>　　比如我们的JavaEE项目一般都有三层结构：持久层，逻辑层，展现层，持久层负责与数据库交互，逻辑层负责业务逻辑的实现，展现层负责UI数据库的处理，有这样一个模块：用户第一次访问的时候，需要从持久层user.xml中读取信息，如果该文件不存在则提示用户创建之，那问题来了：如果我们直接把持久层的异常FileNotFoundException抛弃掉，逻辑层根本无法得知发生了何事，也就不能为展现层提供一个友好的处理结果了，最终倒霉的就是发展层：没有办法提供异常信息，只能告诉用户说“出错了，我也不知道出什么错了”___毫无友好性可言。</p>
+<p>　　正确的做法是先封装，然后传递，过程如下：</p>
+<p>(1)、把FIleNotFoundException封装为MyException。</p>
+<p>(2)、抛出到逻辑层，逻辑层根据异常代码(或者自定义的异常类型)确定后续处理逻辑，然后抛出到展现层。</p>
+<p>(3)、展现层自行决定要展现什么，如果是管理员则可以展现低层级的异常，如果是普通用户则展示封装后的异常。</p>
+<p>　　明白了异常为什么要传递，那接着的问题就是如何传递了。很简单，使用异常链进行异常的传递，我们以IOException为例来看看是如何传递的，代码如下：</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">IOException</span> <span class="token keyword">extends</span> <span class="token class-name">Exception</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">public</span> <span class="token function">IOException</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment" spellcheck="true">//定义异常原因</span>
+    <span class="token keyword">public</span> <span class="token function">IOException</span><span class="token punctuation">(</span>String message<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">super</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment" spellcheck="true">//定义异常原因，并携带原始异常</span>
+    <span class="token keyword">public</span> <span class="token function">IOException</span><span class="token punctuation">(</span>String message<span class="token punctuation">,</span> Throwable cause<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">super</span><span class="token punctuation">(</span>message<span class="token punctuation">,</span> cause<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment" spellcheck="true">//保留原始异常信息</span>
+    <span class="token keyword">public</span> <span class="token function">IOException</span><span class="token punctuation">(</span>Throwable cause<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">super</span><span class="token punctuation">(</span>cause<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>　在IOException的构造函数中，上一个层级的异常可以通过异常链进行传递，链中传递异常的代码如下所示：</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">try</span><span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">//doSomething</span>
+<span class="token punctuation">}</span><span class="token keyword">catch</span><span class="token punctuation">(</span>Exception e<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">IOException</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>　　捕捉到Exception异常，然后把它转化为IOException异常并抛出(此种方式也叫作异常转译)，调用者获得该异常后再调用getCause方法即可获得Exception的异常信息，如此即可方便地查找到产生异常的基本信息，便于解决问题。</p>
+<p>　　结合上一建议来说，异常需要封装和传递，我们在进行系统开发时不要” 吞噬 “ 异常，也不要赤裸裸的抛出异常，封装后再抛出，或者通过异常链传递，可以达到系统更健壮，更友好的目的。</p>
+<h3 id="建议112：受检异常尽可能转化为非受检异常"><a href="#建议112：受检异常尽可能转化为非受检异常" class="headerlink" title="建议112：受检异常尽可能转化为非受检异常"></a>建议112：受检异常尽可能转化为非受检异常</h3><p>　为什么说是” 尽可能”的转化呢？因为” 把所有的受检异常(Checked Exception)”都转化为非受检异常(Unchecked Exception)” 这一想法是不现实的：受检异常是正常逻辑的一种补偿手段，特别是对可靠性要求比较高的系统来说，在某些条件下必须抛出受检异常以便由程序进行补偿处理，也就是说受检异常有合理存在的理由，那为什么要把受检异常转化为非受检异常呢？难道说受检异常有什么缺陷或者不足吗？是的，受检异常确实有不足的地方：</p>
+<p><strong>(1)、受检异常使接口声明脆弱</strong></p>
+<p>　　OOP(Object Oriented Programming,面向对象程序设计) 要求我们尽量多地面向接口编程，可以提高代码的扩展性、稳定性等，但是涉及异常问题就不一样了，例如系统初期是这样设计一个接口的：　</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">interface</span> <span class="token class-name">User</span><span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">//修改用户密码，抛出安全异常</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">changePassword</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> MySecurityException<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>　　随着系统的开发，User接口有了多个实现者，比如普通的用户UserImpl、模拟用户MockUserImpl(用作测试或系统管理)、非实体用户NonUserImpl(如自动执行机，逻辑处理器等)，此时如果发现changePassword方法可能还需要抛出RejectChangeException(拒绝修改异常，如自动执行正在处理的任务时不能修改其代码)，那就需要修改User接口了：changePassword方法增加抛出RejectChangeException异常，这会导致所有的User调用者都要追加了对RejectChangeException异常问题的处理。</p>
+<p>　　这里产生了两个问题：一、 异常是主逻辑的补充逻辑，修改一个补充逻辑，就会导致主逻辑也被修改，也就是出现了实现类 “ 逆影响 “ 接口的情景，我们知道实现类是不稳定的，而接口是稳定的，一旦定义了异常，则增加了接口的不稳定性，这是面向对象设计的严重亵渎；二、实现的变更最终会影响到调用者，破坏了封装性，这也是迪米特法则所不能容忍的。</p>
+<p><strong>(2)、受检异常使代码的可读性降低</strong></p>
+<p>　　一个方法增加可受检异常，则必须有一个调用者对异常进行处理，比如无受检异常方法doStuff是这样调用的：</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">doStuff</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>　doStuff方法一旦增加受检异常就不一样了，代码如下：　</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">try</span><span class="token punctuation">{</span>
+        <span class="token function">doStuff</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token keyword">catch</span><span class="token punctuation">(</span>Exception e<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>　　doStuff方法增加了throws Exception，调用者就必须至少增加4条语句来处理该异常，代码膨胀许多，可读性也降低了，特别是在多个异常需要捕捉的情况下，多个catch块多个异常处理，而且还可能在catch块中再次抛出异常，这大大降低了代码的可读性。</p>
+<p><strong>(3)、受检异常增加了开发工作量</strong></p>
+<p>　　我们知道，异常需要封装和传递，只有封装才能让异常更容易理解，上层模块才能更好的处理，可这会导致低层级的异常没玩没了的封装，无端加重了开发的工作量。比如FileNotFoundException进行封装，并抛出到上一个层级，于是增加了开发工作量。</p>
+<p>　　受检异常有这么多的缺点，那有没有什么方法可以避免或减少这些缺点呢？有，很简单的一个规则：将受检异常转化为非受检异常即可，但是我们也不能把所有的受检异常转化为非受检异常，原因是在编码期上层模块不知道下层模块会抛出何种非受检异常，只有通过规则或文档来描述，可以这样说：　</p>
+<ul>
+<li>受检异常提出的是” 法律下的自由 “，必须遵守异常的约定才能自由编写代码。</li>
+<li>非受检异常则是“ 协约性质的自由 ”，你必须告诉我你要抛什么异常，否则不会处理。</li>
+</ul>
+<p>　　以User接口为例，我们在声明接口时不再声明异常，而是在具体实现时根据不同的情况产生不同的非受检异常，这样持久层和逻辑层抛出的异常将会由展现自行决定如何展示，不再受异常的规则约束了，大大简化开发工作，提高了代码的可读性。</p>
+<p>　　那问题又来了，在开发和设计时什么样的受检异常有必要化为非受检异常呢？” 尽可能 “ 是以什么作为判断依据呢？受检异常转换为非受检异常是需要根据项目的场景来决定的，例如同样是刷卡，员工拿着自己的工卡到考勤机上打考勤，此时如果附近有磁性物质干扰，则考勤机可以把这种受检异常转化为非受检异常，黄灯闪烁后不做任何记录登记，因为考勤失败这种情景不是” 致命 “的业务逻辑，出错了，重新刷一下即可。但是到银行网点取钱就不一样了，拿着银行卡到银行取钱，同样有磁性物质干扰，刷不出来，那这种异常就必须登记处理，否则会成为威胁银行卡安全的事件。汇总成一句话：当受检异常威胁到了系统的安全性，稳定性，可靠性、正确性时，则必须处理，不能转化为非受检异常，其它情况则可以转化为非受检异常。</p>
+<p>　　注意：受检异常威胁到系统的安全性，稳定性、可靠性、正确性时，不能转换为非受检异常。</p>
+<h3 id="建议113：不要在finally块中处理返回值"><a href="#建议113：不要在finally块中处理返回值" class="headerlink" title="建议113：不要在finally块中处理返回值"></a>建议113：不要在finally块中处理返回值</h3><p>　在finally代码块中处理返回值，这是考试和面试中经常出现的题目。虽然可以以此来出考试题，但在项目中绝对不能再finally代码块中出现return语句，这是因为这种处理方式非常容易产生” 误解 “，会误导开发者。例如如下代码：　　</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Client113</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token function">doStuff</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token function">doStuff</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"这里是永远不会到达的"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment" spellcheck="true">//该方法抛出受检异常</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">int</span> <span class="token function">doStuff</span><span class="token punctuation">(</span><span class="token keyword">int</span> _p<span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception <span class="token punctuation">{</span>
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>_p <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">DataFormatException</span><span class="token punctuation">(</span><span class="token string">" 数据格式错误 "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+                <span class="token keyword">return</span> _p<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment" spellcheck="true">// 异常处理</span>
+            <span class="token keyword">throw</span> e<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">finally</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>　　对于这段代码，有两个问题：main方法中的doStuff方法的返回值是什么？doStuff方法永远都不会抛出异常吗？</p>
+<p>　　答案是：doStuff(-1)的值是-1，doStuff(100)的值也是-1，调用doStuff方法永远都不会抛出异常，有这么神奇？原因就是我们在finally代码块中加入了return语句，而这会导致出现以下两个问题：</p>
+<p><strong>(1)、覆盖了try代码块中的return返回值</strong></p>
+<p>　　当执行doStuff(-1)时，doStuff方法产生了DataFormatException异常，catch块在捕捉此异常后直接抛出，之后代码执行到finally代码块，就会重置返回值，结果就是-1了。也就是出现先返回，再重置返回的情况。</p>
+<p>　　有人可能会思考，是不是可以定义变量，在finally中修改后return呢？代码如下：　</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">int</span> <span class="token function">doStuff</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">int</span> a <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token keyword">try</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> a<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+    <span class="token punctuation">}</span> <span class="token keyword">finally</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// 重新修改一下返回值</span>
+        a <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>　　该方法的返回值永远是1，不会是-1或0(为什么不会执行到” return 0 “ 呢？原因是finally执行完毕后该方法已经有返回值了，后续代码就不会再执行了)，这都是源于异常代码块的处理方式，在代码中try代码块就标志着运行时会有一个Throwale线程监视着该方法的运行，若出现异常，则交由异常逻辑处理。</p>
+<p>　　我们知道方法是在栈内存中运行的，并且会按照“ 先进后出 ”的原则执行，main方法调用了doStuff方法，则main方法在下层，doStuff方法在上层，当doStuff方法执行完” return a “ 时，此方法的返回值已经确定int类型1(a变量的值，注意基本类型都是拷贝值，而不是引用)，此时finally代码块再修改a的值已经与doStuff返回者没有任何关系了，因此该方法永远都会返回1.</p>
+<p>　　继续追问，那是不是可以在finally代码块中修改引用类型的属性以达到修改返回值的效果呢？代码如下：</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">Person</span> <span class="token punctuation">{</span>
+    <span class="token keyword">private</span> String name<span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> String <span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> name<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setName</span><span class="token punctuation">(</span>String name<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> name<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> Person <span class="token function">doStuffw</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    Person person <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    person<span class="token punctuation">.</span><span class="token function">setName</span><span class="token punctuation">(</span><span class="token string">"张三"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">try</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> person<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>    
+
+    <span class="token punctuation">}</span> <span class="token keyword">finally</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// 重新修改一下值</span>
+        person<span class="token punctuation">.</span><span class="token function">setName</span><span class="token punctuation">(</span><span class="token string">"李四"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    person<span class="token punctuation">.</span><span class="token function">setName</span><span class="token punctuation">(</span><span class="token string">"王五"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> person<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>　　此方法的返回值永远都是name为李四的Person对象，原因是Person是一个引用对象，在try代码块中的返回值是Person对象的地址，finally中再修改那当然会是李四了。</p>
+<p><strong>(2)、屏蔽异常</strong></p>
+<p>　　为什么明明把异常throw出去了，但main方法却捕捉不到呢？这是因为异常线程在监视到有异常发生时，就会登记当前的异常类型为DataFormatException，但是当执行器执行finally代码块时，则会重新为doStuff方法赋值，也就是告诉调用者” 该方法执行正确，没有产生异常，返回值为1 “，于是乎，异常神奇的消失了，其简化代码如下所示：　　</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">doSomeThing</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">try</span><span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">//正常抛出异常</span>
+        <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">RuntimeException</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token keyword">finally</span><span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">//告诉JVM：该方法正常返回</span>
+        <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">try</span> <span class="token punctuation">{</span>
+        <span class="token function">doSomeThing</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">RuntimeException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"这里是永远不会到达的"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>　　上面finally代码块中的return已经告诉JVM：doSomething方法正常执行结束，没有异常，所以main方法就不可能获得任何异常信息了。这样的代码会使可读性大大降低，读者很难理解作者的意图，增加了修改的难度。</p>
+<p>　　在finally中处理return返回值，代码看上去很完美，都符合逻辑，但是执行起来就会产生逻辑错误，最重要的一点是finally是用来做异常的收尾处理的，一旦加上了return语句就会让程序的复杂度徒然上升，而且会产生一些隐蔽性非常高的错误。</p>
+<p>　　与return语句相似，System.exit(0)或RunTime.getRunTime().exit(0)出现在异常代码块中也会产生非常多的错误假象，增加代码的复杂性，大家有兴趣可以自行研究一下。</p>
+<p>　　<strong><font color='red' >注意：不要在finally代码块中出现return语句。</font></strong></p>
 
                 
             </div>
