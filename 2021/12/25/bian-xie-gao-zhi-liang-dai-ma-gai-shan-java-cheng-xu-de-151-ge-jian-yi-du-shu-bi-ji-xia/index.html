@@ -2229,8 +2229,8 @@ String<span class="token punctuation">[</span><span class="token punctuation">]<
 </code></pre>
 <p>　　上面finally代码块中的return已经告诉JVM：doSomething方法正常执行结束，没有异常，所以main方法就不可能获得任何异常信息了。这样的代码会使可读性大大降低，读者很难理解作者的意图，增加了修改的难度。</p>
 <p>　　在finally中处理return返回值，代码看上去很完美，都符合逻辑，但是执行起来就会产生逻辑错误，最重要的一点是finally是用来做异常的收尾处理的，一旦加上了return语句就会<strong>让程序的复杂度徒然上升</strong>，而且会产生一些隐蔽性非常高的错误。</p>
-<p>　　与return语句相似，System.exit(0)或RunTime.getRunTime().exit(0)出现在异常代码块中也会产生非常多的错误假象，增加代码的复杂性，大家有兴趣可以自行研究一下。</p>
-<p>　　<strong><font color='red' >注意：不要在finally代码块中出现return语句。</font></strong></p>
+<p>　　与return语句相似，System.exit(0)或RunTime.getRunTime().exit(0)出现在异常代码块中也会产生非常多的错误假象，增加代码的复杂性，大家有兴趣可以自行研究一下.</p>
+<p>　　<strong><font color='red' >注意：不要在finally代码块中出现return语句.</font></strong></p>
 <h3 id="建议114：不要在构造函数中抛出异常"><a href="#建议114：不要在构造函数中抛出异常" class="headerlink" title="建议114：不要在构造函数中抛出异常"></a>建议114：不要在构造函数中抛出异常</h3><p>　　Java异常的机制有三种：</p>
 <ul>
 <li>Error类及其子类表示的是错误，它是不需要程序员处理也不能处理的异常，比如VirtualMachineError虚拟机错误，ThreadDeath线程僵死等。</li>
