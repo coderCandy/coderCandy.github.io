@@ -416,7 +416,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    40.6k
+                    42.3k
                 </div>
                 
 
@@ -2904,6 +2904,81 @@ String<span class="token punctuation">[</span><span class="token punctuation">]<
 <li>脏数据引起系统逻辑混乱：异常的产生中断了正在执行的业务逻辑，特别是如果正在处理一个原子操作(像即时通讯服务器的用户验证和签到这两个事件应该在一个操作中处理，不允许出现验证成功，但签到不成功的情况)，但如果此时抛出了运行期异常就有可能会破坏正常的业务逻辑，例如出现用户认证通过了，但签到不成功的情况，在这种情境下重启应用服务器，虽然可以提供服务，但对部分用户却产生了逻辑异常。</li>
 <li>内存溢出：线程异常了，但由该线程创建的对象并不会马上回收，如果再重亲启动新线程，再创建一批对象，特别是加入了场景接管，就非常危险了，例如即时通信服务，重新启动一个新线程必须保证原在线用户的透明性，即用户不会察觉服务重启，在此种情况下，就需要在线程初始化时加载大量对象以保证用户的状态信息，但是如果线程反复重启，很可能会引起OutOfMemory内存泄露问题。</li>
 </ul>
+<h3 id="建议123：volatile不能保证数据同步"><a href="#建议123：volatile不能保证数据同步" class="headerlink" title="建议123：volatile不能保证数据同步"></a>建议123：volatile不能保证数据同步</h3><p>​    　volatile关键字比较少用，原因无外乎两点，一是在Java1.5之前该关键字在不同的操作系统上有不同的表现，所带来的问题就是移植性较差；而且比较难设计，而且误用较多，这也导致它的”名誉” 受损。</p>
+<p>　　我们知道，每个线程都运行在栈内存中，每个线程都有自己的工作内存(Working Memory,比如寄存器Register、高速缓冲存储器Cache等)，线程的计算一般是通过工作内存进行交互的，其示意图如下图所示：</p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img_202112/712052-20161018131753435-157368081.png" alt="img"></p>
+<p>　从示意图上我们可以看到，线程在初始化时从主内存中加载所需的变量值到工作内存中，然后在线程运行时，如果是读取，则直接从工作内存中读取，若是写入则先写到工作内存中，之后刷新到主内存中，这是JVM的一个简答的内存模型，但是这样的结构在多线程的情况下有可能会出现问题，比如：A线程修改变量的值，也刷新到了主内存，但B、C线程在此时间内读取的还是本线程的工作内存，也就是说它们读取的不是最”新鲜”的值，此时就出现了不同线程持有的公共资源不同步的情况。</p>
+<p>　　对于此类问题有很多解决办法，比如使用synchronized同步代码块，或者使用Lock锁来解决该问题，不过，Java可以使用volatile更简单地解决此类问题，比如在一个变量前加上volatile关键字，可以确保每个线程对本地变量的访问和修改都是直接与内存交互的，而不是与本线程的工作内存交互的，保证每个线程都能获得最”新鲜”的变量值，其示意图如下：</p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img_202112/712052-20161018134019029-840148773.png" alt="img"></p>
+<p>　　明白了volatile变量的原理，那我们思考一下：volatile变量是否能够保证数据的同步性呢？两个线程同时修改一个volatile是否会产生脏数据呢？我们看看下面代码：</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">UnsafeThread</span> <span class="token keyword">implements</span> <span class="token class-name">Runnable</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// 共享资源</span>
+    <span class="token keyword">private</span> <span class="token keyword">volatile</span> <span class="token keyword">int</span> count <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// 增加CPU的繁忙程度,不必关心其逻辑含义</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">1000</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            Math<span class="token punctuation">.</span><span class="token function">hypot</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">pow</span><span class="token punctuation">(</span><span class="token number">92456789</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">,</span> Math<span class="token punctuation">.</span><span class="token function">cos</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        count<span class="token operator">++</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">getCount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> count<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>　　上面的代码定义了一个多线程类，run方法的主要逻辑是共享资源count的自加运算，而且我们还为count变量加上了volatile关键字，确保是从内存中读取和写入的，如果有多个线程运行，也就是多个线程执行count变量的自加操作，count变量会产生脏数据吗？想想看，我们已经为count加上了volatile关键字呀！模拟多线程的代码如下：　</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> InterruptedException <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// 理想值，并作为最大循环次数</span>
+    <span class="token keyword">int</span> value <span class="token operator">=</span> <span class="token number">1000</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// 循环次数,防止造成无限循环或者死循环</span>
+    <span class="token keyword">int</span> loops <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// 主线程组,用于估计活动线程数</span>
+    ThreadGroup tg <span class="token operator">=</span> Thread<span class="token punctuation">.</span><span class="token function">currentThread</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getThreadGroup</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span>loops<span class="token operator">++</span> <span class="token operator">&lt;</span> value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// 共享资源清零</span>
+        UnsafeThread ut <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">UnsafeThread</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> value<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span>ut<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment" spellcheck="true">// 先等15毫秒，等待活动线程为1</span>
+        <span class="token keyword">do</span> <span class="token punctuation">{</span>
+            Thread<span class="token punctuation">.</span><span class="token function">sleep</span><span class="token punctuation">(</span><span class="token number">15</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">while</span> <span class="token punctuation">(</span>tg<span class="token punctuation">.</span><span class="token function">activeCount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// 检查实际值与理论值是否一致</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>ut<span class="token punctuation">.</span><span class="token function">getCount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">!=</span> value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment" spellcheck="true">// 出现线程不安全的情况</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"循环到："</span> <span class="token operator">+</span> loops <span class="token operator">+</span> <span class="token string">" 遍，出现线程不安全的情况"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"此时，count= "</span> <span class="token operator">+</span> ut<span class="token punctuation">.</span><span class="token function">getCount</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            System<span class="token punctuation">.</span><span class="token function">exit</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>　想让volatite变量”出点丑”，还是需要花点功夫的。此段程序的运行逻辑如下：</p>
+<ul>
+<li>启动100个线程，修改共享资源count的值</li>
+<li>暂停15秒，观察活动线程数是否为1(即只剩下主线程再运行)，若不为1，则再等待15秒。</li>
+<li>判断共享资源是否是不安全的，即实际值与理想值是否相同，若不相同，则发现目标，此时count的值为脏数据。</li>
+<li>如果没有找到，继续循环，直到达到最大循环为止。</li>
+</ul>
+<p>运行结果如下：</p>
+<p>　　　<strong>循环到：40 遍，出现线程不安全的情况</strong><br>　　　<strong>此时，count= 999</strong><br>　　这只是一种可能的结果，每次执行都有可能产生不同的结果。这也说明我们的count变量没有实现数据同步，在多个线程修改的情况下，count的实际值与理论值产生了偏差，直接说明了volatile关键字并不能保证线程的安全。<br>　　在解释原因之前，我们先说一下自加操作。count++表示的是先取出count的值然后再加1，也就是count=count+1，所以，在某个紧邻时间片段内会发生如下神奇的事情：</p>
+<p>(1)、第一个时间片段</p>
+<p>　　A线程获得执行机会，因为有关键字volatile修饰，所以它从主内存中获得count的最新值为998，接下来的事情又分为两种类型：</p>
+<ul>
+<li>如果是单CPU，此时调度器暂停A线程执行，让出执行机会给B线程，于是B线程也获得了count的最新值998.</li>
+<li>如果是多CPU，此时线程A继续执行，而线程B也同时获得了count的最新值998.</li>
+</ul>
+<p>(2)、第二个片段</p>
+<ul>
+<li>如果是单CPU，B线程执行完+1操作(这是一个原子处理)，count的值为999，由于是volatile类型的变量，所以直接写入主内存，然后A线程继续执行，计算的结果也是999，重新写入主内存中。</li>
+<li>如果是多CPU，A线程执行完加1动作后修改主内存的变量count为999，线程B执行完毕后也修改主内存中的变量为999</li>
+</ul>
+<p>这两个时间片段执行完毕后，原本期望的结果为1000，单运行后的值为999，这表示出现了线程不安全的情况。这也是我们要说明的：volatile关键字并不能保证线程安全，它只能保证当前线程需要该变量的值时能够获得最新的值，而不能保证线程修改的安全性。</p>
+<p>顺便说一下，在上面的代码中，UnsafeThread类的消耗CPU计算是必须的，其目的是加重线程的负荷，以便出现单个线程抢占整个CPU资源的情景，否则很难模拟出volatile线程不安全的情况，大家可以自行模拟测试。</p>
 
                 
             </div>
