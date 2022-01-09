@@ -6,7 +6,7 @@
   <link href="https://codercandy.github.io/atom.xml" rel="self"/>
   
   <link href="https://codercandy.github.io/"/>
-  <updated>2021-12-29T11:47:32.040Z</updated>
+  <updated>2022-01-09T13:53:14.821Z</updated>
   <id>https://codercandy.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>长津湖经典语句</title>
+    <link href="https://codercandy.github.io/2022/01/09/chang-jin-hu-jing-dian-yu-ju/"/>
+    <id>https://codercandy.github.io/2022/01/09/chang-jin-hu-jing-dian-yu-ju/</id>
+    <published>2022-01-09T13:52:50.000Z</published>
+    <updated>2022-01-09T13:53:14.821Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;一个蛋从外面被敲开，注定被吃掉。   </summary>
+        
+      
+    
+    
+    
+    <category term="生活" scheme="https://codercandy.github.io/categories/%E7%94%9F%E6%B4%BB/"/>
+    
+    
+    <category term="随笔" scheme="https://codercandy.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
   
   <entry>
     <title>《编写高质量代码 改善java程序的151个建议》读书笔记-下</title>
@@ -553,32 +578,6 @@
     <category term="前端" scheme="https://codercandy.github.io/tags/%E5%89%8D%E7%AB%AF/"/>
     
     <category term="Electron" scheme="https://codercandy.github.io/tags/Electron/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>第一篇博客</title>
-    <link href="https://codercandy.github.io/2021/12/05/di-yi-pian-bo-ke/"/>
-    <id>https://codercandy.github.io/2021/12/05/di-yi-pian-bo-ke/</id>
-    <published>2021-12-05T08:35:23.000Z</published>
-    <updated>2021-12-05T08:55:41.065Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;第一篇博客&lt;/p&gt;
-&lt;p&gt;​   </summary>
-        
-      
-    
-    
-    
-    <category term="生活" scheme="https://codercandy.github.io/categories/%E7%94%9F%E6%B4%BB/"/>
-    
-    
-    <category term="随笔" scheme="https://codercandy.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
