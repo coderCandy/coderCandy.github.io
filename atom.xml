@@ -6,7 +6,7 @@
   <link href="https://codercandy.github.io/atom.xml" rel="self"/>
   
   <link href="https://codercandy.github.io/"/>
-  <updated>2022-01-09T13:53:14.821Z</updated>
+  <updated>2022-02-20T09:27:53.883Z</updated>
   <id>https://codercandy.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>洛克菲勒留给儿子的38封信</title>
+    <link href="https://codercandy.github.io/2022/02/20/luo-ke-fei-le-liu-gei-er-zi-de-38-feng-xin/"/>
+    <id>https://codercandy.github.io/2022/02/20/luo-ke-fei-le-liu-gei-er-zi-de-38-feng-xin/</id>
+    <published>2022-02-20T02:58:26.000Z</published>
+    <updated>2022-02-20T09:27:53.883Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;洛克菲勒留给儿子的38封信&lt;/p&gt;
+&lt;h2 id=&quot;第1章-前言&quot;&gt;&lt;a href=&quot;#第1章-前言&quot; class=&quot;headerlink&quot; title=&quot;第1章 前言&quot;&gt;&lt;/a&gt;第1章</summary>
+        
+      
+    
+    
+    
+    <category term="生活" scheme="https://codercandy.github.io/categories/%E7%94%9F%E6%B4%BB/"/>
+    
+    
+    <category term="励志" scheme="https://codercandy.github.io/tags/%E5%8A%B1%E5%BF%97/"/>
+    
+  </entry>
   
   <entry>
     <title>长津湖经典语句</title>
@@ -548,36 +574,6 @@
     <category term="Flink" scheme="https://codercandy.github.io/tags/Flink/"/>
     
     <category term="流计算" scheme="https://codercandy.github.io/tags/%E6%B5%81%E8%AE%A1%E7%AE%97/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Electron学习笔记</title>
-    <link href="https://codercandy.github.io/2021/12/05/electron-xue-xi-bi-ji/"/>
-    <id>https://codercandy.github.io/2021/12/05/electron-xue-xi-bi-ji/</id>
-    <published>2021-12-05T09:02:27.000Z</published>
-    <updated>2021-12-14T13:54:56.660Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;&lt;strong&gt;Electron学习笔记&lt;/strong&gt;&lt;/p&gt;
-&lt;hr&gt;
-&lt;p&gt;[TOC]&lt;/p&gt;
-&lt;h2 id=&quot;0-序言&quot;&gt;&lt;a href=&quot;#0-序言&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="学习" scheme="https://codercandy.github.io/categories/%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-    <category term="前端" scheme="https://codercandy.github.io/tags/%E5%89%8D%E7%AB%AF/"/>
-    
-    <category term="Electron" scheme="https://codercandy.github.io/tags/Electron/"/>
     
   </entry>
   
