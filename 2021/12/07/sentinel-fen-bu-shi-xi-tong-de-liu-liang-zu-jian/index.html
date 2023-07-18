@@ -1,0 +1,2708 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Sentinel学习笔记, Java,Flink,高级项目管理,Electron.js等">
+    <meta name="description" content="Sentinel分布式系统的流量组件
+1 Sentine快速了解1.1 Sentinel介绍Sentinel是阿里开源的项目，提供了流量控制、熔断降级、系统负载保护等多个维度来保障服务之间的稳定性。
+官网：https://github.co">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="referrer" content="no-referrer" />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>Sentinel学习笔记 | 梓妤</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="梓妤" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">梓妤</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">梓妤</div>
+        <div class="logo-desc">
+            
+            一个不懂生活的程序猿
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://user-images.githubusercontent.com/9434884/43697219-3cb4ef3a-9975-11e8-9a9c-73f4f537442d.png')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Sentinel学习笔记</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E5%90%8E%E7%AB%AF/">
+                                <span class="chip bg-color">后端</span>
+                            </a>
+                        
+                            <a href="/tags/Sentinel/">
+                                <span class="chip bg-color">Sentinel</span>
+                            </a>
+                        
+                            <a href="/tags/%E7%BB%84%E4%BB%B6/">
+                                <span class="chip bg-color">组件</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                学习
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2021-12-07
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2021-12-14
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    10.4k
+                </div>
+                
+
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p><strong>Sentinel分布式系统的流量组件</strong></p>
+<h2><span id="1-sentine快速了解"><strong>1 Sentine快速了解</strong></span></h2><h3><span id="11-sentinel介绍"><strong>1.1 Sentinel介绍</strong></span></h3><p>Sentinel是阿里开源的项目，提供了流量控制、熔断降级、系统负载保护等多个维度来保障服务之间的稳定性。</p>
+<p>官网：<a target="_blank" rel="noopener" href="https://github.com/alibaba/Sentinel/wiki">https://github.com/alibaba/Sentinel/wiki</a></p>
+<h3><span id="12-sentinel-的历史"><strong>1.2 Sentinel</strong> <strong>的历史</strong></span></h3><p>2012 年，Sentinel 诞生，主要功能为入口流量控制。</p>
+<p>2013-2017 年，Sentinel 在阿里巴巴集团内部迅速发展，成为基础技术模块，覆盖了所有的核心场景。Sentinel 也因此积累了大量的流量归整场景以及生产实践。</p>
+<p>2018 年，Sentinel 开源，并持续演进。</p>
+<p>2019 年，Sentinel 朝着多语言扩展的方向不断探索，推出 C++ 原生版本，同时针对 Service Mesh场景也推出了 Envoy 集群流量控制支持，以解决 Service Mesh 架构下多语言限流的问题。</p>
+<p>2020 年，推出 Sentinel Go 版本，继续朝着云原生方向演进。</p>
+<h3><span id="13-sentinel-具有以下特征"><strong>1.3 Sentinel</strong> <strong>具有以下特征</strong></span></h3><p><strong>丰富的应用场景</strong>：Sentinel 承接了阿里巴巴近 10 年的双十一大促流量的核心场景，例如秒杀（即突发流量控制在系统容量可以承受的范围）、消息削峰填谷、集群流量控制、实时熔断下游不可用应用等。</p>
+<p><strong>完备的实时监控</strong>：Sentinel 同时提供实时的监控功能。您可以在控制台中看到接入应用的单台机器秒级数据，甚至 500 台以下规模的集群的汇总运行情况。</p>
+<p><strong>广泛的开源生态</strong>：Sentinel 提供开箱即用的与其它开源框架/库的整合模块，例如与 SpringCloud、Dubbo、gRPC 的整合。您只需要引入相应的依赖并进行简单的配置即可快速地接入Sentinel。</p>
+<p><strong>完善的</strong> <strong>SPI</strong> <strong>扩展点</strong>：Sentinel 提供简单易用、完善的 SPI 扩展接口。您可以通过实现扩展接口来快速地定制逻辑。例如定制规则管理、适配动态数据源等。</p>
+<h3><span id="14-sentinel-的主要特性"><strong>1.4 Sentinel</strong> <strong>的主要特性</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211207202238154.png" alt="image-20211207202238154"></p>
+<h3><span id="15-sentinel-的开源生态"><strong>1.5 Sentinel</strong> <strong>的开源生态</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211207202331794.png" alt="image-20211207202331794"></p>
+<h3><span id="16-sentinel分为两个部分"><strong>1.6 Sentinel分为两个部分</strong></span></h3><p>核心库（Java 客户端）不依赖任何框架/库，能够运行于所有 Java 运行时环境，同时对 Dubbo /Spring Cloud 等框架也有较好的支持。</p>
+<p>控制台（Dashboard）基于 Spring Boot 开发，打包后可以直接运行，不需要额外的 Tomcat 等应用容器。</p>
+<h3><span id="17-sentinel-基本概念"><strong>1.7 Sentinel</strong> <strong>基本概念</strong></span></h3><p><strong>资源</strong></p>
+<p>资源是 Sentinel 的关键概念。它可以是 Java 应用程序中的任何内容，例如，由应用程序提供的服务，或由应用程序调用的其它应用提供的服务，甚至可以是一段代码。在接下来的文档中，我们都会用资源来描述代码块。</p>
+<p>只要通过 Sentinel API 定义的代码，就是资源，能够被 Sentinel 保护起来。大部分情况下，可以使用方法签名，URL，甚至服务名称作为资源名来标示资源。</p>
+<p><strong>规则</strong></p>
+<p>围绕资源的实时状态设定的规则，可以包括流量控制规则、熔断降级规则以及系统保护规则。所有规则可以动态实时调整。</p>
+<h3><span id="18-sentinel-功能和设计理念"><strong>1.8 Sentinel</strong> <strong>功能和设计理念</strong></span></h3><p><strong>流量控制</strong></p>
+<p><strong>什么是流量控制</strong></p>
+<p>流量控制在网络传输中是一个常用的概念，它用于调整网络包的发送数据。然而，从系统稳定性角度考虑，在处理请求的速度上，也有非常多的讲究。任意时间到来的请求往往是随机不可控的，而系统的处理能力是有限的。我们需要根据系统的处理能力对流量进行控制。Sentinel 作为一个调配器，可以根据需要把随机的请求调整成合适的形状，如下图所示：</p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211207202556929.png" alt="image-20211207202556929"></p>
+<p><strong>流量控制设计理念</strong></p>
+<p>流量控制有以下几个角度:</p>
+<ul>
+<li>资源的调用关系，例如资源的调用链路，资源和资源之间的关系；</li>
+<li>运行指标，例如 QPS、线程池、系统负载等；</li>
+<li>控制的效果，例如直接限流、冷启动、排队等。</li>
+</ul>
+<p>Sentinel 的设计理念是让您自由选择控制的角度，并进行灵活组合，从而达到想要的效果。</p>
+<p><strong>熔断降级</strong></p>
+<p><strong>什么是熔断降级</strong></p>
+<p>除了流量控制以外，及时对调用链路中的不稳定因素进行熔断也是 Sentinel 的使命之一。由于调用关系的复杂性，如果调用链路中的某个资源出现了不稳定，可能会导致请求发生堆积，进而导致级联错误。</p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211207202718897.png" alt="image-20211207202718897"></p>
+<p>Sentinel 和 Hystrix 的原则是一致的: 当检测到调用链路中某个资源出现不稳定的表现，例如请求响应时间长或异常比例升高的时候，则对这个资源的调用进行限制，让请求快速失败，避免影响到其它的资源而导致级联故障。</p>
+<p><strong>熔断降级设计理念</strong></p>
+<p>在限制的手段上，Sentinel 和 Hystrix 采取了完全不一样的方法。</p>
+<p>Hystrix 通过 线程池隔离 的方式，来对依赖（在 Sentinel 的概念中对应 资源）进行了隔离。这样做的好处是资源和资源之间做到了最彻底的隔离。缺点是除了增加了线程切换的成本（过多的线程池导致线程数目过多），还需要预先给各个资源做线程池大小的分配。</p>
+<p>Sentinel 对这个问题采取了两种手段:</p>
+<ul>
+<li>通过并发线程数进行限制</li>
+</ul>
+<p>和资源池隔离的方法不同，Sentinel 通过限制资源并发线程的数量，来减少不稳定资源对其它资源的影响。这样不但没有线程切换的损耗，也不需要您预先分配线程池的大小。当某个资源出现不稳定的情况下，例如响应时间变长，对资源的直接影响就是会造成线程数的逐步堆积。当线程数在特定资源上堆积到一定的数量之后，对该资源的新请求就会被拒绝。堆积的线程完成任务后才开始继续接收请求。</p>
+<ul>
+<li>通过响应时间对资源进行降级</li>
+</ul>
+<p>除了对并发线程数进行控制以外，Sentinel 还可以通过响应时间来快速降级不稳定的资源。当依赖的资源出现响应时间过长后，所有对该资源的访问都会被直接拒绝，直到过了指定的时间窗口之后才重新恢复。</p>
+<p><strong>系统自适应保护</strong></p>
+<p>Sentinel 同时提供系统维度的自适应保护能力。防止雪崩，是系统防护中重要的一环。当系统负载较高的时候，如果还持续让请求进入，可能会导致系统崩溃，无法响应。在集群环境下，网络负载均衡会把本应这台机器承载的流量转发到其它的机器上去。如果这个时候其它的机器也处在一个边缘状态的时候，这个增加的流量就会导致这台机器也崩溃，最后导致整个集群不可用。</p>
+<p>针对这个情况，Sentinel 提供了对应的保护机制，让系统的入口流量和系统的负载达到一个平衡，保证系统在能力范围之内处理最多的请求。</p>
+<h3><span id="19-sentinel-是如何工作的"><strong>1.9 Sentinel</strong> <strong>是如何工作的</strong></span></h3><p>Sentinel 的主要工作机制如下：</p>
+<p>对主流框架提供适配或者显示的 API，来定义需要保护的资源，并提供设施对资源进行实时统计和调用链路分析。</p>
+<p>根据预设的规则，结合对资源的实时统计信息，对流量进行控制。同时，Sentinel 提供开放的接口，方便您定义及改变规则。</p>
+<p>Sentinel 提供实时的监控系统，方便您快速了解目前系统的状态。</p>
+<h2><span id="2-sentinel快速入门"><strong>2 Sentinel快速入门</strong></span></h2><h3><span id="21-sentinel-helloworld实现"><strong>2.1 Sentinel HelloWorld实现</strong></span></h3><p><strong>第一步：创建项目，引入依赖</strong></p>
+<p>为了方便后期sentinel和springcloud以及springcloud alibaba其他组件整合开发讲解，我们这边规范好springboot，springcloud，springcloud alibaba的版本，选用稳定的组合版本；</p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211207204555739.png" alt="image-20211207204555739"></p>
+<p>具体查看：<a target="_blank" rel="noopener" href="https://github.com/alibaba/spring-cloud-alibaba/wiki/%E7%89%88%E6%9C%AC%E8%AF%B4%E6%98%8E">https://github.com/alibaba/spring-cloud-alibaba/wiki/%E7%89%88%E6%9C%AC%E8%AF%B4%E6%98%8E</a></p>
+<p>先创建父pom项目 <strong>sentinel-test</strong></p>
+<p>属性，依赖管理以及插件定义；</p>
+<pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>properties</span><span class="token punctuation">></span></span> 
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>project.build.sourceEncoding</span><span class="token punctuation">></span></span>UTF-8<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>project.build.sourceEncoding</span><span class="token punctuation">></span></span> 
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>maven.compiler.source</span><span class="token punctuation">></span></span>1.8<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>maven.compiler.source</span><span class="token punctuation">></span></span> 
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>maven.compiler.target</span><span class="token punctuation">></span></span>1.8<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>maven.compiler.target</span><span class="token punctuation">></span></span> 
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>spring-cloud.version</span><span class="token punctuation">></span></span>Hoxton.SR8<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>spring-cloud.version</span><span class="token punctuation">></span></span> 
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>springboot.version</span><span class="token punctuation">></span></span>2.3.2.RELEASE<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>springboot.version</span><span class="token punctuation">></span></span> 
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>springcloudalibaba.version</span><span class="token punctuation">></span></span>2.2.4.RELEASE<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>springcloudalibaba.version</span><span class="token punctuation">></span></span> 
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>properties</span><span class="token punctuation">></span></span> 
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependencyManagement</span><span class="token punctuation">></span></span> 
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependencies</span><span class="token punctuation">></span></span> 
+
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span> 
+
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.cloud<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span> 
+
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-cloud-dependencies<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span> 
+
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>${spring-cloud.version}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span> 
+
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>type</span><span class="token punctuation">></span></span>pom<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>type</span><span class="token punctuation">></span></span> 
+
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>scope</span><span class="token punctuation">></span></span>import<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>scope</span><span class="token punctuation">></span></span> 
+
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span> 
+
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span> 
+
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span> 
+
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-boot-dependencies<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span> 
+
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>${springboot.version}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span> 
+
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>type</span><span class="token punctuation">></span></span>pom<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>type</span><span class="token punctuation">></span></span> 
+
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>scope</span><span class="token punctuation">></span></span>import<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>scope</span><span class="token punctuation">></span></span> 
+
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span> 
+
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span> 
+
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>com.alibaba.cloud<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-cloud-alibaba-dependencies<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span> 
+
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>${springcloudalibaba.version}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span> 
+
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>type</span><span class="token punctuation">></span></span>pom<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>type</span><span class="token punctuation">></span></span> 
+
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>scope</span><span class="token punctuation">></span></span>import<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>scope</span><span class="token punctuation">></span></span> 
+
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span> 
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependencies</span><span class="token punctuation">></span></span> 
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependencyManagement</span><span class="token punctuation">></span></span> 
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>build</span><span class="token punctuation">></span></span> 
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>plugins</span><span class="token punctuation">></span></span> 
+
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>plugin</span><span class="token punctuation">></span></span> 
+
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span> 
+
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-boot-maven-plugin<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span> 
+
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>plugin</span><span class="token punctuation">></span></span> 
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>plugins</span><span class="token punctuation">></span></span> 
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>build</span><span class="token punctuation">></span></span>
+</code></pre>
+<p>新建module项目 <strong>sentinel-helloworld</strong></p>
+<p>引入web和sentinel依赖</p>
+<pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependencies</span><span class="token punctuation">></span></span> 
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span> 
+
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span> 
+
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-boot-starter-web<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span> 
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span> 
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span> 
+
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>com.alibaba.csp<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span> 
+
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>sentinel-core<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span> 
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span> 
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependencies</span><span class="token punctuation">></span></span>
+</code></pre>
+<p>application.yml配置</p>
+<pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">server</span><span class="token punctuation">:</span> 
+
+    <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">80 </span>
+
+    <span class="token key atrule">servlet</span><span class="token punctuation">:</span> 
+
+        <span class="token key atrule">context-path</span><span class="token punctuation">:</span> <span class="token string">"/"</span>
+</code></pre>
+<p>新建启动类：<strong>SentinelHelloWorldApplication</strong></p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>java1234<span class="token punctuation">;</span> 
+
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>boot<span class="token punctuation">.</span>SpringApplication<span class="token punctuation">;</span> 
+
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>boot<span class="token punctuation">.</span>autoconfigure<span class="token punctuation">.</span>SpringBootApplication<span class="token punctuation">;</span> 
+
+<span class="token comment" spellcheck="true">/**
+
+* @author java1234_小锋 
+
+* @site www.java1234.com* @company Java知识分享网 
+
+* @create 2021-05-04 15:18 
+
+*/</span> 
+
+<span class="token annotation punctuation">@SpringBootApplication</span> 
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SentinelHelloWorldApplication</span> <span class="token punctuation">{</span> 
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+
+        SpringApplication<span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span>SentinelHelloWorldApplication<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span>args<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+    <span class="token punctuation">}</span> 
+
+<span class="token punctuation">}</span>
+</code></pre>
+<p><strong>第二步：定义规则和使用限流规则</strong></p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>java1234<span class="token punctuation">.</span>controller<span class="token punctuation">;</span> 
+
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>alibaba<span class="token punctuation">.</span>csp<span class="token punctuation">.</span>sentinel<span class="token punctuation">.</span>Entry<span class="token punctuation">;</span> 
+
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>alibaba<span class="token punctuation">.</span>csp<span class="token punctuation">.</span>sentinel<span class="token punctuation">.</span>SphU<span class="token punctuation">;</span> 
+
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>alibaba<span class="token punctuation">.</span>csp<span class="token punctuation">.</span>sentinel<span class="token punctuation">.</span>slots<span class="token punctuation">.</span>block<span class="token punctuation">.</span>RuleConstant<span class="token punctuation">;</span> 
+
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>alibaba<span class="token punctuation">.</span>csp<span class="token punctuation">.</span>sentinel<span class="token punctuation">.</span>slots<span class="token punctuation">.</span>block<span class="token punctuation">.</span>flow<span class="token punctuation">.</span>FlowRule<span class="token punctuation">;</span> 
+
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>alibaba<span class="token punctuation">.</span>csp<span class="token punctuation">.</span>sentinel<span class="token punctuation">.</span>slots<span class="token punctuation">.</span>block<span class="token punctuation">.</span>flow<span class="token punctuation">.</span>FlowRuleManager<span class="token punctuation">;</span> 
+
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>web<span class="token punctuation">.</span>bind<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>RequestMapping<span class="token punctuation">;</span> 
+
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>web<span class="token punctuation">.</span>bind<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>RestController<span class="token punctuation">;</span> 
+
+<span class="token keyword">import</span> javax<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>PostConstruct<span class="token punctuation">;</span> 
+
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>ArrayList<span class="token punctuation">;</span> 
+
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>List<span class="token punctuation">;</span> 
+
+<span class="token comment" spellcheck="true">/**
+
+* @author java1234_小锋 
+
+* @site www.java1234.com 
+
+* @company Java知识分享网 
+
+* @create 2021-05-04 14:35 
+
+*/</span> 
+
+<span class="token annotation punctuation">@RestController</span> 
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SentinelHelloWorld</span> <span class="token punctuation">{</span> 
+
+    <span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">"helloWorld"</span><span class="token punctuation">)</span> 
+
+    <span class="token keyword">public</span> String <span class="token function">helloWorld</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span> 
+
+        <span class="token keyword">try</span><span class="token punctuation">(</span>Entry entry<span class="token operator">=</span>SphU<span class="token punctuation">.</span><span class="token function">entry</span><span class="token punctuation">(</span><span class="token string">"HelloWorld"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token comment" spellcheck="true">// 使用限流规则 HelloWorld </span>
+
+            <span class="token keyword">return</span> <span class="token string">"Sentinel 大爷你好！"</span><span class="token operator">+</span>System<span class="token punctuation">.</span><span class="token function">currentTimeMillis</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+        <span class="token punctuation">}</span><span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span><span class="token punctuation">{</span> 
+
+            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+            <span class="token keyword">return</span> <span class="token string">"系统繁忙，请稍后！"</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 降级处理 </span>
+
+        <span class="token punctuation">}</span> 
+
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">/**
+
+* 定义限流规则 
+
+* PostConstruct 构造方法执行完后执行方法 定义和加载限流规则 
+
+*/</span> 
+
+    <span class="token annotation punctuation">@PostConstruct</span> 
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">initFlowRules</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+        List<span class="token operator">&lt;</span>FlowRule<span class="token operator">></span> rules<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 定义限流规则集合 </span>
+
+        FlowRule rule<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">FlowRule</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 定义限流规则 </span>
+
+        rule<span class="token punctuation">.</span><span class="token function">setResource</span><span class="token punctuation">(</span><span class="token string">"HelloWorld"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 定义限流资源 </span>
+
+        rule<span class="token punctuation">.</span><span class="token function">setGrade</span><span class="token punctuation">(</span>RuleConstant<span class="token punctuation">.</span>FLOW_GRADE_QPS<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 定义限流规则类型 </span>
+
+        rule<span class="token punctuation">.</span><span class="token function">setCount</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 定义QPS阈值 每秒最多通过的请求个数 </span>
+
+        rules<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>rule<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 添加规则到集合 </span>
+
+        FlowRuleManager<span class="token punctuation">.</span><span class="token function">loadRules</span><span class="token punctuation">(</span>rules<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 加载规则集合 </span>
+
+    <span class="token punctuation">}</span> 
+
+<span class="token punctuation">}</span>
+
+</code></pre>
+<p><strong>第三步：测试</strong></p>
+<p>浏览器请求：<a target="_blank" rel="noopener" href="http://localhost/helloWorld">http://localhost/helloWorld</a></p>
+<p>正常请求：</p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211207205242244.png" alt="image-20211207205242244"></p>
+<p>当访问频率超过QPS阈值2，则sentinel降级返回异常信息；</p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211207205309365.png" alt="image-20211207205309365"></p>
+<p>测试通过；</p>
+<h3><span id="22-sentinel-dashboard控制台搭建"><strong>2.2 Sentinel dashboard控制台搭建</strong></span></h3><p>Sentinel 控制台是流量控制、熔断降级规则统一配置和管理的入口，它为用户提供了机器自发现、簇点链路自发现、监控、规则配置等功能。在 Sentinel 控制台上，我们可以配置规则并实时查看流量控制效果。</p>
+<p>下载地址</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/alibaba/Sentinel/releases/">https://github.com/alibaba/Sentinel/releases/</a></p>
+<p>最新版本1.8.1</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/alibaba/Sentinel/releases/download/1.8.1/sentinel-dashboard-1.8.1.jar">https://github.com/alibaba/Sentinel/releases/download/1.8.1/sentinel-dashboard-1.8.1.jar</a></p>
+<p><strong>注意</strong>：启动 Sentinel 控制台需要 JDK 版本为 1.8 及以上版本。</p>
+<p>java -Dserver.port=8080 -Dcsp.sentinel.dashboard.server=localhost:8080 - </p>
+<p>Dproject.name=sentinel-dashboard -jar sentinel-dashboard.jar</p>
+<p>其中 -Dserver.port=8080 用于指定 Sentinel 控制台端口为 8080 。</p>
+<p><a target="_blank" rel="noopener" href="http://localhost:8080/">http://localhost:8080/</a> 访问 用户名和密码都是 sentinel</p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211207205717869.png" alt="image-20211207205717869"></p>
+<h3><span id="23-客户端接入控制台"><strong>2.3</strong> <strong>客户端接入控制台</strong></span></h3><p>1，引入依赖JAR</p>
+<p>客户端需要引入 Transport 模块来与 Sentinel 控制台进行通信。您可以通过 pom.xml 引入 JAR 包: </p>
+<pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span> 
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>com.alibaba.csp<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span> 
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>sentinel-transport-simple-http<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span> 
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>1.8.0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span> 
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
+</code></pre>
+<p>2，IDEA配置JVM启动参数</p>
+<p>选择 Edit Configurations 编辑启动配置：</p>
+<p><img src="/2021/12/07/sentinel-fen-bu-shi-xi-tong-de-liu-liang-zu-jian/Typora文档\images\image-20211207205841606.png" alt="image-20211207205841606"></p>
+<p>配置里面，找到环境变量，VM options配置</p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211207205918095.png" alt="image-20211207205918095"></p>
+<p>加下两个配置：</p>
+<p>-Dcsp.sentinel.dashboard.server=localhost:8080 -Dproject.name=sentinel- </p>
+<p>helloWorld</p>
+<p><strong>-Dcsp.sentinel.dashboard.server=localhost:8080</strong> <strong>：</strong> 指定控制台地址和端口</p>
+<p><strong>-Dproject.name=sentinel-helloWorld****：</strong> 设置控制台上显示的项目名称</p>
+<p>3，测试</p>
+<p>重新启动项目，<a target="_blank" rel="noopener" href="http://localhost/helloWorld">http://localhost/helloWorld</a> 多运行刷新几次；</p>
+<p>然后我们查看Sentineil控制台中实时监控信息；</p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211207210029686.png" alt="image-20211207210029686"></p>
+<h3><span id="24-sentinel控制台设置限流规则"><strong>2.4 Sentinel控制台设置限流规则</strong></span></h3><p>之前我们通过硬编码方式，设置限流规则，这种方式缺点是不方便修改维护规则，不建议使用；我们以后用Sentinel控制台里设置规则的方式来操作；</p>
+<p>点击 流控规则 菜单</p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211207210422560.png" alt="image-20211207210422560"></p>
+<p>点击 新增流控规则 按钮</p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211207210452456.png" alt="image-20211207210452456"></p>
+<p>填写流控规则，然后点击 新增 按钮</p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211207210525763.png" alt="image-20211207210525763"></p>
+<p>（注意：流控规则的“资源名”要和代码里使用的规则名称一致）</p>
+<p>我们可以很方便编辑，删除规则名称；</p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211207210556856.png" alt="image-20211207210556856"></p>
+<p>测试</p>
+<p>先把硬编码的流控规则注释掉</p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211207210627816.png" alt="image-20211207210627816"></p>
+<p>然后，<a target="_blank" rel="noopener" href="http://localhost/helloWorld">http://localhost/helloWorld</a> 浏览器地址，多刷新几次，Sentinel实时监控就有数据了。</p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211207210659878.png" alt="image-20211207210659878"></p>
+<h2><span id="3-sentinel基本使用"><strong>3 Sentinel基本使用</strong></span></h2><h3><span id="31-定义资源"><strong>3.1</strong> <strong>定义资源</strong></span></h3><p>资源是 Sentinel 的关键概念。它可以是 Java 应用程序中的任何内容，例如，由应用程序提供的服务，或由应用程序调用的其它应用提供的服务，甚至可以是一段代码。在接下来的文档中，我们都会用资源来描述代码块。</p>
+<p>只要通过 Sentinel API 定义的代码，就是资源，能够被 Sentinel 保护起来。大部分情况下，可以使用方法签名，URL，甚至服务名称作为资源名来标示资源。</p>
+<p>Sentinel 可以简单的分为 Sentinel 核心库和 Dashboard。核心库不依赖 Dashboard，但是结合</p>
+<p>Dashboard 可以取得最好的效果。</p>
+<p>我们说的资源，可以是任何东西，服务，服务里的方法，甚至是一段代码。使用 Sentinel 来进行资源保护，主要分为几个步骤: </p>
+<p>​    1. 定义资源</p>
+<p>​    2. 定义规则</p>
+<p>​    3. 检验规则是否生效</p>
+<p>先把可能需要保护的资源定义好（埋点），之后再配置规则。也可以理解为，只要有了资源，我们就可以在任何时候灵活地定义各种流量控制规则。在编码的时候，只需要考虑这个代码是否需要保护，如果需要保护，就将之定义为一个资源。</p>
+<p>对于主流的框架，我们提供适配，只需要按照适配中的说明配置，Sentinel 就会默认定义提供的服务，方法等为资源。</p>
+<h4><span id="311-方式一主流框架的默认适配"><strong>3.1.1</strong> <strong>方式一：主流框架的默认适配</strong></span></h4><p>为了减少开发的复杂程度，我们对大部分的主流框架，例如 Web Servlet、Dubbo、Spring Cloud、</p>
+<p>gRPC、Spring WebFlux、Reactor 等都做了适配。您只需要引入对应的依赖即可方便地整合 Sentinel。</p>
+<p>可以参见: 主流框架的适配。</p>
+<h4><span id="312-方式二抛出异常的方式定义资源"><strong>3.1.2</strong> <strong>方式二：抛出异常的方式定义资源</strong></span></h4><p>SphU 包含了 try-catch 风格的 API。用这种方式，当资源发生了限流之后会抛出 BlockException 。这</p>
+<p>个时候可以捕捉异常，进行限流之后的逻辑处理。示例代码如下:</p>
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">// 1.5.0 版本开始可以利用 try-with-resources 特性（使用有限制） </span>
+
+<span class="token comment" spellcheck="true">// 资源名可使用任意有业务语义的字符串，比如方法名、接口名或其它可唯一标识的字符串。 </span>
+
+<span class="token keyword">try</span> <span class="token punctuation">(</span>Entry entry <span class="token operator">=</span> SphU<span class="token punctuation">.</span><span class="token function">entry</span><span class="token punctuation">(</span><span class="token string">"resourceName"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+
+<span class="token comment" spellcheck="true">// 被保护的业务逻辑 </span>
+
+<span class="token comment" spellcheck="true">// do something here... </span>
+
+<span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">BlockException</span> ex<span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+
+<span class="token comment" spellcheck="true">// 资源访问阻止，被限流或被降级 </span>
+
+<span class="token comment" spellcheck="true">// 在此处进行相应的处理操作 </span>
+
+<span class="token punctuation">}</span>
+</code></pre>
+<p><strong>特别地</strong>，若 entry 的时候传入了热点参数，那么 exit 的时候也一定要带上对应的参数（ exit(count, args) ），否则可能会有统计错误。这个时候不能使用 try-with-resources 的方式。另外通过Tracer.trace(ex) 来统计异常信息时，由于 try-with-resources 语法中 catch 调用顺序的问题，会导致无法正确统计异常数，因此统计异常信息时也不能在 try-with-resources 的 catch 块中调用Tracer.trace(ex) 。</p>
+<p>手动 exit 示例：</p>
+<pre class=" language-java"><code class="language-java">Entry entry <span class="token operator">=</span> null<span class="token punctuation">;</span> 
+
+<span class="token comment" spellcheck="true">// 务必保证 finally 会被执行 </span>
+
+<span class="token keyword">try</span> <span class="token punctuation">{</span> 
+
+    <span class="token comment" spellcheck="true">// 资源名可使用任意有业务语义的字符串，注意数目不能太多（超过 1K），超出几千请作为参数传入而 </span>
+
+    不要直接作为资源名 
+
+        <span class="token comment" spellcheck="true">// EntryType 代表流量类型（inbound/outbound），其中系统规则只对 IN 类型的埋点生效 </span>
+
+        entry <span class="token operator">=</span> SphU<span class="token punctuation">.</span><span class="token function">entry</span><span class="token punctuation">(</span><span class="token string">"自定义资源名"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+    <span class="token comment" spellcheck="true">// 被保护的业务逻辑 </span>
+
+    <span class="token comment" spellcheck="true">// do something... </span>
+
+<span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">BlockException</span> ex<span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+
+    <span class="token comment" spellcheck="true">// 资源访问阻止，被限流或被降级 </span>
+
+    <span class="token comment" spellcheck="true">// 进行相应的处理操作 </span>
+
+<span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> ex<span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+
+    <span class="token comment" spellcheck="true">// 若需要配置降级规则，需要通过这种方式记录业务异常 </span>
+
+    Tracer<span class="token punctuation">.</span><span class="token function">traceEntry</span><span class="token punctuation">(</span>ex<span class="token punctuation">,</span> entry<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+<span class="token punctuation">}</span> <span class="token keyword">finally</span> <span class="token punctuation">{</span> 
+
+    <span class="token comment" spellcheck="true">// 务必保证 exit，务必保证每个 entry 与 exit 配对 </span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>entry <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+
+        entry<span class="token punctuation">.</span><span class="token function">exit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+    <span class="token punctuation">}</span> 
+
+<span class="token punctuation">}</span>
+</code></pre>
+<p>热点参数埋点示例：</p>
+<pre class=" language-java"><code class="language-java">Entry entry <span class="token operator">=</span> null<span class="token punctuation">;</span> 
+
+<span class="token keyword">try</span> <span class="token punctuation">{</span>
+
+    <span class="token comment" spellcheck="true">// 若需要配置例外项，则传入的参数只支持基本类型。 </span>
+
+    <span class="token comment" spellcheck="true">// EntryType 代表流量类型，其中系统规则只对 IN 类型的埋点生效 </span>
+
+    <span class="token comment" spellcheck="true">// count 大多数情况都填 1，代表统计为一次调用。 </span>
+
+    entry <span class="token operator">=</span> SphU<span class="token punctuation">.</span><span class="token function">entry</span><span class="token punctuation">(</span>resourceName<span class="token punctuation">,</span> EntryType<span class="token punctuation">.</span>IN<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> paramA<span class="token punctuation">,</span> paramB<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+    <span class="token comment" spellcheck="true">// Your logic here. </span>
+
+<span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">BlockException</span> ex<span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+
+    <span class="token comment" spellcheck="true">// Handle request rejection. </span>
+
+<span class="token punctuation">}</span> <span class="token keyword">finally</span> <span class="token punctuation">{</span> 
+
+    <span class="token comment" spellcheck="true">// 注意：exit 的时候也一定要带上对应的参数，否则可能会有统计错误。 </span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>entry <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+        entry<span class="token punctuation">.</span><span class="token function">exit</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> paramA<span class="token punctuation">,</span> paramB<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+    <span class="token punctuation">}</span> 
+
+<span class="token punctuation">}</span> 
+
+</code></pre>
+<p>SphU.entry() 的参数描述：</p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211207211147676.png" alt="image-20211207211147676"></p>
+<p><strong>注意</strong>： SphU.entry(xxx) 需要与 entry.exit() 方法成对出现，匹配调用，否则会导致调用链记录异常，抛出 ErrorEntryFreeException 异常。常见的错误：</p>
+<ul>
+<li><p>自定义埋点只调用 SphU.entry() ，没有调用 entry.exit()</p>
+</li>
+<li><p>顺序错误，比如： entry1 -&gt; entry2 -&gt; exit1 -&gt; exit2 ，应该为 entry1 -&gt; entry2 -&gt; exit2 -&gt; exit1</p>
+</li>
+</ul>
+<h4><span id="313-方式三返回布尔值方式定义资源"><strong>3.1.3</strong> <strong>方式三：返回布尔值方式定义资源</strong></span></h4><p>SphO 提供 if-else 风格的 API。用这种方式，当资源发生了限流之后会返回 false ，这个时候可以根据</p>
+<p>返回值，进行限流之后的逻辑处理。示例代码如下:</p>
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">// 资源名可使用任意有业务语义的字符串 </span>
+
+<span class="token keyword">if</span> <span class="token punctuation">(</span>SphO<span class="token punctuation">.</span><span class="token function">entry</span><span class="token punctuation">(</span><span class="token string">"自定义资源名"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+
+    <span class="token comment" spellcheck="true">// 务必保证finally会被执行 </span>
+
+    <span class="token keyword">try</span> <span class="token punctuation">{</span> 
+
+        <span class="token comment" spellcheck="true">/** 
+
+\* 被保护的业务逻辑 
+
+*/</span> 
+
+    <span class="token punctuation">}</span> <span class="token keyword">finally</span> <span class="token punctuation">{</span> 
+
+        SphO<span class="token punctuation">.</span><span class="token function">exit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+    <span class="token punctuation">}</span> 
+
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span> 
+
+    <span class="token comment" spellcheck="true">// 资源访问阻止，被限流或被降级 </span>
+
+    <span class="token comment" spellcheck="true">// 进行相应的处理操作 </span>
+
+<span class="token punctuation">}</span> 
+</code></pre>
+<p><strong>注意</strong>： SphO.entry(xxx) 需要与 SphO.exit() 方法成对出现，匹配调用，位置正确，否则会导致调用链记录 </p>
+<p>异常，抛出 ErrorEntryFreeException` 异常。</p>
+<p>实例：</p>
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
+
+* 返回布尔值方式定义资源 
+
+* @return*/</span> 
+
+<span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">"helloWorld2"</span><span class="token punctuation">)</span> 
+
+<span class="token keyword">public</span> String <span class="token function">helloWorld2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span> 
+
+    <span class="token comment" spellcheck="true">// 资源名可使用任意有业务语义的字符串 </span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>SphO<span class="token punctuation">.</span><span class="token function">entry</span><span class="token punctuation">(</span><span class="token string">"HelloWorld2"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+
+        <span class="token comment" spellcheck="true">// 务必保证finally会被执行 </span>
+
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+
+            <span class="token comment" spellcheck="true">/**
+
+* 被保护的业务逻辑 
+
+*/</span> 
+
+            <span class="token keyword">return</span> <span class="token string">"Sentinel 大爷你好！boolean"</span><span class="token operator">+</span>System<span class="token punctuation">.</span><span class="token function">currentTimeMillis</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+        <span class="token punctuation">}</span> <span class="token keyword">finally</span> <span class="token punctuation">{</span> 
+
+            SphO<span class="token punctuation">.</span><span class="token function">exit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+        <span class="token punctuation">}</span> 
+
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span> 
+
+        <span class="token comment" spellcheck="true">// 资源访问阻止，被限流或被降级 </span>
+
+        <span class="token comment" spellcheck="true">// 进行相应的处理操作 </span>
+
+        <span class="token keyword">return</span> <span class="token string">"系统繁忙，请稍后！"</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 降级处理 </span>
+
+    <span class="token punctuation">}</span> 
+
+<span class="token punctuation">}</span>
+</code></pre>
+<p>sentinel控制台添加流控规则：</p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211207211558709.png" alt="image-20211207211558709"></p>
+<p>访问 <a target="_blank" rel="noopener" href="http://localhost/helloWorld2">http://localhost/helloWorld2</a></p>
+<p>正常访问显示：</p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211207211629768.png" alt="image-20211207211629768"></p>
+<p>如果频繁访问会出现：</p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211207211655112.png" alt="image-20211207211655112"></p>
+<p>触碰降级规则，返回降级信息；</p>
+<h4><span id="314-方式四注解方式定义资源"><strong>3.1.4</strong> <strong>方式四：注解方式定义资源</strong></span></h4><p>Sentinel 支持通过 @SentinelResource 注解定义资源并配置 blockHandler 和 fallback 函数来进行限流之后的处理。</p>
+<p><strong>第一步：引入</strong> @SentinelResource <strong>注解依赖支持</strong></p>
+<p>Sentinel 提供了 @SentinelResource 注解用于定义资源，并提供了 AspectJ 的扩展用于自动定义资源、处理 BlockException 等。使用 Sentinel Annotation AspectJ Extension 的时候需要引入以下依赖</p>
+<pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span> 
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>com.alibaba.csp<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span> 
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>sentinel-annotation-aspectj<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span> 
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>1.8.0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span> 
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
+</code></pre>
+<p><strong>第二步：创建</strong>AspectJ <strong>配置类</strong></p>
+<p><strong>Spring Cloud Alibaba</strong></p>
+<p>若您是通过 Spring Cloud Alibaba 接入的 Sentinel，则无需额外进行配置即可使用@SentinelResource 注解。</p>
+<p><strong>Spring AOP</strong></p>
+<p>若您的应用使用了 Spring AOP（无论是 Spring Boot 还是传统 Spring 应用），您需要通过配置的方式将 SentinelResourceAspect 注册为一个 Spring Bean： </p>
+<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Configuration</span> 
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SentinelAspectConfiguration</span> <span class="token punctuation">{</span> 
+
+    <span class="token annotation punctuation">@Bean</span> 
+
+    <span class="token keyword">public</span> SentinelResourceAspect <span class="token function">sentinelResourceAspect</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">SentinelResourceAspect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+    <span class="token punctuation">}</span> 
+
+<span class="token punctuation">}</span>
+</code></pre>
+<p><strong>第三步：新建</strong> <strong>Controller</strong> <strong>测试方法</strong></p>
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
+
+* 注解方式定义资源 
+
+* @SentinelResource value 资源名称 
+
+* @SentinelResource blockHandler 调用被限流/降级/系统保护的时候调用的方法 
+
+* @return 
+
+*/</span> 
+
+<span class="token annotation punctuation">@SentinelResource</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"helloWorld3"</span><span class="token punctuation">,</span>blockHandler <span class="token operator">=</span> 
+
+                  <span class="token string">"blockHandlerForHelloWorld3"</span><span class="token punctuation">)</span> 
+
+<span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">"helloWorld3"</span><span class="token punctuation">)</span> 
+
+<span class="token keyword">public</span> String <span class="token function">helloWorld3</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span> 
+
+    <span class="token keyword">return</span> "Sentinel 大爷你好！by 注解方式 
+
+        <span class="token annotation punctuation">@SentinelResource</span>"<span class="token operator">+</span>System<span class="token punctuation">.</span><span class="token function">currentTimeMillis</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">/**
+
+* 原方法调用被限流/降级/系统保护的时候调用 
+
+* @param ex 
+
+* @return 
+
+*/</span> 
+
+<span class="token keyword">public</span> String <span class="token function">blockHandlerForHelloWorld3</span><span class="token punctuation">(</span>BlockException ex<span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+
+    ex<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+    <span class="token keyword">return</span> <span class="token string">"系统繁忙，请稍后！"</span><span class="token punctuation">;</span> 
+
+<span class="token punctuation">}</span>
+</code></pre>
+<p><strong>第四步：</strong> <strong>Sentinel</strong> <strong>控制台新增流控规则</strong></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211207212128238.png" alt="image-20211207212128238"></p>
+<p><strong>第五步：测试</strong></p>
+<p>浏览器请求：<a target="_blank" rel="noopener" href="http://localhost/helloWorld3">http://localhost/helloWorld3</a></p>
+<p>正常访问：</p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211207212211830.png" alt="image-20211207212211830"></p>
+<p>频繁访问：</p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211207212243772.png" alt="image-20211207212243772"></p>
+<p>控制台异常打印：</p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211207212319943.png" alt="image-20211207212319943"></p>
+<h4><span id="315-方式五异步调用支持"><strong>3.1.5</strong> <strong>方式五：异步调用支持</strong></span></h4><p>Sentinel 支持异步调用链路的统计。在异步调用中，需要通过 SphU.asyncEntry(xxx) 方法定义资</p>
+<p>源，并通常需要在异步的回调函数中调用 exit 方法。</p>
+<p><strong>第一步：启动类加注解</strong> @EnableAsync <strong>，让项目支持异步调用支持</strong></p>
+<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@SpringBootApplication</span> 
+
+<span class="token annotation punctuation">@EnableAsync</span> 
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SentinelHelloWorldApplication</span> <span class="token punctuation">{</span> 
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+
+        SpringApplication<span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span>SentinelHelloWorldApplication<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span>args<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+    <span class="token punctuation">}</span> 
+
+<span class="token punctuation">}</span>
+</code></pre>
+<p><strong>第二步：创建</strong> <strong>AsyncService</strong> <strong>异步调用类以及方法</strong></p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>java1234<span class="token punctuation">.</span>service<span class="token punctuation">;</span> 
+
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>scheduling<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>Async<span class="token punctuation">;</span> 
+
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>stereotype<span class="token punctuation">.</span>Service<span class="token punctuation">;</span> 
+
+<span class="token comment" spellcheck="true">/**
+
+* @author java1234_小锋 
+
+* @site www.java1234.com 
+
+* @company Java知识分享网 
+
+* @create 2021-05-27 13:18 
+
+*/</span> 
+
+<span class="token annotation punctuation">@Service</span> 
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">AsyncService</span> <span class="token punctuation">{</span> 
+
+    <span class="token annotation punctuation">@Async</span> 
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">doSomethingAsync</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span> 
+
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"async start..."</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+
+            Thread<span class="token punctuation">.</span><span class="token function">sleep</span><span class="token punctuation">(</span><span class="token number">4000</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">InterruptedException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+
+            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+        <span class="token punctuation">}</span>System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"async end..."</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+    <span class="token punctuation">}</span> 
+
+<span class="token punctuation">}</span>
+</code></pre>
+<p><strong>第三步：创建</strong> <strong>Controller</strong> <strong>方法</strong></p>
+<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">"helloWorld4"</span><span class="token punctuation">)</span> 
+
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">helloWorld4</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span> 
+
+    AsyncEntry asyncEntry <span class="token operator">=</span>null<span class="token punctuation">;</span> 
+
+    <span class="token keyword">try</span> <span class="token punctuation">{</span>
+
+        asyncEntry <span class="token operator">=</span> SphU<span class="token punctuation">.</span><span class="token function">asyncEntry</span><span class="token punctuation">(</span><span class="token string">"helloWorld4"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+        asyncService<span class="token punctuation">.</span><span class="token function">doSomethingAsync</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+    <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">BlockException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"系统繁忙，请稍后！"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+    <span class="token punctuation">}</span><span class="token keyword">finally</span> <span class="token punctuation">{</span> 
+
+        <span class="token keyword">if</span><span class="token punctuation">(</span>asyncEntry<span class="token operator">!=</span>null<span class="token punctuation">)</span><span class="token punctuation">{</span> 
+
+            asyncEntry<span class="token punctuation">.</span><span class="token function">exit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+        <span class="token punctuation">}</span> 
+
+    <span class="token punctuation">}</span> 
+
+<span class="token punctuation">}</span>
+</code></pre>
+<p><strong>第四步：</strong> <strong>Sentinel</strong> <strong>控制台新增流控规则</strong></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211207212725449.png" alt="image-20211207212725449"></p>
+<p><strong>第五步：测试</strong></p>
+<p>浏览器请求：<a target="_blank" rel="noopener" href="http://localhost/helloWorld4">http://localhost/helloWorld4</a></p>
+<p>正常访问控制台输出：</p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211207212802281.png" alt="image-20211207212802281"></p>
+<p>频繁访问控制台输出：</p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211207212842030.png" alt="image-20211207212842030"></p>
+<h3><span id="32-规则的种类"><strong>3.2</strong> <strong>规则的种类</strong></span></h3><p>Sentinel 的所有规则都可以在内存态中动态地查询及修改，修改之后立即生效。同时 Sentinel 也提供相关 API，供您来定制自己的规则策略。</p>
+<p>Sentinel 支持以下几种规则：</p>
+<ul>
+<li><strong>流量控制规则</strong></li>
+<li><strong>熔断降级规则</strong></li>
+<li><strong>系统保护规则</strong></li>
+<li><strong>来源访问控制规则</strong></li>
+<li><strong>热点参数规则</strong></li>
+</ul>
+<h4><span id="321-流量控制规则"><strong>3.2.1</strong> <strong>流量控制规则</strong></span></h4><p><strong>流量控制</strong>（flow control），其原理是监控应用流量的 QPS 或并发线程数等指标，当达到指定的阈值时</p>
+<p>对流量进行控制，以避免被瞬时的流量高峰冲垮，从而保障应用的高可用性。</p>
+<p><strong>重要属性：</strong></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211207213804272.png" alt="image-20211207213804272"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211207214005179.png" alt="image-20211207214005179"></p>
+<p><strong>限流类型分为</strong> <strong>:</strong></p>
+<ul>
+<li><strong>QPS</strong> 每秒请求数限制</li>
+<li><strong>线程数</strong> 资源使用线程数限制</li>
+</ul>
+<p><strong>流控模式</strong></p>
+<ul>
+<li><p><strong>直接</strong> 资源直接限流，这个就是简单的限流。</p>
+</li>
+<li><p><strong>关联</strong> 关联模式需要填写关联资源的路径，意为如果关联资源的流量超额之后，限流自己（自己为资源名填写的路径）。</p>
+</li>
+<li><p><strong>链路</strong> 如果是链路模式需要填写入口资源，限制入口资源对自己的调用。</p>
+</li>
+</ul>
+<p><strong>流控效果</strong></p>
+<p><strong>快速失败</strong> (Ruleconstant.CONTROL_BEHAVIOR_DEFAULT）方式是默认的流量控制方式，当QPS超过任意规则的阈值后，新的请求就会被立即拒绝，拒绝方式为抛出F1owException。这种方式适用于对系统处理能力确切已知的情况下，比如通过压测确定了系统的准确水位时。</p>
+<p><strong>Warm Up</strong> (RuleConstant.CONTROL_BEHAVIOR_WARM_UP）方式，即预热/冷启动方式。当系统长期处于低水位的情况下，当流量突然增加时，直接把系统拉升到高水位可能瞬间把系统压垮。通过”冷启动”，让通过的流量缓慢增加，在一定时间内逐渐增加到阈值上限，给冷系统一个预热的时间，避免冷系统被压垮。</p>
+<p><strong>排队等待</strong> (RuleConstant.cONTROL_BEHAV工OR_RATE_LIMITER）方式会严格控制请求通过的间隔时间,也即是让请求以均匀的速度通过，对应的是漏桶算法。</p>
+<p>同一个资源可以同时有多个限流规则，检查规则时会依次检查。</p>
+<h4><span id="322-熔断降级规则"><strong>3.2.2</strong> <strong>熔断降级规则</strong></span></h4><p><strong>概述</strong></p>
+<p>除了流量控制以外，对调用链路中不稳定的资源进行熔断降级也是保障高可用的重要措施之一。一个服务常常会调用别的模块，可能是另外的一个远程服务、数据库，或者第三方 API 等。例如，支付的时候，可能需要远程调用银联提供的 API；查询某个商品的价格，可能需要进行数据库查询。然而，这个被依赖服务的稳定性是不能保证的。如果依赖的服务出现了不稳定的情况，请求的响应时间变长，那么调用服务的方法的响应时间也会变长，线程会产生堆积，最终可能耗尽业务自身的线程池，服务本身也变得不可用。</p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211208223657470.png" alt="image-20211208223657470"></p>
+<p>现代微服务架构都是分布式的，由非常多的服务组成。不同服务之间相互调用，组成复杂的调用链路。以上的问题在链路调用中会产生放大的效果。复杂链路上的某一环不稳定，就可能会层层级联，最终导致整个链路都不可用。因此我们需要对不稳定的<strong>弱依赖服务调用</strong>进行熔断降级，暂时切断不稳定调用，避免局部不稳定因素导致整体的雪崩。熔断降级作为保护自身的手段，通常在客户端（调用端）进行配置。</p>
+<p><strong>注意</strong>：本文档针对 Sentinel 1.8.0 及以上版本。1.8.0 版本对熔断降级特性进行了全新的改进升</p>
+<p>级，请使用最新版本以更好地利用熔断降级的能力。</p>
+<p><strong>熔断策略</strong></p>
+<p>Sentinel 提供以下几种熔断策略：</p>
+<ul>
+<li><p>慢调用比例 ( SLOW_REQUEST_RATIO )：选择以慢调用比例作为阈值，需要设置允许的慢调用RT（即最大的响应时间），请求的响应时间大于该值则统计为慢调用。当单位统计时长（ statIntervalMs ）内请求数目大于设置的最小请求数目，并且慢调用的比例大于阈值，则接下来的熔断时长内请求会自动被熔断。经过熔断时长后熔断器会进入探测恢复状态（HALF-OPEN 状态），若接下来的一个请求响应时间小于设置的慢调用 RT 则结束熔断，若大于设置的慢调用 RT则会再次被熔断。</p>
+</li>
+<li><p>异常比例 ( ERROR_RATIO )：当单位统计时长（ statIntervalMs ）内请求数目大于设置的最小请求数目，并且异常的比例大于阈值，则接下来的熔断时长内请求会自动被熔断。经过熔断时长后熔断器会进入探测恢复状态（HALF-OPEN 状态），若接下来的一个请求成功完成（没有错误）则结束熔断，否则会再次被熔断。异常比率的阈值范围是 [0.0, 1.0] ，代表 0% - 100%。</p>
+</li>
+<li><p>异常数 ( ERROR_COUNT )：当单位统计时长内的异常数目超过阈值之后会自动进行熔断。经过熔断时长后熔断器会进入探测恢复状态（HALF-OPEN 状态），若接下来的一个请求成功完成（没有错误）则结束熔断，否则会再次被熔断。</p>
+</li>
+</ul>
+<p>注意异常降级<strong>仅针对业务异常</strong>，对 Sentinel 限流降级本身的异常（ BlockException ）不生效。为了统</p>
+<p>计异常比例或异常数，需要通过 Tracer.trace(ex) 记录业务异常。示例：</p>
+<pre class=" language-java"><code class="language-java">Entry entry <span class="token operator">=</span> null<span class="token punctuation">;</span> 
+
+<span class="token keyword">try</span> <span class="token punctuation">{</span> 
+
+    entry <span class="token operator">=</span> SphU<span class="token punctuation">.</span><span class="token function">entry</span><span class="token punctuation">(</span>key<span class="token punctuation">,</span> EntryType<span class="token punctuation">.</span>IN<span class="token punctuation">,</span> key<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+    <span class="token comment" spellcheck="true">// Write your biz code here. </span>
+
+    <span class="token comment" spellcheck="true">// &lt;&lt;BIZ CODE>> </span>
+
+<span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Throwable</span> t<span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>BlockException<span class="token punctuation">.</span><span class="token function">isBlockException</span><span class="token punctuation">(</span>t<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+
+        Tracer<span class="token punctuation">.</span><span class="token function">trace</span><span class="token punctuation">(</span>t<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+    <span class="token punctuation">}</span> 
+
+<span class="token punctuation">}</span> <span class="token keyword">finally</span> <span class="token punctuation">{</span> 
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>entry <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+
+        entry<span class="token punctuation">.</span><span class="token function">exit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+    <span class="token punctuation">}</span> 
+
+<span class="token punctuation">}</span>
+
+</code></pre>
+<p>开源整合模块，如 Sentinel Dubbo Adapter, Sentinel Web Servlet Filter 或 @SentinelResource 注解</p>
+<p>会自动统计业务异常，无需手动调用。</p>
+<p><strong>熔断降级规则说明</strong></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211208223959825.png" alt="image-20211208223959825"></p>
+<p>熔断降级规则（DegradeRule）包含下面几个重要的属性：</p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211208224036450.png" alt="image-20211208224036450"></p>
+<p>同一个资源可以同时有多个降级规则。</p>
+<p>理解上面规则的定义之后，我们可以通过调用 DegradeRuleManager.loadRules() 方法来用硬编码的</p>
+<p>方式定义流量控制规则。</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">initDegradeRule</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+
+    List<span class="token operator">&lt;</span>DegradeRule<span class="token operator">></span> rules <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+    DegradeRule rule <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">DegradeRule</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+    rule<span class="token punctuation">.</span><span class="token function">setResource</span><span class="token punctuation">(</span>KEY<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+    <span class="token comment" spellcheck="true">// set threshold RT, 10 ms </span>
+
+    rule<span class="token punctuation">.</span><span class="token function">setCount</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+    rule<span class="token punctuation">.</span><span class="token function">setGrade</span><span class="token punctuation">(</span>RuleConstant<span class="token punctuation">.</span>DEGRADE_GRADE_RT<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+    rule<span class="token punctuation">.</span><span class="token function">setTimeWindow</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+    rules<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>rule<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+    DegradeRuleManager<span class="token punctuation">.</span><span class="token function">loadRules</span><span class="token punctuation">(</span>rules<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+<span class="token punctuation">}</span>
+</code></pre>
+<p><strong>熔断器事件监听</strong></p>
+<p>Sentinel 支持注册自定义的事件监听器监听熔断器状态变换事件（state change event）。示例：</p>
+<pre class=" language-java"><code class="language-java">EventObserverRegistry<span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">addStateChangeObserver</span><span class="token punctuation">(</span><span class="token string">"logging"</span><span class="token punctuation">,</span>                                                        <span class="token punctuation">(</span>prevState<span class="token punctuation">,</span> newState<span class="token punctuation">,</span> rule<span class="token punctuation">,</span> snapshotValue<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">{</span>          <span class="token keyword">if</span> <span class="token punctuation">(</span>newState <span class="token operator">==</span> tate<span class="token punctuation">.</span>OPEN<span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+    <span class="token comment" spellcheck="true">// 变换至 OPEN state 时会携带触发时的值 </span>
+    System<span class="token punctuation">.</span>err<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>String<span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span><span class="token string">"%s -> OPEN at %d, snapshotValue=%.2f"</span><span class="token punctuation">,</span>prevState<span class="token punctuation">.</span><span class="token function">name</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>  TimeUtil<span class="token punctuation">.</span><span class="token function">currentTimeMillis</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> snapshotValue<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span> 
+    System<span class="token punctuation">.</span>err<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>String<span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span><span class="token string">"%s -> %s at %d"</span><span class="token punctuation">,</span> prevState<span class="token punctuation">.</span><span class="token function">name</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> newState<span class="token punctuation">.</span><span class="token function">name</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>TimeUtil<span class="token punctuation">.</span><span class="token function">currentTimeMillis</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+<span class="token punctuation">}</span> 
+
+                                                           <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h4><span id="323-系统保护规则"><strong>3.2.3</strong> <strong>系统保护规则</strong></span></h4><p>Sentinel 系统自适应限流从整体维度对应用入口流量进行控制，结合应用的 Load、CPU 使用率、总体平均 RT、入口 QPS 和并发线程数等几个维度的监控指标，通过自适应的流控策略，让系统的入口流量和系统的负载达到一个平衡，让系统尽可能跑在最大吞吐量的同时保证系统整体的稳定性。</p>
+<p>系统规则包含下面几个重要的属性：</p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211209195546505.png" alt="image-20211209195546505"></p>
+<p>理解上面规则的定义之后，我们可以通过调用 SystemRuleManager.loadRules() 方法来用硬编码的方式定义流量控制规则。</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">initSystemRule</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+
+    List<span class="token operator">&lt;</span>SystemRule<span class="token operator">></span> rules <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+    SystemRule rule <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SystemRule</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+    rule<span class="token punctuation">.</span><span class="token function">setHighestSystemLoad</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+    rules<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>rule<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+    SystemRuleManager<span class="token punctuation">.</span><span class="token function">loadRules</span><span class="token punctuation">(</span>rules<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+<span class="token punctuation">}</span>
+</code></pre>
+<p>控制台对应操作：</p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211209195658226.png" alt="image-20211209195658226"></p>
+<p>在开始之前，我们先了解一下系统保护的目的：</p>
+<ul>
+<li>保证系统不被拖垮</li>
+<li>在系统稳定的前提下，保持系统的吞吐量</li>
+</ul>
+<p>长期以来，系统保护的思路是根据硬指标，即系统的负载 (load1) 来做系统过载保护。当系统负载高于</p>
+<p>某个阈值，就禁止或者减少流量的进入；当 load 开始好转，则恢复流量的进入。<strong>这个思路给我们带来了</strong></p>
+<p><strong>不可避免的两个问题</strong>：</p>
+<ul>
+<li>load 是一个“结果”，如果根据 load 的情况来调节流量的通过率，那么就始终有<strong>延迟性</strong>。也就意味</li>
+</ul>
+<p>着通过率的任何调整，都会过一段时间才能看到效果。当前通过率是使 load 恶化的一个动作，那</p>
+<p>么也至少要过 1 秒之后才能观测到；同理，如果当前通过率调整是让 load 好转的一个动作，也需</p>
+<p>要 1 秒之后才能继续调整，这样就浪费了系统的处理能力。所以我们看到的曲线，总是会有抖动。</p>
+<ul>
+<li><strong>恢复慢</strong>。想象一下这样的一个场景（真实），出现了这样一个问题，下游应用不可靠，导致应用</li>
+</ul>
+<p>RT 很高，从而 load 到了一个很高的点。过了一段时间之后下游应用恢复了，应用 RT 也相应减</p>
+<p>少。这个时候，其实应该大幅度增大流量的通过率；但是由于这个时候 load 仍然很高，通过率的</p>
+<p>恢复仍然不高。</p>
+<p>TCP BBR 的思想给了我们一个很大的启发。我们应该根据系统能够处理的请求，和允许进来的请求，来</p>
+<p>做平衡，而不是根据一个间接的指标（系统 load）来做限流。最终我们追求的目标是 <strong>在系统不被拖垮的</strong></p>
+<p><strong>情况下，提高系统的吞吐率，而不是</strong> <strong>load</strong> <strong>一定要到低于某个阈值</strong>。如果我们还是按照固有的思维，超</p>
+<p>过特定的 load 就禁止流量进入，系统 load 恢复就放开流量，这样做的结果是无论我们怎么调参数，调</p>
+<p>比例，都是按照果来调节因，都无法取得良好的效果。</p>
+<p>Sentinel 在系统自适应保护的做法是，用 load1 作为启动自适应保护的因子，而允许通过的流量由处理</p>
+<p>请求的能力，即请求的响应时间以及当前系统正在处理的请求速率来决定。</p>
+<h4><span id="324-访问控制规则"><strong>3.2.4</strong> <strong>访问控制规则</strong></span></h4><p>很多时候，我们需要根据调用来源来判断该次请求是否允许放行，这时候可以使用 Sentinel 的来源访问</p>
+<p>控制（黑白名单控制）的功能。来源访问控制根据资源的请求来源（ origin ）限制资源是否通过，若</p>
+<p>配置白名单则只有请求来源位于白名单内时才可通过；若配置黑名单则请求来源位于黑名单时不通过，</p>
+<p>其余的请求通过。</p>
+<p>调用方信息通过 ContextUtil.enter(resourceName, origin) 方法中的 origin 参数传入。</p>
+<p><strong>规则配置</strong></p>
+<p>来源访问控制规则（ AuthorityRule ）非常简单，主要有以下配置项：</p>
+<ul>
+<li>resource ：资源名，即限流规则的作用对象。</li>
+<li>limitApp ：对应的黑名单/白名单，不同 origin 用 , 分隔，如 appA,appB 。 </li>
+<li>strategy ：限制模式， AUTHORITY_WHITE 为白名单模式， AUTHORITY_BLACK 为黑名单模式，</li>
+</ul>
+<p>默认为白名单模式。</p>
+<p><strong>示例</strong></p>
+<p>比如我们希望控制对资源 test 的访问设置白名单，只有来源为 appA 和 appB 的请求才可通过，则可</p>
+<p>以配置如下白名单规则：</p>
+<pre class=" language-java"><code class="language-java">AuthorityRule rule <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">AuthorityRule</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+rule<span class="token punctuation">.</span><span class="token function">setResource</span><span class="token punctuation">(</span><span class="token string">"test"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+rule<span class="token punctuation">.</span><span class="token function">setStrategy</span><span class="token punctuation">(</span>RuleConstant<span class="token punctuation">.</span>AUTHORITY_WHITE<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+rule<span class="token punctuation">.</span><span class="token function">setLimitApp</span><span class="token punctuation">(</span><span class="token string">"appA,appB"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+AuthorityRuleManager<span class="token punctuation">.</span><span class="token function">loadRules</span><span class="token punctuation">(</span>Collections<span class="token punctuation">.</span><span class="token function">singletonList</span><span class="token punctuation">(</span>rule<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>详细示例请参考 AuthorityDemo</p>
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/*
+
+* Copyright 1999-2018 Alibaba Group Holding Ltd. 
+
+*
+
+* Licensed under the Apache License, Version 2.0 (the "License"); 
+
+* you may not use this file except in compliance with the License. 
+
+* You may obtain a copy of the License at 
+
+*
+
+* http://www.apache.org/licenses/LICENSE-2.0 
+
+*
+
+* Unless required by applicable law or agreed to in writing, software 
+
+* distributed under the License is distributed on an "AS IS" BASIS, 
+
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
+
+* See the License for the specific language governing permissions and 
+
+* limitations under the License. 
+
+*/</span> 
+
+<span class="token keyword">package</span> com<span class="token punctuation">.</span>alibaba<span class="token punctuation">.</span>csp<span class="token punctuation">.</span>sentinel<span class="token punctuation">.</span>demo<span class="token punctuation">.</span>authority<span class="token punctuation">;</span> 
+
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>Collections<span class="token punctuation">;</span> 
+
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>alibaba<span class="token punctuation">.</span>csp<span class="token punctuation">.</span>sentinel<span class="token punctuation">.</span>Entry<span class="token punctuation">;</span> 
+
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>alibaba<span class="token punctuation">.</span>csp<span class="token punctuation">.</span>sentinel<span class="token punctuation">.</span>SphU<span class="token punctuation">;</span> 
+
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>alibaba<span class="token punctuation">.</span>csp<span class="token punctuation">.</span>sentinel<span class="token punctuation">.</span>context<span class="token punctuation">.</span>ContextUtil<span class="token punctuation">;</span> 
+
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>alibaba<span class="token punctuation">.</span>csp<span class="token punctuation">.</span>sentinel<span class="token punctuation">.</span>slots<span class="token punctuation">.</span>block<span class="token punctuation">.</span>BlockException<span class="token punctuation">;</span> 
+
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>alibaba<span class="token punctuation">.</span>csp<span class="token punctuation">.</span>sentinel<span class="token punctuation">.</span>slots<span class="token punctuation">.</span>block<span class="token punctuation">.</span>RuleConstant<span class="token punctuation">;</span> 
+
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>alibaba<span class="token punctuation">.</span>csp<span class="token punctuation">.</span>sentinel<span class="token punctuation">.</span>slots<span class="token punctuation">.</span>block<span class="token punctuation">.</span>authority<span class="token punctuation">.</span>AuthorityRule<span class="token punctuation">;</span><span class="token keyword">import</span> com<span class="token punctuation">.</span>alibaba<span class="token punctuation">.</span>csp<span class="token punctuation">.</span>sentinel<span class="token punctuation">.</span>slots<span class="token punctuation">.</span>block<span class="token punctuation">.</span>authority<span class="token punctuation">.</span>AuthorityRuleManager<span class="token punctuation">;</span> 
+
+<span class="token comment" spellcheck="true">/**
+
+* Authority rule is designed for limiting by request origins. In blacklist 
+
+mode, 
+
+* requests will be blocked when blacklist contains current origin, otherwise 
+
+will pass. 
+
+* In whitelist mode, only requests from whitelist origin can pass. 
+
+*
+
+* @author Eric Zhao 
+
+*/</span> 
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">AuthorityDemo</span> <span class="token punctuation">{</span> 
+
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> String RESOURCE_NAME <span class="token operator">=</span> <span class="token string">"testABC"</span><span class="token punctuation">;</span> 
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"========Testing for black list========"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+        <span class="token function">initBlackRules</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+        <span class="token function">testFor</span><span class="token punctuation">(</span>RESOURCE_NAME<span class="token punctuation">,</span> <span class="token string">"appA"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+        <span class="token function">testFor</span><span class="token punctuation">(</span>RESOURCE_NAME<span class="token punctuation">,</span> <span class="token string">"appB"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+        <span class="token function">testFor</span><span class="token punctuation">(</span>RESOURCE_NAME<span class="token punctuation">,</span> <span class="token string">"appC"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+        <span class="token function">testFor</span><span class="token punctuation">(</span>RESOURCE_NAME<span class="token punctuation">,</span> <span class="token string">"appE"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"========Testing for white list========"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+        <span class="token function">initWhiteRules</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+        <span class="token function">testFor</span><span class="token punctuation">(</span>RESOURCE_NAME<span class="token punctuation">,</span> <span class="token string">"appA"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+        <span class="token function">testFor</span><span class="token punctuation">(</span>RESOURCE_NAME<span class="token punctuation">,</span> <span class="token string">"appB"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+        <span class="token function">testFor</span><span class="token punctuation">(</span>RESOURCE_NAME<span class="token punctuation">,</span> <span class="token string">"appC"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+        <span class="token function">testFor</span><span class="token punctuation">(</span>RESOURCE_NAME<span class="token punctuation">,</span> <span class="token string">"appE"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">testFor</span><span class="token punctuation">(</span><span class="token comment" spellcheck="true">/*@NonNull*/</span> String resource<span class="token punctuation">,</span> <span class="token comment" spellcheck="true">/*@NonNull*/</span> 
+
+                                String origin<span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+
+        ContextUtil<span class="token punctuation">.</span><span class="token function">enter</span><span class="token punctuation">(</span>resource<span class="token punctuation">,</span> origin<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+        Entry entry <span class="token operator">=</span> null<span class="token punctuation">;</span> 
+
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+
+            entry <span class="token operator">=</span> SphU<span class="token punctuation">.</span><span class="token function">entry</span><span class="token punctuation">(</span>resource<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>String<span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span>"Passed <span class="token keyword">for</span> resource <span class="token operator">%</span>s<span class="token punctuation">,</span> origin is 
+
+                                             <span class="token operator">%</span>s"<span class="token punctuation">,</span> resource<span class="token punctuation">,</span> origin<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+                                             <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">BlockException</span> ex<span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+
+                                                 System<span class="token punctuation">.</span>err<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>String<span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span>"Blocked <span class="token keyword">for</span> resource <span class="token operator">%</span>s<span class="token punctuation">,</span> origin is 
+
+                                                                                  <span class="token operator">%</span>s"<span class="token punctuation">,</span> resource<span class="token punctuation">,</span> origin<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+                                                                                  <span class="token punctuation">}</span> <span class="token keyword">finally</span> <span class="token punctuation">{</span> 
+
+                                                                                      <span class="token keyword">if</span> <span class="token punctuation">(</span>entry <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+
+                                                                                          entry<span class="token punctuation">.</span><span class="token function">exit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+                                                                                      <span class="token punctuation">}</span>
+
+                                                                                      ContextUtil<span class="token punctuation">.</span><span class="token function">exit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+                                                                                  <span class="token punctuation">}</span> 
+
+                                                                                  <span class="token punctuation">}</span>
+
+                                                                                  <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">initWhiteRules</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+
+                                                                                      AuthorityRule rule <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">AuthorityRule</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+                                                                                      rule<span class="token punctuation">.</span><span class="token function">setResource</span><span class="token punctuation">(</span>RESOURCE_NAME<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+                                                                                      rule<span class="token punctuation">.</span><span class="token function">setStrategy</span><span class="token punctuation">(</span>RuleConstant<span class="token punctuation">.</span>AUTHORITY_WHITE<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+                                                                                      rule<span class="token punctuation">.</span><span class="token function">setLimitApp</span><span class="token punctuation">(</span><span class="token string">"appA,appE"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+                                                                                      AuthorityRuleManager<span class="token punctuation">.</span><span class="token function">loadRules</span><span class="token punctuation">(</span>Collections<span class="token punctuation">.</span><span class="token function">singletonList</span><span class="token punctuation">(</span>rule<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+                                                                                  <span class="token punctuation">}</span>
+
+                                                                                  <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">initBlackRules</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+
+                                                                                      AuthorityRule rule <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">AuthorityRule</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+                                                                                      rule<span class="token punctuation">.</span><span class="token function">setResource</span><span class="token punctuation">(</span>RESOURCE_NAME<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+                                                                                      rule<span class="token punctuation">.</span><span class="token function">setStrategy</span><span class="token punctuation">(</span>RuleConstant<span class="token punctuation">.</span>AUTHORITY_BLACK<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+                                                                                      rule<span class="token punctuation">.</span><span class="token function">setLimitApp</span><span class="token punctuation">(</span><span class="token string">"appA,appB"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+                                                                                      AuthorityRuleManager<span class="token punctuation">.</span><span class="token function">loadRules</span><span class="token punctuation">(</span>Collections<span class="token punctuation">.</span><span class="token function">singletonList</span><span class="token punctuation">(</span>rule<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+                                                                                  <span class="token punctuation">}</span> 
+
+                                                                                  <span class="token punctuation">}</span>
+</code></pre>
+<p>控制台配置方式：</p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211209200436006.png" alt="image-20211209200436006"></p>
+<p><strong>3.2.5</strong> <strong>热点规则</strong></p>
+<p>何为热点？热点即经常访问的数据。很多时候我们希望统计某个热点数据中访问频次最高的 Top K 数</p>
+<p>据，并对其访问进行限制。比如：</p>
+<p>商品 ID 为参数，统计一段时间内最常购买的商品 ID 并进行限制</p>
+<p>用户 ID 为参数，针对一段时间内频繁访问的用户 ID 进行限制</p>
+<p>热点参数限流会统计传入参数中的热点参数，并根据配置的限流阈值与模式，对包含热点参数的资源调</p>
+<p>用进行限流。热点参数限流可以看做是一种特殊的流量控制，仅对包含热点参数的资源调用生效。</p>
+<p>Sentinel 利用 LRU 策略统计最近最常访问的热点参数，结合令牌桶算法来进行参数级别的流控。热点参</p>
+<p>数限流支持集群模式。</p>
+<p><strong>基本使用</strong></p>
+<p>要使用热点参数限流功能，需要引入以下依赖：</p>
+<pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span> 
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>com.alibaba.csp<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span> 
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>sentinel-parameter-flow-control<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span> 
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>x.y.z<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span> 
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
+</code></pre>
+<p>然后为对应的资源配置热点参数限流规则，并在 entry 的时候传入相应的参数，即可使热点参数限流生效。</p>
+<p>注：若自行扩展并注册了自己实现的 SlotChainBuilder ，并希望使用热点参数限流功能，则可以在 chain 里面合适的地方插入 ParamFlowSlot 。</p>
+<p>那么如何传入对应的参数以便 Sentinel 统计呢？我们可以通过 SphU 类里面几个 entry 重载方法来传入：</p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211209203444064.png" alt="image-20211209203444064"></p>
+<p>其中最后的一串 args 就是要传入的参数，有多个就按照次序依次传入。比如要传入两个参数 paramA 和 paramB ，则可以：</p>
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">// paramA in index 0, paramB in index 1. </span>
+
+<span class="token comment" spellcheck="true">// 若需要配置例外项或者使用集群维度流控，则传入的参数只支持基本类型。 </span>
+
+SphU<span class="token punctuation">.</span><span class="token function">entry</span><span class="token punctuation">(</span>resourceName<span class="token punctuation">,</span> EntryType<span class="token punctuation">.</span>IN<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> paramA<span class="token punctuation">,</span> paramB<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p><strong>注意</strong>：若 entry 的时候传入了热点参数，那么 exit 的时候也一定要带上对应的参数（ exit(count, args) ），否则可能会有统计错误。正确的示例：</p>
+<pre class=" language-java"><code class="language-java">Entry entry <span class="token operator">=</span> null<span class="token punctuation">;</span> 
+
+<span class="token keyword">try</span> <span class="token punctuation">{</span>
+
+    entry <span class="token operator">=</span> SphU<span class="token punctuation">.</span><span class="token function">entry</span><span class="token punctuation">(</span>resourceName<span class="token punctuation">,</span> EntryType<span class="token punctuation">.</span>IN<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> paramA<span class="token punctuation">,</span> paramB<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+    <span class="token comment" spellcheck="true">// Your logic here. </span>
+
+<span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">BlockException</span> ex<span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+
+    <span class="token comment" spellcheck="true">// Handle request rejection. </span>
+
+<span class="token punctuation">}</span> <span class="token keyword">finally</span> <span class="token punctuation">{</span> 
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>entry <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+
+        entry<span class="token punctuation">.</span><span class="token function">exit</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> paramA<span class="token punctuation">,</span> paramB<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+    <span class="token punctuation">}</span> 
+
+<span class="token punctuation">}</span>
+</code></pre>
+<p>对于 @SentinelResource 注解方式定义的资源，若注解作用的方法上有参数，Sentinel 会将它们作为参数传入 SphU.entry(res, args) 。比如以下的方法里面 uid 和 type 会分别作为第一个和第二个参数传入 Sentinel API，从而可以用于热点规则判断：</p>
+<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@SentinelResource</span><span class="token punctuation">(</span><span class="token string">"myMethod"</span><span class="token punctuation">)</span> 
+
+<span class="token keyword">public</span> Result <span class="token function">doSomething</span><span class="token punctuation">(</span>String uid<span class="token punctuation">,</span> <span class="token keyword">int</span> type<span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+
+<span class="token comment" spellcheck="true">// some logic here... </span>
+
+<span class="token punctuation">}</span>
+</code></pre>
+<p><strong>热点参数规则</strong></p>
+<p>热点参数规则（ ParamFlowRule ）类似于流量控制规则（ FlowRule ）：</p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211209203753355.png" alt="image-20211209203753355"></p>
+<p>我们可以通过 ParamFlowRuleManager 的 loadRules 方法更新热点参数规则，下面是一个示例：</p>
+<pre class=" language-java"><code class="language-java">ParamFlowRule rule <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ParamFlowRule</span><span class="token punctuation">(</span>resourceName<span class="token punctuation">)</span> 
+
+<span class="token punctuation">.</span><span class="token function">setParamIdx</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span> 
+
+<span class="token punctuation">.</span><span class="token function">setCount</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+<span class="token comment" spellcheck="true">// 针对 int 类型的参数 PARAM_B，单独设置限流 QPS 阈值为 10，而不是全局的阈值 5. </span>
+
+ParamFlowItem item <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ParamFlowItem</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">setObject</span><span class="token punctuation">(</span>String<span class="token punctuation">.</span><span class="token function">valueOf</span><span class="token punctuation">(</span>PARAM_B<span class="token punctuation">)</span><span class="token punctuation">)</span> 
+
+<span class="token punctuation">.</span><span class="token function">setClassType</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> 
+
+<span class="token punctuation">.</span><span class="token function">setCount</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+rule<span class="token punctuation">.</span><span class="token function">setParamFlowItemList</span><span class="token punctuation">(</span>Collections<span class="token punctuation">.</span><span class="token function">singletonList</span><span class="token punctuation">(</span>item<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+ParamFlowRuleManager<span class="token punctuation">.</span><span class="token function">loadRules</span><span class="token punctuation">(</span>Collections<span class="token punctuation">.</span><span class="token function">singletonList</span><span class="token punctuation">(</span>rule<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>控制台配置方式：</p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211209205052433.png" alt="image-20211209205052433"></p>
+<h2><span id="4-spring-cloud-整合-sentinel"><strong>4 Spring Cloud</strong> <strong>整合</strong> <strong>Sentinel</strong></span></h2><p>Spring Cloud Alibaba默认为Sentinel整合了Servlet、RestTemplate、 FeignClient和Spring WebFlux。它不仅补全了Hystrix在Servlet和RestTemplate这一块的空白，而且还完全兼容了Hystrix在FeignClient中限流降级的用法,并支持灵活配置和调整流控规则。</p>
+<p><strong>第一步：新建</strong> <strong>sentinel-springcloud</strong> <strong>子模块项目，</strong> <strong>pom.xml</strong> <strong>添加</strong> spring**-<strong>cloud</strong>-<strong>starter</strong>-<strong>alibaba</strong>-**sentinel <strong>依赖</strong></p>
+<pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span> 
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>com.alibaba.cloud<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span> 
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-cloud-starter-alibaba-sentinel<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span> 
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span> 
+</code></pre>
+<p><strong>第二步：新建</strong> <strong>SentinelHelloWorldControllerc</strong> <strong>测试类</strong></p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>java1234<span class="token punctuation">.</span>controller<span class="token punctuation">;</span> 
+
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>alibaba<span class="token punctuation">.</span>csp<span class="token punctuation">.</span>sentinel<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>SentinelResource<span class="token punctuation">;</span> 
+
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>alibaba<span class="token punctuation">.</span>csp<span class="token punctuation">.</span>sentinel<span class="token punctuation">.</span>slots<span class="token punctuation">.</span>block<span class="token punctuation">.</span>BlockException<span class="token punctuation">;</span> 
+
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>web<span class="token punctuation">.</span>bind<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>RequestMapping<span class="token punctuation">;</span> 
+
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>web<span class="token punctuation">.</span>bind<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>RestController<span class="token punctuation">;</span> 
+
+<span class="token comment" spellcheck="true">/**
+
+* @author java1234_小锋 
+
+* @site www.java1234.com 
+
+* @company Java知识分享网 
+
+* @create 2021-05-04 14:35 
+
+*/</span>
+
+<span class="token annotation punctuation">@RestController</span> 
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SentinelHelloWorldController</span> <span class="token punctuation">{</span> 
+
+    <span class="token comment" spellcheck="true">/**
+
+    * 注解方式定义资源 
+
+    * @SentinelResource value 资源名称 
+
+    * @SentinelResource blockHandler 调用被限流/降级/系统保护的时候调用的方法 
+
+    * @return 
+
+    */</span> 
+
+    <span class="token annotation punctuation">@SentinelResource</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"helloWorld_springcloud"</span><span class="token punctuation">,</span>blockHandler <span class="token operator">=</span> 
+
+                      <span class="token string">"blockHandlerForHelloWorld3"</span><span class="token punctuation">)</span> 
+
+    <span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">"helloWorld3"</span><span class="token punctuation">)</span> 
+
+    <span class="token keyword">public</span> String <span class="token function">helloWorld3</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span> 
+
+        <span class="token keyword">return</span> "Sentinel 大爷你好！by 注解方式 
+
+            <span class="token annotation punctuation">@SentinelResource</span>"<span class="token operator">+</span>System<span class="token punctuation">.</span><span class="token function">currentTimeMillis</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">/**
+
+    * 原方法调用被限流/降级/系统保护的时候调用 
+
+    * @param ex 
+
+    * @return 
+
+    */</span> 
+
+    <span class="token keyword">public</span> String <span class="token function">blockHandlerForHelloWorld3</span><span class="token punctuation">(</span>BlockException ex<span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+
+        ex<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+        <span class="token keyword">return</span> <span class="token string">"系统繁忙，请稍后！"</span><span class="token punctuation">;</span> 
+
+    <span class="token punctuation">}</span> 
+
+<span class="token punctuation">}</span>
+</code></pre>
+<p><strong>第三步：</strong> application.yml <strong>配置本地项目接入</strong> <strong>Dashboard</strong> <strong>控制台</strong></p>
+<pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">spring</span><span class="token punctuation">:</span> 
+
+    <span class="token key atrule">application</span><span class="token punctuation">:</span> 
+
+        <span class="token key atrule">name</span><span class="token punctuation">:</span> sentinel_springcloud <span class="token comment" spellcheck="true">## 设置应用名称 </span>
+
+    <span class="token key atrule">cloud</span><span class="token punctuation">:</span> 
+
+        <span class="token key atrule">sentinel</span><span class="token punctuation">:</span> 
+
+            <span class="token key atrule">transport</span><span class="token punctuation">:</span> 
+
+                <span class="token key atrule">dashboard</span><span class="token punctuation">:</span> localhost<span class="token punctuation">:</span><span class="token number">8080 </span><span class="token comment" spellcheck="true">## 设置Sentinel连接控制台的主机地址和端口</span>
+</code></pre>
+<p><strong>第四步：</strong> <strong>Sentinel Dashboard</strong> <strong>增加流控规则</strong></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211209205817194.png" alt="image-20211209205817194"></p>
+<p><strong>第五步：测试</strong></p>
+<p>浏览器地址栏输入：<a target="_blank" rel="noopener" href="http://localhost/helloWorld3">http://localhost/helloWorld3</a></p>
+<p>正常显示：</p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211209210201577.png" alt="image-20211209210201577"></p>
+<p>如果频繁访问，则被流控</p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211209210226456.png" alt="image-20211209210226456"></p>
+<h2><span id="5-sentinel-整合-nacos-实现配置持久化"><strong>5 sentinel</strong> <strong>整合</strong> <strong>nacos</strong> <strong>实现配置持久化</strong></span></h2><p>细心的伙伴将会发现，当sentinel重新启动时，sentinel dashboard中原来的数据将会全部消失，这样</p>
+<p>就需要重新定义限流规则，无疑是不可取的。sentinel默认是把配置放内存里的。</p>
+<p>我们可以将sentinel中定义的限流规则保存到Nacos配置中心里面，实现持久化。</p>
+<p>nacos视频教程地址：<a target="_blank" rel="noopener" href="http://www.java1234.vip/course/151">http://www.java1234.vip/course/151</a></p>
+<p>具体实现步骤：</p>
+<h3><span id="1-添加-sentinel-的-nacos-支持"><strong>1</strong> <strong>添加</strong> <strong>sentinel</strong> <strong>的</strong> <strong>nacos</strong> <strong>支持</strong></span></h3><pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span> 
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>com.alibaba.csp<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span> 
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>sentinel-datasource-nacos<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span> 
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span> 
+</code></pre>
+<h3><span id="2-在-nacos-中定义策略"><strong>2</strong> <strong>在</strong> <strong>nacos</strong> <strong>中定义策略</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211209210617155.png" alt="image-20211209210617155"></p>
+<pre class=" language-json"><code class="language-json"><span class="token punctuation">[</span> 
+
+    <span class="token punctuation">{</span> 
+
+        <span class="token property">"resource"</span><span class="token operator">:</span> <span class="token string">"helloWorld_springcloud"</span><span class="token punctuation">,</span> 
+
+        <span class="token property">"limitApp"</span><span class="token operator">:</span> <span class="token string">"default"</span><span class="token punctuation">,</span> 
+
+        <span class="token property">"grade"</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span> 
+
+        <span class="token property">"count"</span><span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span> 
+
+        <span class="token property">"strategy"</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span> 
+
+        <span class="token property">"controlBehavior"</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span> 
+
+        <span class="token property">"clusterMode"</span><span class="token operator">:</span> <span class="token boolean">false</span> 
+
+    <span class="token punctuation">}</span> 
+
+<span class="token punctuation">]</span>
+</code></pre>
+<p>Data Id :和配置中的data_id相对应</p>
+<p>Group:配置文件中的group-id</p>
+<p>配置内容：</p>
+<p>resource：接口名，即限流规则的作用对象</p>
+<p>limitApp：流控针对的调用来源，若为 default 则不区分调用来源</p>
+<p>grade：限流阈值类型（QPS 或并发线程数）；0代表根据并发数量来限流，1代表根据QPS来进行流量</p>
+<p>控制</p>
+<p>count：限流阈值</p>
+<p>strategy：调用关系限流策略（ </p>
+<p>直接、链路、关联 ）</p>
+<p>controlBehavior：流量控制效果（直接拒绝、Warm Up、匀速排队）</p>
+<p>clusterMode：是否为集群模式</p>
+<h3><span id="3-项目配置-sentinel-下面的-datasource-中配置-nacos"><strong>3</strong> <strong>项目配置</strong> <strong>sentinel</strong> <strong>下面的</strong> <strong>dataSource</strong> <strong>中配置</strong> <strong>nacos</strong></span></h3><pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">spring</span><span class="token punctuation">:</span> 
+
+    <span class="token key atrule">application</span><span class="token punctuation">:</span> 
+
+        <span class="token key atrule">name</span><span class="token punctuation">:</span> sentinel_springcloud <span class="token comment" spellcheck="true">## 设置应用名称 </span>
+
+    <span class="token key atrule">cloud</span><span class="token punctuation">:</span> 
+
+        <span class="token key atrule">sentinel</span><span class="token punctuation">:</span> 
+
+            <span class="token key atrule">transport</span><span class="token punctuation">:</span> 
+
+                <span class="token key atrule">dashboard</span><span class="token punctuation">:</span> localhost<span class="token punctuation">:</span><span class="token number">8080 </span><span class="token comment" spellcheck="true">## 设置Sentinel连接控制台的主机地址和端口 </span>
+
+            <span class="token key atrule">datasource</span><span class="token punctuation">:</span> 
+
+                <span class="token key atrule">ds</span><span class="token punctuation">:</span>
+
+                    <span class="token key atrule">nacos</span><span class="token punctuation">:</span> 
+
+                        <span class="token key atrule">server-addr</span><span class="token punctuation">:</span> localhost<span class="token punctuation">:</span><span class="token number">8848 </span><span class="token comment" spellcheck="true">## nacos连接地址 </span>
+
+                        <span class="token key atrule">group-id</span><span class="token punctuation">:</span> DEFAULT_GROUP <span class="token comment" spellcheck="true">## nacos连接的分组 </span>
+
+                        <span class="token key atrule">rule-type</span><span class="token punctuation">:</span> flow <span class="token comment" spellcheck="true">## 流控规则 rule-type 配置表示该数据源中的规则属于哪种类型 </span>
+
+                        的规则(flow，degrade，authority，system<span class="token punctuation">,</span> param<span class="token punctuation">-</span>flow<span class="token punctuation">,</span> gw<span class="token punctuation">-</span>flow<span class="token punctuation">,</span> gw<span class="token punctuation">-</span>api<span class="token punctuation">-</span>group) 
+
+                        <span class="token key atrule">data-id</span><span class="token punctuation">:</span> java1234<span class="token punctuation">-</span>sentinel <span class="token comment" spellcheck="true">## 读取配置文件的 data-id </span>
+
+                        <span class="token key atrule">data-type</span><span class="token punctuation">:</span> json <span class="token comment" spellcheck="true">## 读取培训文件类型为json</span>
+</code></pre>
+<p><strong>4</strong> <strong>测试</strong></p>
+<p>我们启动项目，发现sentinel控制台读取到了nacos里的配置，频繁刷新也能流控；</p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211209211155472.png" alt="image-20211209211155472"></p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">java1234_小锋(CANDY整理)</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://codercandy.github.io/2021/12/07/sentinel-fen-bu-shi-xi-tong-de-liu-liang-zu-jian/">https://codercandy.github.io/2021/12/07/sentinel-fen-bu-shi-xi-tong-de-liu-liang-zu-jian/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">java1234_小锋(CANDY整理)</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E5%90%8E%E7%AB%AF/">
+                                    <span class="chip bg-color">后端</span>
+                                </a>
+                            
+                                <a href="/tags/Sentinel/">
+                                    <span class="chip bg-color">Sentinel</span>
+                                </a>
+                            
+                                <a href="/tags/%E7%BB%84%E4%BB%B6/">
+                                    <span class="chip bg-color">组件</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+    <div class="livere-card card" data-aos="fade-up">
+    <!-- 来必力City版安装代码 -->
+    <div id="lv-container" class="card-content" data-id="city" data-uid="MTAyMC81NDg3My8zMTM0Mg==">
+        <script type="text/javascript">
+            (function (d, s) {
+                let j, e = d.getElementsByTagName(s)[0];
+                if (typeof LivereTower === 'function') {
+                    return;
+                }
+
+                j = d.createElement(s);
+                j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                j.async = true;
+
+                e.parentNode.insertBefore(j, e);
+            })(document, 'script');
+        </script>
+        <noscript>为正常使用来必力评论功能请激活JavaScript。</noscript>
+    </div>
+    <!-- City版安装代码已完成 -->
+</div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2021/12/09/a-li-fen-bu-shi-shi-wu-kuang-jia-seata/">
+                    <div class="card-image">
+                        
+                        <img src="https://camo.githubusercontent.com/1fc3d2550abc4f7faf0b60e9cabe1ab825ebee3a1b3571a190da57b708db0c33/68747470733a2f2f696d672e616c6963646e2e636f6d2f696d6765787472612f69312f4f31434e3031317a304a665132373233516744695775485f2121363030303030303030373733382d322d7470732d313439372d3430312e706e67" class="responsive-img" alt="Seata学习笔记">
+                        
+                        <span class="card-title">Seata学习笔记</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-12-09
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                    学习
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%90%8E%E7%AB%AF/">
+                        <span class="chip bg-color">后端</span>
+                    </a>
+                    
+                    <a href="/tags/Seata/">
+                        <span class="chip bg-color">Seata</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/">
+                        <span class="chip bg-color">分布式事务</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/12/07/wei-fu-wu-wang-guan-gateway/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="Gateway学习笔记">
+                        
+                        <span class="card-title">Gateway学习笔记</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-12-07
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                    学习
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%90%8E%E7%AB%AF/">
+                        <span class="chip bg-color">后端</span>
+                    </a>
+                    
+                    <a href="/tags/Gateway/">
+                        <span class="chip bg-color">Gateway</span>
+                    </a>
+                    
+                    <a href="/tags/%E7%BD%91%E5%85%B3/">
+                        <span class="chip bg-color">网关</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('10')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE' || selection.getRangeAt(0).commonAncestorContainer.nodeName === 'CODE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: 梓妤<br />'
+            + '文章作者: Candy liu<br />'
+            + '文章链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="/libs/aplayer/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2021-2023</span>
+            
+            <a href="/about" target="_blank">Candy liu</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+                <span id="sitetime"> Loading ...</span>
+                <script>
+                    var calcSiteTime = function () {
+                        var seconds = 1000;
+                        var minutes = seconds * 60;
+                        var hours = minutes * 60;
+                        var days = hours * 24;
+                        var years = days * 365;
+                        var today = new Date();
+                        var startYear = "2021";
+                        var startMonth = "12";
+                        var startDate = "5";
+                        var startHour = "22";
+                        var startMinute = "49";
+                        var startSecond = "0";
+                        var todayYear = today.getFullYear();
+                        var todayMonth = today.getMonth() + 1;
+                        var todayDate = today.getDate();
+                        var todayHour = today.getHours();
+                        var todayMinute = today.getMinutes();
+                        var todaySecond = today.getSeconds();
+                        var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                        var diff = t2 - t1;
+                        var diffYears = Math.floor(diff / years);
+                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+
+                        // 区分是否有年份.
+                        var language = 'zh-CN';
+                        if (startYear === String(todayYear)) {
+                            document.getElementById("year").innerHTML = todayYear;
+                            var daysTip = 'This site has been running for ' + diffDays + ' days';
+                            if (language === 'zh-CN') {
+                                daysTip = '本站已运行 ' + diffDays + ' 天';
+                            } else if (language === 'zh-HK') {
+                                daysTip = '本站已運行 ' + diffDays + ' 天';
+                            }
+                            document.getElementById("sitetime").innerHTML = daysTip;
+                        } else {
+                            document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                            var yearsAndDaysTip = 'This site has been running for ' + diffYears + ' years and '
+                                + diffDays + ' days';
+                            if (language === 'zh-CN') {
+                                yearsAndDaysTip = '本站已运行 ' + diffYears + ' 年 ' + diffDays + ' 天';
+                            } else if (language === 'zh-HK') {
+                                yearsAndDaysTip = '本站已運行 ' + diffYears + ' 年 ' + diffDays + ' 天';
+                            }
+                            document.getElementById("sitetime").innerHTML = yearsAndDaysTip;
+                        }
+                    }
+
+                    calcSiteTime();
+                </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+<a href="https://gitee.com/CandyLoveYL" class="tooltipped" target="_blank" data-tooltip="访问我的gitee" data-position="top" data-delay="50">
+	<i class="fab fa-github"></i>
+</a>
+<a href="mailto:595487347@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+	<i class="fas fa-envelope-open"></i>
+</a>
+<a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=595487347" class="tooltipped" target="_blank" data-tooltip="QQ联系我:595487347" data-position="top" data-delay="50">
+	<i class="fab fa-qq"></i>
+</a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+
+    <!-- 雪花特效 -->
+     
+        <script type="text/javascript">
+            // 只在桌面版网页启用特效
+            var windowWidth = $(window).width();
+            if (windowWidth > 768) {
+                document.write('<script type="text/javascript" src="/libs/others/snow.js"><\/script>');
+            }
+        </script>
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

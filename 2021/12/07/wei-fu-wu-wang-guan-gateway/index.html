@@ -1,0 +1,1944 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Gateway学习笔记, Java,Flink,高级项目管理,Electron.js等">
+    <meta name="description" content="微服务网关Gateway
+1.Gateway简介1.1 API网关介绍网关的角色是作为一个 API 架构，用来保护、增强和控制对于 API 服务的访问。
+API 网关是一个处于应用程序或服务（提供 REST API 接口服务）之前的系统，用">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="referrer" content="no-referrer" />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>Gateway学习笔记 | 梓妤</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="梓妤" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">梓妤</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">梓妤</div>
+        <div class="logo-desc">
+            
+            一个不懂生活的程序猿
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Gateway学习笔记</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E5%90%8E%E7%AB%AF/">
+                                <span class="chip bg-color">后端</span>
+                            </a>
+                        
+                            <a href="/tags/Gateway/">
+                                <span class="chip bg-color">Gateway</span>
+                            </a>
+                        
+                            <a href="/tags/%E7%BD%91%E5%85%B3/">
+                                <span class="chip bg-color">网关</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                学习
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2021-12-07
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2021-12-14
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    3.3k
+                </div>
+                
+
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p><strong>微服务网关Gateway</strong></p>
+<h2><span id="1gateway简介"><strong>1.Gateway简介</strong></span></h2><h3><span id="11-api网关介绍"><strong>1.1 API网关介绍</strong></span></h3><p>网关的角色是作为一个 API 架构，用来保护、增强和控制对于 API 服务的访问。</p>
+<p>API 网关是一个处于应用程序或服务（提供 REST API 接口服务）之前的系统，用来管理授权、访问控制和流量限制等，这样 REST API 接口服务就被 API 网关保护起来，对所有的调用者透明。因此，隐藏在API 网关后面的业务系统就可以专注于创建和管理服务，而不用去处理这些策略性的基础设施。</p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211207184503468.png" alt="image-20211207184503468"></p>
+<h3><span id="12-api网关作用"><strong>1.2 API网关作用</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211207184832889.png" alt="image-20211207184832889"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211207184905615.png" alt="image-20211207184905615"></p>
+<h3><span id="13-api网关开源实现"><strong>1.3 API网关开源实现</strong></span></h3><p>用于实现API网关的技术有很多，大致分为这么几类：</p>
+<p>通用反向代理：Nginx、Haproxy、……</p>
+<p>网络编程框架：Netty、Servlet、……</p>
+<p>API网关框架：Spring Cloud Gateway、Zuul、Zuul2、……</p>
+<h3><span id="14-gateway网关介绍"><strong>1.4 Gateway网关介绍</strong></span></h3><p><a target="_blank" rel="noopener" href="https://spring.io/projects/spring-cloud-gateway">https://spring.io/projects/spring-cloud-gateway</a></p>
+<p>Spring Cloud Gateway是Spring官方基于Spring 5.0，Spring Boot 2.0和Project Reactor等技术开发的网关，Spring Cloud Gateway旨在为微服务架构提供一种简单而有效的统一的API路由管理方式。</p>
+<p>Spring Cloud Gateway作为Spring Cloud生态系中的网关，目标是替代ZUUL，其不仅提供统一的路由方式，并且基于Filter链的方式提供了网关基本的功能，例如：安全，监控/埋点，和限流等。</p>
+<p>spring Cloud Gateway 可以看做是一个 Zuul 1.x 的升级版和代替品，比 Zuul 2 更早的使用 Netty 实现异步 IO，从而实现了一个简单、比 Zuul 1.x 更高效的、与 Spring Cloud 紧密配合的 API 网关。</p>
+<p>Spring Cloud Gateway 里明确的区分了 Router 和 Filter，并且一个很大的特点是内置了非常多的开箱即用功能，并且都可以通过 SpringBoot 配置或者手工编码链式调用来使用。</p>
+<p>比如内置了 10 种 Router，使得我们可以直接配置一下就可以随心所欲的根据 Header、或者 Path、或者 Host、或者 Query 来做路由。比如区分了一般的 Filter 和全局 Filter，内置了 20 种 Filter 和 9 种全局 Filter，也都可以直接用。当然自定义 Filter 也非常方便。</p>
+<p><strong>gateway特性：</strong></p>
+<ul>
+<li>基于SpringFramework5，ProjectReactor和SpringBoot2.0进行构建</li>
+<li>能够匹配任何任何请求属性</li>
+<li>可以对路由指定Predicates和Filters集成断路器</li>
+<li>集成Spring Cloud服务发现</li>
+<li>易于编写的Predicates和Filters</li>
+<li>支持请求限流</li>
+<li>支持路径重写</li>
+</ul>
+<p>官网文档：</p>
+<p><a target="_blank" rel="noopener" href="https://docs.spring.io/spring-cloud-gateway/docs/2.2.7.RELEASE/reference/html/">https://docs.spring.io/spring-cloud-gateway/docs/2.2.7.RELEASE/reference/html/</a></p>
+<h2><span id="2gateway工作原理"><strong>2.Gateway工作原理</strong></span></h2><p>下图从总体上概述了Spring Cloud Gateway的工作方式：</p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211207185219169.png" alt="image-20211207185219169"></p>
+<p>客户端向Spring Cloud Gateway发出请求。如果网关处理程序映射确定请求与路由匹配，则将其发送到网关Web处理程序。该处理程序通过特定于请求的过滤器链来运行请求。筛选器由虚线分隔的原因是，筛选器可以在发送代理请求之前和之后都运行逻辑。所有“前置”过滤器逻辑均被执行。然后发出代理请求。发出代理请求后，将运行“后”过滤器逻辑。</p>
+<p><strong>三个概念：</strong></p>
+<p>路由：路由是构建网关的基本模块，它由ID，目标URI，一系列的断言Predicates和过滤器Filters组成，如果断言为true，则匹配该路由。</p>
+<p>断言：参考Java8的java.util.function.Predicate，开发人员可以匹配HTTP请求中的所有内容，例如请求头或请求参数，如果请求与断言相匹配则进行路由。</p>
+<p>过滤：Spring框架中GatewayFilter的实例，使用过滤器，可以载请求被路由前或者后对请求进行修改。</p>
+<h2><span id="3gateway-helloworld快速入门"><strong>3.Gateway HelloWorld快速入门</strong></span></h2><p>我们搞两个服务，分别是product产品服务项目，以及order订单服务项目，我们搞个小案例，搞一个网关，统一对path请求地址进行管理；</p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211207185340253.png" alt="image-20211207185340253"></p>
+<p>gateway依赖：</p>
+<pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span> 
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.cloud<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span> 
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-cloud-starter-gateway<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span> 
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span> 
+</code></pre>
+<p>application.yml配置：</p>
+<pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">server</span><span class="token punctuation">:</span>
+
+    <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">80 </span>
+
+    <span class="token key atrule">servlet</span><span class="token punctuation">:</span> 
+
+        <span class="token key atrule">context-path</span><span class="token punctuation">:</span> / 
+
+<span class="token key atrule">spring</span><span class="token punctuation">:</span> 
+
+    <span class="token key atrule">application</span><span class="token punctuation">:</span> 
+
+        <span class="token key atrule">name</span><span class="token punctuation">:</span> gateway<span class="token punctuation">-</span>server 
+
+    <span class="token key atrule">cloud</span><span class="token punctuation">:</span> 
+
+        <span class="token key atrule">gateway</span><span class="token punctuation">:</span> 
+
+            <span class="token key atrule">routes</span><span class="token punctuation">:</span> <span class="token comment" spellcheck="true">## 路由规则定义 </span>
+
+                <span class="token punctuation">-</span> <span class="token key atrule">id</span><span class="token punctuation">:</span> product<span class="token punctuation">-</span>service <span class="token comment" spellcheck="true">## 路由ID </span>
+
+                <span class="token key atrule">uri</span><span class="token punctuation">:</span> http<span class="token punctuation">:</span>//localhost<span class="token punctuation">:</span>8080/ <span class="token comment" spellcheck="true">## 路由地址 </span>
+
+                <span class="token key atrule">predicates</span><span class="token punctuation">:</span> <span class="token comment" spellcheck="true">## 断言规则 </span>
+
+                <span class="token punctuation">-</span> Path=/product/** 
+                
+
+                <span class="token punctuation">-</span> <span class="token key atrule">id</span><span class="token punctuation">:</span> order<span class="token punctuation">-</span>service <span class="token comment" spellcheck="true">## 路由ID </span>
+
+                <span class="token key atrule">uri</span><span class="token punctuation">:</span> http<span class="token punctuation">:</span>//localhost<span class="token punctuation">:</span>8081/ <span class="token comment" spellcheck="true">## 路由地址 </span>
+
+                <span class="token key atrule">predicates</span><span class="token punctuation">:</span> <span class="token comment" spellcheck="true">## 断言规则 </span>
+
+                <span class="token punctuation">-</span> Path=/order/**
+</code></pre>
+<h2><span id="4gateway路由规则"><strong>4.Gateway路由规则</strong></span></h2><h3><span id="41-路由断言工厂"><strong>4.1</strong> <strong>路由断言工厂</strong></span></h3><p> Spring Cloud Gateway将路由作为Spring WebFlux HandlerMapping 基础架构的一部分进行匹配。Spring Cloud Gateway包括许多内置的路由断言工厂。所有这些断言都与HTTP请求的不同属性匹配。您可以将多个路由断言工厂与逻辑 and 语句结合使用。</p>
+<p> 路由断言工厂RoutePredicateFactory包含的主要实现类如图所示，包含Datetime、Cookie、Header、Host、Method、Path、Query、RemoteAddr、Weight等类型的路由断言。</p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211207185908571.png" alt="image-20211207185908571"></p>
+<h3><span id="42-日期时间路由匹配规则"><strong>4.2</strong> <strong>日期时间路由匹配规则</strong></span></h3><p>匹配指定日期时间之后的请求 After</p>
+<pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">spring</span><span class="token punctuation">:</span> 
+
+    <span class="token key atrule">application</span><span class="token punctuation">:</span> 
+
+        <span class="token key atrule">name</span><span class="token punctuation">:</span> gateway<span class="token punctuation">-</span>server 
+
+    <span class="token key atrule">cloud</span><span class="token punctuation">:</span> 
+
+        <span class="token key atrule">gateway</span><span class="token punctuation">:</span> 
+
+            <span class="token key atrule">routes</span><span class="token punctuation">:</span> 
+
+                <span class="token punctuation">-</span> <span class="token key atrule">id</span><span class="token punctuation">:</span> after_route 
+
+                <span class="token key atrule">uri</span><span class="token punctuation">:</span> http<span class="token punctuation">:</span>//localhost<span class="token punctuation">:</span>8080/ 
+
+                <span class="token key atrule">predicates</span><span class="token punctuation">:</span> 
+
+                    <span class="token punctuation">-</span> After=2021<span class="token punctuation">-</span>04<span class="token punctuation">-</span>20T06<span class="token punctuation">:</span>06<span class="token punctuation">:</span>06+08<span class="token punctuation">:</span>00<span class="token punctuation">[</span>Asia/Shanghai<span class="token punctuation">]</span> 
+</code></pre>
+<p>匹配指定日期时间之前的请求 Before</p>
+<pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">spring</span><span class="token punctuation">:</span> 
+
+    <span class="token key atrule">application</span><span class="token punctuation">:</span> 
+
+        <span class="token key atrule">name</span><span class="token punctuation">:</span> gateway<span class="token punctuation">-</span>server 
+
+    <span class="token key atrule">cloud</span><span class="token punctuation">:</span> 
+
+        <span class="token key atrule">gateway</span><span class="token punctuation">:</span> 
+
+            <span class="token key atrule">routes</span><span class="token punctuation">:</span> 
+
+                <span class="token punctuation">-</span> <span class="token key atrule">id</span><span class="token punctuation">:</span> before_route 
+
+                <span class="token key atrule">uri</span><span class="token punctuation">:</span> http<span class="token punctuation">:</span>//localhost<span class="token punctuation">:</span>8080/ 
+
+                <span class="token key atrule">predicates</span><span class="token punctuation">:</span> 
+
+                    <span class="token punctuation">-</span> Before=2021<span class="token punctuation">-</span>04<span class="token punctuation">-</span>20T06<span class="token punctuation">:</span>06<span class="token punctuation">:</span>06+08<span class="token punctuation">:</span>00<span class="token punctuation">[</span>Asia/Shanghai<span class="token punctuation">]</span> 
+</code></pre>
+<p>匹配指定日期时间之间的请求 Between</p>
+<pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">spring</span><span class="token punctuation">:</span> 
+
+    <span class="token key atrule">application</span><span class="token punctuation">:</span> 
+
+        <span class="token key atrule">name</span><span class="token punctuation">:</span> gateway<span class="token punctuation">-</span>server 
+
+    <span class="token key atrule">cloud</span><span class="token punctuation">:</span> 
+
+        <span class="token key atrule">gateway</span><span class="token punctuation">:</span> 
+
+            <span class="token key atrule">routes</span><span class="token punctuation">:</span> 
+
+                <span class="token punctuation">-</span> <span class="token key atrule">id</span><span class="token punctuation">:</span> betwwen_route 
+
+                <span class="token key atrule">uri</span><span class="token punctuation">:</span> http<span class="token punctuation">:</span>//localhost<span class="token punctuation">:</span>8080/ 
+
+                <span class="token key atrule">predicates</span><span class="token punctuation">:</span> 
+
+                    <span class="token punctuation">-</span> Between=2021<span class="token punctuation">-</span>01<span class="token punctuation">-</span>20T06<span class="token punctuation">:</span>06<span class="token punctuation">:</span>06+08<span class="token punctuation">:</span>00<span class="token punctuation">[</span>Asia/Shanghai<span class="token punctuation">]</span><span class="token punctuation">,</span>2021<span class="token punctuation">-</span>04<span class="token punctuation">-</span> 
+
+                20T06<span class="token punctuation">:</span>06<span class="token punctuation">:</span>06+08<span class="token punctuation">:</span>00<span class="token punctuation">[</span>Asia/Shanghai<span class="token punctuation">]</span>
+</code></pre>
+<h3><span id="43-cookie路由匹配规则"><strong>4.3 Cookie路由匹配规则</strong></span></h3><p>所述Cookie路由断言工厂采用两个参数，该cookiename和regexp（其是Java正则表达式）。该断言匹配具有给定名称且其值与正则表达式匹配的cookie。以下示例配置cookie路由断言工厂：</p>
+<pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">spring</span><span class="token punctuation">:</span> 
+
+    <span class="token key atrule">application</span><span class="token punctuation">:</span> 
+
+        <span class="token key atrule">name</span><span class="token punctuation">:</span> gateway<span class="token punctuation">-</span>server 
+
+    <span class="token key atrule">cloud</span><span class="token punctuation">:</span> 
+
+        <span class="token key atrule">gateway</span><span class="token punctuation">:</span> 
+
+            <span class="token key atrule">routes</span><span class="token punctuation">:</span> 
+
+                <span class="token punctuation">-</span> <span class="token key atrule">id</span><span class="token punctuation">:</span> cookie_route 
+
+                <span class="token key atrule">uri</span><span class="token punctuation">:</span> http<span class="token punctuation">:</span>//localhost<span class="token punctuation">:</span>8080/ 
+
+                <span class="token key atrule">predicates</span><span class="token punctuation">:</span> 
+
+                    <span class="token punctuation">-</span> Cookie=token<span class="token punctuation">,</span> \d+ 
+</code></pre>
+<h3><span id="44-header路由匹配规则"><strong>4.4 Header路由匹配规则</strong></span></h3><p>所述 Header ；路由断言工厂采用两个参数，报头 name 和一个 regexp （其是Java正则表达式）。该断言与具有给定名称的头信息匹配，该标头的值与正则表达式匹配。以下示例配置Header路由断言：</p>
+<pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">spring</span><span class="token punctuation">:</span> 
+
+    <span class="token key atrule">application</span><span class="token punctuation">:</span> 
+
+        <span class="token key atrule">name</span><span class="token punctuation">:</span> gateway<span class="token punctuation">-</span>server 
+
+    <span class="token key atrule">cloud</span><span class="token punctuation">:</span> 
+
+        <span class="token key atrule">gateway</span><span class="token punctuation">:</span> 
+
+            <span class="token key atrule">routes</span><span class="token punctuation">:</span> 
+
+                <span class="token punctuation">-</span> <span class="token key atrule">id</span><span class="token punctuation">:</span> header_route 
+
+                <span class="token key atrule">uri</span><span class="token punctuation">:</span> http<span class="token punctuation">:</span>//localhost<span class="token punctuation">:</span>8080/ 
+
+                <span class="token key atrule">predicates</span><span class="token punctuation">:</span> 
+
+                    <span class="token punctuation">-</span> Header=X<span class="token punctuation">-</span>Request<span class="token punctuation">-</span>Id<span class="token punctuation">,</span> \d+ 
+</code></pre>
+<h3><span id="45-host路由匹配规则"><strong>4.5 Host路由匹配规则</strong></span></h3><p>该 Host 路由断言工厂需要一个参数：主机名的列表 patterns 。该模式是带有.分隔符的Ant样式的模式。断言与 Host 匹配模式的标头匹配。以下示例配置主机路由断言：</p>
+<pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">spring</span><span class="token punctuation">:</span> 
+
+    <span class="token key atrule">application</span><span class="token punctuation">:</span> 
+
+        <span class="token key atrule">name</span><span class="token punctuation">:</span> gateway<span class="token punctuation">-</span>server 
+
+    <span class="token key atrule">cloud</span><span class="token punctuation">:</span> 
+
+        <span class="token key atrule">gateway</span><span class="token punctuation">:</span> 
+
+            <span class="token key atrule">routes</span><span class="token punctuation">:</span> 
+
+                <span class="token punctuation">-</span> <span class="token key atrule">id</span><span class="token punctuation">:</span> host_route 
+
+                <span class="token key atrule">uri</span><span class="token punctuation">:</span> http<span class="token punctuation">:</span>//localhost<span class="token punctuation">:</span>8080/ 
+
+                <span class="token key atrule">predicates</span><span class="token punctuation">:</span> 
+
+                       <span class="token punctuation">-</span> Host=**.somehost.org<span class="token punctuation">,</span>**.anotherhost.org
+</code></pre>
+<h3><span id="46-method路由匹配规则"><strong>4.6 Method路由匹配规则</strong></span></h3><p>所述 Method 路由断言厂需要 methods 的参数，它是一个或多个参数：HTTP方法来匹配。以下示例配置方法路由断言：</p>
+<pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">spring</span><span class="token punctuation">:</span> 
+
+    <span class="token key atrule">application</span><span class="token punctuation">:</span> 
+
+        <span class="token key atrule">name</span><span class="token punctuation">:</span> gateway<span class="token punctuation">-</span>server 
+
+    <span class="token key atrule">cloud</span><span class="token punctuation">:</span> 
+
+        <span class="token key atrule">gateway</span><span class="token punctuation">:</span> 
+
+            <span class="token key atrule">routes</span><span class="token punctuation">:</span> 
+
+                <span class="token punctuation">-</span> <span class="token key atrule">id</span><span class="token punctuation">:</span> method_route 
+
+                <span class="token key atrule">uri</span><span class="token punctuation">:</span> http<span class="token punctuation">:</span>//localhost<span class="token punctuation">:</span>8080/ 
+
+                <span class="token key atrule">predicates</span><span class="token punctuation">:</span> 
+
+                    <span class="token punctuation">-</span> Method=GET<span class="token punctuation">,</span>POST 
+</code></pre>
+<h3><span id="47-path路由匹配规则"><strong>4.7 Path路由匹配规则</strong></span></h3><p>该 Path 路由断言厂有两个参数：春天的列表 PathMatcher patterns 和一个可选的标志叫matchOptionalTrailingSeparator 。以下示例配置路径路由断言：</p>
+<pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">spring</span><span class="token punctuation">:</span> 
+
+    <span class="token key atrule">application</span><span class="token punctuation">:</span> 
+
+        <span class="token key atrule">name</span><span class="token punctuation">:</span> gateway<span class="token punctuation">-</span>server 
+
+    <span class="token key atrule">cloud</span><span class="token punctuation">:</span> 
+
+        <span class="token key atrule">gateway</span><span class="token punctuation">:</span> 
+
+            <span class="token key atrule">routes</span><span class="token punctuation">:</span> 
+
+                <span class="token punctuation">-</span> <span class="token key atrule">id</span><span class="token punctuation">:</span> path_route 
+
+                <span class="token key atrule">uri</span><span class="token punctuation">:</span> http<span class="token punctuation">:</span>//localhost<span class="token punctuation">:</span>8080/ 
+
+                <span class="token key atrule">predicates</span><span class="token punctuation">:</span> 
+
+                    <span class="token punctuation">-</span> Path=/product/<span class="token punctuation">{</span>segment<span class="token punctuation">}</span> 
+</code></pre>
+<h3><span id="48-query路由匹配规则"><strong>4.8 Query路由匹配规则</strong></span></h3><p>所述 Query 路由断言工厂采用两个参数：所要求的 param 和可选的 regexp （其是Java正则表达式）。</p>
+<p>以下示例配置查询路由断言：</p>
+<pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">spring</span><span class="token punctuation">:</span> 
+
+    <span class="token key atrule">application</span><span class="token punctuation">:</span> 
+
+        <span class="token key atrule">name</span><span class="token punctuation">:</span> gateway<span class="token punctuation">-</span>server 
+
+    <span class="token key atrule">cloud</span><span class="token punctuation">:</span> 
+
+        <span class="token key atrule">gateway</span><span class="token punctuation">:</span> 
+
+            <span class="token key atrule">routes</span><span class="token punctuation">:</span> 
+
+                <span class="token punctuation">-</span> <span class="token key atrule">id</span><span class="token punctuation">:</span> query_route 
+
+                <span class="token key atrule">uri</span><span class="token punctuation">:</span> http<span class="token punctuation">:</span>//localhost<span class="token punctuation">:</span>8080/ 
+
+                <span class="token key atrule">predicates</span><span class="token punctuation">:</span> 
+
+                    <span class="token punctuation">-</span> Query=green
+</code></pre>
+<p>如果请求包含 green 查询参数，则前面的路由匹配。</p>
+<h3><span id="49-remoteaddr路由匹配规则"><strong>4.9 RemoteAddr路由匹配规则</strong></span></h3><p>所述 RemoteAddr 路由断言工厂需要的列表（分钟尺寸1） sources ，其是CIDR的表示法（IPv4或IPv6）的字符串，如 192.168.0.1/16 （其中 192.168.0.1 是一个IP地址和 16 一个子网掩码）。下面的示例配置RemoteAddr路由断言：</p>
+<pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">spring</span><span class="token punctuation">:</span> 
+
+    <span class="token key atrule">cloud</span><span class="token punctuation">:</span> 
+
+    <span class="token key atrule">gateway</span><span class="token punctuation">:</span> 
+
+        <span class="token key atrule">routes</span><span class="token punctuation">:</span> 
+
+            <span class="token punctuation">-</span> <span class="token key atrule">id</span><span class="token punctuation">:</span> remoteaddr_route 
+
+            <span class="token key atrule">uri</span><span class="token punctuation">:</span> https<span class="token punctuation">:</span>//example.org 
+
+            <span class="token key atrule">predicates</span><span class="token punctuation">:</span> 
+
+                <span class="token punctuation">-</span> RemoteAddr=192.168.1.1/24 
+
+</code></pre>
+<p>如果请求的远程地址为上面配置，则此路由匹配192.168.1.10。</p>
+<h3><span id="410-weight路由匹配规则"><strong>4.10 Weight****路由匹配规则</strong></span></h3><p>该 Weight 路由断言工厂有两个参数： group 和 weight （一个int）。权重是按组计算的。以下示例配置权重路由断言：</p>
+<pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">spring</span><span class="token punctuation">:</span> 
+
+    <span class="token key atrule">cloud</span><span class="token punctuation">:</span> 
+
+        <span class="token key atrule">gateway</span><span class="token punctuation">:</span> 
+
+            <span class="token key atrule">routes</span><span class="token punctuation">:</span> 
+
+            <span class="token punctuation">-</span> <span class="token key atrule">id</span><span class="token punctuation">:</span> weight_high 
+
+            <span class="token key atrule">uri</span><span class="token punctuation">:</span> https<span class="token punctuation">:</span>//weighthigh.org 
+
+            <span class="token key atrule">predicates</span><span class="token punctuation">:</span> 
+
+                <span class="token punctuation">-</span> Weight=group1<span class="token punctuation">,</span> <span class="token number">8 </span>
+
+            <span class="token punctuation">-</span> <span class="token key atrule">id</span><span class="token punctuation">:</span> weight_low 
+
+            <span class="token key atrule">uri</span><span class="token punctuation">:</span> https<span class="token punctuation">:</span>//weightlow.org 
+
+            <span class="token key atrule">predicates</span><span class="token punctuation">:</span> 
+
+                <span class="token punctuation">-</span> Weight=group1<span class="token punctuation">,</span> <span class="token number">2</span>
+</code></pre>
+<p>这条路线会将大约80％的流量转发到weighthigh.org，将大约20％的流量转发到weightlow.org。</p>
+<h2><span id="5gateway过滤器"><strong>5.Gateway过滤器</strong></span></h2><p>Gateway分为Pre类型的过滤器和Post类型的过滤器。</p>
+<ul>
+<li>Pre类型的过滤器在请求转发到后端微服务之前执行，在Pre类型过滤器链中可以做鉴权、限流等操作。</li>
+<li>Post类型的过滤器在请求执行完成之后、将结果返回给客户端之前执行。</li>
+</ul>
+<p>在Spring Cloud Gateway中内置了很多Filter，Filter有两种实现，分别是GatewayFilter和GlobalFilter。GlobalFilter全局过滤器会应用到所有的路由上，而GatewayFilter只会应用到单个路由或者一个分组的路由上。</p>
+<h3><span id="51-gateway过滤器工厂介绍"><strong>5.1 Gateway过滤器工厂介绍</strong></span></h3><p>过滤器 有 20 多个 实现 类， 包括 头部 过滤器、 路径 类 过滤器、 Hystrix 过滤器 和 变更 请求 URL 的过滤器， </p>
+<p>还有 参数 和 状态 码 等 其他 类型 的 过滤器。</p>
+<p>内置的过滤器工厂有22个实现类，包括 头部过滤器、路径过滤器、Hystrix 过滤器 、请求URL 变更过滤器，还有参数和状态码等其他类型的过滤器。根据过滤器工厂的用途来划分，可以分为以下几种：</p>
+<p>Header、Parameter、Path、Body、Status、Session、Redirect、Retry、RateLimiter和Hystrix</p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211207193337412.png" alt="image-20211207193337412"></p>
+<h3><span id="52-addrequestparameter-gatewayfilter-factory"><strong>5.2 AddRequestParameter GatewayFilter Factory</strong></span></h3><pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">spring</span><span class="token punctuation">:</span> 
+
+    <span class="token key atrule">application</span><span class="token punctuation">:</span> 
+
+        <span class="token key atrule">name</span><span class="token punctuation">:</span> gateway<span class="token punctuation">-</span>server 
+
+    <span class="token key atrule">cloud</span><span class="token punctuation">:</span> 
+
+        <span class="token key atrule">gateway</span><span class="token punctuation">:</span> 
+
+            <span class="token key atrule">routes</span><span class="token punctuation">:</span> 
+
+                <span class="token punctuation">-</span> <span class="token key atrule">id</span><span class="token punctuation">:</span> add_request_parameter_route 
+
+                <span class="token key atrule">uri</span><span class="token punctuation">:</span> http<span class="token punctuation">:</span>//localhost<span class="token punctuation">:</span>8080/ 
+
+                <span class="token key atrule">predicates</span><span class="token punctuation">:</span> 
+
+                    <span class="token punctuation">-</span> Path=/product/** 
+
+                <span class="token key atrule">filters</span><span class="token punctuation">:</span> 
+
+                    <span class="token punctuation">-</span> AddRequestParameter=info<span class="token punctuation">,</span> hehe
+</code></pre>
+<p>添加请求参数（属于前置过滤网关）</p>
+<h3><span id="53-rewritepath-gatewayfilter-factory"><strong>5.3 RewritePath GatewayFilter Factory</strong></span></h3><pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">spring</span><span class="token punctuation">:</span> 
+
+    <span class="token key atrule">application</span><span class="token punctuation">:</span> 
+
+        <span class="token key atrule">name</span><span class="token punctuation">:</span> gateway<span class="token punctuation">-</span>server 
+
+    <span class="token key atrule">cloud</span><span class="token punctuation">:</span> 
+
+        <span class="token key atrule">gateway</span><span class="token punctuation">:</span> 
+
+            <span class="token key atrule">routes</span><span class="token punctuation">:</span> 
+
+                <span class="token punctuation">-</span> <span class="token key atrule">id</span><span class="token punctuation">:</span> add_request_parameter_route 
+
+                <span class="token key atrule">uri</span><span class="token punctuation">:</span> http<span class="token punctuation">:</span>//localhost<span class="token punctuation">:</span>8080/ 
+
+                <span class="token key atrule">predicates</span><span class="token punctuation">:</span> 
+
+                    <span class="token punctuation">-</span> Path=/product/**<span class="token punctuation">,</span> /api<span class="token punctuation">-</span>gateway/** 
+
+                <span class="token key atrule">filters</span><span class="token punctuation">:</span> 
+
+                    <span class="token punctuation">-</span> AddRequestParameter=info<span class="token punctuation">,</span> hehe 
+
+                    <span class="token punctuation">-</span> RewritePath=/api<span class="token punctuation">-</span>gateway(<span class="token punctuation">?</span>&lt;segment<span class="token punctuation">></span>/<span class="token punctuation">?</span>.*)<span class="token punctuation">,</span> $\<span class="token punctuation">{</span>segment<span class="token punctuation">}</span> 
+</code></pre>
+<p>将/api-gateway/product/请求重写成/product/请求（属于前置过滤网关）</p>
+<h3><span id="54-setstatus-gatewayfilter-factory"><strong>5.4 SetStatus GatewayFilter Factory</strong></span></h3><pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">spring</span><span class="token punctuation">:</span> 
+
+    <span class="token key atrule">application</span><span class="token punctuation">:</span> 
+
+        <span class="token key atrule">name</span><span class="token punctuation">:</span> gateway<span class="token punctuation">-</span>server 
+
+    <span class="token key atrule">cloud</span><span class="token punctuation">:</span> 
+
+        <span class="token key atrule">gateway</span><span class="token punctuation">:</span> 
+
+            <span class="token key atrule">routes</span><span class="token punctuation">:</span> 
+
+                <span class="token punctuation">-</span> <span class="token key atrule">id</span><span class="token punctuation">:</span> add_request_parameter_route 
+
+                <span class="token key atrule">uri</span><span class="token punctuation">:</span> http<span class="token punctuation">:</span>//localhost<span class="token punctuation">:</span>8080/ 
+
+                <span class="token key atrule">predicates</span><span class="token punctuation">:</span> 
+
+                    <span class="token punctuation">-</span> Path=/product/**<span class="token punctuation">,</span> /api<span class="token punctuation">-</span>gateway/** 
+
+                <span class="token key atrule">filters</span><span class="token punctuation">:</span> 
+
+                    <span class="token punctuation">-</span> AddRequestParameter=info<span class="token punctuation">,</span> hehe 
+
+                    <span class="token punctuation">-</span> RewritePath=/api<span class="token punctuation">-</span>gateway(<span class="token punctuation">?</span>&lt;segment<span class="token punctuation">></span>/<span class="token punctuation">?</span>.*)<span class="token punctuation">,</span> $\<span class="token punctuation">{</span>segment<span class="token punctuation">}</span> 
+
+                    <span class="token punctuation">-</span> SetStatus=456 
+
+</code></pre>
+<p>无论哪种情况，响应的HTTP状态都设置为456（属于后置过滤网关）</p>
+<h3><span id="55-addresponseheader-gatewayfilter-factory"><strong>5.5 AddResponseHeader GatewayFilter Factory</strong></span></h3><pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">spring</span><span class="token punctuation">:</span> 
+
+    <span class="token key atrule">application</span><span class="token punctuation">:</span> 
+
+        <span class="token key atrule">name</span><span class="token punctuation">:</span> gateway<span class="token punctuation">-</span>server 
+
+    <span class="token key atrule">cloud</span><span class="token punctuation">:</span> 
+
+        <span class="token key atrule">gateway</span><span class="token punctuation">:</span> 
+
+            <span class="token key atrule">routes</span><span class="token punctuation">:</span> 
+
+                <span class="token punctuation">-</span> <span class="token key atrule">id</span><span class="token punctuation">:</span> add_request_parameter_route 
+
+                <span class="token key atrule">uri</span><span class="token punctuation">:</span> http<span class="token punctuation">:</span>//localhost<span class="token punctuation">:</span>8080/ 
+
+                <span class="token key atrule">predicates</span><span class="token punctuation">:</span> 
+
+                    <span class="token punctuation">-</span> Path=/product/**<span class="token punctuation">,</span> /api<span class="token punctuation">-</span>gateway/** 
+
+                <span class="token key atrule">filters</span><span class="token punctuation">:</span> 
+
+                    <span class="token punctuation">-</span> AddRequestParameter=info<span class="token punctuation">,</span> hehe 
+
+                    <span class="token punctuation">-</span> RewritePath=/api<span class="token punctuation">-</span>gateway(<span class="token punctuation">?</span>&lt;segment<span class="token punctuation">></span>/<span class="token punctuation">?</span>.*)<span class="token punctuation">,</span> $\<span class="token punctuation">{</span>segment<span class="token punctuation">}</span> 
+
+                    <span class="token punctuation">-</span> SetStatus=456
+
+                    <span class="token punctuation">-</span> AddResponseHeader=X<span class="token punctuation">-</span>Response<span class="token punctuation">-</span>Author<span class="token punctuation">,</span> java1234
+</code></pre>
+<p>返回信息，添加header头信息（属于后置过滤网关）</p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211207194220636.png" alt="image-20211207194220636"></p>
+<h3><span id="56-gateway全局过滤器globalfilter"><strong>5.6 gateway全局过滤器GlobalFilter</strong></span></h3><p>全局过滤器不需要在配置文件中配置，作用在所有的路由上。我们可以用它来实现很多统一化处理的业务需求，比如负载均衡，统一过滤，路径转发，监控，日志等等。</p>
+<p>全局过滤器加上网关过滤器组成过滤器链，该过滤器链的执行顺序是根据@Order注解指定的数字大小，从小到大进行排序，数字越小，优先级越高。</p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211207194243941.png" alt="image-20211207194243941"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/image/image-20211207194313528.png" alt="image-20211207194313528"></p>
+<h3><span id="57-自定义过滤器"><strong>5.7</strong> <strong>自定义过滤器</strong></span></h3><p>Spring Cloud Gateway提供了过滤器的扩展功能，开发者可以根据实际业务需求来自定义</p>
+<p>GatewayFilter网关过滤器或者GlobalFilter全局过滤器。</p>
+<h4><span id="571-自定义gatewayfilter"><strong>5.7.1</strong> <strong>自定义GatewayFilter</strong></span></h4><p>实现 GatewayFilter , Ordered 接口，以及配置类</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>java1234<span class="token punctuation">.</span>filter<span class="token punctuation">;</span> 
+
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>cloud<span class="token punctuation">.</span>gateway<span class="token punctuation">.</span>filter<span class="token punctuation">.</span>GatewayFilter<span class="token punctuation">;</span> 
+
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>cloud<span class="token punctuation">.</span>gateway<span class="token punctuation">.</span>filter<span class="token punctuation">.</span>GatewayFilterChain<span class="token punctuation">;</span> 
+
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>core<span class="token punctuation">.</span>Ordered<span class="token punctuation">;</span> 
+
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>web<span class="token punctuation">.</span>server<span class="token punctuation">.</span>ServerWebExchange<span class="token punctuation">;</span> 
+
+<span class="token keyword">import</span> reactor<span class="token punctuation">.</span>core<span class="token punctuation">.</span>publisher<span class="token punctuation">.</span>Mono<span class="token punctuation">;</span> 
+
+<span class="token comment" spellcheck="true">/**
+
+* 自定义网关过滤器 
+
+* @author java1234_小锋 
+
+* @site www.java1234.com 
+
+* @company Java知识分享网 
+
+* @create 2021-04-08 16:25 
+
+*/</span> 
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MyCustomerGatewayFilter</span> <span class="token keyword">implements</span> <span class="token class-name">GatewayFilter</span><span class="token punctuation">,</span>Ordered <span class="token punctuation">{</span> 
+
+    <span class="token annotation punctuation">@Override</span> 
+
+    <span class="token keyword">public</span> Mono<span class="token operator">&lt;</span>Void<span class="token operator">></span> <span class="token function">filter</span><span class="token punctuation">(</span>ServerWebExchange exchange<span class="token punctuation">,</span> GatewayFilterChain 
+
+                             chain<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"自定义网关过滤器"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+        <span class="token keyword">return</span> chain<span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span>exchange<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span> 
+
+    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">getOrder</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+
+        <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span> 
+
+    <span class="token punctuation">}</span> 
+
+<span class="token punctuation">}</span>
+</code></pre>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>java1234<span class="token punctuation">.</span>config<span class="token punctuation">;</span> 
+
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>java1234<span class="token punctuation">.</span>filter<span class="token punctuation">.</span>MyCustomerGatewayFilter<span class="token punctuation">;</span> 
+
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>cloud<span class="token punctuation">.</span>gateway<span class="token punctuation">.</span>route<span class="token punctuation">.</span>RouteLocator<span class="token punctuation">;</span> 
+
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>cloud<span class="token punctuation">.</span>gateway<span class="token punctuation">.</span>route<span class="token punctuation">.</span>builder<span class="token punctuation">.</span>RouteLocatorBuilder<span class="token punctuation">;</span> 
+
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>context<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>Bean<span class="token punctuation">;</span> 
+
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>context<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>Configuration<span class="token punctuation">;</span> 
+
+<span class="token comment" spellcheck="true">/**
+
+* @author java1234_小锋 
+
+* @site www.java1234.com 
+
+* @company Java知识分享网 
+
+* @create 2021-04-09 10:15 
+
+*/</span> 
+
+<span class="token annotation punctuation">@Configuration</span> 
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MyCustomerGatewayFilterConfig</span> <span class="token punctuation">{</span> 
+
+    <span class="token annotation punctuation">@Bean</span> 
+
+    <span class="token keyword">public</span> RouteLocator <span class="token function">routeLocator</span><span class="token punctuation">(</span>RouteLocatorBuilder builder<span class="token punctuation">)</span><span class="token punctuation">{</span> 
+
+        <span class="token keyword">return</span> builder<span class="token punctuation">.</span><span class="token function">routes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">route</span><span class="token punctuation">(</span>r<span class="token operator">-</span><span class="token operator">></span>r 
+
+                                      <span class="token punctuation">.</span><span class="token function">path</span><span class="token punctuation">(</span><span class="token string">"/product/**"</span><span class="token punctuation">)</span> 
+
+                                      <span class="token punctuation">.</span><span class="token function">uri</span><span class="token punctuation">(</span><span class="token string">"http://localhost:8080/"</span><span class="token punctuation">)</span> 
+
+                                      <span class="token punctuation">.</span><span class="token function">filters</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">MyCustomerGatewayFilter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> 
+
+                                      <span class="token punctuation">.</span><span class="token function">id</span><span class="token punctuation">(</span><span class="token string">"myCustomerGateway"</span><span class="token punctuation">)</span> 
+
+                                     <span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+    <span class="token punctuation">}</span> 
+
+<span class="token punctuation">}</span>
+</code></pre>
+<h4><span id="572-自定义globalfilter"><strong>5.7.2</strong> <strong>自定义GlobalFilter</strong></span></h4><p>实现 GlobalFilter , Ordered 接口，加上@Component注解即可；</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>java1234<span class="token punctuation">.</span>filter<span class="token punctuation">;</span> 
+
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>cloud<span class="token punctuation">.</span>gateway<span class="token punctuation">.</span>filter<span class="token punctuation">.</span>GatewayFilterChain<span class="token punctuation">;</span> 
+
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>cloud<span class="token punctuation">.</span>gateway<span class="token punctuation">.</span>filter<span class="token punctuation">.</span>GlobalFilter<span class="token punctuation">;</span> 
+
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>core<span class="token punctuation">.</span>Ordered<span class="token punctuation">;</span> 
+
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>stereotype<span class="token punctuation">.</span>Component<span class="token punctuation">;</span> 
+
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>web<span class="token punctuation">.</span>server<span class="token punctuation">.</span>ServerWebExchange<span class="token punctuation">;</span> 
+
+<span class="token keyword">import</span> reactor<span class="token punctuation">.</span>core<span class="token punctuation">.</span>publisher<span class="token punctuation">.</span>Mono<span class="token punctuation">;</span> 
+
+<span class="token comment" spellcheck="true">/**
+
+* @author java1234_小锋 
+
+* @site www.java1234.com 
+
+* @company Java知识分享网 
+
+* @create 2021-04-09 12:29 
+
+*/</span> 
+
+<span class="token annotation punctuation">@Component</span> 
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MyCustomerGlobalFilter</span> <span class="token keyword">implements</span> <span class="token class-name">GlobalFilter</span> <span class="token punctuation">,</span>Ordered <span class="token punctuation">{</span>
+
+    <span class="token annotation punctuation">@Override</span> 
+
+    <span class="token keyword">public</span> Mono<span class="token operator">&lt;</span>Void<span class="token operator">></span> <span class="token function">filter</span><span class="token punctuation">(</span>ServerWebExchange exchange<span class="token punctuation">,</span> GatewayFilterChain 
+
+                             chain<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"自定义全局过滤器"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+        <span class="token keyword">return</span> chain<span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span>exchange<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span> 
+
+    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">getOrder</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+
+        <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">;</span> 
+
+    <span class="token punctuation">}</span> 
+
+<span class="token punctuation">}</span>
+</code></pre>
+<h2><span id="6gateway网关限流"><strong>6.Gateway网关限流</strong></span></h2><p>gateway默认给我们提供了限流实现，也就是网关拦截器RequestRateLimiter。</p>
+<h3><span id="61-令牌桶限流算法"><strong>6.1</strong> <strong>令牌桶限流算法</strong></span></h3><p>RequestRateLimiter底层实现是令牌桶算法；</p>
+<p>令牌桶内存储令牌，令牌桶需要设置令牌容量，也就是系统最大的并发大；</p>
+<p>以一定的速率生成令牌（具体速率根据系统性能设置），放到令牌桶，如果桶慢了，则丢弃；</p>
+<p>客户端来一个请求，则先去令牌桶获取令牌，拿到令牌，则处理请求，否则 丢弃或者返回失败；</p>
+<p>令牌桶算法的优点：</p>
+<p>通过恒定的速率生成令牌桶，能够让请求处理更均匀，不会出现短时间大量的请求处理；</p>
+<p>比较友好的控制高并发；</p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">java1234_小锋（CANDY整理）</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://codercandy.github.io/2021/12/07/wei-fu-wu-wang-guan-gateway/">https://codercandy.github.io/2021/12/07/wei-fu-wu-wang-guan-gateway/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">java1234_小锋（CANDY整理）</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E5%90%8E%E7%AB%AF/">
+                                    <span class="chip bg-color">后端</span>
+                                </a>
+                            
+                                <a href="/tags/Gateway/">
+                                    <span class="chip bg-color">Gateway</span>
+                                </a>
+                            
+                                <a href="/tags/%E7%BD%91%E5%85%B3/">
+                                    <span class="chip bg-color">网关</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+    <div class="livere-card card" data-aos="fade-up">
+    <!-- 来必力City版安装代码 -->
+    <div id="lv-container" class="card-content" data-id="city" data-uid="MTAyMC81NDg3My8zMTM0Mg==">
+        <script type="text/javascript">
+            (function (d, s) {
+                let j, e = d.getElementsByTagName(s)[0];
+                if (typeof LivereTower === 'function') {
+                    return;
+                }
+
+                j = d.createElement(s);
+                j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                j.async = true;
+
+                e.parentNode.insertBefore(j, e);
+            })(document, 'script');
+        </script>
+        <noscript>为正常使用来必力评论功能请激活JavaScript。</noscript>
+    </div>
+    <!-- City版安装代码已完成 -->
+</div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2021/12/07/sentinel-fen-bu-shi-xi-tong-de-liu-liang-zu-jian/">
+                    <div class="card-image">
+                        
+                        <img src="https://user-images.githubusercontent.com/9434884/43697219-3cb4ef3a-9975-11e8-9a9c-73f4f537442d.png" class="responsive-img" alt="Sentinel学习笔记">
+                        
+                        <span class="card-title">Sentinel学习笔记</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-12-07
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                    学习
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%90%8E%E7%AB%AF/">
+                        <span class="chip bg-color">后端</span>
+                    </a>
+                    
+                    <a href="/tags/Sentinel/">
+                        <span class="chip bg-color">Sentinel</span>
+                    </a>
+                    
+                    <a href="/tags/%E7%BB%84%E4%BB%B6/">
+                        <span class="chip bg-color">组件</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/12/06/scrum-min-jie-kai-fa-liu-cheng/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="Scrum敏捷开发流程">
+                        
+                        <span class="card-title">Scrum敏捷开发流程</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-12-06
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%B7%A5%E4%BD%9C/" class="post-category">
+                                    工作
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E7%AE%A1%E7%90%86/">
+                        <span class="chip bg-color">管理</span>
+                    </a>
+                    
+                    <a href="/tags/Scrum/">
+                        <span class="chip bg-color">Scrum</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('10')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE' || selection.getRangeAt(0).commonAncestorContainer.nodeName === 'CODE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: 梓妤<br />'
+            + '文章作者: Candy liu<br />'
+            + '文章链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="/libs/aplayer/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2021-2023</span>
+            
+            <a href="/about" target="_blank">Candy liu</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+                <span id="sitetime"> Loading ...</span>
+                <script>
+                    var calcSiteTime = function () {
+                        var seconds = 1000;
+                        var minutes = seconds * 60;
+                        var hours = minutes * 60;
+                        var days = hours * 24;
+                        var years = days * 365;
+                        var today = new Date();
+                        var startYear = "2021";
+                        var startMonth = "12";
+                        var startDate = "5";
+                        var startHour = "22";
+                        var startMinute = "49";
+                        var startSecond = "0";
+                        var todayYear = today.getFullYear();
+                        var todayMonth = today.getMonth() + 1;
+                        var todayDate = today.getDate();
+                        var todayHour = today.getHours();
+                        var todayMinute = today.getMinutes();
+                        var todaySecond = today.getSeconds();
+                        var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                        var diff = t2 - t1;
+                        var diffYears = Math.floor(diff / years);
+                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+
+                        // 区分是否有年份.
+                        var language = 'zh-CN';
+                        if (startYear === String(todayYear)) {
+                            document.getElementById("year").innerHTML = todayYear;
+                            var daysTip = 'This site has been running for ' + diffDays + ' days';
+                            if (language === 'zh-CN') {
+                                daysTip = '本站已运行 ' + diffDays + ' 天';
+                            } else if (language === 'zh-HK') {
+                                daysTip = '本站已運行 ' + diffDays + ' 天';
+                            }
+                            document.getElementById("sitetime").innerHTML = daysTip;
+                        } else {
+                            document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                            var yearsAndDaysTip = 'This site has been running for ' + diffYears + ' years and '
+                                + diffDays + ' days';
+                            if (language === 'zh-CN') {
+                                yearsAndDaysTip = '本站已运行 ' + diffYears + ' 年 ' + diffDays + ' 天';
+                            } else if (language === 'zh-HK') {
+                                yearsAndDaysTip = '本站已運行 ' + diffYears + ' 年 ' + diffDays + ' 天';
+                            }
+                            document.getElementById("sitetime").innerHTML = yearsAndDaysTip;
+                        }
+                    }
+
+                    calcSiteTime();
+                </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+<a href="https://gitee.com/CandyLoveYL" class="tooltipped" target="_blank" data-tooltip="访问我的gitee" data-position="top" data-delay="50">
+	<i class="fab fa-github"></i>
+</a>
+<a href="mailto:595487347@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+	<i class="fas fa-envelope-open"></i>
+</a>
+<a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=595487347" class="tooltipped" target="_blank" data-tooltip="QQ联系我:595487347" data-position="top" data-delay="50">
+	<i class="fab fa-qq"></i>
+</a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+
+    <!-- 雪花特效 -->
+     
+        <script type="text/javascript">
+            // 只在桌面版网页启用特效
+            var windowWidth = $(window).width();
+            if (windowWidth > 768) {
+                document.write('<script type="text/javascript" src="/libs/others/snow.js"><\/script>');
+            }
+        </script>
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

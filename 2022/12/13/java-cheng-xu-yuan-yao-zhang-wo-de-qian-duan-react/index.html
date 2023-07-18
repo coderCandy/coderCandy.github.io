@@ -1,0 +1,3550 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Java程序员要掌握的前端-react, Java,Flink,高级项目管理,Electron.js等">
+    <meta name="description" content="五. React1. React 基础react 是前端三大框架之一
+
+没有 vue 的基础更好，因为两者思想不太一样，不能用 vue 的习惯学习 react
+需要有 js 基础，视频 19-58
+需要有 ts 基础，视频 110-116
+">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="referrer" content="no-referrer" />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>Java程序员要掌握的前端-react | 梓妤</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="梓妤" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">梓妤</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">梓妤</div>
+        <div class="logo-desc">
+            
+            一个不懂生活的程序猿
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Java程序员要掌握的前端-react</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E5%89%8D%E7%AB%AF/">
+                                <span class="chip bg-color">前端</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                学习
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2022-12-13
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2023-07-18
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    5.9k
+                </div>
+                
+
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1><span id="五-react">五. React</span></h1><h2><span id="1-react-基础">1. React 基础</span></h2><p>react 是前端三大框架之一</p>
+<ul>
+<li>没有 vue 的基础更好，因为两者思想不太一样，不能用 vue 的习惯学习 react</li>
+<li>需要有 js 基础，视频 19-58</li>
+<li>需要有 ts 基础，视频 110-116</li>
+<li>本教程采用更流行的【函数式组件 + hooks】方式进行讲解</li>
+</ul>
+<h3><span id="1-环境准备">1) 环境准备</span></h3><h4><span id="创建项目">创建项目</span></h4><p>首先，通过 react 脚手架创建项目</p>
+<pre class=" language-cmd"><code class="language-cmd">npx create-react-app client --template typescript
+</code></pre>
+<ul>
+<li>client 是项目名</li>
+<li>目前 react 版本是 18.x</li>
+</ul>
+<p>运行项目</p>
+<pre class=" language-cmd"><code class="language-cmd">cd client
+npm start
+</code></pre>
+<ul>
+<li>会自动打开浏览器，默认监听 3000 端口</li>
+</ul>
+<p><img src="/2022/12/13/java-cheng-xu-yuan-yao-zhang-wo-de-qian-duan-react/BaiduNetdiskDownload\Java程序员要掌握的前端\文档\imgs\image-20221001110328233.png" alt="image-20221001110328233"></p>
+<h4><span id="修改端口">修改端口</span></h4><p>在项目根目录下新建文件 .env.development，它可以定义开发环境下的环境变量</p>
+<pre class=" language-properties"><code class="language-properties"><span class="token attr-name">PORT</span><span class="token punctuation">=</span><span class="token attr-value">7070</span>
+</code></pre>
+<p>重启项目，端口就变成了 7070</p>
+<ul>
+<li>参考文档：<a target="_blank" rel="noopener" href="https://create-react-app.dev/docs/advanced-configuration/">Advanced Configuration | Create React App (create-react-app.dev)</a></li>
+</ul>
+<h4><span id="浏览器插件">浏览器插件</span></h4><p>插件地址 <a target="_blank" rel="noopener" href="https://reactjs.org/blog/2015/09/02/new-react-developer-tools.html#installation">New React Developer Tools – React Blog (reactjs.org)</a></p>
+<p><img src="/2022/12/13/java-cheng-xu-yuan-yao-zhang-wo-de-qian-duan-react/BaiduNetdiskDownload\Java程序员要掌握的前端\文档\imgs\image-20221004105110150.png" alt="image-20221004105110150"></p>
+<h4><span id="vscode">VSCode</span></h4><p>推荐安装 Prettier 代码格式化插件</p>
+<p><img src="/2022/12/13/java-cheng-xu-yuan-yao-zhang-wo-de-qian-duan-react/BaiduNetdiskDownload\Java程序员要掌握的前端\文档\imgs\image-20221004090816142.png" alt="image-20221004090816142"></p>
+<h3><span id="2-入门案例">2) 入门案例</span></h3><h4><span id="hello">Hello</span></h4><p>编写一个 src/pages/Hello.tsx 组件</p>
+<pre class=" language-tsx"><code class="language-tsx">export default function Hello()  {
+  return <h3><span id="hello-world">Hello, World!</span></h3>
+}
+</code></pre>
+<ul>
+<li>组件中使用了 jsx 语法，即在 js 中直接使用 html 标签或组件标签</li>
+<li>函数式组件必须返回标签片段</li>
+</ul>
+<p>在 index.js 引入组件</p>
+<pre class=" language-jsx"><code class="language-jsx"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">'react'</span>
+<span class="token keyword">import</span> ReactDOM <span class="token keyword">from</span> <span class="token string">'react-dom/client'</span>
+<span class="token keyword">import</span> <span class="token string">'./index.css'</span>
+<span class="token keyword">import</span> reportWebVitals <span class="token keyword">from</span> <span class="token string">'./reportWebVitals'</span>
+<span class="token comment" spellcheck="true">// 1. 引入组件</span>
+<span class="token keyword">import</span> Hello <span class="token keyword">from</span> <span class="token string">'./pages/Hello'</span>
+
+<span class="token keyword">const</span> root <span class="token operator">=</span> ReactDOM<span class="token punctuation">.</span><span class="token function">createRoot</span><span class="token punctuation">(</span>document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'root'</span><span class="token punctuation">)</span> <span class="token keyword">as</span> HTMLElement<span class="token punctuation">)</span>
+root<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>React.StrictMode</span><span class="token punctuation">></span></span>
+    <span class="token punctuation">{</span><span class="token comment" spellcheck="true">/* 2. 将原来的 &lt;App/> 改为 &lt;Hello>&lt;/Hello> */</span><span class="token punctuation">}</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Hello</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Hello</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>React.StrictMode</span><span class="token punctuation">></span></span>
+<span class="token punctuation">)</span>
+
+<span class="token comment" spellcheck="true">// If you want to start measuring performance in your app, pass a function</span>
+<span class="token comment" spellcheck="true">// to log results (for example: reportWebVitals(console.log))</span>
+<span class="token comment" spellcheck="true">// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals</span>
+<span class="token function">reportWebVitals</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+<p>将欢迎词作为属性传递给组件</p>
+<pre class=" language-jsx"><code class="language-jsx"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Hello</span> <span class="token attr-name">msg</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">'</span>你好<span class="token punctuation">'</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Hello</span><span class="token punctuation">></span></span>
+</code></pre>
+<ul>
+<li>字符串值，可以直接使用双引号赋值</li>
+<li>其它类型的值，用 <code>&#123;值&#125;</code></li>
+</ul>
+<p>而组件修改为</p>
+<pre class=" language-tsx"><code class="language-tsx">export default function Hello(props: { msg: string }) {
+  return <h3><span id="propsmsg">{props.msg}</span></h3>
+}
+</code></pre>
+<h4><span id="jsx-原理">jsx 原理</span></h4><pre class=" language-tsx"><code class="language-tsx">export default function Hello(props: { msg: string }) {
+  return <h3><span id="propsmsg">{props.msg}</span></h3>
+}
+</code></pre>
+<p>在 v17 之前，其实相当于</p>
+<pre class=" language-tsx"><code class="language-tsx">import { createElement } from "react";
+export default function Hello(props: {msg: string}) {
+  return createElement('h3', null, `${props.msg}`)
+}
+</code></pre>
+<h3><span id="3-人物卡片案例">3) 人物卡片案例</span></h3><p>样式已经准备好 /src/css/P1.css</p>
+<pre class=" language-css"><code class="language-css"><span class="token selector"><span class="token id">#root</span> </span><span class="token punctuation">{</span>
+  <span class="token property">display</span><span class="token punctuation">:</span> flex<span class="token punctuation">;</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> <span class="token number">100</span>vw<span class="token punctuation">;</span>
+  <span class="token property">height</span><span class="token punctuation">:</span> <span class="token number">100</span>vh<span class="token punctuation">;</span>
+  <span class="token property">justify-content</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span>
+  <span class="token property">align-items</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">div<span class="token class">.student</span> </span><span class="token punctuation">{</span>
+  <span class="token property">flex-shrink</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token property">flex-grow</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token property">position</span><span class="token punctuation">:</span> relative<span class="token punctuation">;</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> <span class="token number">128</span>px<span class="token punctuation">;</span>
+  <span class="token property">height</span><span class="token punctuation">:</span> <span class="token number">330</span>px<span class="token punctuation">;</span>
+  <span class="token comment" spellcheck="true">/* font-family: '华文行楷'; */</span>
+  <span class="token property">font-size</span><span class="token punctuation">:</span> <span class="token number">14</span>px<span class="token punctuation">;</span>
+  <span class="token property">text-align</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span>
+  <span class="token property">margin</span><span class="token punctuation">:</span> <span class="token number">20</span>px<span class="token punctuation">;</span>
+  <span class="token property">display</span><span class="token punctuation">:</span> flex<span class="token punctuation">;</span>
+  <span class="token property">justify-content</span><span class="token punctuation">:</span> flex-start<span class="token punctuation">;</span>
+  <span class="token property">background-color</span><span class="token punctuation">:</span> <span class="token hexcode">#7591AD</span><span class="token punctuation">;</span>
+  <span class="token property">align-items</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span>
+  <span class="token property">flex-direction</span><span class="token punctuation">:</span> column<span class="token punctuation">;</span>
+  <span class="token property">border-radius</span><span class="token punctuation">:</span> <span class="token number">5</span>px<span class="token punctuation">;</span>
+  <span class="token property">box-shadow</span><span class="token punctuation">:</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">8</span>px <span class="token hexcode">#2c2c2c</span><span class="token punctuation">;</span>
+  <span class="token property">color</span><span class="token punctuation">:</span> <span class="token hexcode">#e8f6fd</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector"><span class="token class">.photo</span> </span><span class="token punctuation">{</span>
+  <span class="token property">position</span><span class="token punctuation">:</span> absolute<span class="token punctuation">;</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> <span class="token number">100%</span><span class="token punctuation">;</span>
+  <span class="token property">height</span><span class="token punctuation">:</span> <span class="token number">100%</span><span class="token punctuation">;</span>
+  <span class="token property">top</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token property">border-radius</span><span class="token punctuation">:</span> <span class="token number">0%</span><span class="token punctuation">;</span>
+  <span class="token property">overflow</span><span class="token punctuation">:</span> hidden<span class="token punctuation">;</span>
+  <span class="token property">transition</span><span class="token punctuation">:</span> <span class="token number">0.3</span>s<span class="token punctuation">;</span>
+  <span class="token property">border-radius</span><span class="token punctuation">:</span> <span class="token number">5</span>px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector"><span class="token class">.photo</span> img </span><span class="token punctuation">{</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> <span class="token number">100%</span><span class="token punctuation">;</span>
+  <span class="token property">height</span><span class="token punctuation">:</span> <span class="token number">100%</span><span class="token punctuation">;</span>
+  <span class="token comment" spellcheck="true">/* object-fit: scale-down; */</span>
+  <span class="token property">object-fit</span><span class="token punctuation">:</span> cover<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector"><span class="token class">.photo</span><span class="token pseudo-element">::before</span> </span><span class="token punctuation">{</span>
+  <span class="token property">position</span><span class="token punctuation">:</span> absolute<span class="token punctuation">;</span>
+  <span class="token property">content</span><span class="token punctuation">:</span> <span class="token string">''</span><span class="token punctuation">;</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> <span class="token number">100%</span><span class="token punctuation">;</span>
+  <span class="token property">height</span><span class="token punctuation">:</span> <span class="token number">100%</span><span class="token punctuation">;</span>
+  <span class="token property">background-image</span><span class="token punctuation">:</span> <span class="token function">linear-gradient</span><span class="token punctuation">(</span>to top, <span class="token hexcode">#333</span>, transparent<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">div<span class="token class">.student</span> h2 </span><span class="token punctuation">{</span>
+  <span class="token property">position</span><span class="token punctuation">:</span> absolute<span class="token punctuation">;</span>
+  <span class="token property">font-size</span><span class="token punctuation">:</span> <span class="token number">20</span>px<span class="token punctuation">;</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> <span class="token number">100%</span><span class="token punctuation">;</span>
+  <span class="token property">height</span><span class="token punctuation">:</span> <span class="token number">68</span>px<span class="token punctuation">;</span>
+  <span class="token property">font-weight</span><span class="token punctuation">:</span> normal<span class="token punctuation">;</span>
+  <span class="token property">text-align</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span>
+  <span class="token property">margin</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token property">line-height</span><span class="token punctuation">:</span> <span class="token number">68</span>px<span class="token punctuation">;</span>
+  <span class="token property">visibility</span><span class="token punctuation">:</span> hidden<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">h2<span class="token pseudo-element">::before</span> </span><span class="token punctuation">{</span>
+  <span class="token property">position</span><span class="token punctuation">:</span> absolute<span class="token punctuation">;</span>
+  <span class="token property">top</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token property">left</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token property">content</span><span class="token punctuation">:</span> <span class="token string">''</span><span class="token punctuation">;</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> <span class="token number">100%</span><span class="token punctuation">;</span>
+  <span class="token property">height</span><span class="token punctuation">:</span> <span class="token number">68</span>px<span class="token punctuation">;</span>
+  <span class="token property">background-color</span><span class="token punctuation">:</span> <span class="token function">rgba</span><span class="token punctuation">(</span><span class="token number">0</span>, <span class="token number">0</span>, <span class="token number">0</span>, <span class="token number">0.3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token property">border-top-left-radius</span><span class="token punctuation">:</span> <span class="token number">5</span>px<span class="token punctuation">;</span>
+  <span class="token property">border-top-right-radius</span><span class="token punctuation">:</span> <span class="token number">5</span>px<span class="token punctuation">;</span>  
+<span class="token punctuation">}</span>
+
+<span class="token selector">div<span class="token class">.student</span> h1 </span><span class="token punctuation">{</span>
+  <span class="token property">position</span><span class="token punctuation">:</span> absolute<span class="token punctuation">;</span>
+  <span class="token property">top</span><span class="token punctuation">:</span> <span class="token number">250</span>px<span class="token punctuation">;</span>
+  <span class="token property">font-size</span><span class="token punctuation">:</span> <span class="token number">22</span>px<span class="token punctuation">;</span>
+  <span class="token property">margin</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token property">transition</span><span class="token punctuation">:</span> <span class="token number">0.3</span>s<span class="token punctuation">;</span>
+  <span class="token property">font-weight</span><span class="token punctuation">:</span> normal<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">div<span class="token class">.student</span> p </span><span class="token punctuation">{</span>
+  <span class="token property">margin-top</span><span class="token punctuation">:</span> <span class="token number">300</span>px<span class="token punctuation">;</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> <span class="token number">80%</span><span class="token punctuation">;</span>
+  <span class="token property">font-weight</span><span class="token punctuation">:</span> normal<span class="token punctuation">;</span>
+  <span class="token property">text-align</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span>
+  <span class="token property">padding-bottom</span><span class="token punctuation">:</span> <span class="token number">5</span>px<span class="token punctuation">;</span>
+  <span class="token property">border-bottom</span><span class="token punctuation">:</span> <span class="token number">1</span>px solid <span class="token hexcode">#8ea2b8</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector"><span class="token class">.student</span><span class="token pseudo-class">:hover</span> <span class="token class">.photo</span><span class="token pseudo-element">::before</span> </span><span class="token punctuation">{</span>
+  <span class="token property">display</span><span class="token punctuation">:</span> none<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector"><span class="token class">.student</span><span class="token pseudo-class">:hover</span> <span class="token class">.photo</span> </span><span class="token punctuation">{</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> <span class="token number">90</span>px<span class="token punctuation">;</span>
+  <span class="token property">height</span><span class="token punctuation">:</span> <span class="token number">90</span>px<span class="token punctuation">;</span>
+  <span class="token property">top</span><span class="token punctuation">:</span> <span class="token number">90</span>px<span class="token punctuation">;</span>
+  <span class="token property">border-radius</span><span class="token punctuation">:</span> <span class="token number">50%</span><span class="token punctuation">;</span>
+  <span class="token property">box-shadow</span><span class="token punctuation">:</span> <span class="token number">0</span> <span class="token number">0</span> <span class="token number">15</span>px <span class="token hexcode">#111</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector"><span class="token class">.student</span><span class="token pseudo-class">:hover</span> img </span><span class="token punctuation">{</span>
+  <span class="token property">object-position</span><span class="token punctuation">:</span> <span class="token number">50%</span> <span class="token number">0%</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector"><span class="token class">.student</span><span class="token pseudo-class">:hover</span> h1 </span><span class="token punctuation">{</span>
+  <span class="token property">position</span><span class="token punctuation">:</span> absolute<span class="token punctuation">;</span>
+  <span class="token property">top</span><span class="token punctuation">:</span> <span class="token number">190</span>px<span class="token punctuation">;</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> <span class="token number">40</span>px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">div<span class="token class">.student</span><span class="token pseudo-class">:hover</span> h2 </span><span class="token punctuation">{</span>
+  <span class="token property">visibility</span><span class="token punctuation">:</span> visible<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>类型 /src/model/Student.ts</p>
+<pre class=" language-typescript"><code class="language-typescript"><span class="token keyword">export</span> <span class="token keyword">interface</span> <span class="token class-name">Student</span> <span class="token punctuation">{</span>
+  id<span class="token punctuation">:</span> <span class="token keyword">number</span><span class="token punctuation">,</span>
+  name<span class="token punctuation">:</span> <span class="token keyword">string</span><span class="token punctuation">,</span>
+  sex<span class="token punctuation">:</span> <span class="token keyword">string</span><span class="token punctuation">,</span>
+  age<span class="token punctuation">:</span> <span class="token keyword">number</span><span class="token punctuation">,</span>
+  photo<span class="token punctuation">:</span> <span class="token keyword">string</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>组件 /src/pages/P1.tsx</p>
+<pre class=" language-tsx"><code class="language-tsx">import { Student } from '../model/Student'
+import '../css/P1.css'
+export default function P1(props: { student: Student }) {
+  return (
+    <div classname="student">
+      <div classname="photo">
+        <img src="{props.student.photo}/">
+      </div>
+      <h1><span id="propsstudentname">{props.student.name}</span></h1>
+      <h2><span id="propsstudentid">{props.student.id}</span></h2>      
+      <p>性别 {props.student.sex} 年龄 {props.student.age}</p>
+    </div>
+  )
+}
+</code></pre>
+<p>使用组件</p>
+<pre class=" language-tsx"><code class="language-tsx">const stu1 = { id: 1, name: '风清扬', sex: '男', age: 99, photo: '/imgs/1.png' }
+const stu2 = { id: 2, name: '玮哥', sex: '男', age: 20, photo: '/imgs/2.png' }
+const stu3 = { id: 3, name: '长宏', sex: '男', age: 30, photo: '/imgs/3.png'}
+
+<p1 student="{stu1}"></p1>
+<p1 student="{stu2}"></p1>
+<p1 student="{stu3}"></p1>
+</code></pre>
+<h4><span id="路径">路径</span></h4><ul>
+<li>src 下的资源，要用相对路径引入</li>
+<li>public 下的资源，记得 / 代表路径的起点</li>
+</ul>
+<h4><span id="标签命名">标签命名</span></h4><ul>
+<li>组件标签必须用大驼峰命名</li>
+<li>普通 html 标签必须用小写命名</li>
+</ul>
+<h4><span id="事件处理">事件处理</span></h4><pre class=" language-tsx"><code class="language-tsx">import { Student } from '../model/Student'
+import '../css/P1.css'
+export default function P1(props: { student: Student }) {
+    
+  function handleClick(e : React.MouseEvent){
+    console.log(student)
+    console.log(e)
+  }
+  
+  return (
+    <div classname="student">
+      <div classname="photo" onclick="{handleClick}">
+        <img src="{props.student.photo}/">
+      </div>
+      <h1><span id="propsstudentname">{props.student.name}</span></h1>
+      <h2><span id="propsstudentid">{props.student.id}</span></h2>
+      <p>性别 {props.student.sex} 年龄 {props.student.age}</p>
+    </div>
+  )
+}
+</code></pre>
+<ul>
+<li>事件以小驼峰命名</li>
+<li>事件处理函数可以有一个事件对象参数，可以获取事件相关信息</li>
+</ul>
+<h4><span id="列表-amp-key">列表 &amp; Key</span></h4><pre class=" language-tsx"><code class="language-tsx">import { Student } from '../model/Student'
+import P1 from './P1'
+
+export default function P2(props: { students: Student[] }) {
+  return (
+    <>
+      {props.students.map((s) => ( <p1 student="{s}" key="{s.id}"></p1> ))}
+    </>
+  )
+}
+</code></pre>
+<ul>
+<li>key 在循环时是必须的，否则会有 warning</li>
+</ul>
+<p>也可以这么做</p>
+<pre class=" language-tsx"><code class="language-tsx">import { Student } from '../model/Student'
+import P1 from './P1'
+
+export default function P2(props: { students: Student[] }) {
+  const list = props.students.map((s) => <p1 student="{s}" key="{s.id}"></p1>)
+  return <>{list}</>
+}
+</code></pre>
+<p>使用组件</p>
+<pre class=" language-tsx"><code class="language-tsx">const stu1 = { id: 1, name: '风清扬', sex: '男', age: 99, photo: '/1.png' }
+const stu2 = { id: 2, name: '玮哥', sex: '男', age: 45, photo: '/2.png' }
+const stu3 = { id: 3, name: '长宏', sex: '男', age: 45, photo: '/3.png'}
+
+<p2 students="{[stu1,stu2,stu3]}"></p2>
+</code></pre>
+<h4><span id="条件渲染">条件渲染</span></h4><p>P1 修改为</p>
+<pre class=" language-tsx"><code class="language-tsx">import { Student } from '../model/Student'
+import '../css/P1.css'
+export default function P1(props: { student: Student; hideAge?: boolean }) {
+  function handleClick() {
+    console.log(props.student)
+  }
+
+  const ageFragment = !props.hideAge && <span>年龄 {props.student.age}</span>
+
+  return (
+    <div classname="student">
+      <div classname="photo" onclick="{handleClick}">
+        <img src="{props.student.photo}">
+      </div>
+      <h1><span id="propsstudentname">{props.student.name}</span></h1>
+      <h2><span id="propsstudentid">{props.student.id}</span></h2>
+      <p>
+        性别 {props.student.sex} {ageFragment}
+      </p>
+    </div>
+  )
+}
+</code></pre>
+<ul>
+<li>子元素如果是布尔值，nullish，不会渲染</li>
+</ul>
+<p>P2 修改为</p>
+<pre class=" language-tsx"><code class="language-tsx">import { Student } from '../model/Student'
+import P1 from './P1'
+
+export default function P2(props: { students: Student[]; hideAge?: boolean }) {
+  const list = props.students.map((s) => (
+    <p1 student="{s}" hideage="{props.hideAge}" key="{s.id}"></p1>
+  ))
+  return <>{list}</>
+}
+</code></pre>
+<p>使用组件</p>
+<pre class=" language-tsx"><code class="language-tsx">const stu1 = { id: 1, name: '风清扬', sex: '男', age: 99, photo: '/1.png' }
+const stu2 = { id: 2, name: '玮哥', sex: '男', age: 45, photo: '/2.png' }
+const stu3 = { id: 3, name: '长宏', sex: '男', age: 45, photo: '/3.png'}
+
+<p2 students="{[stu1,stu2,stu3]}" hideage="{true}"></p2>
+</code></pre>
+<h4><span id="参数解构">参数解构</span></h4><p>以 P1 组件为例</p>
+<pre class=" language-tsx"><code class="language-tsx">import { Student } from '../model/Student'
+import '../css/P1.css'
+export default function P1
+({ student, hideAge = false }: { student: Student, hideAge?: boolean }) {
+  
+  function handleClick() {
+    console.log(student)
+  }
+
+  const ageFragment = !hideAge && <span>年龄 {student.age}</span>
+
+  return (
+    <div classname="student">
+      <div classname="photo" onclick="{handleClick}">
+        <img src="{student.photo}">
+      </div>
+      <h1><span id="studentname">{student.name}</span></h1>
+      <h2><span id="studentid">{student.id}</span></h2>
+      <p>
+        性别 {student.sex} {ageFragment}
+      </p>
+    </div>
+  )
+}
+</code></pre>
+<ul>
+<li>可以利用解构赋值语句，让 props 的使用更为简单</li>
+<li>对象解构赋值还有一个额外的好处，给属性赋默认值</li>
+</ul>
+<p>使用组件</p>
+<pre class=" language-tsx"><code class="language-tsx">const stu1 = { id: 1, name: '风清扬', sex: '男', age: 99, photo: '/1.png' }
+
+<p1 student="{stu1}"></p1>
+</code></pre>
+<h3><span id="4-处理变化的数据">4) 处理变化的数据</span></h3><p>入门案例侧重的是数据展示，并未涉及到数据的变动，接下来我们开始学习 react 如何处理数据变化</p>
+<h4><span id="axios">axios</span></h4><p>首先来学习 axios，作用是发送请求、接收响应，从服务器获取真实数据</p>
+<p>安装</p>
+<pre class=" language-cmd"><code class="language-cmd">npm install axios
+</code></pre>
+<p>定义组件</p>
+<pre class=" language-tsx"><code class="language-tsx">import axios from 'axios'
+export default function P4({ id }: { id: number }) {
+  async function updateStudent() {
+    const resp = await axios.get(`http://localhost:8080/api/students/${id}`)
+    console.log(resp.data.data)
+  }
+
+  updateStudent()
+
+  return <></>
+}
+</code></pre>
+<ul>
+<li>其中 /api/students/${id} 是提前准备好的后端服务 api，会延迟 2s 返回结果</li>
+</ul>
+<p>使用组件</p>
+<pre class=" language-tsx"><code class="language-tsx"><p4 id="{1}"></p4>
+</code></pre>
+<p>在控制台上打印</p>
+<pre><code>&#123;
+    &quot;id&quot;: 1,
+    &quot;name&quot;: &quot;宋远桥&quot;,
+    &quot;sex&quot;: &quot;男&quot;,
+    &quot;age&quot;: 40
+&#125;
+</code></pre>
+<p>当属性变化时，会重新触发 P4 组件执行，例如将 id 从 1 修改为 2</p>
+<p><img src="/2022/12/13/java-cheng-xu-yuan-yao-zhang-wo-de-qian-duan-react/BaiduNetdiskDownload\Java程序员要掌握的前端\文档\imgs\image-20221005160308705.png" alt="image-20221005160308705"></p>
+<p>执行流程</p>
+<ul>
+<li>首次调用函数组件，返回的 jsx 代码会被渲染成【虚拟 dom 节点】（也称 Fiber 节点）<ul>
+<li>根据【虚拟 dom 节点】会生成【真实 dom 节点】，由浏览器显示出来</li>
+</ul>
+</li>
+<li>当函数组件的 props 或 state 发生变化时，才会<strong>重新</strong>调用函数组件，返回 jsx<ul>
+<li>jsx 与上次的【虚拟 dom 节点】对比<ul>
+<li>如果没变化，复用上次的节点</li>
+<li>有变化，创建新的【虚拟 dom 节点】替换掉上次的节点</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>由于严格模式会触发两次渲染，为了避免干扰，请先注释掉 index.tsx 中的 <code>&lt;React.StrictMode&gt;</code></li>
+</ul>
+<h4><span id="状态">状态</span></h4><p>先来看一个例子，能否把服务器返回的数据显示在页面上</p>
+<pre class=" language-tsx"><code class="language-tsx">import axios from 'axios'
+let count = 0
+export default function P5(props: { id: number }) {
+  
+  function getTime() {
+    const d = new Date()
+    return d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds()
+  }
+  
+  async function updateStudent() {
+    const resp = await axios.get(
+      `http://localhost:8080/api/students/${props.id}`
+    )
+    Object.assign(student, resp.data.data)
+    console.log(current, student, getTime())
+  }
+
+  const current = count++
+  let student = { name: 'xx' }
+  console.log(current, student, getTime())
+  updateStudent()
+  
+  return <h3><span id="姓名是studentname">姓名是：{student.name}</span></h3>
+}
+</code></pre>
+<ul>
+<li>count 是一个全局变量，记录 P5 函数第几次被调用</li>
+</ul>
+<p>执行效果，控制台上</p>
+<pre><code>0 &#123;name: &#39;xx&#39;&#125; &#39;16:22:16&#39;
+0 &#123;id: 1, name: &#39;宋远桥&#39;, sex: &#39;男&#39;, age: 40&#125; &#39;16:22:18&#39;
+</code></pre>
+<p>此时页面仍显示 <code>姓名是：xx</code></p>
+<p>那么修改一下 props 的 id 呢？进入开发工具把 id 从 1 修改为 2，控制台上</p>
+<pre class=" language-tsx"><code class="language-tsx">1 {name: 'xx'} '16:24:0'
+1 {id: 2, name: '俞莲舟', sex: '男', age: 38} '16:24:2'
+</code></pre>
+<p>此时页面仍显示 <code>姓名是：xx</code></p>
+<p>为什么页面没有显示两秒后更新的值？</p>
+<ul>
+<li>第一次，页面显示的是 P5 函数的返回结果，这时 student.name 还未被更新成宋远桥，页面显示 xx<ul>
+<li>虽然 2s 后数据更新了，但此时并未触发函数执行，页面不变</li>
+</ul>
+</li>
+<li>第二次，虽然 props 修改触发了函数重新执行，但既然函数重新执行，函数内的 student 又被赋值为 <code>&#123; name: &#39;xx&#39; &#125;</code>，页面还是显示 xx<ul>
+<li>2s 后数据更新，跟第一次一样，并未重新触发函数执行，页面不变</li>
+</ul>
+</li>
+</ul>
+<p>结论：</p>
+<ul>
+<li>函数是无状态的，执行完毕后，它内部用的数据都不会保存下来</li>
+<li>要想让函数有状态，就需要使用 useState 把数据保存在函数之外的地方，这些数据，称之为状态</li>
+</ul>
+<h4><span id="usestate">useState</span></h4><pre class=" language-tsx"><code class="language-tsx">import axios from 'axios'
+import { useReducer, useState } from 'react'
+import { Student } from '../model/Student'
+let count = 0
+export default function P5(props: { id: number }) {
+
+  // ...
+
+  async function updateStudent() {
+    const resp = await axios.get(
+      `http://localhost:8080/api/students/${props.id}`
+    )
+    Object.assign(student, resp.data.data)
+    console.log(current, student, getTime())
+  }
+
+  const current = count++
+  let [student] = useState<student>({ name: 'xx' })
+  console.log(current, student, getTime())
+  updateStudent()
+
+  return <h3><span id="姓名是studentname">姓名是：{student.name}</span></h3>
+}
+</student></code></pre>
+<p>接下来使用 setXXX 方法更新 State</p>
+<pre class=" language-tsx"><code class="language-tsx">import axios from 'axios'
+import { useState } from 'react'
+import { Student } from '../model/Student'
+export default 
+
+function P5(props: { id: number }) {
+  async function updateStudent() {
+    const resp = await axios.get(`/api/students/${props.id}`)
+    setStudent(resp.data.data)
+  }
+
+  let [student, setStudent] = useState<student>({ name: 'xx' })
+  updateStudent()
+
+  return <h3><span id="姓名是studentname">姓名是：{student.name}</span></h3>
+}
+</student></code></pre>
+<p>工作流程如下</p>
+<p>首次使用 useState，用它的参数初始化 State</p>
+<p><img src="/2022/12/13/java-cheng-xu-yuan-yao-zhang-wo-de-qian-duan-react/BaiduNetdiskDownload\Java程序员要掌握的前端\文档\imgs\image-20221005173958351.png" alt="image-20221005173958351"></p>
+<p>2s 后数据更新，setStudent 函数会更新 State 数据，并会触发下一次渲染（P5 的调用）</p>
+<p><img src="/2022/12/13/java-cheng-xu-yuan-yao-zhang-wo-de-qian-duan-react/BaiduNetdiskDownload\Java程序员要掌握的前端\文档\imgs\image-20221005174347981.png" alt="image-20221005174347981"></p>
+<p>再次调用 useState，这时返回更新后的数据</p>
+<p><img src="/2022/12/13/java-cheng-xu-yuan-yao-zhang-wo-de-qian-duan-react/BaiduNetdiskDownload\Java程序员要掌握的前端\文档\imgs\image-20221005174739593.png" alt="image-20221005174739593"></p>
+<p>这时再返回 jsx，内容就是 <code>姓名是：宋远桥</code> 了</p>
+<blockquote>
+<p><strong>P.S.</strong></p>
+<p>使用了 useState 之后，会执行两次 xhr 请求，后一次请求是 react 开发工具发送的，不用理会</p>
+</blockquote>
+<p>问题还未结束，第二次 P5 调用时，updateStudent 还会执行，结果会导致 2s 后响应返回继续调用 setStudent，这会导致每隔 2s 调用一次 P5 函数（渲染一次）</p>
+<p><img src="/2022/12/13/java-cheng-xu-yuan-yao-zhang-wo-de-qian-duan-react/BaiduNetdiskDownload\Java程序员要掌握的前端\文档\imgs\image-20221005175440228.png" alt="image-20221005175440228"></p>
+<p>如何让 updateStudent 只执行一次呢？一种土办法是再设置一个布尔 State </p>
+<p><img src="/2022/12/13/java-cheng-xu-yuan-yao-zhang-wo-de-qian-duan-react/BaiduNetdiskDownload\Java程序员要掌握的前端\文档\imgs\image-20221005181042078.png" alt="image-20221005181042078"></p>
+<p>接下来数据更新</p>
+<p><img src="/2022/12/13/java-cheng-xu-yuan-yao-zhang-wo-de-qian-duan-react/BaiduNetdiskDownload\Java程序员要掌握的前端\文档\imgs\image-20221005181428984.png" alt="image-20221005181428984"></p>
+<p>第二次进入 P5 函数时，由于 fetch 条件不成立，因此不会再执行两个 setXXX 方法</p>
+<p><img src="/2022/12/13/java-cheng-xu-yuan-yao-zhang-wo-de-qian-duan-react/BaiduNetdiskDownload\Java程序员要掌握的前端\文档\imgs\image-20221005182505908.png" alt="image-20221005182505908"></p>
+<p>函数式组件的工作流程</p>
+<ul>
+<li>首次调用函数组件，返回的 jsx 代码会被渲染成【虚拟 dom 节点】（也称 Fiber 节点）<ul>
+<li>此时使用 useState 会将组件工作过程中需要数据绑定到【虚拟 dom 节点】上</li>
+<li>根据【虚拟 dom 节点】会生成【真实 dom 节点】，由浏览器显示出来</li>
+</ul>
+</li>
+<li>当函数组件的 props 或 state 发生变化时，才会重新调用函数组件，返回 jsx<ul>
+<li>props 变化由父组件决定，state 变化由组件自身决定</li>
+<li>jsx 与上次的【虚拟 dom 节点】对比<ul>
+<li>如果没变化，复用上次的节点</li>
+<li>有变化，创建新的【虚拟 dom 节点】替换掉上次的节点</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4><span id="useeffect">useEffect</span></h4><p>Effect 称之为副作用（没有贬义），函数组件的主要目的，是为了渲染生成 html 元素，除了这个主要功能以外，管理状态，fetch 数据 … 等等之外的功能，都可以称之为副作用。</p>
+<p>useXXX 打头的一系列方法，都是为副作用而生的，在 react 中把它们称为 Hooks</p>
+<p>useEffect 三种用法</p>
+<pre class=" language-tsx"><code class="language-tsx">import axios from "axios"
+import { useEffect, useState } from "react"
+
+/*
+useEffect
+  参数1：箭头函数, 在真正渲染 html 之前会执行它
+  参数2：
+    情况1：没有, 代表每次执行组件函数时, 都会执行副作用函数
+    情况2：[], 代表副作用函数只会执行一次
+    情况3：[依赖项], 依赖项变化时，副作用函数会执行
+*/
+export default function P6({ id, age }: { id: number, age: number }) {
+
+  console.log('1.主要功能')
+    
+  // useEffect(() => console.log('3.副作用功能')) 
+  // useEffect(() => console.log('3.副作用功能'), []) 
+  useEffect(() => console.log('3.副作用功能'), [id]) 
+
+  console.log('2.主要功能')
+
+  return <h3><span id="id">{id}</span></h3>
+}
+</code></pre>
+<p>用它改写 P5 案例</p>
+<pre class=" language-tsx"><code class="language-tsx">import axios from "axios"
+import { useEffect, useState } from "react"
+
+export default function P6({ id, age }: { id: number, age: number }) {
+
+  const [student, setStudent] = useState({name:'xx'})
+
+  useEffect(()=>{
+    async function updateStudent() {
+      const resp = await axios.get(`http://localhost:8080/api/students/${id}`)    
+      setStudent(resp.data.data)
+    }
+    updateStudent()
+  }, [id])
+
+  return <h3><span id="studentname">{student.name}</span></h3>
+}
+</code></pre>
+<h4><span id="usecontext">useContext</span></h4><pre class=" language-tsx"><code class="language-tsx">import axios from 'axios'
+import { createContext, useContext, useEffect, useState } from 'react'
+import { R, Student } from '../model/Student'
+
+/*
+  createContext         创建上下文对象
+  useContext            读取上下文对象的值
+  <上下文对象.provider>  修改上下文对象的值
+*/
+const HiddenContext = createContext(false)
+
+// 给以下组件提供数据，控制年龄隐藏、显示
+export default function P7() {
+  const [students, setStudents] = useState<student[]>([])
+  const [hidden, setHidden] = useState(false)
+  useEffect(()=>{
+    async function updateStudents() {
+      const resp = await axios.get<r<student[]>>("http://localhost:8080/api/students")
+      setStudents(resp.data.data)
+    }
+    updateStudents()
+  }, [])
+
+  function hideOrShow() {
+    // 参数：上一次状态值，旧值
+    // 返回值：要更新的新值
+    setHidden((old)=>{
+      return !old
+    })
+  }
+  return <hiddencontext.provider value="{hidden}">
+    <input type="button" value="{hidden?'显示':'隐藏'}" onclick="{hideOrShow}/">
+    <p71 students="{students}"></p71>
+  </hiddencontext.provider>  
+}
+
+// 负责处理学生集合
+function P71({ students }: { students: Student[] }) {
+  const list = students.map(s=><p72 student="{s}" key="{s.id}"></p72>)
+  return <>{list}</>
+}
+
+// 负责显示单个学生
+function P72({ student }: { student: Student }) {
+  const hidden = useContext(HiddenContext)
+  const jsx = !hidden && <span>{student.age}</span>
+  return <div>{student.name} {jsx}</div>
+}
+</r<student[]></student[]></上下文对象.provider></code></pre>
+<ul>
+<li>如果组件分散在多个文件中，HiddenContext 应该 export 导出，用到它的组件 import 导入</li>
+<li>React 中因修改触发的组件重新渲染，都应当是自上而下的</li>
+<li>setHidden 方法如果更新的是对象，那么要返回一个新对象，而不是在旧对象上做修改</li>
+</ul>
+<h4><span id="表单">表单</span></h4><pre class=" language-tsx"><code class="language-tsx">import axios from 'axios'
+import React, { useState } from 'react'
+import '../css/P8.css'
+
+export default function P8() {
+
+  const [student, setStudent] = useState({name:'', sex:'男', age:18})
+  const [message, setMessage] = useState('')
+
+  const options = ['男', '女']
+  const jsx = options.map(e => <option key="{e}">{e}</option>)
+
+  // e 事件对象, e.target 事件源
+  function onChange(e : React.ChangeEvent<htmlinputelement|htmlselectelement>) {
+    setStudent((old)=>{
+      // 返回的新值，不能与旧值是同一个对象
+      return {...old, [e.target.name]:e.target.value}
+    })
+  }
+
+  async function onClick() {
+    const resp = await axios.post('http://localhost:8080/api/students', student)
+    setMessage(resp.data.data)
+  }
+  
+  const messageJsx = message && <div classname="success">{message}</div>
+
+  return (
+    <form>
+      <div>
+        <label>姓名</label>
+        <input type="text" value="{student.name}" onchange="{onChange}" name="name">
+      </div>
+      <div>
+        <label>性别</label>
+        <select value="{student.sex}" onchange="{onChange}" name="sex">
+          {jsx}
+        </select>
+      </div>
+      <div>
+        <label>年龄</label>
+        <input type="text" value="{student.age}" onchange="{onChange}" name="age">
+      </div>
+      <div>
+        <input type="button" value="新增" onclick="{onClick}/">
+      </div>
+      {messageJsx}
+    </form>
+  )
+}
+</htmlinputelement|htmlselectelement></code></pre>
+<h2><span id="2-react-进阶">2. React 进阶</span></h2><h3><span id="1-ant-design">1) Ant Design</span></h3><p>react 组件库</p>
+<ul>
+<li><p>官网地址：<a target="_blank" rel="noopener" href="https://ant.design/">https://ant.design/</a></p>
+</li>
+<li><p>镜像地址1：<a target="_blank" rel="noopener" href="https://ant-design.gitee.io/">https://ant-design.gitee.io/</a></p>
+</li>
+<li><p>镜像地址2：<a target="_blank" rel="noopener" href="https://ant-design.antgroup.com/">https://ant-design.antgroup.com/</a></p>
+</li>
+</ul>
+<h4><span id="入门">入门</span></h4><p>安装</p>
+<pre class=" language-cmd"><code class="language-cmd">npm install antd
+</code></pre>
+<ul>
+<li>目前版本是 4.x</li>
+</ul>
+<p>引入样式，在 css 文件中加入</p>
+<pre class=" language-tsx"><code class="language-tsx">@import '~antd/dist/antd.css';
+</code></pre>
+<p>引入 antd 组件</p>
+<pre class=" language-tsx"><code class="language-tsx">import { Button } from "antd";
+
+export default function A1() {
+  return <button type="primary">按钮</button>
+}
+</code></pre>
+<h4><span id="国际化">国际化</span></h4><p>试试其它组件</p>
+<pre class=" language-tsx"><code class="language-tsx">import { Button, Modal } from "antd";
+
+export default function A1() {
+  return <modal open="{true}" title="对话框">内容</modal>
+}
+</code></pre>
+<p>发现确定和取消按钮是英文的，这是因为 antd 支持多种语言，而默认语言是英文</p>
+<p>要想改为中文，建议修改最外层的组件 index.tsx</p>
+<pre class=" language-tsx"><code class="language-tsx">// ...
+import { ConfigProvider } from 'antd'
+import zhCN from 'antd/es/locale/zh_CN'
+
+root.render(
+  <configprovider locale="{zhCN}">
+    <a1></a1>
+  </configprovider>
+)
+</code></pre>
+<h4><span id="表格">表格</span></h4><pre class=" language-tsx"><code class="language-tsx">import { Table } from 'antd'
+import { ColumnsType } from 'antd/lib/table'
+import axios from 'axios'
+import { useEffect, useState } from 'react'
+import { R, Student } from '../model/Student'
+
+export default function A3() {
+  const [students, setStudents] = useState<student[]>([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    async function getStudents() {
+      const resp = await axios.get<r<student[]>>(
+        'http://localhost:8080/api/students'
+      )
+      setStudents(resp.data.data)
+      setLoading(false)
+    }
+
+    getStudents()
+  }, [])
+
+  // title: 列标题  dataIndex: 要关联的属性名
+  const columns: ColumnsType<student> = [
+    {
+      title: '编号',
+      dataIndex: 'id',
+    },
+    {
+      title: '姓名',
+      dataIndex: 'name',
+    },
+    {
+      title: '性别',
+      dataIndex: 'sex',
+    },
+    {
+      title: '年龄',
+      dataIndex: 'age',
+    },
+  ]
+
+  // columns: 列定义
+  // dataSource: 数据源，一般是数组包对象
+  // rowKey: 作为唯一标识的属性名
+  // loading: 显示加载图片
+  return (
+    <table columns="{columns}" datasource="{students}" rowkey="id" loading="{loading}"></table>
+  )
+}
+</student></r<student[]></student[]></code></pre>
+<h4><span id="客户端分页">客户端分页</span></h4><pre class=" language-tsx"><code class="language-tsx">import { Table } from 'antd'
+import { ColumnsType, TablePaginationConfig } from 'antd/lib/table'
+import axios from 'axios'
+import { useEffect, useState } from 'react'
+import { R, Student } from '../model/Student'
+
+export default function A3() {
+  const [students, setStudents] = useState<student[]>([])
+  const [loading, setLoading] = useState(true)
+  const [pagination, setPagination] = useState<tablepaginationconfig>(
+    {current:1, pageSize:5}
+  )
+
+  // 参数: 新的分页数据
+  function onTableChange(newPagination: TablePaginationConfig) {
+    setPagination(newPagination)
+  }
+
+  useEffect(() => {
+    async function getStudents() {
+      const resp = await axios.get<r<student[]>>(
+        'http://localhost:8080/api/students'
+      )
+      setStudents(resp.data.data)
+      setLoading(false)
+    }
+
+    getStudents()
+  }, [])
+
+  // ... 省略
+
+  // pagination: 分页数据
+  // onChange: 当页号，页大小改变时触发
+  return (
+    <table columns="{columns}" datasource="{students}" rowkey="id" loading="{loading}" pagination="{pagination}" onchange="{onTableChange}"></table>
+  )
+}
+</r<student[]></tablepaginationconfig></student[]></code></pre>
+<ul>
+<li>本例还是查询所有数据，分页是客户端 Table 组件自己实现的</li>
+</ul>
+<h4><span id="服务端分页">服务端分页</span></h4><pre class=" language-tsx"><code class="language-tsx">import { Table } from 'antd'
+import { ColumnsType, TablePaginationConfig } from 'antd/lib/table'
+import axios from 'axios'
+import { useEffect, useState } from 'react'
+import { PageResp, R, Student } from '../model/Student'
+
+export default function A4() {
+  const [students, setStudents] = useState<student[]>([])
+  const [loading, setLoading] = useState(true)
+  const [pagination, setPagination] = useState<tablepaginationconfig>({
+    current: 1,
+    pageSize: 5,
+  })
+
+  function onTableChange(newPagination: TablePaginationConfig) {
+    setPagination(newPagination)
+  }
+
+  useEffect(() => {
+    async function getStudents() {
+      // params 用来给请求添加 url 后的 ? 参数
+      const resp = await axios.get<r<pageresp<student>>>(
+        'http://localhost:8080/api/students/q',
+        {
+          params: {
+            page: pagination.current,
+            size: pagination.pageSize,
+          },
+        }
+      )
+      // 返回结果中：list 代表当前页集合, total 代表总记录数
+      setStudents(resp.data.data.list)
+      setPagination((old) => {
+        return { ...old, total: resp.data.data.total }
+      })
+      setLoading(false)
+    }
+
+    getStudents()
+  }, [pagination.current, pagination.pageSize])
+  // useEffect 需要在依赖项( current 和 pageSize ) 改变时重新执行
+
+  const columns: ColumnsType<student> = [
+    {
+      title: '编号',
+      dataIndex: 'id',
+    },
+    {
+      title: '姓名',
+      dataIndex: 'name',
+    },
+    {
+      title: '性别',
+      dataIndex: 'sex',
+    },
+    {
+      title: '年龄',
+      dataIndex: 'age',
+    },
+  ]
+
+  return (
+    <table columns="{columns}" datasource="{students}" rowkey="id" loading="{loading}" pagination="{pagination}" onchange="{onTableChange}"></table>
+  )
+}
+</student></r<pageresp<student></tablepaginationconfig></student[]></code></pre>
+<ul>
+<li>本例需要服务端配合来实现分页，参见代码中新加的注释</li>
+</ul>
+<p>其中 PageResp 类型定义为</p>
+<pre class=" language-tsx"><code class="language-tsx">export interface PageResp<t> {
+  list: T[],
+  total: number
+}
+</t></code></pre>
+<h4><span id="条件查询">条件查询</span></h4><pre class=" language-tsx"><code class="language-tsx">import { Input, Select, Table } from 'antd'
+import { ColumnsType, TablePaginationConfig } from 'antd/lib/table'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
+import { PageResp, R, Student, StudentQueryForm } from '../model/Student'
+
+const { Option } = Select
+
+export default function A5() {
+  const [students, setStudents] = useState<student[]>([])
+  const [loading, setLoading] = useState(true)
+  const [pagination, setPagination] = useState<tablepaginationconfig>({
+    current: 1,
+    pageSize: 5,
+  })
+  // 代表查询条件的状态数据
+  const [form, setForm] = useState<studentqueryform>({})
+
+  function onTableChange(newPagination: TablePaginationConfig) {
+    setPagination(newPagination)
+  }
+
+  useEffect(() => {
+    async function getStudents() {
+      const resp = await axios.get<r<pageresp<student>>>(
+        'http://localhost:8080/api/students/q',
+        {
+          params: {
+            page: pagination.current,
+            size: pagination.pageSize,
+            ...form // 补充查询参数
+          },
+        }
+      )
+      setStudents(resp.data.data.list)
+      setPagination((old) => {
+        return { ...old, total: resp.data.data.total }
+      })
+      setLoading(false)
+    }
+
+    getStudents()
+  }, [pagination.current, pagination.pageSize, form.name, form.sex, form.age])
+  // 依赖项除了分页条件外，新加了查询条件依赖
+    
+  const columns: ColumnsType<student> = [
+    {
+      title: '编号',
+      dataIndex: 'id',
+    },
+    {
+      title: '姓名',
+      dataIndex: 'name',
+    },
+    {
+      title: '性别',
+      dataIndex: 'sex',
+    },
+    {
+      title: '年龄',
+      dataIndex: 'age',
+    },
+  ]
+
+  // name 条件改变时处理函数
+  function onNameChange(e: React.ChangeEvent<htmlinputelement>) {
+    setForm((old)=>{
+      return {...old, name: e.target.value}
+    })
+  }
+
+  // sex 条件改变时处理函数
+  function onSexChange(value: string) {
+    setForm((old)=>{
+      return {...old, sex: value}
+    })
+  }
+
+  // age 条件改变时处理函数
+  function onAgeChange(value: string) {
+    setForm((old)=>{
+      return {...old, age: value}
+    })
+  }
+
+  return (
+    <div>
+      <div>
+        <input 120 style="{{" width: }} placeholder="请输入姓名" value="{form.name}" onchange="{onNameChange}">
+        <select 120 style="{{" width: }} placeholder="请选择性别" allowclear="{true}" value="{form.sex}" onchange="{onSexChange}">
+          <option value="男">男</option>
+          <option value="女">女</option>
+        </select>
+        <select 120 style="{{" width: }} placeholder="请选择年龄" allowclear="{true}" value="{form.age}" onchange="{onAgeChange}">
+          <option value="1,19">20以下</option>
+          <option value="20,29">20左右</option>
+          <option value="30,39">30左右</option>
+          <option value="40,120">40以上</option>
+        </select>
+      </div>
+      <table columns="{columns}" datasource="{students}" rowkey="id" loading="{loading}" pagination="{pagination}" onchange="{onTableChange}"></table>
+    </div>
+  )
+}
+</htmlinputelement></student></r<pageresp<student></studentqueryform></tablepaginationconfig></student[]></code></pre>
+<ul>
+<li>建议 axios 发请求是用 params 而不要自己拼字符串，因为自己拼串需要去掉值为 undefined 的属性</li>
+</ul>
+<p>其中 StudentQueryForm 为</p>
+<pre class=" language-tsx"><code class="language-tsx">export interface StudentQueryForm {
+  name?: string,
+  sex?: string,
+  age?: string,
+  [key: string]: any
+}
+</code></pre>
+<h4><span id="删除">删除</span></h4><pre class=" language-tsx"><code class="language-tsx">import { Button, message, Popconfirm } from 'antd'
+import axios from 'axios'
+import { R } from '../model/Student'
+
+export default function A6Delete({ id, onSuccess }: { id: number, onSuccess:()=>void }) {
+  async function onConfirm() {
+    const resp = await axios.delete<r<string>>(
+      `http://localhost:8080/api/students/${id}`
+    )
+    message.success(resp.data.data)
+    // 改变 form 依赖项
+    onSuccess()
+  }
+  return (
+    <popconfirm title="确定要删除学生吗?" onconfirm="{onConfirm}">
+      <button danger size="small">
+        删除
+      </button>
+    </popconfirm>
+  )
+}
+</r<string></code></pre>
+<p>使用删除组件</p>
+<pre class=" language-tsx"><code class="language-tsx">import { Button, Input, Select, Space, Table } from 'antd'
+import { ColumnsType, TablePaginationConfig } from 'antd/lib/table'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
+import { PageResp, R, Student, StudentQueryForm } from '../model/Student'
+import A6Delete from './A6Delete'
+
+const { Option } = Select
+
+export default function A6() {
+  // ... 省略
+
+  function onDeleteSuccess() {
+    setForm((old)=>{
+      return {...old}
+    })
+  }
+    
+  const columns: ColumnsType<student> = [
+    // ... 省略
+    {
+      title: '操作',
+      dataIndex: 'operation',
+      // value: 属性值, student
+      render: (_, student)=>{
+        return <>
+          <space>
+            <a6delete id="{student.id}" onsuccess="{onDeleteSuccess}"></a6delete>
+            <button type="default" size="small">修改</button>
+          </space>
+        </>
+      }
+    }
+  ]
+
+  // ... 省略
+}
+</student></code></pre>
+<h4><span id="修改">修改</span></h4><pre class=" language-tsx"><code class="language-tsx">import { Form, Input, InputNumber, message, Modal, Radio } from 'antd'
+import { Rule } from 'antd/lib/form'
+import axios from 'axios'
+import { useEffect } from 'react'
+import { R, Student } from '../model/Student'
+
+export default function A6Update({
+  open,
+  student,
+  onSuccess,
+  onCancel,
+}: {
+  open: boolean
+  student: Student
+  onSuccess?: () => void
+  onCancel?: () => void
+}) {
+  const { Item } = Form
+  const { Group } = Radio
+  const options = [
+    { label: '男', value: '男' },
+    { label: '女', value: '女' },
+  ]
+
+  const [form] = Form.useForm() // 代表了表单对象
+
+  const nameRules: Rule[] = [
+    { required: true, message: '姓名必须' },
+    { min: 2, type: 'string', message: '至少两个字符' },
+  ]
+
+  const ageRules: Rule[] = [
+    { required: true, message: '年龄必须' },
+    { min: 1, type: 'number', message: '最小1岁' },
+    { max: 120, type: 'number', message: '最大120岁' },
+  ]
+
+  async function onOk() {
+    // 验证并获取表单数据
+    try {
+      const values = await form.validateFields()
+      console.log(values)
+      const resp = await axios.put<r<string>>(
+        `http://localhost:8080/api/students/${values.id}`,
+        values
+      )
+      message.success(resp.data.data)
+      onSuccess && onSuccess()
+    } catch (e) {
+      console.error(e)
+    }
+  }
+
+  useEffect(() => {
+    // 修改表单数据
+    form.setFieldsValue(student) // id, name, sex, age
+  }, [student])
+
+  return (
+    <modal open="{open}" title="修改学生" onok="{onOk}" oncancel="{onCancel}" forcerender="{true}">
+      <form form="{form}">
+        <item label="编号" name="id">
+          <input readonly>
+        </item>
+        <item label="姓名" name="name" rules="{nameRules}">
+          <input>
+        </item>
+        <item label="性别" name="sex">
+          <group options="{options}" optiontype="button" buttonstyle="solid"></group>
+        </item>
+        <item label="年龄" name="age" rules="{ageRules}">
+          <inputnumber></inputnumber>
+        </item>
+      </form>
+    </modal>
+  )
+}
+</r<string></code></pre>
+<ul>
+<li>forceRender 是避免因为使用 useForm 后，表单套在 Modal 中会出现的警告错误</li>
+</ul>
+<p>使用组件</p>
+<pre class=" language-tsx"><code class="language-tsx">import { Button, Input, Select, Space, Table } from 'antd'
+import { ColumnsType, TablePaginationConfig } from 'antd/lib/table'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
+import { PageResp, R, Student, StudentQueryForm } from '../model/Student'
+import A6Delete from './A6Delete'
+import A6Update from './A6Update'
+
+const { Option } = Select
+
+export default function A6() {
+  // ... 省略
+  const columns: ColumnsType<student> = [
+    // ... 省略
+    {
+      title: '操作',
+      dataIndex: 'operation',
+      // value: 属性值, student
+      render: (_, student) => {
+        return (
+          <>
+            <space>
+              <a6delete id="{student.id}" onsuccess="{onDeleteSuccess}"></a6delete>
+              <button type="default" size="small" onclick="{()" => {
+                  onUpdateClick(student)
+                }}>
+                修改
+              </button>
+            </space>
+          </>
+        )
+      },
+    },
+  ]
+
+  // -------------- 修改功能开始 -------------
+  function onUpdateClick(student: Student) {
+    setUpdateOpen(true)
+    setUpdateForm(student)
+  }
+
+  function onUpdateCancel() {
+    setUpdateOpen(false)
+  }
+
+  function onUpdateSuccess() {
+    setUpdateOpen(false)
+    setForm((old) => {
+      return { ...old }
+    })
+  }
+
+  const [updateOpen, setUpdateOpen] = useState(false)
+  const [updateForm, setUpdateForm] = useState<student>({
+    id: 0,
+    name: '',
+    sex: '男',
+    age: 18,
+  })
+  // -------------- 修改功能结束 -------------
+
+  return (
+    <div>
+      <a6update open="{updateOpen}" student="{updateForm}" onsuccess="{onUpdateSuccess}" oncancel="{onUpdateCancel}"></a6update>
+      <!-- ... 省略 -->
+    </div>
+  )
+}
+</student></student></code></pre>
+<h4><span id="新增">新增</span></h4><pre class=" language-tsx"><code class="language-tsx">import { Form, Input, InputNumber, message, Modal, Radio } from 'antd'
+import { Rule } from 'antd/lib/form'
+import axios from 'axios'
+import { useEffect } from 'react'
+import { R, Student } from '../model/Student'
+
+export default function A6Insert({
+  open,
+  student,
+  onSuccess,
+  onCancel,
+}: {
+  open: boolean
+  student: Student
+  onSuccess?: () => void
+  onCancel?: () => void
+}) {
+  const { Item } = Form
+  const { Group } = Radio
+  const options = [
+    { label: '男', value: '男' },
+    { label: '女', value: '女' },
+  ]
+
+  const [form] = Form.useForm() // 代表了表单对象
+
+  const nameRules: Rule[] = [
+    { required: true, message: '姓名必须' },
+    { min: 2, type: 'string', message: '至少两个字符' },
+  ]
+
+  const ageRules: Rule[] = [
+    { required: true, message: '年龄必须' },
+    { min: 1, type: 'number', message: '最小1岁' },
+    { max: 120, type: 'number', message: '最大120岁' },
+  ]
+
+  async function onOk() {
+    // 验证并获取表单数据
+    try {
+      const values = await form.validateFields()
+      console.log(values)
+      const resp = await axios.post<r<string>>(
+        `http://localhost:8080/api/students`,
+        values
+      )
+      message.success(resp.data.data)
+      onSuccess && onSuccess()
+      form.resetFields() // 重置表单
+    } catch (e) {
+      console.error(e)
+    }
+  }
+
+  return (
+    <modal open="{open}" title="新增学生" onok="{onOk}" oncancel="{onCancel}" forcerender="{true}">
+      <form form="{form}" initialvalues="{student}">
+        <item label="姓名" name="name" rules="{nameRules}">
+          <input>
+        </item>
+        <item label="性别" name="sex">
+          <group options="{options}" optiontype="button" buttonstyle="solid"></group>
+        </item>
+        <item label="年龄" name="age" rules="{ageRules}">
+          <inputnumber></inputnumber>
+        </item>
+      </form>
+    </modal>
+  )
+}
+</r<string></code></pre>
+<ul>
+<li>initialValues 只会触发一次表单赋初值</li>
+<li>form.resetFields() 会将表单重置为 initialValues 时的状态</li>
+</ul>
+<p>使用组件</p>
+<pre class=" language-tsx"><code class="language-tsx">import { Button, Input, Select, Space, Table } from 'antd'
+import { ColumnsType, TablePaginationConfig } from 'antd/lib/table'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
+import { PageResp, R, Student, StudentQueryForm } from '../model/Student'
+import A6Delete from './A6Delete'
+import A6Insert from './A6Insert'
+import A6SelectedDelete from './A6SelectedDelete'
+import A6Update from './A6Update'
+
+const { Option } = Select
+
+export default function A6() {
+  // ... 省略
+
+  // -------------- 新增功能开始 -------------
+  function onInsertClick() {
+    setInsertOpen(true)
+  }
+
+  function onInsertCancel() {
+    setInsertOpen(false)
+  }
+
+  function onInsertSuccess() {
+    setInsertOpen(false)
+    setForm((old) => {
+      return { ...old }
+    })
+  }
+
+  const [insertOpen, setInsertOpen] = useState(false)
+  const [insertForm, setInsertForm] = useState<student>({
+    id: 0,
+    name: '',
+    sex: '男',
+    age: 18,
+  })
+  // -------------- 新增功能结束 -------------
+
+  
+  return (
+    <div>
+      <a6insert open="{insertOpen}" student="{insertForm}" onsuccess="{onInsertSuccess}" oncancel="{onInsertCancel}"></a6insert>
+      <a6update open="{updateOpen}" student="{updateForm}" onsuccess="{onUpdateSuccess}" oncancel="{onUpdateCancel}"></a6update>
+      <div>
+        <space>
+          <input 120 style="{{" width: }} placeholder="请输入姓名" value="{form.name}" onchange="{onNameChange}">
+          <select 120 style="{{" width: }} placeholder="请选择性别" allowclear="{true}" value="{form.sex}" onchange="{onSexChange}">
+            <option value="男">男</option>
+            <option value="女">女</option>
+          </select>
+          <select 120 style="{{" width: }} placeholder="请选择年龄" allowclear="{true}" value="{form.age}" onchange="{onAgeChange}">
+            <option value="1,19">20以下</option>
+            <option value="20,29">20左右</option>
+            <option value="30,39">30左右</option>
+            <option value="40,120">40以上</option>
+          </select>
+
+          <button type="primary" onclick="{onInsertClick}">新增</button>
+        </space>
+      </div>
+      <table columns="{columns}" datasource="{students}" rowkey="id" loading="{loading}" pagination="{pagination}" onchange="{onTableChange}"></table>
+    </div>
+  )
+}
+</student></code></pre>
+<h4><span id="删除选中">删除选中</span></h4><pre class=" language-tsx"><code class="language-tsx">import { Button, message, Popconfirm } from "antd";
+import axios from "axios";
+import React from "react";
+import { R } from "../model/Student";
+
+export default function A6DeleteSelected(
+  {ids, onSuccess}: {ids:React.Key[], onSuccess?:()=>void} // Key[] 是 number 或 string 的数组
+){
+  const disabled = ids.length === 0
+  async function onConfirm() {
+    const resp = await axios.delete<r<string>>('http://localhost:8080/api/students', {
+      data: ids
+    })
+    message.success(resp.data.data)
+    onSuccess && onSuccess()
+  }
+  return (
+    <popconfirm title="真的要删除选中的学生吗?" onconfirm="{onConfirm}" disabled="{disabled}">
+      <button danger type="primary" disabled="{disabled}">
+        删除选中
+      </button>
+    </popconfirm>
+  )
+}
+</r<string></code></pre>
+<p>与 A6 结合</p>
+<pre class=" language-tsx"><code class="language-tsx">import { Button, Input, Select, Space, Table } from 'antd'
+import { ColumnsType, TablePaginationConfig } from 'antd/lib/table'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
+import { PageResp, R, Student, StudentQueryForm } from '../model/Student'
+import A6Delete from './A6Delete'
+import A6Insert from './A6Insert'
+import A6SelectedDelete from './A6SelectedDelete'
+import A6Update from './A6Update'
+
+const { Option } = Select
+
+export default function A6() {
+  // ... 省略
+
+  // -------------- 删除选中功能开始 -------------
+  const [ids, setIds] = useState<react.key[]>([])
+  function onIdsChange(ids:React.Key[]) {
+    // console.log(ids)
+    setIds(ids)
+  }
+  function onDeleteSelectedSuccess() {
+    setForm((old)=>{
+      return {...old}
+    })
+    setIds([])
+  }
+  // -------------- 删除选中功能结束 -------------
+  return (
+    <div>
+      <a6insert open="{insertOpen}" student="{insertForm}" onsuccess="{onInsertSuccess}" oncancel="{onInsertCancel}"></a6insert>
+      <a6update open="{updateOpen}" student="{updateForm}" onsuccess="{onUpdateSuccess}" oncancel="{onUpdateCancel}"></a6update>
+      <div>
+        <space>
+          <!-- ... 省略 -->
+          <a6selecteddelete ids="{ids}" onsuccess="{onDeleteSelectedSuccess}"></a6selecteddelete>
+        </space>
+      </div>
+      <table rowselection="{{" selectedrowkeys: selectedkeys, onchange: onselectchange, }} columns="{columns}" datasource="{students}" rowkey="id" loading="{loading}" pagination="{pagination}" onchange="{onTableChange}"></table>
+    </div>
+  )
+}
+</react.key[]></code></pre>
+<h4><span id="userequest">useRequest</span></h4><p>安装</p>
+<pre class=" language-cmd"><code class="language-cmd">npm install ahooks
+</code></pre>
+<p>使用</p>
+<pre class=" language-tsx"><code class="language-tsx">import { useRequest } from 'ahooks'
+import { Table } from 'antd'
+import { ColumnsType } from 'antd/lib/table'
+import axios from 'axios'
+import { Student, R } from '../model/Student'
+
+export default function A3() {
+  function getStudents() {
+    return axios.get<r<student[]>>('http://localhost:8080/api/students')
+  }
+
+  const { loading, data } = useRequest(getStudents)  
+
+  const columns: ColumnsType<student> = [
+    {
+      title: '编号',
+      dataIndex: 'id',
+    },
+    {
+      title: '姓名',
+      dataIndex: 'name',
+    },
+    {
+      title: '性别',
+      dataIndex: 'sex',
+    },
+    {
+      title: '年龄',
+      dataIndex: 'age',
+    },
+  ]
+
+  return (
+    <table datasource="{data?.data.data}" columns="{columns}" rowkey="id" loading="{loading}" pagination="{{" hideonsinglepage: true }}></table>
+  )
+}
+</student></r<student[]></code></pre>
+<h4><span id="useandttable">useAndtTable</span></h4><pre class=" language-tsx"><code class="language-tsx">import { useAntdTable } from 'ahooks'
+import { Table } from 'antd'
+import { ColumnsType } from 'antd/lib/table'
+import axios from 'axios'
+import { Student, R } from '../model/Student'
+
+interface PageResp<t> {
+  total: number
+  list: T[]
+}
+
+interface PageReq {
+  current: number
+  pageSize: number
+  sorter?: any
+  filter?: any
+}
+
+export default function A3() {
+  async function getStudents({ current, pageSize }: PageReq) {
+    const resp = await axios.get<r<pageresp<student>>>(
+      `http://localhost:8080/api/students/q?page=${current}&size=${pageSize}`
+    )
+    return resp.data.data
+  }
+
+  const { tableProps } = useAntdTable(getStudents, {
+    defaultParams: [{ current: 1, pageSize: 5 }],
+  })
+  console.log(tableProps)
+
+  const columns: ColumnsType<student> = [
+    {
+      title: '编号',
+      dataIndex: 'id',
+    },
+    {
+      title: '姓名',
+      dataIndex: 'name',
+    },
+    {
+      title: '性别',
+      dataIndex: 'sex',
+    },
+    {
+      title: '年龄',
+      dataIndex: 'age',
+    },
+  ]
+
+  return <table {...tableprops} columns="{columns}" rowkey="id"></table>
+}
+</student></r<pageresp<student></t></code></pre>
+<h3><span id="2-mobx">2) MobX</span></h3><h4><span id="介绍">介绍</span></h4><p>需求，组件0 改变了数据，其它组件也想获得改变后的数据，如图所示</p>
+<p><img src="/2022/12/13/java-cheng-xu-yuan-yao-zhang-wo-de-qian-duan-react/BaiduNetdiskDownload\Java程序员要掌握的前端\文档\imgs\image-20221025104453534.png" alt="image-20221025104453534"></p>
+<p>这种多个组件之间要共享状态数据，useState 就不够用了，useContext 也不好用了</p>
+<p>能够和 react 配合使用的状态管理库有</p>
+<ul>
+<li>MobX</li>
+<li>Redux</li>
+</ul>
+<p>其中 Redux API <strong>非常</strong>难以使用，这里选择了更加符合<strong>人类习惯</strong>的 MobX，它虽然采用了面向对象的语法，但也能和函数式的代码很好地结合</p>
+<h4><span id="文档">文档</span></h4><ul>
+<li><a target="_blank" rel="noopener" href="https://cn.mobx.js.org/">MobX 中文文档</a></li>
+<li><a target="_blank" rel="noopener" href="https://mobx.js.org/README.html">MobX 官方文档</a></li>
+</ul>
+<h4><span id="安装">安装</span></h4><pre><code>npm install mobx mobx-react-lite
+</code></pre>
+<ul>
+<li>mobx 目前版本是 6.x</li>
+<li>mobx-react-lite 目前版本是 3.x</li>
+</ul>
+<h4><span id="名词">名词</span></h4><p><img src="https://mobx.js.org/assets/action-state-view.png" alt="Action, State, View"></p>
+<ul>
+<li>Actions 用来修改状态数据的方法</li>
+<li>Observable state 状态数据，可观察</li>
+<li>Derived values 派生值，也叫 Computed values 计算值，会根据状态数据的改变而改变，具有缓存功能</li>
+<li>Reactions 状态数据发生变化后要执行的操作，如 react 函数组件被重新渲染</li>
+</ul>
+<h4><span id="使用">使用</span></h4><p>首先，定义一个在函数之外存储状态数据的 store，它与 useState 不同：</p>
+<ul>
+<li>useState 里的状态数据是存储在每个组件节点上，不同组件之间没法共享</li>
+<li>而 MobX 的 store 就是一个普通 js 对象，只要保证多个组件都访问此对象即可</li>
+</ul>
+<pre class=" language-tsx"><code class="language-tsx">import axios from 'axios'
+import { makeAutoObservable } from 'mobx'
+import { R, Student } from '../model/Student'
+
+class StudentStore {
+  student: Student = { name: '' }
+
+  constructor() {
+    makeAutoObservable(this)
+  }
+
+  async fetch(id: number) {
+    const resp = await axios.get<r<student>>(
+      `http://localhost:8080/api/students/${id}`
+    )
+    runInAction(() => {
+      this.student = resp.data.data
+    })
+  }
+    
+  get print() {
+    const first = this.student.name.charAt(0)
+    if (this.student.sex === '男') {
+      return first.concat('大侠')
+    } else if (this.student.sex === '女') {
+      return first.concat('女侠')
+    } else {
+      return ''
+    }
+  } 
+}
+
+export default new StudentStore()
+</r<student></code></pre>
+<p>其中 makeAutoObservable 会</p>
+<ul>
+<li>将对象的属性 student 变成 Observable state，即状态数据</li>
+<li>将对象的方法 fetch 变成 Action，即修改数据的方法</li>
+<li>将 get 方法变成 Computed values</li>
+</ul>
+<p>在异步操作里为状态属性赋值，需要放在 runInAction 里，否则会有警告错误</p>
+<p>使用 store，所有使用 store 的组件，为了感知状态数据的变化，需要用 observer 包装，对应着图中 reactions</p>
+<pre class=" language-tsx"><code class="language-tsx">import Search from 'antd/lib/input/Search'
+import { observer } from 'mobx-react-lite'
+import studentStore from '../store/StudentStore'
+import A71 from './A71'
+import Test2 from './Test2'
+
+const A7 = () => {
+  return (
+    <div>
+      <search placeholder="input search text" onsearch="{(v)" => studentStore.fetch(Number(v))}
+        style={{ width: 100 }}
+      />
+      <h3><span id="组件0-studentstorestudentname">组件0 {studentStore.student.name}</span></h3>
+      <a71></a71>
+      <a72></a72>
+    </search></div>
+  )
+}
+
+export default observer(A7)
+</code></pre>
+<p>其它组件</p>
+<pre class=" language-tsx"><code class="language-tsx">import { observer } from 'mobx-react-lite'
+import studentStore from '../store/StudentStore'
+
+const A71 = () =>{
+  return <h3 style="{{color:'red'}}"><span id="组件1-studentstorestudentname">组件1 {studentStore.student.name}</span></h3>
+}
+
+export default observer(A71)
+</code></pre>
+<pre class=" language-tsx"><code class="language-tsx">import { observer } from 'mobx-react-lite'
+import studentStore from '../store/StudentStore'
+
+const A72 = () =>{
+  return <h3 style="{{color:'red'}}"><span id="组件1-studentstorestudentname">组件1 {studentStore.student.name}</span></h3>
+}
+
+export default observer(A72)
+</code></pre>
+<h4><span id="注解方式">注解方式</span></h4><pre class=" language-java"><code class="language-java"><span class="token keyword">import</span> <span class="token punctuation">{</span> R<span class="token punctuation">,</span> Student <span class="token punctuation">}</span> from <span class="token string">"../model/Student"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> action<span class="token punctuation">,</span> computed<span class="token punctuation">,</span> makeAutoObservable<span class="token punctuation">,</span> makeObservable<span class="token punctuation">,</span> observable<span class="token punctuation">,</span> runInAction <span class="token punctuation">}</span> from <span class="token string">'mobx'</span>
+<span class="token keyword">import</span> axios from <span class="token string">"axios"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">StudentStore</span> <span class="token punctuation">{</span>
+  <span class="token comment" spellcheck="true">// 属性 - 对应状态数据 observable state</span>
+  <span class="token annotation punctuation">@observable</span> student<span class="token operator">:</span> Student <span class="token operator">=</span> <span class="token punctuation">{</span> id<span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span> name<span class="token operator">:</span> <span class="token string">''</span> <span class="token punctuation">}</span>
+  <span class="token comment" spellcheck="true">// 方法 - 对应 action 方法</span>
+  <span class="token annotation punctuation">@action</span> <span class="token function">setName</span><span class="token punctuation">(</span>name<span class="token operator">:</span> string<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>student<span class="token punctuation">.</span>name <span class="token operator">=</span> name
+  <span class="token punctuation">}</span>
+  <span class="token annotation punctuation">@action</span> async <span class="token function">fetch</span><span class="token punctuation">(</span>id<span class="token operator">:</span> number<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> resp <span class="token operator">=</span> await axios<span class="token punctuation">.</span>get<span class="token operator">&lt;</span>R<span class="token operator">&lt;</span>Student<span class="token operator">>></span><span class="token punctuation">(</span>`http<span class="token operator">:</span><span class="token operator">/</span><span class="token operator">/</span>localhost<span class="token operator">:</span><span class="token number">8080</span><span class="token operator">/</span>api<span class="token operator">/</span>students<span class="token operator">/</span>$<span class="token punctuation">{</span>id<span class="token punctuation">}</span>`<span class="token punctuation">)</span>
+    <span class="token function">runInAction</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>student <span class="token operator">=</span> resp<span class="token punctuation">.</span>data<span class="token punctuation">.</span>data
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+  <span class="token comment" spellcheck="true">// get 方法 - 对应 derived value</span>
+  <span class="token annotation punctuation">@computed</span> get <span class="token function">displayName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> first <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>student<span class="token punctuation">.</span>name<span class="token punctuation">.</span><span class="token function">charAt</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>student<span class="token punctuation">.</span>sex <span class="token operator">==</span><span class="token operator">=</span> <span class="token string">'男'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> first <span class="token operator">+</span> <span class="token string">'大侠'</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>student<span class="token punctuation">.</span>sex <span class="token operator">==</span><span class="token operator">=</span> <span class="token string">'女'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> first <span class="token operator">+</span> <span class="token string">'女侠'</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> <span class="token string">''</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  <span class="token comment" spellcheck="true">// 构造器</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">makeObservable</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+export <span class="token keyword">default</span> <span class="token keyword">new</span> <span class="token class-name">StudentStore</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+<p>需要在 tsconifg.json 中加入配置</p>
+<pre class=" language-json"><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">"compilerOptions"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    // ...
+    <span class="token property">"experimentalDecorators"</span><span class="token operator">:</span> <span class="token boolean">true</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h3><span id="3-react-router">3) React Router</span></h3><h4><span id="安装">安装</span></h4><pre class=" language-cmd"><code class="language-cmd">npm install react-router-dom
+</code></pre>
+<ul>
+<li>目前版本是 6.x</li>
+</ul>
+<h4><span id="使用">使用</span></h4><p>新建文件 src/router/router.tsx</p>
+<pre class=" language-tsx"><code class="language-tsx">import { lazy } from 'react'
+import { Navigate, RouteObject, useRoutes } from 'react-router-dom'
+
+export function load(name: string) {
+  const Page = lazy(() => import(`../pages/${name}`))
+  return <page></page>
+}
+
+const staticRoutes: RouteObject[] = [
+  { path: '/login', element: load('A8Login') },
+  {
+    path: '/',
+    element: load('A8Main'),
+    children: [
+      { path: 'student', element: load('A8MainStudent') },
+      { path: 'teacher', element: load('A8MainTeacher') },
+      { path: 'user', element: load('A8MainUser') }
+    ],
+  },
+  { path: '/404', element: load('A8Notfound') },
+  { path: '/*', element: <navigate to="{'/404'}"></navigate> },
+]
+
+export default function Router() {
+  return useRoutes(staticRoutes)
+}
+</code></pre>
+<p>index.tsx 修改为</p>
+<pre class=" language-tsx"><code class="language-tsx">import ReactDOM from 'react-dom/client';
+import './index.css';
+import { ConfigProvider } from 'antd';
+import zhCN from 'antd/es/locale/zh_CN'
+
+import { BrowserRouter } from 'react-router-dom';
+import Router from './router/router';
+
+const root = ReactDOM.createRoot(
+  document.getElementById('root') as HTMLElement
+);
+
+root.render(
+  <configprovider locale="{zhCN}">
+    <browserrouter>
+      <router></router>
+    </browserrouter>
+  </configprovider>  
+)
+</code></pre>
+<p>A8Main 的代码</p>
+<pre class=" language-tsx"><code class="language-tsx">import { Layout } from "antd";
+import { Link, Outlet } from "react-router-dom";
+
+export default function A8Main () {  
+  return <layout>
+    <layout.header>头部导航</layout.header>
+    <layout>
+      <layout.sider>侧边导航
+        <link to="/student">学生管理
+        <link to="/teacher">教师管理
+        <link to="/user">用户管理
+      </layout.sider>
+      <layout.content>
+        <outlet></outlet>
+      </layout.content>
+    </layout>
+  </layout>
+}
+</code></pre>
+<ol>
+<li>Navigate 的作用是重定向</li>
+<li>load 方法的作用是懒加载组件，更重要的是根据字符串找到真正的组件，这是动态路由所需要的</li>
+<li>children 来进行嵌套路由映射，嵌套路由在跳转后，并不是替换整个页面，而是用新页面替换父页面的 Outlet 部分</li>
+</ol>
+<h4><span id="动态路由">动态路由</span></h4><p>路由分成两部分：</p>
+<ul>
+<li>静态路由，固定的部分，如主页、404、login 这几个页面</li>
+<li>动态路由，变化的部分，经常是主页内的嵌套路由，比如 Student、Teacher 这些</li>
+</ul>
+<p>动态路由应该是根据用户登录后，根据角色的不同，从后端服务获取，因为这些数据是变化的，所以用 mobx 来管理</p>
+<pre class=" language-tsx"><code class="language-tsx">import axios from 'axios'
+import { makeAutoObservable, runInAction } from 'mobx'
+import { Navigate, RouteObject } from 'react-router-dom'
+import { MenuAndRoute, R, Route } from '../model/Student'
+import { load } from '../router/MyRouter'
+
+class RoutesStore {
+  dynamicRoutes: Route[]
+
+  async fetch(username: string) {
+    const resp = await axios.get<r<menuandroute>>(
+      `http://localhost:8080/api/menu/${username}`
+    )
+    runInAction(() => {
+      this.dynamicRoutes = resp.data.data.routeList
+      localStorage.setItem('dynamicRoutes', JSON.stringify(this.dynamicRoutes))
+    })
+  }
+
+  constructor() {
+    makeAutoObservable(this)
+    const r = localStorage.getItem('dynamicRoutes')
+    this.dynamicRoutes = r ? JSON.parse(r) : []
+  }
+
+  reset() {
+    this.dynamicRoutes = []
+    localStorage.removeItem('dynamicRoutes')
+  }
+
+  get routes() {
+    const staticRoutes: RouteObject[] = [
+      { path: '/login', element: load('A8Login') },
+      { path: '/', element: load('A8Main') },
+      { path: '/404', element: load('A8Notfound') },
+      { path: '/*', element: <navigate to="{'/404'}"></navigate> },
+    ]
+    const main = staticRoutes[1]
+
+    main.children = this.dynamicRoutes.map((r) => {
+      console.log(r.path, r.element)
+      return {
+        path: r.path,
+        element: load(r.element),
+      }
+    })
+    return staticRoutes
+  }
+}
+
+export default new RoutesStore()
+</r<menuandroute></code></pre>
+<ul>
+<li>其中用 localStorage 进行了数据的持久化，避免刷新后丢失数据</li>
+</ul>
+<p>MyRouter 文件修改为</p>
+<pre class=" language-tsx"><code class="language-tsx">import { observer } from 'mobx-react-lite'
+import { lazy } from 'react'
+import { Navigate, RouteObject, useRoutes } from 'react-router-dom'
+import RoutesStore from '../store/RoutesStore'
+
+// 把字符串组件 => 组件标签
+export function load(name: string) {
+  // A8Login
+  const Page = lazy(() => import(`../pages/${name}`))
+  return <page></page>
+}
+
+// 路由对象
+function MyRouter() {  
+  const router = useRoutes(RoutesStore.routes)
+  return router
+}
+
+export default observer(MyRouter)
+</code></pre>
+<p>注意导入 router 对象时，用 observer 做了包装，这样能够在 store 发生变化时重建 router 对象</p>
+<h4><span id="动态菜单">动态菜单</span></h4><p>图标要独立安装依赖</p>
+<pre><code>npm install @ant-design/icons
+</code></pre>
+<p>图标组件，用来将<strong>字符串图标</strong>转换为<strong>标签图标</strong></p>
+<pre class=" language-tsx"><code class="language-tsx">import * as icons from '@ant-design/icons'
+
+interface Module {
+  [p: string]: any
+}
+
+const all: Module = icons
+
+export default function Icon({ name }: { name: string }) {
+  const Icon = all[name]
+  return <icon></icon>
+}
+</code></pre>
+<p>修改 RoutesStore.tsx</p>
+<pre class=" language-tsx"><code class="language-tsx">import axios from 'axios'
+import { makeAutoObservable, runInAction } from 'mobx'
+import { Link, Navigate, RouteObject } from 'react-router-dom'
+import { Menu, MenuAndRoute, R, Route } from '../model/Student'
+import { load } from '../router/MyRouter'
+import Icon from './Icon'
+
+function convertMenu(m: Menu): any {
+  const Label = m.routePath ? <link to="{m.routePath}">{m.label} : m.label
+  return {
+    label: Label,
+    key: m.key,
+    icon: <icon name="{m.icon}"></icon>,
+    children: m.children && m.children.map(convertMenu)
+  }
+}
+
+class RoutesStore {
+  // 动态部分
+  dynamicRoutes: Route[] = []
+  dynamicMenus: Menu[] = []
+
+  async fetch(username: string) {
+    const resp = await axios.get<r<menuandroute>>(
+      `http://localhost:8080/api/menu/${username}`
+    )
+    runInAction(() => {
+      this.dynamicRoutes = resp.data.data.routeList
+      localStorage.setItem('dynamicRoutes', JSON.stringify(this.dynamicRoutes))
+
+      this.dynamicMenus = resp.data.data.menuTree
+      localStorage.setItem('dynamicMenus', JSON.stringify(this.dynamicMenus))
+    })
+  }
+
+  get menus() {
+    return this.dynamicMenus.map(convertMenu)
+  }
+
+  get routes() {
+    const staticRoutes: RouteObject[] = [
+      { path: '/login', element: load('A8Login') },
+      { path: '/', element: load('A8Main'), children: [] },
+      { path: '/404', element: load('A8Notfound') },
+      { path: '/*', element: <navigate to="{'/404'}"></navigate> },
+    ]
+    staticRoutes[1].children = this.dynamicRoutes.map((r) => {
+      return {
+        path: r.path,
+        element: load(r.element),
+      }
+    })
+    return staticRoutes
+  }
+
+  constructor() {
+    makeAutoObservable(this)
+    const json = localStorage.getItem('dynamicRoutes')
+    this.dynamicRoutes = json ? JSON.parse(json) : []
+
+    const json2 = localStorage.getItem('dynamicMenus')
+    this.dynamicMenus = json2 ? JSON.parse(json2) : []
+  }
+
+  reset() {
+    localStorage.removeItem('dynamicRoutes')
+    this.dynamicRoutes = []
+    localStorage.removeItem('dynamicMenus')
+    this.dynamicMenus = []
+  }
+}
+
+export default new RoutesStore()
+</r<menuandroute></code></pre>
+<p>其中 convertMenu 为核心方法，负责将服务器返回的 Menu 转换成 antd Menu 组件需要的 Menu</p>
+<p>使用</p>
+<pre class=" language-tsx"><code class="language-tsx"><menu items="{RoutesStore.menus}" mode="inline" theme="dark"></menu>
+</code></pre>
+<p>跳转若发生错误，可能是因为组件懒加载引起的，需要用 Suspense 解决</p>
+<pre class=" language-tsx"><code class="language-tsx">root.render(
+  <configprovider locale="{zhCN}">
+    <browserrouter>
+      <suspense fallback="{<h3">加载中...}>
+        <myrouter></myrouter>
+      </suspense>
+    </browserrouter>
+  </configprovider>
+)
+</code></pre>
+<h4><span id="登录">登录</span></h4><pre class=" language-tsx"><code class="language-tsx">import { ItemType } from 'antd/lib/menu/hooks/useItems'
+import axios from 'axios'
+import { makeAutoObservable, runInAction } from 'mobx'
+import { Link, Navigate, RouteObject } from 'react-router-dom'
+import { LoginReq, LoginResp, Menu, MenuAndRoute, R, Route } from '../model/Student'
+import { load } from '../router/MyRouter'
+import Icon from './Icon'
+
+function convertMenu(m: Menu): ItemType {
+  const Label = m.routePath? <link to="{m.routePath}">{m.label} : m.label
+  return {
+    key: m.key,
+    label: Label,
+    icon: <icon name="{m.icon}"></icon>, 
+    children: m.children && m.children.map(convertMenu)
+  }
+}
+
+class RoutesStore {
+  // 动态部分
+  dynamicRoutes: Route[] = []
+  dynamicMenus: Menu[] = []
+
+  token: string = ''
+  state: string = 'pending' // 取值 pending done error
+  message: string = '' // 取值: 1. 空串 正常  2. 非空串 错误消息
+
+  async login(loginReq: LoginReq) {
+    this.state = 'pending'
+    this.message = ''
+    const resp1 = await axios.post<r<loginresp>>(
+      'http://localhost:8080/api/loginJwt',
+      loginReq
+    )
+    if(resp1.data.code === 999) {
+      const resp2 = await axios.get<r<menuandroute>>(
+        `http://localhost:8080/api/menu/${loginReq.username}`
+      )
+      runInAction(()=>{
+        this.token = resp1.data.data.token
+        localStorage.setItem('token', this.token)
+
+        this.dynamicRoutes = resp2.data.data.routeList
+        localStorage.setItem('dynamicRoutes', JSON.stringify(this.dynamicRoutes))
+
+        this.dynamicMenus = resp2.data.data.menuTree
+        localStorage.setItem('dynamicMenus', JSON.stringify(this.dynamicMenus))
+
+        this.state = 'done'
+      })
+    } else {
+      runInAction(()=>{
+        this.message = resp1.data.message || '未知错误'
+        this.state = 'error'
+      })
+    }
+  }
+
+  async fetch(username: string) {
+    const resp = await axios.get<r<menuandroute>>(
+      `http://localhost:8080/api/menu/${username}`
+    )
+    runInAction(() => {
+      this.dynamicRoutes = resp.data.data.routeList
+      localStorage.setItem('dynamicRoutes', JSON.stringify(this.dynamicRoutes))
+
+      this.dynamicMenus = resp.data.data.menuTree
+      localStorage.setItem('dynamicMenus', JSON.stringify(this.dynamicMenus))
+    })
+  }
+    
+  get routes() {
+    const staticRoutes: RouteObject[] = [
+      { path: '/login', element: load('A8Login') },
+      { path: '/', element: load('A8Main'), children: [] },
+      { path: '/404', element: load('A8Notfound') },
+      { path: '/*', element: <navigate to="{'/404'}"></navigate> },
+    ]
+    staticRoutes[1].children = this.dynamicRoutes.map((r) => {
+      return {
+        path: r.path,
+        element: load(r.element),
+      }
+    })
+    return staticRoutes
+  }
+
+  get menus() {
+    return this.dynamicMenus.map(convertMenu)
+  }
+
+  constructor() {
+    makeAutoObservable(this)
+    const json = localStorage.getItem('dynamicRoutes')
+    this.dynamicRoutes = json ? JSON.parse(json) : []
+
+    const json1 = localStorage.getItem('dynamicMenus')
+    this.dynamicMenus = json1 ? JSON.parse(json1) : []
+
+    const token = localStorage.getItem('token')
+    this.token = token ?? ''
+      
+    this.message = ''
+    this.state = 'pending'  
+  }
+
+  reset() {
+    localStorage.removeItem('dynamicRoutes')
+    this.dynamicRoutes = []
+
+    localStorage.removeItem('dynamicMenus')
+    this.dynamicMenus = []
+
+    localStorage.removeItem('token')
+    this.token = ''
+      
+    this.message = ''
+    this.state = 'pending'    
+  }
+}
+
+export default new RoutesStore()
+</r<menuandroute></r<menuandroute></r<loginresp></code></pre>
+<p>登录页面</p>
+<pre class=" language-tsx"><code class="language-tsx">function A8Login() {
+  function onFinish(values: { username: string; password: string }) {
+    RoutesStore.login(values)
+  }
+
+  const nav = useNavigate()
+  useEffect(() => {
+    if (RoutesStore.state === 'done') {
+      nav('/')
+    } else if (RoutesStore.state === 'error') {
+      message.error(RoutesStore.message)
+    }
+  }, [RoutesStore.state])
+
+  // ...
+}
+
+export default observer(A8Login)
+</code></pre>
+<ul>
+<li>用 useNavigate() 返回的函数跳转的代码不能包含在函数式组件的主逻辑中，只能放在<ul>
+<li>其它事件处理函数中</li>
+<li>写在副作用函数 useEffect 之中</li>
+</ul>
+</li>
+</ul>
+<h4><span id="注销-欢迎词-登录检查">注销、欢迎词、登录检查</span></h4><p>Store 中增加 get username 方法</p>
+<pre class=" language-tsx"><code class="language-tsx">class RoutesStore {
+  // ...
+
+  // eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiJ9.-l-MjMPGJVOf3zoIJgoqpV3LWoqvCCgcaI1ga86ismU
+  get username() {
+    if(this.token.length === 0) {
+      return ''
+    }
+    const json = atob(this.token.split('.')[1])
+    return JSON.parse(json).sub
+  }
+    
+  // ...
+}
+</code></pre>
+<ul>
+<li>token 的前两部分都可以解码出来，其中 [1] 就是 token 的内容部分</li>
+</ul>
+<p>主页组件改为</p>
+<pre class=" language-tsx"><code class="language-tsx">import { Button, Layout, Menu } from 'antd'
+import { observer } from 'mobx-react-lite'
+import { useEffect } from 'react'
+import { Navigate, Outlet, useNavigate } from 'react-router-dom'
+import RoutesStore from '../store/RoutesStore'
+
+function A8Main() {
+  const nav = useNavigate()
+
+  function onClick() {
+    RoutesStore.reset()
+    nav('/login')
+  }
+
+  /* useEffect(()=>{
+    if(RoutesStore.username === '') {
+      nav('/login')
+    }
+  }, []) */
+
+  if(RoutesStore.username === '') {
+    return <navigate to="/login"></navigate>
+  }
+
+  return (
+    <layout>
+      <layout.header>
+        <span>欢迎您【{RoutesStore.username}】</span>
+        <button size="small" onclick="{onClick}">注销</button>
+      </layout.header>
+      <layout>
+        <layout.sider>
+          <menu items="{RoutesStore.menus}" theme="dark" mode="inline"></menu>
+        </layout.sider>
+        <layout.content>
+          <outlet></outlet>
+        </layout.content>
+      </layout>
+    </layout>
+  )
+}
+
+export default observer(A8Main)
+</code></pre>
+<ul>
+<li>这个例子中推荐用 Navigate 来完成跳转</li>
+<li>/student，/teacher 等路由不需要检查，因为登录成功后才有</li>
+</ul>
+<h2><span id="附录">附录</span></h2><h3><span id="代码片段">代码片段</span></h3><p>ctrl+shift+p 输入关键词<strong>代码</strong></p>
+<p><img src="/2022/12/13/java-cheng-xu-yuan-yao-zhang-wo-de-qian-duan-react/BaiduNetdiskDownload\Java程序员要掌握的前端\文档\imgs\image-20221026102533928.png" alt="image-20221026102533928"></p>
+<p>定义 fun.code-snippets</p>
+<pre class=" language-json"><code class="language-json"><span class="token punctuation">{</span>
+    <span class="token property">"函数组件"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">"scope"</span><span class="token operator">:</span> <span class="token string">"javascript,typescript,typescriptreact"</span><span class="token punctuation">,</span>
+        <span class="token property">"prefix"</span><span class="token operator">:</span> <span class="token string">"fun"</span><span class="token punctuation">,</span>
+        <span class="token property">"body"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+            <span class="token string">"export default function ${1:函数名} () {"</span><span class="token punctuation">,</span>
+      <span class="token string">"  $0"</span><span class="token punctuation">,</span>      
+      <span class="token string">"  return &lt;>&lt;/>"</span><span class="token punctuation">,</span>
+            <span class="token string">"}"</span>
+        <span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token property">"description"</span><span class="token operator">:</span> <span class="token string">"快速生成react函数式组件"</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>定义 ofun.code-snippets</p>
+<pre class=" language-json"><code class="language-json"><span class="token punctuation">{</span>
+    <span class="token property">"mobx函数组件"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">"scope"</span><span class="token operator">:</span> <span class="token string">"javascript,typescript,typescriptreact"</span><span class="token punctuation">,</span>
+        <span class="token property">"prefix"</span><span class="token operator">:</span> <span class="token string">"ofun"</span><span class="token punctuation">,</span>
+        <span class="token property">"body"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token string">"import { observer } from \"mobx-react-lite\""</span><span class="token punctuation">,</span>
+      <span class="token string">""</span><span class="token punctuation">,</span>
+            <span class="token string">"function ${1:函数名} () {"</span><span class="token punctuation">,</span>
+      <span class="token string">"  $0"</span><span class="token punctuation">,</span>      
+      <span class="token string">"  return &lt;>&lt;/>"</span><span class="token punctuation">,</span>
+            <span class="token string">"}"</span><span class="token punctuation">,</span>
+      <span class="token string">"export default observer($1)"</span><span class="token punctuation">,</span>
+        <span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token property">"description"</span><span class="token operator">:</span> <span class="token string">"快速生成mobx react函数式组件"</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>这样可以在 tsx 中用快捷键 <code>fun</code> 以及 <code>ofun</code> 创建相应的代码片段</p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">CANDY</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://codercandy.github.io/2022/12/13/java-cheng-xu-yuan-yao-zhang-wo-de-qian-duan-react/">https://codercandy.github.io/2022/12/13/java-cheng-xu-yuan-yao-zhang-wo-de-qian-duan-react/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">CANDY</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E5%89%8D%E7%AB%AF/">
+                                    <span class="chip bg-color">前端</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+    <div class="livere-card card" data-aos="fade-up">
+    <!-- 来必力City版安装代码 -->
+    <div id="lv-container" class="card-content" data-id="city" data-uid="MTAyMC81NDg3My8zMTM0Mg==">
+        <script type="text/javascript">
+            (function (d, s) {
+                let j, e = d.getElementsByTagName(s)[0];
+                if (typeof LivereTower === 'function') {
+                    return;
+                }
+
+                j = d.createElement(s);
+                j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                j.async = true;
+
+                e.parentNode.insertBefore(j, e);
+            })(document, 'script');
+        </script>
+        <noscript>为正常使用来必力评论功能请激活JavaScript。</noscript>
+    </div>
+    <!-- City版安装代码已完成 -->
+</div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2023/03/02/java-cheng-xu-yuan-yao-zhang-wo-de-qian-duan-js/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="Java程序员要掌握的前端-js">
+                        
+                        <span class="card-title">Java程序员要掌握的前端-js</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2023-03-02
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                    学习
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%89%8D%E7%AB%AF/">
+                        <span class="chip bg-color">前端</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/11/22/java-cheng-xu-yuan-yao-zhang-wo-de-qian-duan-vue2/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="Java程序员要掌握的前端-Vue 2">
+                        
+                        <span class="card-title">Java程序员要掌握的前端-Vue 2</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-11-22
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                    学习
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%89%8D%E7%AB%AF/">
+                        <span class="chip bg-color">前端</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('10')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE' || selection.getRangeAt(0).commonAncestorContainer.nodeName === 'CODE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: 梓妤<br />'
+            + '文章作者: Candy liu<br />'
+            + '文章链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="/libs/aplayer/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2021-2023</span>
+            
+            <a href="/about" target="_blank">Candy liu</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+                <span id="sitetime"> Loading ...</span>
+                <script>
+                    var calcSiteTime = function () {
+                        var seconds = 1000;
+                        var minutes = seconds * 60;
+                        var hours = minutes * 60;
+                        var days = hours * 24;
+                        var years = days * 365;
+                        var today = new Date();
+                        var startYear = "2021";
+                        var startMonth = "12";
+                        var startDate = "5";
+                        var startHour = "22";
+                        var startMinute = "49";
+                        var startSecond = "0";
+                        var todayYear = today.getFullYear();
+                        var todayMonth = today.getMonth() + 1;
+                        var todayDate = today.getDate();
+                        var todayHour = today.getHours();
+                        var todayMinute = today.getMinutes();
+                        var todaySecond = today.getSeconds();
+                        var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                        var diff = t2 - t1;
+                        var diffYears = Math.floor(diff / years);
+                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+
+                        // 区分是否有年份.
+                        var language = 'zh-CN';
+                        if (startYear === String(todayYear)) {
+                            document.getElementById("year").innerHTML = todayYear;
+                            var daysTip = 'This site has been running for ' + diffDays + ' days';
+                            if (language === 'zh-CN') {
+                                daysTip = '本站已运行 ' + diffDays + ' 天';
+                            } else if (language === 'zh-HK') {
+                                daysTip = '本站已運行 ' + diffDays + ' 天';
+                            }
+                            document.getElementById("sitetime").innerHTML = daysTip;
+                        } else {
+                            document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                            var yearsAndDaysTip = 'This site has been running for ' + diffYears + ' years and '
+                                + diffDays + ' days';
+                            if (language === 'zh-CN') {
+                                yearsAndDaysTip = '本站已运行 ' + diffYears + ' 年 ' + diffDays + ' 天';
+                            } else if (language === 'zh-HK') {
+                                yearsAndDaysTip = '本站已運行 ' + diffYears + ' 年 ' + diffDays + ' 天';
+                            }
+                            document.getElementById("sitetime").innerHTML = yearsAndDaysTip;
+                        }
+                    }
+
+                    calcSiteTime();
+                </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+<a href="https://gitee.com/CandyLoveYL" class="tooltipped" target="_blank" data-tooltip="访问我的gitee" data-position="top" data-delay="50">
+	<i class="fab fa-github"></i>
+</a>
+<a href="mailto:595487347@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+	<i class="fas fa-envelope-open"></i>
+</a>
+<a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=595487347" class="tooltipped" target="_blank" data-tooltip="QQ联系我:595487347" data-position="top" data-delay="50">
+	<i class="fab fa-qq"></i>
+</a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+
+    <!-- 雪花特效 -->
+     
+        <script type="text/javascript">
+            // 只在桌面版网页启用特效
+            var windowWidth = $(window).width();
+            if (windowWidth > 768) {
+                document.write('<script type="text/javascript" src="/libs/others/snow.js"><\/script>');
+            }
+        </script>
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

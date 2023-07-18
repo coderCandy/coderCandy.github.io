@@ -1,0 +1,2003 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="信息系统项目管理师-学习笔记, Java,Flink,高级项目管理,Electron.js等">
+    <meta name="description" content="信息系统项目管理师-高级[TOC]
+论文
+
+
+
+【第01章】信息化与信息系统1.1信息系统与信息化信息的质量属性①精确性：对事物状态描述的==精准程度==②完整性：对事物状态描述的==全面程度==,完整信息应包括所有重要事实③可靠性：指信息">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="referrer" content="no-referrer" />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>信息系统项目管理师-学习笔记 | 梓妤</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="梓妤" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">梓妤</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">梓妤</div>
+        <div class="logo-desc">
+            
+            一个不懂生活的程序猿
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">信息系统项目管理师-学习笔记</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E7%AE%A1%E7%90%86/">
+                                <span class="chip bg-color">管理</span>
+                            </a>
+                        
+                            <a href="/tags/%E9%AB%98%E7%BA%A7%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/">
+                                <span class="chip bg-color">高级项目管理</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                学习
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2021-12-05
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2022-01-08
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    7.3k
+                </div>
+                
+
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2><span id="信息系统项目管理师-高级">信息系统项目管理师-高级</span></h2><p>[TOC]</p>
+<h2><span id="论文">论文</span></h2><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210726212849141.png" alt="image-20210726212849141"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210726212916331.png" alt="image-20210726212916331"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img_202112/image-20211229200437550-16407794826791.png" alt="image-20211229200437550"></p>
+<hr>
+<h2><span id="第01章信息化与信息系统">【第01章】信息化与信息系统</span></h2><h3><span id="11信息系统与信息化"><strong>1.1信息系统与信息化</strong></span></h3><h4><span id="信息的质量属性"><strong>信息的质量属性</strong></span></h4><p>①精确性：对事物状态描述的==精准程度==<br>②完整性：对事物状态描述的==全面程度==,完整信息应包括所有重要事实<br>③可靠性：指信息的来源、采集方法、传输过程是可以==信任的==，==符合预期==<br>④及时性：指获得信息的时刻与事件发生时刻的==间隔长短==<br>⑤经济性：指信息获取、传输带来的==成本==在可以接受的范围之内<br>⑥可验证性：指信息的主要质量属性可以被==证实或者证伪==的程度<br>⑦安全性：信息可以被==非授权访问==的可能性，可能性越低，安全性越高</p>
+<h4><span id="信息技术"><strong>信息技术</strong></span></h4><p>核心是==传输技术==</p>
+<ol>
+<li>信源：产生信息的实体，信息产生后，由这个实体向外传播。如==QQ使用者==</li>
+<li>信宿：信息的==归宿或接收者==,如使用QQ的另一方(当然这一方也是信源) ,他通过计算机屏幕接收QQ使用者发送的文字(如:你好! )。</li>
+<li>信道：传送信息的通道，如==TCP/IP网络==</li>
+<li>编码器 ：对编码信息进行加密再编码，如==量化器、压缩编码器、调制器==等</li>
+<li>译码器：把信道上送来的信号(原始信息与噪声的叠加)转换成信宿能接受的信号,可包括==解调器、译码器、数模转换器==等</li>
+<li>噪声：==干扰==:可以来自于信息系统分层结构的任何一-层，当噪声携带的信息大到一定程度的时候， 在信道中传输的信息可以被噪声掩盖导致传输失败。</li>
+</ol>
+<h4><span id="信息化五个层次">信息化五个层次</span></h4><p>①产品信息化：智能电视、智能灯具<br>②企业信息化：生产制造系统、==ERP、 CRM==、SCM<br>③产业信息化：农业、工业、交通运输业、生产制造业、服务业等==传统产业==<br>④国民经济信息化：金融、贸易、投资、计划、通关、营销等组成-一个信息大系统;<br>⑤社会生活信息化：==智慧城市、互联网金融==</p>
+<h4><span id="信息化">信息化</span></h4><ul>
+<li>主体：==全体社会成员==，包括政府、企业、事业、团体和个人</li>
+<li>手段：基于==现代信息技术==的先进社会生产工具</li>
+<li>途径：创建信息时代的社会生产力，推动社会生产关系及社会上层建筑的改革</li>
+<li>目标：使==国家的综合实力、社会的文明素质和人民的生活质量==全面提升</li>
+</ul>
+<h4><span id="信息化体系六要素">信息化体系六要素</span></h4><p>①信息技术==应==用:龙==头==(==主阵地==)<br>②信息==资==源:核==心==任务<br>③信息==网==络：==基==础设施<br>④信息==技==术和产业：物质==基==础<br>⑤信息化==人==才：成功之==本==<br>⑥信息化==法==规：==保==障</p>
+<p>==图形记忆法:    鹰上(应用)、下鸡(技术)、左人 (人才)、右龟(规范)==</p>
+<p>==(记忆小技巧:    鹰头、鸡基、人本、法保、织-炽热的心、网基)==</p>
+<h4><span id="信息系统生命周期">信息系统生命周期</span></h4><p>系统规==划==（可行性分析与项目开发计划）、</p>
+<p>系统==分==析（需求分析）、</p>
+<p>系统设==计==（概要设计、详细设计）、</p>
+<p>系统==实==施（编码、测试）、</p>
+<p>运==行==维护</p>
+<p>==<strong>记忆技巧：划分即实行</strong>==</p>
+<p>①系统规==划==阶段：对组织的环境、目标及现行系统的状况进行初步调查，根据组织目标和发展战略，确定信息系统的==发展战略==，对建设新系统的需求做出分析和预测，研究建设新系统的==必要性和可能性==。给出拟建系统的==备选方案==，写出==可行性研究报告==。(<strong>重要输出</strong>：可行性研究报告、系统设计任务书)</p>
+<p>②系统==分==析阶段：根据系统设计任务书所确定的范围，对现行系统进行详细调查，描述现行系统的业务流程，指出现行系统的局限性和不足之处，确定新系统的基本目标和逻辑功能要求，即==提出新系统的逻辑模型。（做什么）==(<strong>重要输出</strong>：系统说明书)</p>
+<p>③系统设==计==阶段：根据系统说明书中规定的功能要求，考虑实际条件，具体设计实现逻辑模型的技术方案，也就是==设计新系统的物理模型==。又称为物理设计阶段，可分为==总体设计（概要设计）和详细设计==两个子阶段。技术文档是==系统设计说明书。（怎么做）==（<strong>重要输出</strong>：系统设计说明书）</p>
+<p>④系统==实==施阶段：将==设计的系统付诸实施==的阶段。任务包括计算机等设备的购置、安装和调试、程序的编写和调试、人员培训、数据文件转换、系统调试与转换等。这个阶段的特点是几个互相联系、互相制约的任务同时展开，必须精心安排、合理组织。系统实施是按实施计划分阶段完成的，每个阶段应写出==实施进展报告==。系统测试之后写出系统测试分析报告。（<strong>重要输出</strong>：实施进展报告、系统测试分析报告）</p>
+<p>⑤系统运==行==和维护阶段：系统投入运行后，需要经常进行==维护和评价==，记录系统运行的情况，根据一定的规则对系统进行必要的修改，评价系统的工作质量和经济效益。（<strong>重要输出</strong>：系统运行情况）</p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210807164739204.png" alt="image-20210807164739204"></p>
+<h3><span id="12信息系统开发方法"><strong>1.2信息系统开发方法</strong></span></h3><p>开发方法包括==结构化==方法、==面向对象==方法、==原型化==方法、==面向服务==的方法</p>
+<h4><span id="结构化方法">结构化方法</span></h4><h5><span id="精髓">精髓</span></h5><p>==自顶向下、逐步求精和模块化设计==</p>
+<h5><span id="原理">原理</span></h5><p>一般是先把系统功能视为一 个大的模块，再根据系统分析与设计的要求对其进行进一步的模块分解或组合</p>
+<h5><span id="主要特点">主要特点</span></h5><p>①开发目标清晰化<br>②开发工作阶段化<br>③开发文档规范化<br>④设计方法结构化</p>
+<h5><span id="主要缺点">主要缺点</span></h5><p>①开发周期长<br>②难以适应需求变化<br>③很少考虑数据结构</p>
+<h4><span id="面向对象oo方法">面向对象(OO)方法</span></h4><h5><span id="阶段">阶段</span></h5><p>==系统分析、系统设计和系统实现==三个阶段之间已经没有”缝隙”</p>
+<h5><span id="特点">特点</span></h5><ol>
+<li>使系统的描述及信息模型的表示与客观实体相对应，==符合人们的思维习惯==</li>
+<li>有利于系统开发过程中用户与开发人员的==交流和沟通==，==缩短开发周期==</li>
+</ol>
+<h5><span id="适用范围">适用范围</span></h5><ul>
+<li>可以普遍适用于==各类信息系统的开发==</li>
+<li>使用==结构化方法==进行自顶向下的==整体划分==，自底向上地采用==OO方法进行开发==</li>
+<li>结构化方法和00方法仍是两种在系统开发领域中==相互依存的、不可替代的方法==</li>
+</ul>
+<h5><span id="特征">特征</span></h5><p>==封装性==<br>系统的测试必须考虑到信息隐蔽原则对测试的影响，以及对象状态与类的测试序列</p>
+<p>==继承性==<br>系统的测试必须考虑到继承对测试充分性的影响,以及误用引起的错误</p>
+<p>==多态性==<br>系统的测试必须考虑到动态绑定对测试充分性的影响、抽象类的测试，以及误用对测试的影响</p>
+<h5><span id="补充">补充</span></h5><p>1、面向对象(00)方法认为，客观世界是由各种对象组成的，任何事物都是对象<br>2、与结构化方法类似，00方法也划分阶段，但其中的==系统分析、系统设计和系统实现==三个阶段之间已经没有”缝隙”。也就是说，这三个阶段的界限变得不明确<br>3、OO方法使系统的描述及信息模型的表示与客观实体相对应，==符合人们的思维习惯==，有利于系统开发过程中用户与开发人员的交流和沟通,缩短开发周期。面向对象设计主要有三大特征:==封装性、继承性和多态性==，使用面向对象方法构造的系统具有更好的复用性<br>4、一些大型信息系统的开发,通常是将结构化方法和00方法结合起来。首先，使用==结构化方法==进行==自顶向下==的整体划分;然后，==自底向上==地采用==00方法==进行开发。因此，结构化方法和00方法仍是两种在系统开发领域中相互依存的、不可替代的方法。</p>
+<p>面向对象方法00:对象、类、集成、封装、消息、多态。关键点:==在于是否建立一个全面、合理、统一的模型既能反应问题域又被计算机系统求解域所接受==<br>(1)面向对象的分析OOA:了解问题涉及的对象、对象的关系与操作，构造问题的对象模型<br>(2)面向对象的设计OOD:对OOA结果整理<br>(3)面向对象的程序设计OOP:系统功能的编码。<br>OO方法的分支: Coad/Yourdon、 Booch、 OMT (系统分析、系统设计、对象设计和实现)、OOSE</p>
+<h4><span id="原型方法">原型方法</span></h4><h5><span id="原理">原理</span></h5><ul>
+<li>系统开发初期必须明确系统的功能要求，确定系统边界</li>
+<li>根据用户初步需求，利用系统开发工具，快速地建立一个系统模型展示给用户，在此基础_上与用户交流，最终实现用户需求的信息系统快速开发的方法</li>
+</ul>
+<h5><span id="分类">分类</span></h5><h6><span id="是否实现功能">是否实现功能</span></h6><p>水平原型</p>
+<ul>
+<li>也称为<strong>行为原型</strong>，用来探索预期系统的一些特定行为,并达到细化需求的目的</li>
+<li>通常只是功能的导航，但并未真实实现功能</li>
+<li>主要用在==界面==上</li>
+</ul>
+<p>垂直原型</p>
+<ul>
+<li>也称为<strong>结构化原型</strong>，实现了-部分功能</li>
+<li>主要用在复杂的==算法==实现上</li>
+</ul>
+<h6><span id="最终结果">最终结果</span></h6><p>抛弃式原型</p>
+<ul>
+<li>用在解决需求==不确定性==、二义性、不完整性、含糊性</li>
+</ul>
+<p>演化式原型</p>
+<ul>
+<li>为开发==增量式==产品提供基础，逐步将原型演化成最终系统</li>
+<li>必须易于升级和优化的场合，特别适用于==Web项目==</li>
+</ul>
+<h5><span id="特点">特点</span></h5><p>①使系统开发的周期缩短、成本和风险降低、速度加快，获得较高的综合开发效益。<br>②以用户为中心来开发系统的，用户参与的程度大大提高，开发的系统符合用户的需求，因而增加了用户的满意度，提高了系统开发的成功率。<br>③由于用户参与了系统开发的全过程，对系统的功能和结构容易理解和接受,有利于系统的移交，有利于系统的运行与维护。</p>
+<h5><span id="优点">优点</span></h5><ul>
+<li>主要在于能更有效地确认用户需求</li>
+<li>用于那些需求不明确的系统开发</li>
+<li>对于分析层面难度大、技术层面难度不大的系统，适合于原型法开发</li>
+<li>而对于技术层面的困难远大于其分析层面的系统，则不宜用原型法。</li>
+</ul>
+<h4><span id="面向服务的方法">面向服务的方法</span></h4><ul>
+<li>对于跨构件的功能调用，则采用接口的形式暴露出来。</li>
+<li>进一步将接口的定义与实现进行解耦，则催生了服务和面向服务(SO) 的开发方法。</li>
+<li>如何使信息系统快速响应需求与环境变化，==提高系统可复用性、信息资源共享和系统之间的互操作性==，成为影响信息化建设效率的关键问题，而SO的思维方式恰好满足了这种需求。</li>
+</ul>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210807163434511.png" alt="image-20210807163434511"></p>
+<h3><span id="13常规信息系统集成技术"><strong>1.3常规信息系统集成技术</strong></span></h3><h4><span id="osi模型">OSI模型</span></h4><p><strong>==口诀：物链网传会表应==</strong></p>
+<p>①==物==理层：该层包括==物理连网媒介==，如电缆连线连接器。该层的协议产生并检测电压以便发送和接收携带数据的信号。有RS232、V. 35、RJ-45、FDDI。</p>
+<p>②数据==链==路层：它控制网络层与物理层之间的通信。它的主要功能是将从网络层接收到的数据分割成特定的可被物理层传输的==帧==。协议有IEEE802.3/.2、HDLC、PPP、ATM。</p>
+<p>③==网==络层：其主要功能是==将网络地址（例如，IP地址）翻译成对应的物理地址（例如，网卡地址）==，并决定如何将数据从发送方路由到接收方。有IP、ICMP、IGMP、IPX、ARP等。</p>
+<p>④==传==输层：主要负责==确保数据可靠、顺序、无错地从A点传输到B点==。如提供建立、维护和拆除传送连接的功能；选择网络层提供最合适的服务；在系统之间提供可靠的透明的数据传送，提供端到端的错误恢复和流量控制。有TCP、UDP、SPX。</p>
+<p>⑤==会==话层：负责在网络中的两节点之间建立和维持通信，以及提供交互会话的管理功能，如三种数据流方向的控制，即一路交互、两路交替和两路同时会话模式。有RPC、SQL、NFS。</p>
+<p>⑥==表==示层：如同应用程序和网络之间的翻译官，数据将按照网络能理解的方案进行格式化；==管理数据的解密加密、数据转换、格式化和文本压缩==。有JPEG、ASCII、GIf、DES、MPEG。</p>
+<p>⑦==应==用层：负责对软件提供接口以使程序能使用网络服务，如==事务处理程序、文件传送协议和网络管理==等。有HTTP、Telnet、FTP、SMTP。</p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210727215938148.png" alt="image-20210727215938148"></p>
+<h4><span id="tcpip">==TCP/IP==</span></h4><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210807163316362.png" alt="image-20210807163316362"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210807165231033.png" alt="image-20210807165231033"></p>
+<h4><span id="网络存储技术">网络存储技术</span></h4><h5><span id="1直接附加存储das">①直接附加存储(DAS)</span></h5><ul>
+<li>存储设备通过SCSI电缆直接连到服务器</li>
+<li>其本身是硬件的堆叠，存储操作依赖于服务器，不带有任何存储操作系统</li>
+<li>当存储容量增加时，==采用直接附加存储(DAS)方式很难扩容==</li>
+<li>==<strong>小型计算机系统接口(SCSI)</strong>== 是一种用于计算机及其周边设备之间(硬盘、软驱、光驱、打印机、扫描仪等)系统级接口的独立处理器标准</li>
+</ul>
+<h5><span id="2网络附加存储nas">②网络附加存储(NAS)</span></h5><ol>
+<li>通过网络接口与网络直接相连,由用户通过网络访问，支持==即插即用==;</li>
+<li>NAS存储设备类似于一个专用的文件服务器，去掉了通用服务器的大多数计算功能，而==仅仅提供文件系统功能==，从而降低了设备的成本，不仅响应速度快，而且数据传输速率也很高。</li>
+<li>支持多种==TCP/IP协议==，主要是NFS (网络文件系统)和CIFS (通用Internet文件系统)来进行文件访问，性能特点是进行==小文件级的共享存取==</li>
+<li>可经济地解决存储容量不足的问题，但难以获得满意的性能</li>
+</ol>
+<h5><span id="3存储区域网络san">③存储区域网络(SAN)</span></h5><h6><span id="特点">特点</span></h6><ul>
+<li>通过高速==光纤连接，极度可扩展型==;通过专用交换机将磁盘阵列与服务器连接起来的高速专用子网。</li>
+<li>它==没有==采用文件共享存取方式，而是采用==块(block) 级别存储==</li>
+</ul>
+<h6><span id="分类">分类</span></h6><h6><span id="fcsan光纤通道fcfibre-channel">FCSAN（（FC，Fibre Channel））</span></h6><ul>
+<li>热插拔性、高速带宽、远程连接、连接设备数量大等</li>
+<li>==缺陷:成本高和非常复杂==</li>
+</ul>
+<h6><span id="ipsan">IPSAN</span></h6><ul>
+<li>基于IP网络实现数据块级别存储方式的存储网络。==设备成本低，配置技术简单，可共享和使用大容量的存储空间==</li>
+<li>使用TCP/IP协议对SCSI指令进行封装</li>
+<li>可以使指令能够通过IP网络进行传输，而过程==完全不依赖于地点==</li>
+</ul>
+<h6><span id="ibsan-infiniband是一种交换结构-io技术">IBSAN  (InfiniBand是一种交换结构 I/O技术)</span></h6><ul>
+<li>结构设计得非常紧密，大大提高了系统的性能、可靠性和有效性，能缓解各硬件设备之间的数据流量拥塞</li>
+</ul>
+<h4><span id="网络工程">网络工程</span></h4><h5><span id="网络规划">网络规划</span></h5><ul>
+<li>网络需求分析</li>
+<li>可行性分析</li>
+<li>对现有网络的分析与描述</li>
+</ul>
+<h5><span id="网络设计">网络设计</span></h5><h6><span id="核心层">核心层</span></h6><p>通过高速转发通信，提供优化、可靠的==骨干传输结构==</p>
+<h6><span id="汇聚层">汇聚层</span></h6><p>核心层和接入层的分界面，完成网络访问策略控制、==数据包处理、过滤、寻址，以及其他数据处理的任务==</p>
+<h6><span id="接入层">接入层</span></h6><p>允许==终端用户连接到网络==</p>
+<h4><span id="信息安全的基本要素">信息安全的基本要素</span></h4><ol>
+<li>机密性：确保信息==不暴露给未授权==的实体或进程</li>
+<li>完整性：只有得到允许的人才能修改数据,并且能够判别出数据==是否己被篡改==</li>
+<li>可用性：得到授权的实体在需要时==可访问数据==，==攻击者==不能占用所有资源而阻碍授权者工作</li>
+<li>可控性：可以==控制授权==范围内的信息流向及行为方式</li>
+<li>可审查性：对出现的网络安全问题==提供调查的依据和手段==</li>
+</ol>
+<h5><span id="可用性可靠性">可用性/可靠性</span></h5><h6><span id="可用性">可用性</span></h6><ul>
+<li>**平均无故障时间(MTTF)**（mean time to failure）</li>
+<li>系统的可用性越高，平均无故障时间越长</li>
+<li>==MTTF/ (MTTF+MTTR) *100%==系统保持正常运行时间的百分比</li>
+</ul>
+<h6><span id="可靠性">可靠性</span></h6><ul>
+<li>**平均维修时间(MTTR)**（mean time to repair）</li>
+<li>系统的可维护性越好，平均维修时间越短</li>
+</ul>
+<h5><span id="补充">补充</span></h5><h6><span id="华为芯片">华为芯片</span></h6><ul>
+<li>麒麟 :华为在手机上搭载的CPU处理器芯片</li>
+<li>巴龙:5G手机上搭载的调制解调器，支持NSA和SA组网方式,超过了高通x50基带|</li>
+<li>异腾:华为推出的人工智能芯片，也是华为将在AI技术上的布局</li>
+<li>鲲鹏:ARM处理器，是由华为研发设计的处理器芯片，在2019年推出的鲲鹏920基于7nm工艺打造，支持64个内核，也是华为在计算机电脑领域的布局</li>
+</ul>
+<h6><span id="华为操作系统">华为操作系统</span></h6><ul>
+<li>鸿蒙:分布式操作系统</li>
+</ul>
+<h3><span id="14软件工程"><strong>1.4软件工程</strong></span></h3><h4><span id="软件需求">软件需求</span></h4><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210728210535271.png" alt="image-20210728210535271"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210728210628083.png" alt="image-20210728210628083"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210728210701677.png" alt="image-20210728210701677"></p>
+<h4><span id="uml">UML</span></h4><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210728210822371.png" alt="image-20210728210822371"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210816140646695.png" alt="image-20210816140646695"></p>
+<p>UML常用图的几种关系的总结</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/suxinpingtao51/article/details/8011335">https://blog.csdn.net/suxinpingtao51/article/details/8011335</a></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210728211047546.png" alt="image-20210728211047546"></p>
+<h4><span id="软件架构">软件架构</span></h4><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210728211543773.png" alt="image-20210728211543773"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210728212029057.png" alt="image-20210728212029057"></p>
+<h4><span id="软件设计">软件设计</span></h4><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210728212102613.png" alt="image-20210728212102613"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210728212136297.png" alt="image-20210728212136297"></p>
+<h4><span id="能力成熟度模型集成">==能力成熟度模型集成==</span></h4><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210728212415036.png" alt="image-20210728212415036"></p>
+<p>==<strong>软考高项记忆小妙招—CMMI</strong>==</p>
+<p><a target="_blank" rel="noopener" href="https://blog.51cto.com/u_13886554/3089662">https://blog.51cto.com/u_13886554/3089662</a></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/f4151df27d09f30535726eb43638c9c4.png" alt="img"></p>
+<h4><span id="软件测试">软件测试</span></h4><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210728212727158.png" alt="image-20210728212727158"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210728212850663.png" alt="image-20210728212850663"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210728213004374.png" alt="image-20210728213004374"></p>
+<h4><span id="eai">==EAI==</span></h4><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210727230107090.png" alt="image-20210727230107090"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210822114123889.png" alt="image-20210822114123889"></p>
+<h3><span id="15新一代信息技术"><strong>1.5新一代信息技术</strong></span></h3><h4><span id="物联网"><strong>物联网</strong></span></h4><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210728214012818.png" alt="image-20210728214012818"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210728214138463.png" alt="image-20210728214138463"></p>
+<h4><span id="云计算"><strong>云计算</strong></span></h4><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210728214234419.png" alt="image-20210728214234419"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210728214359032.png" alt="image-20210728214359032"></p>
+<h4><span id="大数据">大数据</span></h4><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210728223946912.png" alt="image-20210728223946912"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210728223908387.png" alt="image-20210728223908387"></p>
+<h4><span id="移动互联网"><strong>移动互联网</strong></span></h4><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210728224121192.png" alt="image-20210728224121192"></p>
+<h4><span id="智慧城市"><strong>智慧城市</strong></span></h4><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210728224228899.png" alt="image-20210728224228899"></p>
+<h4><span id="互联网"><strong>互联网+</strong></span></h4><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210728224323606.png" alt="image-20210728224323606"></p>
+<h4><span id="智能制造2025"><strong>智能制造2025</strong></span></h4><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210728224454394.png" alt="image-20210728224454394"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210728224610443.png" alt="image-20210728224610443"></p>
+<h4><span id="区块链技术"><strong>区块链技术</strong></span></h4><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210728224656986.png" alt="image-20210728224656986"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210728224841509.png" alt="image-20210728224841509"></p>
+<h4><span id="十四五规划">==十四五规划==</span></h4><p><strong>已考点</strong></p>
+<p>展望2035年，我国将基本实现社会主义现代化。经济实力、科技实力、综合国力将大幅跃升，经济总量和城乡居民人均收入将再迈上新的大台阶，关键核心技术实现重大突破，进入创新型国家前列。基本实现新型工业化、信息化、城镇化、==<strong>农业现代化</strong>==，建成现代化经济体系。</p>
+<p>完善技术创新市场导向机制，强化企业创新主体地位，促进各类创新要素向企业集聚，形成以==<strong>企业</strong>==为主体、==<strong>市场</strong>==为导向、产学研用深度融合的技术创新体系。</p>
+<p><strong>可能考点</strong></p>
+<ul>
+<li><p>“十四五”时期推动高质量发展，必须立足<strong>新发展阶段</strong>、贯彻<strong>新发展理念</strong>、构建<strong>新发展格局</strong>。</p>
+</li>
+<li><p> “十四五”时期经济社会发展主要目标：<strong>经济发展</strong>取得新成效、<strong>改革开放</strong>迈出新步伐、<strong>社会文明程度</strong>得到新提高、<strong>生态文明建设</strong>实现新进步、<strong>民生福祉</strong>达到新水平、<strong>国家治理效能</strong>得到新提升</p>
+</li>
+<li><p>贯彻<strong>尊重劳动</strong>、<strong>尊重知识</strong>、<strong>尊重人才</strong>、<strong>尊重创造</strong>方针，深化人才发展体制机制改革，全方位培养、引进、用好人才，充分发挥人才第一资源的作用。</p>
+</li>
+<li><p>深入推进<strong>科技体制</strong>改革，完善国家<strong>科技治理</strong>体系，优化国家<strong>科技计划体系和运行机制</strong>，推动重点领域项目、基地、人才、资金一体化配置。</p>
+</li>
+<li><p>坚持把发展经济着力点放在实体经济上，加快推进制造强国、质量强国建设，促进先进制造业和现代服务业深度融合，强化基础设施支撑引领作用，构建实体经济、科技创新、现代金融、人力资源协同发展的现代产业体系。</p>
+</li>
+<li><p>坚持自主可控、安全高效，推进<strong>产业基础高级化</strong>、<strong>产业链现代化</strong>，保持制造业比重基本稳定，增强制造业竞争优势，推动制造业高质量发展。</p>
+</li>
+<li><p>坚持扩大内需这个战略基点，加快培育完整内需体系，把实施扩大内需战略同深化供给侧结构性改革有机结合起来，以创新驱动、高质量供给引领和创造新需求，加快构建以国内大循环为主体、国内国际双循环相互促进的新发展格局。</p>
+</li>
+<li><p>迎接数字时代，激活数据要素潜能，推进网络强国建设，加快建设<strong>数字经济</strong>、<strong>数字社会</strong>、<strong>数字政府</strong>，以数字化转型整体驱动生产方式、生活方式和治理方式变革。</p>
+</li>
+<li><p>充分发挥海量数据和丰富应用场景优势，促进<strong>数字技术</strong>与<strong>实体经济</strong>深度融合，赋能传统产业转型升级，催生新产业新业态新模式，壮大经济发展新引擎。</p>
+</li>
+</ul>
+<p><strong>打造数字经济新优势</strong></p>
+<ul>
+<li>第一节 <strong>加强关键数字技术创新应用</strong></li>
+</ul>
+<p>聚焦高端芯片、操作系统、人工智能关键算法、传感器等关键领域，加快推进基础理论、基础算法、装备材料等研发突破与迭代应用。加强通用处理器、云计算系统和软件核心技术一体化研发。加快布局量子计算、量子通信、神经芯片、DNA存储等前沿技术，加强信息科学与生命科学、材料等基础学科的交叉创新，支持数字技术开源社区等创新联合体发展，完善开源知识产权和法律体系，鼓励企业开放软件源代码、硬件设计和应用服务。</p>
+<ul>
+<li>第二节 <strong>加快推动数字产业化</strong></li>
+</ul>
+<p>培育壮大人工智能、大数据、区块链、云计算、网络安全等新兴数字产业，提升通信设备、核心电子元器件、关键软件等产业水平。构建基于5G的应用场景和产业生态，在智能交通、智慧物流、智慧能源、智慧医疗等重点领域开展试点示范。鼓励企业开放搜索、电商、社交等数据，发展第三方大数据服务产业。促进共享经济、平台经济健康发展。</p>
+<ul>
+<li>第三节 <strong>推进产业数字化转型</strong></li>
+</ul>
+<p>实施“上云用数赋智”行动，推动数据赋能全产业链协同转型。在重点行业和区域建设若干国际水准的工业互联网平台和数字化转型促进中心，深化研发设计、生产制造、经营管理、市场服务等环节的数字化应用，培育发展个性定制、柔性制造等新模式，加快产业园区数字化改造。深入推进服务业数字化转型，培育众包设计、智慧物流、新零售等新增长点。加快发展智慧农业，推进农业生产经营和管理服务数字化改造。</p>
+<ul>
+<li>将数字技术广泛应用于政府管理服务，推动政府治理<strong>流程再造</strong>和<strong>模式优化</strong>，<strong>不断提高决策科学性</strong>和<strong>服务效率</strong>。</li>
+<li>坚持放管并重，促进发展与规范管理相统一，构建数字规则体系，营造<strong>开放</strong>、<strong>健康</strong>、<strong>安全</strong>的数字生态。</li>
+</ul>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img_202112/image-20220108124213624.png" alt="image-20220108124213624"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img_202201/image-20220108124413976.png" alt="image-20220108124413976"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img_202201/image-20220108124444958.png" alt="image-20220108124444958"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img_202201/image-20220108124504070.png" alt="image-20220108124504070"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img_202201/image-20220108124523555.png" alt="image-20220108124523555"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img_202201/image-20220108124551293.png" alt="image-20220108124551293"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img_202201/image-20220108124609510.png" alt="image-20220108124609510"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img_202201/image-20220108124641885.png" alt="image-20220108124641885"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img_202201/image-20220108124700476.png" alt="image-20220108124700476"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img_202201/image-20220108124727635.png" alt="image-20220108124727635"></p>
+<h3><span id="16信息系统安全技术"><strong>1.6信息系统安全技术</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210728225429513.png" alt="image-20210728225429513"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210728225601878.png" alt="image-20210728225601878"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210728225740249.png" alt="image-20210728225740249"><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210728230101127.png" alt="image-20210728230101127"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210728230400298.png" alt="image-20210728230400298"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210728230948452.png" alt="image-20210728230948452"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210728230913953.png" alt="image-20210728230913953"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210728231118298.png" alt="image-20210728231118298"></p>
+<h3><span id="17信息化发展与应用"><strong>1.7信息化发展与应用</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210728231346612.png" alt="image-20210728231346612"></p>
+<h4><span id="电子政务"><strong>电子政务</strong></span></h4><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210728231504019.png" alt="image-20210728231504019"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210728231539900.png" alt="image-20210728231539900"></p>
+<h4><span id="电子商务">电子商务</span></h4><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210728231627087.png" alt="image-20210728231627087"></p>
+<h4><span id="两化融合">==<strong>两化融合</strong>==</span></h4><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210728231655261.png" alt="image-20210728231655261"></p>
+<h4><span id="智慧城市">智慧城市</span></h4><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210728231918469.png" alt="image-20210728231918469"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210728232005192.png" alt="image-20210728232005192"></p>
+<h3><span id="18信息系统服务管理"><strong>1.8信息系统服务管理</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210728232128979.png" alt="image-20210728232128979"></p>
+<h4><span id="信息系统监理"><strong>信息系统监理</strong></span></h4><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210728232217940.png" alt="image-20210728232217940"></p>
+<h4><span id="it服务管理">IT服务管理</span></h4><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210728232511042.png" alt="image-20210728232511042"></p>
+<h3><span id="19信息系统规划">==<strong>1.9信息系统规划</strong>==</span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210728232716556.png" alt="image-20210728232716556"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210728232925829.png" alt="image-20210728232925829"></p>
+<h4><span id="规划工具">==规划工具==</span></h4><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210728233008145.png" alt="image-20210728233008145"></p>
+<h3><span id="110企业首席信息官及其职责"><strong>1.10企业首席信息官及其职责</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210728233110347.png" alt="image-20210728233110347"></p>
+<hr>
+<h2><span id="第02章项目管理基础">【第02章】项目管理基础</span></h2><h3><span id="21项目管理基础"><strong>2.1项目管理基础</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210729204542189.png" alt="image-20210729204542189"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210729204717417.png" alt="image-20210729204717417"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210729204904943.png" alt="image-20210729204904943"></p>
+<h3><span id="22-24项目管理知识体系构成-pmp-prince2"><strong>2.2-2.4项目管理知识体系构成、PMP、PRINCE2</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210729205009641.png" alt="image-20210729205009641"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210729205025508.png" alt="image-20210729205025508"></p>
+<h3><span id="25组织结构对项目的影响"><strong>2.5组织结构对项目的影响</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210809212617328.png" alt="image-20210809212617328"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210729205244258.png" alt="image-20210729205244258"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210729205305725.png" alt="image-20210729205305725"></p>
+<h3><span id="26信息系统项目的生命周期"><strong>2.6信息系统项目的生命周期</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210729205732984.png" alt="image-20210729205732984"></p>
+<h3><span id="27信息系统项目典型生命周期模型"><strong>2.7信息系统项目典型生命周期模型</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210729215317676.png" alt="image-20210729215317676"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210729215415871.png" alt="image-20210729215415871"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210729215728159.png" alt="image-20210729215728159"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210729220102620.png" alt="image-20210729220102620"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210729220227239.png" alt="image-20210729220227239"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210729220413553.png" alt="image-20210729220413553"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210729220845687.png" alt="image-20210729220845687"></p>
+<p><strong>Scrum敏捷开发流程主要包扩三个角色、四个会议和个三物件。</strong></p>
+<p>Scrum团队中包括三个角色，他们分别是产品负责人、开发团队和项目的直接管理者（Scrum Master）。</p>
+<p>四个会议指的是Sprint计划会议、每日例会、Sprint评审会议和Sprint回顾会议。</p>
+<p>三个物件指的是产品待办事项列表（Product Backlog）、Sprint Backlog和燃尽图</p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210729222233434.png" alt="image-20210729222233434"></p>
+<h3><span id="28单个项目管理过程"><strong>2.8单个项目管理过程</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210729222423565.png" alt="image-20210729222423565"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210729222523227.png" alt="image-20210729222523227"></p>
+<hr>
+<h2><span id="第03章项目立项管理">【第03章】项目立项管理</span></h2><h3><span id="项目立项管理"><strong>项目立项管理</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210729222959520.png" alt="image-20210729222959520"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210729223436206.png" alt="image-20210729223436206"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210729223845530.png" alt="image-20210729223845530"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210729224114617.png" alt="image-20210729224114617"></p>
+<p>可行性研究<strong>阶段划分</strong></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210729224300134.png" alt="image-20210729224300134"></p>
+<h3><span id="项目论证">项目论证</span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210729225424339.png" alt="image-20210729225424339"></p>
+<h3><span id="项目评估">项目评估</span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210729225631002.png" alt="image-20210729225631002"></p>
+<h3><span id="案例分析储备记忆要点"><strong>案例分析储备记忆要点</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210729225913408.png" alt="image-20210729225913408"></p>
+<hr>
+<h2><span id="第16章项目变更管理">【第16章】项目变更管理</span></h2><h3><span id="161项目变更管理的基本概念"><strong>16.1项目变更管理的基本概念</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210802221417908.png" alt="image-20210802221417908"></p>
+<h3><span id="162项目变更管理原则"><strong>16.2项目变更管理原则</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210802221539256.png" alt="image-20210802221539256"></p>
+<h3><span id="163变更管理组织机构与工作程序"><strong>16.3变更管理组织机构与工作程序</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210802221716121.png" alt="image-20210802221716121"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210802221744994.png" alt="image-20210802221744994"></p>
+<h3><span id="164项目变更管理的工作内容了解"><strong>16.4项目变更管理的工作内容</strong>【了解】</span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210802221954502.png" alt="image-20210802221954502"></p>
+<hr>
+<h2><span id="第04章项目整体管理">【第04章】项目整体管理</span></h2><h3><span id="ito共性总结"><strong>ITO共性总结</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210802222223401.png" alt="image-20210802222223401"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210802222343232.png" alt="image-20210802222343232"></p>
+<h3><span id="整体管理过程"><strong>整体管理过程</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210802222459581.png" alt="image-20210802222459581"></p>
+<h3><span id="整体管理ito口诀版"><strong>整体管理*ITO口诀版</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210802222704057.png" alt="image-20210802222704057"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210802222721730.png" alt="image-20210802222721730"></p>
+<h3><span id="0项目整体管理概述"><strong>0.项目整体管理概述</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210802222835823.png" alt="image-20210802222835823"></p>
+<h3><span id="1制定项目章程">1.制定项目章程</span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210802222917391.png" alt="image-20210802222917391"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210802223129648.png" alt="image-20210802223129648"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210802223210290.png" alt="image-20210802223210290"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210802223237832.png" alt="image-20210802223237832"></p>
+<h3><span id="2制订项目管理计划">2.制订项目管理计划</span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210802223455173.png" alt="image-20210802223455173"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210802223534308.png" alt="image-20210802223534308"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210802223705880.png" alt="image-20210802223705880"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210802223746786.png" alt="image-20210802223746786"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210802224533067.png" alt="image-20210802224533067"></p>
+<h3><span id="项目管理信息系统"><strong>项目管理信息系统</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210802223835845.png" alt="image-20210802223835845"></p>
+<h3><span id="3指导与管理项目执行">3.<strong>指导与管理项目执行</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210802224727289.png" alt="image-20210802224727289"></p>
+<h3><span id="项目绩效"><strong>项目绩效</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210802224753975.png" alt="image-20210802224753975"></p>
+<h3><span id="4监控项目工作">4.<strong>监控项目工作</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210802225034376.png" alt="image-20210802225034376"></p>
+<h3><span id="5实施整体变更控制"><strong>5.实施整体变更控制</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210802225449277.png" alt="image-20210802225449277"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210802225406969.png" alt="image-20210802225406969"></p>
+<h3><span id="6收尾管理">6.<strong>收尾管理</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210802225557335.png" alt="image-20210802225557335"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210802225617008.png" alt="image-20210802225617008"></p>
+<hr>
+<h2><span id="第05章项目范围管理">【第05章】项目范围管理</span></h2><h3><span id="项目范围管理"><strong>项目范围管理</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210804214632033.png" alt="image-20210804214632033"></p>
+<h3><span id="项目范围管理ito口诀版"><strong>项目范围管理*ITO口诀版</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210804214748008.png" alt="image-20210804214748008"></p>
+<h3><span id="51范围管理概述"><strong>5.1范围管理概述</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210804214840807.png" alt="image-20210804214840807"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210804215043585.png" alt="image-20210804215043585"></p>
+<h3><span id="52规划范围管理"><strong>5.2规划范围管理</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210804215349242.png" alt="image-20210804215349242"></p>
+<h3><span id="53收集需求"><strong>5.3收集需求</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210804215443943.png" alt="image-20210804215443943"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210804215657922.png" alt="image-20210804215657922"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210804215734429.png" alt="image-20210804215734429"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210804215758079.png" alt="image-20210804215758079"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210804215854539.png" alt="image-20210804215854539"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210804220132325.png" alt="image-20210804220132325"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210804220210023.png" alt="image-20210804220210023"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210804220809949.png" alt="image-20210804220809949"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210804220831858.png" alt="image-20210804220831858"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210804221030885.png" alt="image-20210804221030885"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210804221514193.png" alt="image-20210804221514193"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210804221547922.png" alt="image-20210804221547922"></p>
+<h3><span id="54定义范围"><strong>5.4定义范围</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210804221802282.png" alt="image-20210804221802282"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210804221902454.png" alt="image-20210804221902454"></p>
+<h3><span id="55创建工作分解结构wbs"><strong>5.5创建工作分解结构（WBS）</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210804222114211.png" alt="image-20210804222114211"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210804222316984.png" alt="image-20210804222316984"><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210804222544085.png" alt="image-20210804222544085"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210804222945329.png" alt="image-20210804222945329"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210804223304471.png" alt="image-20210804223304471"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210804223427448.png" alt="image-20210804223427448"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210804223501383.png" alt="image-20210804223501383"></p>
+<h3><span id="56确认范围"><strong>5.6确认范围</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210804223937764.png" alt="image-20210804223937764"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210804224055298.png" alt="image-20210804224055298"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210804224215419.png" alt="image-20210804224215419"></p>
+<h3><span id="57控制范围"><strong>5.7控制范围</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210804224253138.png" alt="image-20210804224253138"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210804224333180.png" alt="image-20210804224333180"></p>
+<h3><span id="项目范围管理案例分析"><strong>项目范围管理案例分析</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210804224411129.png" alt="image-20210804224411129"></p>
+<hr>
+<h2><span id="第06章项目进度管理">【第06章】项目进度管理</span></h2><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210806212422092.png" alt="image-20210806212422092"></p>
+<h3><span id="61概述"><strong>6.1概述</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210806212541904.png" alt="image-20210806212541904"></p>
+<h3><span id="62项目进度管理过程"><strong>6.2项目进度管理过程</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210806212650396.png" alt="image-20210806212650396"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210806212841477.png" alt="image-20210806212841477"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210806212904855.png" alt="image-20210806212904855"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210806212925243.png" alt="image-20210806212925243"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210806212947101.png" alt="image-20210806212947101"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210806213005290.png" alt="image-20210806213005290"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210806213024331.png" alt="image-20210806213024331"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210806213045481.png" alt="image-20210806213045481"></p>
+<h3><span id="63项目进度管理的技术和工具"><strong>6.3项目进度管理的技术和工具</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210806213142361.png" alt="image-20210806213142361"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210806213402890.png" alt="image-20210806213402890"></p>
+<h4><span id="确定依赖关系">==确定依赖关系==</span></h4><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210806213541904.png" alt="image-20210806213541904"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210806213623582.png" alt="image-20210806213623582"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210806213747412.png" alt="image-20210806213747412"><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210806214041635.png" alt="image-20210806214041635"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210806214155155.png" alt="image-20210806214155155"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210806214247070.png" alt="image-20210806214247070"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210806214344909.png" alt="image-20210806214344909"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210806214511093.png" alt="image-20210806214511093"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210806214620122.png" alt="image-20210806214620122"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210806214649519.png" alt="image-20210806214649519"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210806214728063.png" alt="image-20210806214728063"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210806214747389.png" alt="image-20210806214747389"></p>
+<hr>
+<h2><span id="第07章项目成本管理"><strong>【第07章】项目成本管理</strong></span></h2><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210808205417152.png" alt="image-20210808205417152"></p>
+<h3><span id="71概述"><strong>7.1概述</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210808205512908.png" alt="image-20210808205512908"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210808205554133.png" alt="image-20210808205554133"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210808205717522.png" alt="image-20210808205717522"></p>
+<h3><span id="应急储备和管理储备">==<strong>应急储备和管理储备</strong>==</span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210808205804565.png" alt="image-20210808205804565"></p>
+<h3><span id="成本估算和预算的区别">==<strong>成本估算和预算的区别</strong>==</span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210808205920552.png" alt="image-20210808205920552"></p>
+<h3><span id="72项目成本管理过程"><strong>7.2项目成本管理过程</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210808210436963.png" alt="image-20210808210436963"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210808210522752.png" alt="image-20210808210522752"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210808214538280.png" alt="image-20210808214538280"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210808214624047.png" alt="image-20210808214624047"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210808214643836.png" alt="image-20210808214643836"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210808214714735.png" alt="image-20210808214714735"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210808214731146.png" alt="image-20210808214731146"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210808214850443.png" alt="image-20210808214850443"></p>
+<h3><span id="73项目成本管理的技术和工具"><strong>7.3项目成本管理的技术和工具</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210808214923312.png" alt="image-20210808214923312"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210808214940182.png" alt="image-20210808214940182"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210808215043425.png" alt="image-20210808215043425"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210808215156829.png" alt="image-20210808215156829"></p>
+<h3><span id="挣值分析计算"><strong>挣值分析计算</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210808215248048.png" alt="image-20210808215248048"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210808215302393.png" alt="image-20210808215302393"></p>
+<hr>
+<h2><span id="第08章项目质量管理"><strong>【第08章】项目质量管理</strong></span></h2><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210810180413278.png" alt="image-20210810180413278"></p>
+<p>重点看 ==<strong>输入输出</strong>==</p>
+<h3><span id="81质量管理基础"><strong>8.1质量管理基础</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210810210253825.png" alt="image-20210810210253825"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210810210403402.png" alt="image-20210810210403402"></p>
+<h3><span id="82项目质量管理过程"><strong>8.2项目质量管理过程</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210810210731474.png" alt="image-20210810210731474"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210810210551717.png" alt="image-20210810210551717"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210810214927670.png" alt="image-20210810214927670"></p>
+<h3><span id="qa和qc的区别"><strong>QA和QC的区别</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210810210638458.png" alt="image-20210810210638458"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210810210754707.png" alt="image-20210810210754707"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210810210818427.png" alt="image-20210810210818427"></p>
+<h3><span id="83项目质量管理的技术和工具"><strong>8.3项目质量管理的技术和工具</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210810210951042.png" alt="image-20210810210951042"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210810211019820.png" alt="image-20210810211019820"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210810211044483.png" alt="image-20210810211044483"></p>
+<h3><span id="教材涉及到的审计区别"><strong>教材涉及到的审计区别</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210810211111095.png" alt="image-20210810211111095"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210810211200325.png" alt="image-20210810211200325"></p>
+<h3><span id="老七工具">老七工具</span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210810211222030.png" alt="image-20210810211222030"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210810211241544.png" alt="image-20210810211241544"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210810211326212.png" alt="image-20210810211326212"></p>
+<h3><span id="新七工具">新七工具</span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210810211346857.png" alt="image-20210810211346857"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210810211757739.png" alt="image-20210810211757739"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210810211932705.png" alt="image-20210810211932705"></p>
+<p>SIPOC其中每个字母各代表：Supplier 供应者；Input 输入；Process 流程；Output 输出；Customer 客户</p>
+<h3><span id="补充学习的内容"><strong>补充学习的内容</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210810212443105.png" alt="image-20210810212443105"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210810212501216.png" alt="image-20210810212501216"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210810212524368.png" alt="image-20210810212524368"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210810212542743.png" alt="image-20210810212542743"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210810212600635.png" alt="image-20210810212600635"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210810212711364.png" alt="image-20210810212711364"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210810212644569.png" alt="image-20210810212644569"></p>
+<hr>
+<h2><span id="第09章项目人力资源管理">【第09章】项目人力资源管理</span></h2><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210812211943428.png" alt="image-20210812211943428"></p>
+<h3><span id="91项目人力资源管理概念"><strong>9.1项目人力资源管理概念</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210812212019960.png" alt="image-20210812212019960"></p>
+<h3><span id="92项目人力资源管理过程"><strong>9.2项目人力资源管理过程</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210812212040752.png" alt="image-20210812212040752"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210812212203449.png" alt="image-20210812212203449"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210812212229612.png" alt="image-20210812212229612"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210812212259633.png" alt="image-20210812212259633"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210812212700187.png" alt="image-20210812212700187"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210815180104263.png" alt="image-20210815180104263"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210815175923050.png" alt="image-20210815175923050"></p>
+<h3><span id="93项目人力资源管理工具"><strong>9.3项目人力资源管理工具</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210812214430612.png" alt="image-20210812214430612"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210812215728416.png" alt="image-20210812215728416"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210812220051949.png" alt="image-20210812220051949"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210812220208888.png" alt="image-20210812220208888"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210812220404230.png" alt="image-20210812220404230"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210812220717530.png" alt="image-20210812220717530"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210812220746935.png" alt="image-20210812220746935"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210812220831745.png" alt="image-20210812220831745"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210812221016827.png" alt="image-20210812221016827"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210812221039972.png" alt="image-20210812221039972"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210812221059158.png" alt="image-20210812221059158"></p>
+<h3><span id="94项目人力资源管理文件"><strong>9.4项目人力资源管理文件</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210812221253890.png" alt="image-20210812221253890"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210812221454158.png" alt="image-20210812221454158"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210812222020130.png" alt="image-20210812222020130"></p>
+<hr>
+<h2><span id="第10章项目沟通和干系人管理">【第10章】项目沟通和干系人管理</span></h2><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210814212201695.png" alt="image-20210814212201695"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210814212251850.png" alt="image-20210814212251850"></p>
+<h3><span id="101项目沟通管理基础"><strong>10.1项目沟通管理基础</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210814212337418.png" alt="image-20210814212337418"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210814212403298.png" alt="image-20210814212403298"></p>
+<h3><span id="102项目沟通管理过程"><strong>10.2项目沟通管理过程</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210814212439695.png" alt="image-20210814212439695"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210814212458382.png" alt="image-20210814212458382"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210814212537818.png" alt="image-20210814212537818"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210815105215458.png" alt="image-20210815105215458"></p>
+<h3><span id="103项目沟通管理的技术和工具"><strong>10.3项目沟通管理的技术和工具</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210814214700299.png" alt="image-20210814214700299"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210814214734715.png" alt="image-20210814214734715"></p>
+<h3><span id="干系人管理"><strong>干系人管理</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210814214826845.png" alt="image-20210814214826845"></p>
+<h3><span id="104项目干系人管理基础"><strong>10.4项目干系人管理基础</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210814215113251.png" alt="image-20210814215113251"></p>
+<h3><span id="105项目干系人管理过程"><strong>10.5项目干系人管理过程</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210814215218558.png" alt="image-20210814215218558"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210814215244026.png" alt="image-20210814215244026"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210814215352280.png" alt="image-20210814215352280"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210814215408339.png" alt="image-20210814215408339"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210814215543615.png" alt="image-20210814215543615"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210815110620971.png" alt="image-20210815110620971"></p>
+<h3><span id="106项目干系人管理的技术和工具"><strong>10.6项目干系人管理的技术和工具</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210814215638907.png" alt="image-20210814215638907"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210814215703976.png" alt="image-20210814215703976"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210814215735380.png" alt="image-20210814215735380"></p>
+<hr>
+<h2><span id="第11章项目风险管理">【第11章】项目风险管理</span></h2><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210817195937870.png" alt="image-20210817195937870"></p>
+<h3><span id="111项目风险管理概述"><strong>11.1项目风险管理概述</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210817200012090.png" alt="image-20210817200012090"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210817200033578.png" alt="image-20210817200033578"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210817200348941.png" alt="image-20210817200348941"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210817200813516.png" alt="image-20210817200813516"></p>
+<h3><span id="112规划风险管理"><strong>11.2规划风险管理</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210817201103237.png" alt="image-20210817201103237"></p>
+<h3><span id="113识别风险"><strong>11.3识别风险</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210817222049870.png" alt="image-20210817222049870"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210821170732108.png" alt="image-20210821170732108"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210821171015097.png" alt="image-20210821171015097"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210821171046846.png" alt="image-20210821171046846"></p>
+<h3><span id="114实施定性风险分析"><strong>11.4实施定性风险分析</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210821171454058.png" alt="image-20210821171454058"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210821171902595.png" alt="image-20210821171902595"></p>
+<h3><span id="115实施定量风险分析"><strong>11.5实施定量风险分析</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210821172333881.png" alt="image-20210821172333881"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210821172353577.png" alt="image-20210821172353577"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210821173044728.png" alt="image-20210821173044728"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210821173100189.png" alt="image-20210821173100189"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210821173222450.png" alt="image-20210821173222450"></p>
+<h3><span id="116规划风险应对"><strong>11.6规划风险应对</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210821173603907.png" alt="image-20210821173603907"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210821173717574.png" alt="image-20210821173717574"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210821174207651.png" alt="image-20210821174207651"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210821174306205.png" alt="image-20210821174306205"></p>
+<h3><span id="117控制风险"><strong>11.7控制风险</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210821174535960.png" alt="image-20210821174535960"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210821174803865.png" alt="image-20210821174803865"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210821174935004.png" alt="image-20210821174935004"></p>
+<hr>
+<h2><span id="第12章项目采购管理">【第12章】项目采购管理</span></h2><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210818204554933.png" alt="image-20210818204554933"></p>
+<h3><span id="122战略合作管理"><strong>12.2战略合作管理</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210819104033780.png" alt="image-20210819104033780"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210819104208971.png" alt="image-20210819104208971"></p>
+<h3><span id="123采购管理过程"><strong>12.3采购管理过程</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210819104441221.png" alt="image-20210819104441221"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210819135101233.png" alt="image-20210819135101233"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210819142637067.png" alt="image-20210819142637067"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210819142824346.png" alt="image-20210819142824346"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210819144040595.png" alt="image-20210819144040595"></p>
+<h3><span id="124采购管理技术和工具"><strong>12.4采购管理技术和工具</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210819144319226.png" alt="image-20210819144319226"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210819151339488.png" alt="image-20210819151339488"></p>
+<hr>
+<h2><span id="第13章项目合同管理">【第13章】项目合同管理</span></h2><h3><span id="131合同管理相关基础概念"><strong>13.1合同管理相关基础概念</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210820201959712.png" alt="image-20210820201959712"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210820202032411.png" alt="image-20210820202032411"></p>
+<h3><span id="合同类型的比较">==<strong>合同类型的比较</strong>==</span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210820202144149.png" alt="image-20210820202144149"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210820202200360.png" alt="image-20210820202200360"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210820202218136.png" alt="image-20210820202218136"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210820202238958.png" alt="image-20210820202238958"></p>
+<h3><span id="132合同管理过程"><strong>13.2合同管理过程</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210820202257911.png" alt="image-20210820202257911"></p>
+<hr>
+<h2><span id="第14章文档和配置管理">【第14章】文档和配置管理</span></h2><h3><span id="141信息系统项目文档及其管理"><strong>14.1信息系统项目文档及其管理</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210822202018996.png" alt="image-20210822202018996"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210822202036790.png" alt="image-20210822202036790"></p>
+<h3><span id="142配置管理"><strong>14.2配置管理</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210822202307198.png" alt="image-20210822202307198"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210822202325494.png" alt="image-20210822202325494"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210822202345243.png" alt="image-20210822202345243"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210822202408036.png" alt="image-20210822202408036"></p>
+<h3><span id="配置库"><strong>配置库</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210822202448809.png" alt="image-20210822202448809"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210822202506348.png" alt="image-20210822202506348"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210822202526552.png" alt="image-20210822202526552"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210822202545083.png" alt="image-20210822202545083"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210822202604492.png" alt="image-20210822202604492"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210822202623358.png" alt="image-20210822202623358"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210822202644912.png" alt="image-20210822202644912"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210822202713191.png" alt="image-20210822202713191"></p>
+<h3><span id="143文档管理-配置管理工具"><strong>14.3文档管理、配置管理工具：</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210822202743363.png" alt="image-20210822202743363"></p>
+<hr>
+<h2><span id="第15章知识管理">【第15章】知识管理</span></h2><h3><span id="151知识和知识管理的概念"><strong>15.1知识和知识管理的概念</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210824222821720.png" alt="image-20210824222821720"></p>
+<h3><span id="152知识管理常用的方法和工具">15.2知识管理常用的方法和工具</span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210824222956911.png" alt="image-20210824222956911"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210824223044295.png" alt="image-20210824223044295"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210824223212793.png" alt="image-20210824223212793"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210824223259193.png" alt="image-20210824223259193"></p>
+<h3><span id="153知识产权保护"><strong>15.3知识产权保护</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210824223401862.png" alt="image-20210824223401862"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210824223425412.png" alt="image-20210824223425412"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210824223442865.png" alt="image-20210824223442865"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210824223512582.png" alt="image-20210824223512582"></p>
+<hr>
+<h2><span id="第17章战略管理">【第17章】战略管理</span></h2><h3><span id="171组织战略管理"><strong>17.1组织战略管理</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210824223712208.png" alt="image-20210824223712208"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210824223842244.png" alt="image-20210824223842244"></p>
+<h3><span id="172组织战略类型和层次"><strong>17.2组织战略类型和层次</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210824223928019.png" alt="image-20210824223928019"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210824224203367.png" alt="image-20210824224203367"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210824224229212.png" alt="image-20210824224229212"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210824224255668.png" alt="image-20210824224255668"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210824224726210.png" alt="image-20210824224726210"></p>
+<hr>
+<h2><span id="第18章组织级项目管理">【第18章】组织级项目管理</span></h2><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210824224846442.png" alt="image-20210824224846442"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210824224909068.png" alt="image-20210824224909068"></p>
+<hr>
+<h2><span id="第19章流程管理">【第19章】流程管理</span></h2><h3><span id="191流程管理基础">19.1流程管理基础</span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210824225346519.png" alt="image-20210824225346519"></p>
+<h3><span id="192流程分析-设计-实施与评估"><strong>19.2流程分析、设计、实施与评估</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210824225410253.png" alt="image-20210824225410253"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210824225435157.png" alt="image-20210824225435157"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210824225459460.png" alt="image-20210824225459460"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210824225527785.png" alt="image-20210824225527785"></p>
+<h3><span id="193流程重构与改进"><strong>19.3流程重构与改进</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210824225302664.png" alt="image-20210824225302664"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210824225317988.png" alt="image-20210824225317988"></p>
+<h3><span id="194项目管理流程的管理和优化"><strong>19.4项目管理流程的管理和优化</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210824225138874.png" alt="image-20210824225138874"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210824225240255.png" alt="image-20210824225240255"></p>
+<hr>
+<h2><span id="第20章项目集管理">【第20章】项目集管理</span></h2><h3><span id="项目集和组合管理的区别"><strong>项目集和组合管理的区别</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210826205238371.png" alt="image-20210826205238371"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210826205328309.png" alt="image-20210826205328309"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210826205440365.png" alt="image-20210826205440365"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210826205552448.png" alt="image-20210826205552448"></p>
+<h3><span id="项目集管理"><strong>项目集管理</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210826205658064.png" alt="image-20210826205658064"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210826205721788.png" alt="image-20210826205721788"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210826210023026.png" alt="image-20210826210023026"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210826210130504.png" alt="image-20210826210130504"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210826210321615.png" alt="image-20210826210321615"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210826210406869.png" alt="image-20210826210406869"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210826210547434.png" alt="image-20210826210547434"></p>
+<hr>
+<h2><span id="第21章项目组合管理"><strong>【第21章】项目组合管理</strong></span></h2><h3><span id="项目组合管理"><strong>项目组合管理</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210826210745445.png" alt="image-20210826210745445"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210826210805150.png" alt="image-20210826210805150"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210826210913199.png" alt="image-20210826210913199"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210826211009782.png" alt="image-20210826211009782"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210826211137453.png" alt="image-20210826211137453"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210826211247977.png" alt="image-20210826211247977"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210826211347936.png" alt="image-20210826211347936"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210826211438842.png" alt="image-20210826211438842"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210826211516488.png" alt="image-20210826211516488"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210826211543000.png" alt="image-20210826211543000"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210826211608751.png" alt="image-20210826211608751"></p>
+<hr>
+<h2><span id="第22章安全管理">【第22章】安全管理</span></h2><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210828214714937.png" alt="image-20210828214714937"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210828214749523.png" alt="image-20210828214749523"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210828214813041.png" alt="image-20210828214813041"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210828215304379.png" alt="image-20210828215304379"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210828215345436.png" alt="image-20210828215345436"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210828215418515.png" alt="image-20210828215418515"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210828215458085.png" alt="image-20210828215458085"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210828215630481.png" alt="image-20210828215630481"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210828215709943.png" alt="image-20210828215709943"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210828220024681.png" alt="image-20210828220024681"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210828220207728.png" alt="image-20210828220207728"></p>
+<hr>
+<h2><span id="第23章综合测试与管理">【第23章】综合测试与管理</span></h2><h3><span id="案例分析"><strong>案例分析</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210828220523483.png" alt="image-20210828220523483"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210828220557269.png" alt="image-20210828220557269"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210828220826433.png" alt="image-20210828220826433"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210828221255883.png" alt="image-20210828221255883"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210828221553426.png" alt="image-20210828221553426"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210828221850548.png" alt="image-20210828221850548"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210828221917273.png" alt="image-20210828221917273"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210828221945079.png" alt="image-20210828221945079"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210828222156163.png" alt="image-20210828222156163"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210828222524183.png" alt="image-20210828222524183"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210828222541487.png" alt="image-20210828222541487"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210828222628396.png" alt="image-20210828222628396"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210828223105536.png" alt="image-20210828223105536"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210828223133604.png" alt="image-20210828223133604"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210828223259125.png" alt="image-20210828223259125"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210828223414625.png" alt="image-20210828223414625"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210828223440667.png" alt="image-20210828223440667"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210828223638599.png" alt="image-20210828223638599"></p>
+<hr>
+<h2><span id="第24章成熟度模型">【第24章】成熟度模型</span></h2><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210828223953721.png" alt="image-20210828223953721"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210828224141958.png" alt="image-20210828224141958"></p>
+<h3><span id="opm3的三维模型"><strong>OPM3的三维模型</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210828224259676.png" alt="image-20210828224259676"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210828224501514.png" alt="image-20210828224501514"></p>
+<hr>
+<h2><span id="第25章量化项目管理">【第25章】量化项目管理</span></h2><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210829090254061.png" alt="image-20210829090254061"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210829090309703.png" alt="image-20210829090309703"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210829090413855.png" alt="image-20210829090413855"></p>
+<hr>
+<h2><span id="第26章法律法规">【第26章】法律法规</span></h2><h3><span id="合同法"><strong>合同法</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210829211250642.png" alt="image-20210829211250642"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210829211332437.png" alt="image-20210829211332437"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210829211347287.png" alt="image-20210829211347287"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210829211406706.png" alt="image-20210829211406706"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210829211421934.png" alt="image-20210829211421934"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210829211439235.png" alt="image-20210829211439235"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210829211454436.png" alt="image-20210829211454436"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210829211509167.png" alt="image-20210829211509167"></p>
+<h3><span id="法规时间总结"><strong>法规时间总结</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210829211733456.png" alt="image-20210829211733456"></p>
+<h3><span id="招投标法"><strong>招投标法</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210829211812601.png" alt="image-20210829211812601"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210829212026401.png" alt="image-20210829212026401"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210829212044930.png" alt="image-20210829212044930"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210829212100612.png" alt="image-20210829212100612"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210829212116331.png" alt="image-20210829212116331"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210829212137376.png" alt="image-20210829212137376"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210829212153037.png" alt="image-20210829212153037"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210829212207796.png" alt="image-20210829212207796"></p>
+<h3><span id="著作权法"><strong>著作权法</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210829212334952.png" alt="image-20210829212334952"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210829212612037.png" alt="image-20210829212612037"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210829212720209.png" alt="image-20210829212720209"></p>
+<h3><span id="政府采购法"><strong>政府采购法</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210829212852307.png" alt="image-20210829212852307"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210829213112148.png" alt="image-20210829213112148"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210829213159159.png" alt="image-20210829213159159"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210829213235180.png" alt="image-20210829213235180"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210829213258755.png" alt="image-20210829213258755"></p>
+<h3><span id="软件工程国家标准"><strong>软件工程国家标准</strong></span></h3><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210830221945125.png" alt="image-20210830221945125"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210830222020050.png" alt="image-20210830222020050"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210830222103038.png" alt="image-20210830222103038"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210830222127018.png" alt="image-20210830222127018"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210830222328810.png" alt="image-20210830222328810"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210830222509563.png" alt="image-20210830222509563"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210830222534732.png" alt="image-20210830222534732"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210830222557421.png" alt="image-20210830222557421"></p>
+<h4><span id="软件质量特性">==<strong>软件质量特性</strong>==</span></h4><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210830222744953.png" alt="image-20210830222744953"></p>
+<p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210830222905832.png" alt="image-20210830222905832"></p>
+<h2><span id="第27章运筹学计算">【第27章】运筹学计算</span></h2><p><img src="https://gitee.com/CandyLoveYL/img/raw/master/img/image-20210919180329434.png" alt="image-20210919180329434"></p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">CANDY</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://codercandy.github.io/2021/12/05/ruan-kao-gao-ji-xin-xi-xi-tong-xiang-mu-guan-li-shi/">https://codercandy.github.io/2021/12/05/ruan-kao-gao-ji-xin-xi-xi-tong-xiang-mu-guan-li-shi/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">CANDY</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E7%AE%A1%E7%90%86/">
+                                    <span class="chip bg-color">管理</span>
+                                </a>
+                            
+                                <a href="/tags/%E9%AB%98%E7%BA%A7%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/">
+                                    <span class="chip bg-color">高级项目管理</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+    <div class="livere-card card" data-aos="fade-up">
+    <!-- 来必力City版安装代码 -->
+    <div id="lv-container" class="card-content" data-id="city" data-uid="MTAyMC81NDg3My8zMTM0Mg==">
+        <script type="text/javascript">
+            (function (d, s) {
+                let j, e = d.getElementsByTagName(s)[0];
+                if (typeof LivereTower === 'function') {
+                    return;
+                }
+
+                j = d.createElement(s);
+                j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                j.async = true;
+
+                e.parentNode.insertBefore(j, e);
+            })(document, 'script');
+        </script>
+        <noscript>为正常使用来必力评论功能请激活JavaScript。</noscript>
+    </div>
+    <!-- City版安装代码已完成 -->
+</div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2021/12/06/api-jie-kou-wen-dang-gui-fan-swagger3-xue-xi-bi-ji/">
+                    <div class="card-image">
+                        
+                        <img src="https://static1.smartbear.co/swagger/media/assets/images/swagger_logo.svg" class="responsive-img" alt="Swagger3学习笔记">
+                        
+                        <span class="card-title">Swagger3学习笔记</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-12-06
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                    学习
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%89%8D%E7%AB%AF/">
+                        <span class="chip bg-color">前端</span>
+                    </a>
+                    
+                    <a href="/tags/Swagger3/">
+                        <span class="chip bg-color">Swagger3</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/12/05/java-ming-ming-gui-fan/">
+                    <div class="card-image">
+                        
+                        <img src="https://dev.java/assets/images/java-logo-60.png" class="responsive-img" alt="Java 命名规范">
+                        
+                        <span class="card-title">Java 命名规范</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-12-05
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                    学习
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%90%8E%E7%AB%AF/">
+                        <span class="chip bg-color">后端</span>
+                    </a>
+                    
+                    <a href="/tags/java/">
+                        <span class="chip bg-color">java</span>
+                    </a>
+                    
+                    <a href="/tags/%E8%A7%84%E8%8C%83/">
+                        <span class="chip bg-color">规范</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('10')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE' || selection.getRangeAt(0).commonAncestorContainer.nodeName === 'CODE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: 梓妤<br />'
+            + '文章作者: Candy liu<br />'
+            + '文章链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="/libs/aplayer/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2021-2023</span>
+            
+            <a href="/about" target="_blank">Candy liu</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+                <span id="sitetime"> Loading ...</span>
+                <script>
+                    var calcSiteTime = function () {
+                        var seconds = 1000;
+                        var minutes = seconds * 60;
+                        var hours = minutes * 60;
+                        var days = hours * 24;
+                        var years = days * 365;
+                        var today = new Date();
+                        var startYear = "2021";
+                        var startMonth = "12";
+                        var startDate = "5";
+                        var startHour = "22";
+                        var startMinute = "49";
+                        var startSecond = "0";
+                        var todayYear = today.getFullYear();
+                        var todayMonth = today.getMonth() + 1;
+                        var todayDate = today.getDate();
+                        var todayHour = today.getHours();
+                        var todayMinute = today.getMinutes();
+                        var todaySecond = today.getSeconds();
+                        var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                        var diff = t2 - t1;
+                        var diffYears = Math.floor(diff / years);
+                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+
+                        // 区分是否有年份.
+                        var language = 'zh-CN';
+                        if (startYear === String(todayYear)) {
+                            document.getElementById("year").innerHTML = todayYear;
+                            var daysTip = 'This site has been running for ' + diffDays + ' days';
+                            if (language === 'zh-CN') {
+                                daysTip = '本站已运行 ' + diffDays + ' 天';
+                            } else if (language === 'zh-HK') {
+                                daysTip = '本站已運行 ' + diffDays + ' 天';
+                            }
+                            document.getElementById("sitetime").innerHTML = daysTip;
+                        } else {
+                            document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                            var yearsAndDaysTip = 'This site has been running for ' + diffYears + ' years and '
+                                + diffDays + ' days';
+                            if (language === 'zh-CN') {
+                                yearsAndDaysTip = '本站已运行 ' + diffYears + ' 年 ' + diffDays + ' 天';
+                            } else if (language === 'zh-HK') {
+                                yearsAndDaysTip = '本站已運行 ' + diffYears + ' 年 ' + diffDays + ' 天';
+                            }
+                            document.getElementById("sitetime").innerHTML = yearsAndDaysTip;
+                        }
+                    }
+
+                    calcSiteTime();
+                </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+<a href="https://gitee.com/CandyLoveYL" class="tooltipped" target="_blank" data-tooltip="访问我的gitee" data-position="top" data-delay="50">
+	<i class="fab fa-github"></i>
+</a>
+<a href="mailto:595487347@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+	<i class="fas fa-envelope-open"></i>
+</a>
+<a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=595487347" class="tooltipped" target="_blank" data-tooltip="QQ联系我:595487347" data-position="top" data-delay="50">
+	<i class="fab fa-qq"></i>
+</a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+
+    <!-- 雪花特效 -->
+     
+        <script type="text/javascript">
+            // 只在桌面版网页启用特效
+            var windowWidth = $(window).width();
+            if (windowWidth > 768) {
+                document.write('<script type="text/javascript" src="/libs/others/snow.js"><\/script>');
+            }
+        </script>
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

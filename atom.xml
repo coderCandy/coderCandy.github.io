@@ -1,0 +1,568 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>梓妤</title>
+  
+  <subtitle>苟有恒,何必三更眠五更起</subtitle>
+  <link href="https://codercandy.github.io/atom.xml" rel="self"/>
+  
+  <link href="https://codercandy.github.io/"/>
+  <updated>2023-07-18T15:20:12.775Z</updated>
+  <id>https://codercandy.github.io/</id>
+  
+  <author>
+    <name>Candy liu</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>洛克菲勒留给儿子的38封信</title>
+    <link href="https://codercandy.github.io/2023/07/18/luo-ke-fei-le-liu-gei-er-zi-de-38-feng-xin/"/>
+    <id>https://codercandy.github.io/2023/07/18/luo-ke-fei-le-liu-gei-er-zi-de-38-feng-xin/</id>
+    <published>2023-07-18T14:58:26.000Z</published>
+    <updated>2023-07-18T15:20:12.775Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;《洛克菲勒留给儿子的38封信》&lt;/p&gt;
+&lt;h2&gt;&lt;span</summary>
+        
+      
+    
+    
+    
+    <category term="生活" scheme="https://codercandy.github.io/categories/%E7%94%9F%E6%B4%BB/"/>
+    
+    
+    <category term="励志" scheme="https://codercandy.github.io/tags/%E5%8A%B1%E5%BF%97/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java程序员要掌握的前端-vue3</title>
+    <link href="https://codercandy.github.io/2023/03/04/java-cheng-xu-yuan-yao-zhang-wo-de-qian-duan-vue3/"/>
+    <id>https://codercandy.github.io/2023/03/04/java-cheng-xu-yuan-yao-zhang-wo-de-qian-duan-vue3/</id>
+    <published>2023-03-04T09:02:27.000Z</published>
+    <updated>2023-07-18T15:48:21.888Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1&gt;&lt;span id=&quot;四-vue-3&quot;&gt;四. Vue 3&lt;/span&gt;&lt;/h1&gt;&lt;h2&gt;&lt;span id=&quot;1-typescript&quot;&gt;1. TypeScript&lt;/span&gt;&lt;/h2&gt;&lt;h3&gt;&lt;span id=&quot;1-动态类型的问题&quot;&gt;1)</summary>
+        
+      
+    
+    
+    
+    <category term="学习" scheme="https://codercandy.github.io/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="前端" scheme="https://codercandy.github.io/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java程序员要掌握的前端-js</title>
+    <link href="https://codercandy.github.io/2023/03/02/java-cheng-xu-yuan-yao-zhang-wo-de-qian-duan-js/"/>
+    <id>https://codercandy.github.io/2023/03/02/java-cheng-xu-yuan-yao-zhang-wo-de-qian-duan-js/</id>
+    <published>2023-03-02T09:02:27.000Z</published>
+    <updated>2023-07-18T15:25:23.357Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1&gt;&lt;span id=&quot;第二章-javascript&quot;&gt;第二章.</summary>
+        
+      
+    
+    
+    
+    <category term="学习" scheme="https://codercandy.github.io/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="前端" scheme="https://codercandy.github.io/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java程序员要掌握的前端-react</title>
+    <link href="https://codercandy.github.io/2022/12/13/java-cheng-xu-yuan-yao-zhang-wo-de-qian-duan-react/"/>
+    <id>https://codercandy.github.io/2022/12/13/java-cheng-xu-yuan-yao-zhang-wo-de-qian-duan-react/</id>
+    <published>2022-12-13T09:02:27.000Z</published>
+    <updated>2023-07-18T15:26:18.201Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1&gt;&lt;span id=&quot;五-react&quot;&gt;五. React&lt;/span&gt;&lt;/h1&gt;&lt;h2&gt;&lt;span id=&quot;1-react-基础&quot;&gt;1. React 基础&lt;/span&gt;&lt;/h2&gt;&lt;p&gt;react 是前端三大框架之一&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;没有 vue</summary>
+        
+      
+    
+    
+    
+    <category term="学习" scheme="https://codercandy.github.io/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="前端" scheme="https://codercandy.github.io/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java程序员要掌握的前端-Vue 2</title>
+    <link href="https://codercandy.github.io/2022/11/22/java-cheng-xu-yuan-yao-zhang-wo-de-qian-duan-vue2/"/>
+    <id>https://codercandy.github.io/2022/11/22/java-cheng-xu-yuan-yao-zhang-wo-de-qian-duan-vue2/</id>
+    <published>2022-11-22T09:02:27.000Z</published>
+    <updated>2023-07-18T15:46:17.469Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1&gt;&lt;span id=&quot;三-vue-2&quot;&gt;三. Vue 2&lt;/span&gt;&lt;/h1&gt;&lt;h2&gt;&lt;span id=&quot;1-vue-基础&quot;&gt;1. Vue 基础&lt;/span&gt;&lt;/h2&gt;&lt;h3&gt;&lt;span id=&quot;1-环境准备&quot;&gt;1) 环境准备&lt;/span&gt;&lt;/h3&gt;&lt;h4&gt;&lt;span</summary>
+        
+      
+    
+    
+    
+    <category term="学习" scheme="https://codercandy.github.io/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="前端" scheme="https://codercandy.github.io/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java程序员要掌握的前端-HTML&amp;CSS</title>
+    <link href="https://codercandy.github.io/2022/08/18/java-cheng-xu-yuan-yao-zhang-wo-de-qian-duan-html-css/"/>
+    <id>https://codercandy.github.io/2022/08/18/java-cheng-xu-yuan-yao-zhang-wo-de-qian-duan-html-css/</id>
+    <published>2022-08-18T14:58:26.000Z</published>
+    <updated>2023-07-18T15:24:02.089Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1&gt;&lt;span id=&quot;前言&quot;&gt;前言&lt;/span&gt;&lt;/h1&gt;&lt;p&gt;Java</summary>
+        
+      
+    
+    
+    
+    <category term="学习" scheme="https://codercandy.github.io/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="前端" scheme="https://codercandy.github.io/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>长津湖经典语句</title>
+    <link href="https://codercandy.github.io/2022/01/09/chang-jin-hu-jing-dian-yu-ju/"/>
+    <id>https://codercandy.github.io/2022/01/09/chang-jin-hu-jing-dian-yu-ju/</id>
+    <published>2022-01-09T13:52:50.000Z</published>
+    <updated>2022-01-09T13:53:14.821Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;一个蛋从外面被敲开，注定被吃掉。   </summary>
+        
+      
+    
+    
+    
+    <category term="生活" scheme="https://codercandy.github.io/categories/%E7%94%9F%E6%B4%BB/"/>
+    
+    
+    <category term="随笔" scheme="https://codercandy.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>《编写高质量代码 改善java程序的151个建议》读书笔记-下</title>
+    <link href="https://codercandy.github.io/2021/12/25/bian-xie-gao-zhi-liang-dai-ma-gai-shan-java-cheng-xu-de-151-ge-jian-yi-du-shu-bi-ji-xia/"/>
+    <id>https://codercandy.github.io/2021/12/25/bian-xie-gao-zhi-liang-dai-ma-gai-shan-java-cheng-xu-de-151-ge-jian-yi-du-shu-bi-ji-xia/</id>
+    <published>2021-12-25T14:07:54.000Z</published>
+    <updated>2021-12-29T11:47:32.040Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;《编写高质量代码 改善java程序的151个建议》读书笔记-下&lt;/p&gt;
+&lt;p&gt;本篇博客记录《编写高质量代码 改善java程序的151个建议》这本书的读书笔记。方便自己查看，也方便大家查阅，在此感谢原书作者&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="学习" scheme="https://codercandy.github.io/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="后端" scheme="https://codercandy.github.io/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+    <category term="java" scheme="https://codercandy.github.io/tags/java/"/>
+    
+    <category term="读书笔记" scheme="https://codercandy.github.io/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>员工的离职成本</title>
+    <link href="https://codercandy.github.io/2021/12/19/yuan-gong-de-chi-zhi-cheng-ben/"/>
+    <id>https://codercandy.github.io/2021/12/19/yuan-gong-de-chi-zhi-cheng-ben/</id>
+    <published>2021-12-19T10:39:18.000Z</published>
+    <updated>2021-12-20T12:59:31.045Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2&gt;&lt;span</summary>
+        
+      
+    
+    
+    
+    <category term="工作" scheme="https://codercandy.github.io/categories/%E5%B7%A5%E4%BD%9C/"/>
+    
+    
+    <category term="随笔" scheme="https://codercandy.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>《编写高质量代码 改善java程序的151个建议》读书笔记-上</title>
+    <link href="https://codercandy.github.io/2021/12/19/bian-xie-gao-zhi-liang-dai-ma-gai-shan-java-cheng-xu-de-151-ge-jian-yi-du-shu-bi-ji-shang/"/>
+    <id>https://codercandy.github.io/2021/12/19/bian-xie-gao-zhi-liang-dai-ma-gai-shan-java-cheng-xu-de-151-ge-jian-yi-du-shu-bi-ji-shang/</id>
+    <published>2021-12-19T07:35:22.000Z</published>
+    <updated>2021-12-25T14:27:39.806Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;《编写高质量代码 改善java程序的151个建议》读书笔记-上&lt;/p&gt;
+&lt;p&gt;本篇博客记录《编写高质量代码 改善java程序的151个建议》这本书的读书笔记。方便自己查看，也方便大家查阅，在此感谢原书作者&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="学习" scheme="https://codercandy.github.io/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="后端" scheme="https://codercandy.github.io/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+    <category term="java" scheme="https://codercandy.github.io/tags/java/"/>
+    
+    <category term="读书笔记" scheme="https://codercandy.github.io/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>密码学学习笔记</title>
+    <link href="https://codercandy.github.io/2021/12/12/mi-ma-xue-xue-xi-bi-ji/"/>
+    <id>https://codercandy.github.io/2021/12/12/mi-ma-xue-xue-xi-bi-ji/</id>
+    <published>2021-12-12T09:38:41.000Z</published>
+    <updated>2021-12-14T12:59:10.210Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2&gt;&lt;span id=&quot;01-密码学基本概念&quot;&gt;01-密码学基本概念&lt;/span&gt;&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://gitee.com/CandyLoveYL/img/raw/master/img_work/clipboard.png&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="学习" scheme="https://codercandy.github.io/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="密码学" scheme="https://codercandy.github.io/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Apache Log4j2任意代码执行漏洞修复</title>
+    <link href="https://codercandy.github.io/2021/12/12/apache-log4j-ren-yi-dai-ma-zhi-xing-lou-dong-xiu-fu/"/>
+    <id>https://codercandy.github.io/2021/12/12/apache-log4j-ren-yi-dai-ma-zhi-xing-lou-dong-xiu-fu/</id>
+    <published>2021-12-12T08:03:04.000Z</published>
+    <updated>2021-12-17T13:38:43.865Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2&gt;&lt;span id=&quot;springboot的apache-log4j2任意代码执行漏洞修复&quot;&gt;springboot的Apache Log4j2任意代码执行漏洞修复&lt;/span&gt;&lt;/h2&gt;&lt;p&gt;源码地址&lt;/p&gt;
+&lt;p&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="工作" scheme="https://codercandy.github.io/categories/%E5%B7%A5%E4%BD%9C/"/>
+    
+    
+    <category term="后端" scheme="https://codercandy.github.io/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+    <category term="漏洞" scheme="https://codercandy.github.io/tags/%E6%BC%8F%E6%B4%9E/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>梓妤周岁照</title>
+    <link href="https://codercandy.github.io/2021/12/11/zi-yu-zhou-sui-zhao/"/>
+    <id>https://codercandy.github.io/2021/12/11/zi-yu-zhou-sui-zhao/</id>
+    <published>2021-12-11T13:35:47.000Z</published>
+    <updated>2021-12-11T14:14:22.834Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;不知不觉梓妤已经一岁了，已经会走了，不过还是那么爱哭。需要不断喂好吃的才勉强拍完。&lt;/p&gt;
+&lt;p&gt;孩子是长大了，不过也不是很好沟通。大人说的话，她还不能完全理解。简简单单的交流还是可以，不过总体来讲还算顺利，毕竟2个小时就拍完了，很多周岁的小朋友都不是一次可以拍完的。&lt;/p</summary>
+        
+      
+    
+    
+    
+    <category term="宝贝" scheme="https://codercandy.github.io/categories/%E5%AE%9D%E8%B4%9D/"/>
+    
+    
+    <category term="贯日" scheme="https://codercandy.github.io/tags/%E8%B4%AF%E6%97%A5/"/>
+    
+    <category term="周岁照" scheme="https://codercandy.github.io/tags/%E5%91%A8%E5%B2%81%E7%85%A7/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>梓妤百天照</title>
+    <link href="https://codercandy.github.io/2021/12/11/zi-yu-bai-tian-zhao/"/>
+    <id>https://codercandy.github.io/2021/12/11/zi-yu-bai-tian-zhao/</id>
+    <published>2021-12-11T12:38:56.000Z</published>
+    <updated>2023-07-18T13:47:18.657Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;整理了几篇之前学习的笔记，该给我姑娘整理一下。&lt;/p&gt;
+&lt;p&gt;梓妤刚开始还是很配合的，后来可能是困了，也可能是饿了，开始不配合。拍照的老师下午有外景，没有一直拍到最后。换了另外一个摄影老师，勉强拍完。连拍照带选片，姑娘和我们在影楼呆了一天，也算比较乖了。&lt;/p&gt;
+&lt;p&gt;&lt;i</summary>
+        
+      
+    
+    
+    
+    <category term="宝贝" scheme="https://codercandy.github.io/categories/%E5%AE%9D%E8%B4%9D/"/>
+    
+    
+    <category term="贯日" scheme="https://codercandy.github.io/tags/%E8%B4%AF%E6%97%A5/"/>
+    
+    <category term="百天照" scheme="https://codercandy.github.io/tags/%E7%99%BE%E5%A4%A9%E7%85%A7/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Seata学习笔记</title>
+    <link href="https://codercandy.github.io/2021/12/09/a-li-fen-bu-shi-shi-wu-kuang-jia-seata/"/>
+    <id>https://codercandy.github.io/2021/12/09/a-li-fen-bu-shi-shi-wu-kuang-jia-seata/</id>
+    <published>2021-12-09T13:26:34.000Z</published>
+    <updated>2021-12-14T14:10:35.360Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;阿里分布式事务框架Seata&lt;/p&gt;
+&lt;h2&gt;&lt;span id=&quot;1-阿里分布式事务框架-seata-简介&quot;&gt;&lt;strong&gt;1&lt;/strong&gt; &lt;strong&gt;阿里分布式事务框架&lt;/strong&gt; &lt;strong&gt;Seata&lt;/strong&gt;</summary>
+        
+      
+    
+    
+    
+    <category term="学习" scheme="https://codercandy.github.io/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="后端" scheme="https://codercandy.github.io/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+    <category term="Seata" scheme="https://codercandy.github.io/tags/Seata/"/>
+    
+    <category term="分布式事务" scheme="https://codercandy.github.io/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Sentinel学习笔记</title>
+    <link href="https://codercandy.github.io/2021/12/07/sentinel-fen-bu-shi-xi-tong-de-liu-liang-zu-jian/"/>
+    <id>https://codercandy.github.io/2021/12/07/sentinel-fen-bu-shi-xi-tong-de-liu-liang-zu-jian/</id>
+    <published>2021-12-07T12:17:16.000Z</published>
+    <updated>2021-12-14T14:18:13.349Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;strong&gt;Sentinel分布式系统的流量组件&lt;/strong&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;span id=&quot;1-sentine快速了解&quot;&gt;&lt;strong&gt;1 Sentine快速了解&lt;/strong&gt;&lt;/span&gt;&lt;/h2&gt;&lt;h3&gt;&lt;span</summary>
+        
+      
+    
+    
+    
+    <category term="学习" scheme="https://codercandy.github.io/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="后端" scheme="https://codercandy.github.io/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+    <category term="Sentinel" scheme="https://codercandy.github.io/tags/Sentinel/"/>
+    
+    <category term="组件" scheme="https://codercandy.github.io/tags/%E7%BB%84%E4%BB%B6/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Gateway学习笔记</title>
+    <link href="https://codercandy.github.io/2021/12/07/wei-fu-wu-wang-guan-gateway/"/>
+    <id>https://codercandy.github.io/2021/12/07/wei-fu-wu-wang-guan-gateway/</id>
+    <published>2021-12-07T12:11:35.000Z</published>
+    <updated>2021-12-14T14:10:03.151Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;strong&gt;微服务网关Gateway&lt;/strong&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;span id=&quot;1gateway简介&quot;&gt;&lt;strong&gt;1.Gateway简介&lt;/strong&gt;&lt;/span&gt;&lt;/h2&gt;&lt;h3&gt;&lt;span</summary>
+        
+      
+    
+    
+    
+    <category term="学习" scheme="https://codercandy.github.io/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="后端" scheme="https://codercandy.github.io/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+    <category term="Gateway" scheme="https://codercandy.github.io/tags/Gateway/"/>
+    
+    <category term="网关" scheme="https://codercandy.github.io/tags/%E7%BD%91%E5%85%B3/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Scrum敏捷开发流程</title>
+    <link href="https://codercandy.github.io/2021/12/06/scrum-min-jie-kai-fa-liu-cheng/"/>
+    <id>https://codercandy.github.io/2021/12/06/scrum-min-jie-kai-fa-liu-cheng/</id>
+    <published>2021-12-06T13:56:39.000Z</published>
+    <updated>2021-12-06T14:16:07.234Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1&gt;&lt;span id=&quot;scrum敏捷开发流程&quot;&gt;Scrum敏捷开发流程&lt;/span&gt;&lt;/h1&gt;&lt;p&gt;Scrum敏捷开发流程主要包扩三个角色、四个会议和三个物件。&lt;/p&gt;
+&lt;h2&gt;&lt;span</summary>
+        
+      
+    
+    
+    
+    <category term="工作" scheme="https://codercandy.github.io/categories/%E5%B7%A5%E4%BD%9C/"/>
+    
+    
+    <category term="管理" scheme="https://codercandy.github.io/tags/%E7%AE%A1%E7%90%86/"/>
+    
+    <category term="Scrum" scheme="https://codercandy.github.io/tags/Scrum/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>自定义Spring Boot Starter</title>
+    <link href="https://codercandy.github.io/2021/12/06/zi-ding-yi-spring-boot-starter/"/>
+    <id>https://codercandy.github.io/2021/12/06/zi-ding-yi-spring-boot-starter/</id>
+    <published>2021-12-06T13:40:27.000Z</published>
+    <updated>2021-12-07T09:48:33.203Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1&gt;&lt;span id=&quot;自定义spring-boot-starter&quot;&gt;自定义Spring Boot Starter&lt;/span&gt;&lt;/h1&gt;&lt;h2&gt;&lt;span id=&quot;背景&quot;&gt;背景&lt;/span&gt;&lt;/h2&gt;&lt;p&gt;众所周知Spring</summary>
+        
+      
+    
+    
+    
+    <category term="工作" scheme="https://codercandy.github.io/categories/%E5%B7%A5%E4%BD%9C/"/>
+    
+    
+    <category term="后端" scheme="https://codercandy.github.io/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+    <category term="组件" scheme="https://codercandy.github.io/tags/%E7%BB%84%E4%BB%B6/"/>
+    
+    <category term="SpringBoot" scheme="https://codercandy.github.io/tags/SpringBoot/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Nacos学习笔记</title>
+    <link href="https://codercandy.github.io/2021/12/06/nacos-xue-xi-bi-ji/"/>
+    <id>https://codercandy.github.io/2021/12/06/nacos-xue-xi-bi-ji/</id>
+    <published>2021-12-06T13:25:37.000Z</published>
+    <updated>2021-12-14T14:09:24.670Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2&gt;&lt;span</summary>
+        
+      
+    
+    
+    
+    <category term="学习" scheme="https://codercandy.github.io/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="后端" scheme="https://codercandy.github.io/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+    <category term="服务治理" scheme="https://codercandy.github.io/tags/%E6%9C%8D%E5%8A%A1%E6%B2%BB%E7%90%86/"/>
+    
+    <category term="微服务" scheme="https://codercandy.github.io/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
+    
+  </entry>
+  
+</feed>
