@@ -6,7 +6,7 @@
   <link href="https://codercandy.github.io/atom.xml" rel="self"/>
   
   <link href="https://codercandy.github.io/"/>
-  <updated>2023-07-22T13:53:56.212Z</updated>
+  <updated>2023-07-22T23:42:07.288Z</updated>
   <id>https://codercandy.github.io/</id>
   
   <author>
@@ -17,11 +17,36 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>SpringBoot业务组件化</title>
+    <link href="https://codercandy.github.io/2023/07/23/2023-07-23-springboot-ye-wu-zu-jian-hua/"/>
+    <id>https://codercandy.github.io/2023/07/23/2023-07-23-springboot-ye-wu-zu-jian-hua/</id>
+    <published>2023-07-22T23:30:07.000Z</published>
+    <updated>2023-07-22T23:42:07.288Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1&gt;&lt;span id=&quot;springboot-业务组件化开发&quot;&gt;SpringBoot 业务组件化开发&lt;/span&gt;&lt;/h1&gt;&lt;p&gt;&lt;img</summary>
+        
+      
+    
+    
+    
+    <category term="学习-SpringBoot" scheme="https://codercandy.github.io/categories/%E5%AD%A6%E4%B9%A0-SpringBoot/"/>
+    
+    
+    <category term="SpringBoot" scheme="https://codercandy.github.io/tags/SpringBoot/"/>
+    
+  </entry>
+  
+  <entry>
     <title>本地缓存Caffeine</title>
     <link href="https://codercandy.github.io/2023/07/22/ben-di-huan-cun-caffeine-jian-dan-jie-shao/"/>
     <id>https://codercandy.github.io/2023/07/22/ben-di-huan-cun-caffeine-jian-dan-jie-shao/</id>
     <published>2023-07-22T13:53:54.000Z</published>
-    <updated>2023-07-22T13:53:56.212Z</updated>
+    <updated>2023-07-22T23:45:10.226Z</updated>
     
     
       
@@ -37,7 +62,9 @@
     <category term="缓存" scheme="https://codercandy.github.io/categories/%E7%BC%93%E5%AD%98/"/>
     
     
-    <category term="本地缓存Caffeine简单介绍" scheme="https://codercandy.github.io/tags/%E6%9C%AC%E5%9C%B0%E7%BC%93%E5%AD%98Caffeine%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D/"/>
+    <category term="java" scheme="https://codercandy.github.io/tags/java/"/>
+    
+    <category term="本地缓存" scheme="https://codercandy.github.io/tags/%E6%9C%AC%E5%9C%B0%E7%BC%93%E5%AD%98/"/>
     
   </entry>
   
@@ -46,7 +73,7 @@
     <link href="https://codercandy.github.io/2023/07/20/2023-07-20-min-jie-kai-fa-kanban-fang-shi/"/>
     <id>https://codercandy.github.io/2023/07/20/2023-07-20-min-jie-kai-fa-kanban-fang-shi/</id>
     <published>2023-07-20T07:49:16.000Z</published>
-    <updated>2023-07-22T14:39:19.250Z</updated>
+    <updated>2023-07-22T23:40:53.702Z</updated>
     
     
       
@@ -63,7 +90,7 @@
     <category term="开发流程" scheme="https://codercandy.github.io/categories/%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/"/>
     
     
-    <category term="敏捷开发 - 面向过程管理：Kanban方式" scheme="https://codercandy.github.io/tags/%E6%95%8F%E6%8D%B7%E5%BC%80%E5%8F%91-%E9%9D%A2%E5%90%91%E8%BF%87%E7%A8%8B%E7%AE%A1%E7%90%86%EF%BC%9AKanban%E6%96%B9%E5%BC%8F/"/>
+    <category term="敏捷开发" scheme="https://codercandy.github.io/tags/%E6%95%8F%E6%8D%B7%E5%BC%80%E5%8F%91/"/>
     
   </entry>
   
@@ -72,7 +99,7 @@
     <link href="https://codercandy.github.io/2023/07/20/2023-07-20-min-jie-kai-fa-ce-shi-qu-dong-kai-fa/"/>
     <id>https://codercandy.github.io/2023/07/20/2023-07-20-min-jie-kai-fa-ce-shi-qu-dong-kai-fa/</id>
     <published>2023-07-20T07:49:16.000Z</published>
-    <updated>2023-07-22T14:48:36.057Z</updated>
+    <updated>2023-07-22T23:40:32.846Z</updated>
     
     
       
@@ -89,7 +116,7 @@
     <category term="开发流程" scheme="https://codercandy.github.io/categories/%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/"/>
     
     
-    <category term="敏捷开发 - 开发实践：测试驱动开发(TDD）" scheme="https://codercandy.github.io/tags/%E6%95%8F%E6%8D%B7%E5%BC%80%E5%8F%91-%E5%BC%80%E5%8F%91%E5%AE%9E%E8%B7%B5%EF%BC%9A%E6%B5%8B%E8%AF%95%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91-TDD%EF%BC%89/"/>
+    <category term="敏捷开发" scheme="https://codercandy.github.io/tags/%E6%95%8F%E6%8D%B7%E5%BC%80%E5%8F%91/"/>
     
   </entry>
   
@@ -98,7 +125,7 @@
     <link href="https://codercandy.github.io/2023/07/20/2023-07-20-min-jie-kai-fa-scrum-fang-shi/"/>
     <id>https://codercandy.github.io/2023/07/20/2023-07-20-min-jie-kai-fa-scrum-fang-shi/</id>
     <published>2023-07-20T07:49:16.000Z</published>
-    <updated>2023-07-22T14:31:05.473Z</updated>
+    <updated>2023-07-22T23:40:41.125Z</updated>
     
     
       
@@ -114,7 +141,7 @@
     <category term="开发流程" scheme="https://codercandy.github.io/categories/%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/"/>
     
     
-    <category term="敏捷开发 - 面向过程管理：Scrum方式" scheme="https://codercandy.github.io/tags/%E6%95%8F%E6%8D%B7%E5%BC%80%E5%8F%91-%E9%9D%A2%E5%90%91%E8%BF%87%E7%A8%8B%E7%AE%A1%E7%90%86%EF%BC%9AScrum%E6%96%B9%E5%BC%8F/"/>
+    <category term="敏捷开发" scheme="https://codercandy.github.io/tags/%E6%95%8F%E6%8D%B7%E5%BC%80%E5%8F%91/"/>
     
   </entry>
   
@@ -123,7 +150,7 @@
     <link href="https://codercandy.github.io/2023/07/20/2023-07-20-min-jie-ruan-jian-kai-fa-li-lun-ji-liu-cheng/"/>
     <id>https://codercandy.github.io/2023/07/20/2023-07-20-min-jie-ruan-jian-kai-fa-li-lun-ji-liu-cheng/</id>
     <published>2023-07-20T07:49:16.000Z</published>
-    <updated>2023-07-22T14:22:43.807Z</updated>
+    <updated>2023-07-22T23:41:36.713Z</updated>
     
     
       
@@ -139,7 +166,7 @@
     <category term="开发流程" scheme="https://codercandy.github.io/categories/%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/"/>
     
     
-    <category term="敏捷开发 - 敏捷软件开发理论及流程" scheme="https://codercandy.github.io/tags/%E6%95%8F%E6%8D%B7%E5%BC%80%E5%8F%91-%E6%95%8F%E6%8D%B7%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E7%90%86%E8%AE%BA%E5%8F%8A%E6%B5%81%E7%A8%8B/"/>
+    <category term="敏捷开发" scheme="https://codercandy.github.io/tags/%E6%95%8F%E6%8D%B7%E5%BC%80%E5%8F%91/"/>
     
   </entry>
   
@@ -148,7 +175,7 @@
     <link href="https://codercandy.github.io/2023/07/20/2023-07-20-jing-yi-qi-ye/"/>
     <id>https://codercandy.github.io/2023/07/20/2023-07-20-jing-yi-qi-ye/</id>
     <published>2023-07-20T07:49:16.000Z</published>
-    <updated>2023-07-22T15:03:13.403Z</updated>
+    <updated>2023-07-22T23:41:25.056Z</updated>
     
     
       
@@ -165,7 +192,7 @@
     <category term="开发流程" scheme="https://codercandy.github.io/categories/%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/"/>
     
     
-    <category term="[object Object]" scheme="https://codercandy.github.io/tags/object-Object/"/>
+    <category term="精益" scheme="https://codercandy.github.io/tags/%E7%B2%BE%E7%9B%8A/"/>
     
   </entry>
   
@@ -174,7 +201,7 @@
     <link href="https://codercandy.github.io/2023/07/20/2023-07-20-jie-he-ruan-jian-ce-shi-de-guo-cheng-mo-xing-yan-hua/"/>
     <id>https://codercandy.github.io/2023/07/20/2023-07-20-jie-he-ruan-jian-ce-shi-de-guo-cheng-mo-xing-yan-hua/</id>
     <published>2023-07-20T07:49:16.000Z</published>
-    <updated>2023-07-22T14:07:08.237Z</updated>
+    <updated>2023-07-22T23:41:47.564Z</updated>
     
     
       
@@ -190,7 +217,7 @@
     <category term="开发流程" scheme="https://codercandy.github.io/categories/%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/"/>
     
     
-    <category term="传统模式 - 结合软件测试的过程模型演化:V模型,W模型,X模型等" scheme="https://codercandy.github.io/tags/%E4%BC%A0%E7%BB%9F%E6%A8%A1%E5%BC%8F-%E7%BB%93%E5%90%88%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95%E7%9A%84%E8%BF%87%E7%A8%8B%E6%A8%A1%E5%9E%8B%E6%BC%94%E5%8C%96-V%E6%A8%A1%E5%9E%8B-W%E6%A8%A1%E5%9E%8B-X%E6%A8%A1%E5%9E%8B%E7%AD%89/"/>
+    <category term="传统模式" scheme="https://codercandy.github.io/tags/%E4%BC%A0%E7%BB%9F%E6%A8%A1%E5%BC%8F/"/>
     
   </entry>
   
@@ -199,7 +226,7 @@
     <link href="https://codercandy.github.io/2023/07/20/2023-07-20-ruan-jian-kai-fa-sheng-ming-zhou-qi-yu-guo-cheng-mo-xing/"/>
     <id>https://codercandy.github.io/2023/07/20/2023-07-20-ruan-jian-kai-fa-sheng-ming-zhou-qi-yu-guo-cheng-mo-xing/</id>
     <published>2023-07-20T07:49:16.000Z</published>
-    <updated>2023-07-22T14:02:45.736Z</updated>
+    <updated>2023-07-22T23:41:57.154Z</updated>
     
     
       
@@ -216,7 +243,7 @@
     <category term="开发流程" scheme="https://codercandy.github.io/categories/%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/"/>
     
     
-    <category term="传统模式 - 软件开发生命周期与过程模型(瀑布模型，原型模型和螺旋模型等）" scheme="https://codercandy.github.io/tags/%E4%BC%A0%E7%BB%9F%E6%A8%A1%E5%BC%8F-%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E4%B8%8E%E8%BF%87%E7%A8%8B%E6%A8%A1%E5%9E%8B-%E7%80%91%E5%B8%83%E6%A8%A1%E5%9E%8B%EF%BC%8C%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%9E%8B%E5%92%8C%E8%9E%BA%E6%97%8B%E6%A8%A1%E5%9E%8B%E7%AD%89%EF%BC%89/"/>
+    <category term="传统模式" scheme="https://codercandy.github.io/tags/%E4%BC%A0%E7%BB%9F%E6%A8%A1%E5%BC%8F/"/>
     
   </entry>
   
@@ -225,7 +252,7 @@
     <link href="https://codercandy.github.io/2023/07/20/2023-07-20-mian-xiang-gong-cheng-guan-li/"/>
     <id>https://codercandy.github.io/2023/07/20/2023-07-20-mian-xiang-gong-cheng-guan-li/</id>
     <published>2023-07-20T07:49:16.000Z</published>
-    <updated>2023-07-22T14:30:12.008Z</updated>
+    <updated>2023-07-22T23:41:03.805Z</updated>
     
     
       
@@ -241,7 +268,7 @@
     <category term="开发流程" scheme="https://codercandy.github.io/categories/%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/"/>
     
     
-    <category term="敏捷开发 - 面向工程管理：极限编程" scheme="https://codercandy.github.io/tags/%E6%95%8F%E6%8D%B7%E5%BC%80%E5%8F%91-%E9%9D%A2%E5%90%91%E5%B7%A5%E7%A8%8B%E7%AE%A1%E7%90%86%EF%BC%9A%E6%9E%81%E9%99%90%E7%BC%96%E7%A8%8B/"/>
+    <category term="敏捷开发" scheme="https://codercandy.github.io/tags/%E6%95%8F%E6%8D%B7%E5%BC%80%E5%8F%91/"/>
     
   </entry>
   
@@ -305,7 +332,7 @@
     <link href="https://codercandy.github.io/2023/07/20/dian-xing-de-zhong-xiao-tuan-dui-kai-fa-liu-cheng-xiang-jie/"/>
     <id>https://codercandy.github.io/2023/07/20/dian-xing-de-zhong-xiao-tuan-dui-kai-fa-liu-cheng-xiang-jie/</id>
     <published>2023-07-20T07:49:16.000Z</published>
-    <updated>2023-07-22T13:52:37.613Z</updated>
+    <updated>2023-07-22T23:42:29.878Z</updated>
     
     
       
@@ -322,7 +349,7 @@
     <category term="开发流程" scheme="https://codercandy.github.io/categories/%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/"/>
     
     
-    <category term="典型的中小团队开发流程详解" scheme="https://codercandy.github.io/tags/%E5%85%B8%E5%9E%8B%E7%9A%84%E4%B8%AD%E5%B0%8F%E5%9B%A2%E9%98%9F%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B%E8%AF%A6%E8%A7%A3/"/>
+    <category term="中小团队" scheme="https://codercandy.github.io/tags/%E4%B8%AD%E5%B0%8F%E5%9B%A2%E9%98%9F/"/>
     
   </entry>
   
@@ -505,31 +532,6 @@
     
     
     <category term="前端" scheme="https://codercandy.github.io/tags/%E5%89%8D%E7%AB%AF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>长津湖经典语句</title>
-    <link href="https://codercandy.github.io/2022/01/09/chang-jin-hu-jing-dian-yu-ju/"/>
-    <id>https://codercandy.github.io/2022/01/09/chang-jin-hu-jing-dian-yu-ju/</id>
-    <published>2022-01-09T13:52:50.000Z</published>
-    <updated>2022-01-09T13:53:14.821Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;一个蛋从外面被敲开，注定被吃掉。   </summary>
-        
-      
-    
-    
-    
-    <category term="生活" scheme="https://codercandy.github.io/categories/%E7%94%9F%E6%B4%BB/"/>
-    
-    
-    <category term="随笔" scheme="https://codercandy.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
