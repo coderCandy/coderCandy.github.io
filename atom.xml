@@ -68,31 +68,6 @@
   </entry>
   
   <entry>
-    <title>敏捷开发-Scrum方式</title>
-    <link href="https://codercandy.github.io/2023/07/20/2023-07-20-min-jie-kai-fa-scrum-fang-shi/"/>
-    <id>https://codercandy.github.io/2023/07/20/2023-07-20-min-jie-kai-fa-scrum-fang-shi/</id>
-    <published>2023-07-20T07:49:16.000Z</published>
-    <updated>2023-07-22T14:31:05.473Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1&gt;&lt;span id=&quot;敏捷开发-面向过程管理scrum方式&quot;&gt;敏捷开发 -</summary>
-        
-      
-    
-    
-    
-    <category term="开发流程" scheme="https://codercandy.github.io/categories/%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/"/>
-    
-    
-    <category term="敏捷开发 - 面向过程管理：Scrum方式" scheme="https://codercandy.github.io/tags/%E6%95%8F%E6%8D%B7%E5%BC%80%E5%8F%91-%E9%9D%A2%E5%90%91%E8%BF%87%E7%A8%8B%E7%AE%A1%E7%90%86%EF%BC%9AScrum%E6%96%B9%E5%BC%8F/"/>
-    
-  </entry>
-  
-  <entry>
     <title>敏捷开发-测试驱动开发</title>
     <link href="https://codercandy.github.io/2023/07/20/2023-07-20-min-jie-kai-fa-ce-shi-qu-dong-kai-fa/"/>
     <id>https://codercandy.github.io/2023/07/20/2023-07-20-min-jie-kai-fa-ce-shi-qu-dong-kai-fa/</id>
@@ -115,6 +90,31 @@
     
     
     <category term="敏捷开发 - 开发实践：测试驱动开发(TDD）" scheme="https://codercandy.github.io/tags/%E6%95%8F%E6%8D%B7%E5%BC%80%E5%8F%91-%E5%BC%80%E5%8F%91%E5%AE%9E%E8%B7%B5%EF%BC%9A%E6%B5%8B%E8%AF%95%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91-TDD%EF%BC%89/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>敏捷开发-Scrum方式</title>
+    <link href="https://codercandy.github.io/2023/07/20/2023-07-20-min-jie-kai-fa-scrum-fang-shi/"/>
+    <id>https://codercandy.github.io/2023/07/20/2023-07-20-min-jie-kai-fa-scrum-fang-shi/</id>
+    <published>2023-07-20T07:49:16.000Z</published>
+    <updated>2023-07-22T14:31:05.473Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1&gt;&lt;span id=&quot;敏捷开发-面向过程管理scrum方式&quot;&gt;敏捷开发 -</summary>
+        
+      
+    
+    
+    
+    <category term="开发流程" scheme="https://codercandy.github.io/categories/%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/"/>
+    
+    
+    <category term="敏捷开发 - 面向过程管理：Scrum方式" scheme="https://codercandy.github.io/tags/%E6%95%8F%E6%8D%B7%E5%BC%80%E5%8F%91-%E9%9D%A2%E5%90%91%E8%BF%87%E7%A8%8B%E7%AE%A1%E7%90%86%EF%BC%9AScrum%E6%96%B9%E5%BC%8F/"/>
     
   </entry>
   
@@ -148,7 +148,7 @@
     <link href="https://codercandy.github.io/2023/07/20/2023-07-20-jing-yi-qi-ye/"/>
     <id>https://codercandy.github.io/2023/07/20/2023-07-20-jing-yi-qi-ye/</id>
     <published>2023-07-20T07:49:16.000Z</published>
-    <updated>2023-07-22T14:50:24.864Z</updated>
+    <updated>2023-07-22T15:03:13.403Z</updated>
     
     
       
