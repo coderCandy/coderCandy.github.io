@@ -1,0 +1,1558 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="敏捷开发-测试驱动开发, Java,Flink,高级项目管理,Electron.js等">
+    <meta name="description" content="敏捷开发 - 开发实践：测试驱动开发(TDD）
+测试驱动开发(Test Driven Development, 简称TDD)是敏捷开发中的一项核心实践和技术，也是一种设计方法论。TDD的原理是在开发功能代码之前，先编写单元测试用例代码，测试">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	 <!- 图床 -->
+	<meta name="referrer" content="no-referrer" />
+	<!- 统计 -->
+	<meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>敏捷开发-测试驱动开发 | 梓妤</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="梓妤" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">梓妤</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">梓妤</div>
+        <div class="logo-desc">
+            
+            一个不懂生活的程序猿
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">敏捷开发-测试驱动开发</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E6%95%8F%E6%8D%B7%E5%BC%80%E5%8F%91-%E5%BC%80%E5%8F%91%E5%AE%9E%E8%B7%B5%EF%BC%9A%E6%B5%8B%E8%AF%95%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91-TDD%EF%BC%89/">
+                                <span class="chip bg-color">敏捷开发 - 开发实践：测试驱动开发(TDD）</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/" class="post-category">
+                                开发流程
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2023-07-20
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2023-07-22
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    4.2k
+                </div>
+                
+
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1><span id="敏捷开发-开发实践测试驱动开发tdd">敏捷开发 - 开发实践：测试驱动开发(TDD）</span></h1><blockquote>
+<p>测试驱动开发(Test Driven Development, 简称TDD)是敏捷开发中的一项核心实践和技术，也是一种设计方法论。TDD的原理是在开发功能代码之前，先编写单元测试用例代码，测试代码确定需要编写什么产品代码。TDD的基本思路就是通过测试来推动整个开发的进行，但测试驱动开发并不只是单纯的测试工作，而是把需求分析，设计，质量控制量化的过程。TDD首先考虑使用需求（对象、功能、过程、接口等），主要是编写测试用例框架对功能的过程和接口进行设计，而测试框架可以持续进行验证。本主要介绍TDD的基础和实践案例，以及很多团队无法使用TDD方式开发的一些思考。@pdai</p>
+</blockquote>
+<ul>
+<li>敏捷开发 - 开发实践：测试驱动开发(TDD）<ul>
+<li>什么是测试驱动开发(TDD)<ul>
+<li><a href="#%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8Ctdd">如何进行TDD？</a></li>
+<li><a href="#%E4%BB%80%E4%B9%88%E6%98%AFatdd%E5%92%8Ctdd%E6%98%AF%E4%BB%80%E4%B9%88%E5%85%B3%E7%B3%BB">什么是ATDD?和TDD是什么关系?</a></li>
+</ul>
+</li>
+<li>TDD实践案例<ul>
+<li><a href="#%E7%AC%AC%E4%B8%80%E4%B8%AA%E9%9C%80%E6%B1%82%E8%AE%A1%E7%AE%97%E4%B8%A4%E4%B8%AAint%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%8A%A0%E6%B3%95%E5%8A%9F%E8%83%BD">第一个需求：计算两个int类型的加法功能</a></li>
+<li><a href="#%E7%AC%AC%E4%BA%8C%E4%B8%AA%E9%9C%80%E6%B1%82%E5%A6%82%E6%9E%9C%E4%B8%A4%E4%B8%AAint%E7%B1%BB%E5%9E%8B%E7%9B%B8%E5%8A%A0%E8%B6%8A%E7%95%8C%E5%88%99%E6%8A%9B%E5%87%BA%E5%BC%82%E5%B8%B8%E8%80%8C%E4%B8%8D%E6%98%AF%E9%94%99%E8%AF%AF%E5%80%BC">第二个需求：如果两个int类型相加越界，则抛出异常而不是错误值</a></li>
+</ul>
+</li>
+<li>进一步理解<ul>
+<li><a href="#tdd%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3%E6%98%AF%E4%BB%80%E4%B9%88">TDD核心思想是什么?</a></li>
+<li>为什么很多团队无法执行TDD?<ul>
+<li><a href="#%E6%9C%89%E4%BA%9B%E5%9C%BA%E6%99%AF%E5%B9%B6%E4%B8%8D%E9%80%82%E5%90%88tdd%E6%96%B9%E5%BC%8F">有些场景并不适合TDD方式</a></li>
+<li><a href="#tdd%E5%AF%B9%E5%9B%A2%E9%98%9F%E6%9C%AC%E8%BA%AB%E6%9C%89%E4%B8%80%E5%AE%9A%E7%9A%84%E8%A6%81%E6%B1%82">TDD对团队本身有一定的要求</a></li>
+<li><a href="#tdd%E6%98%AF%E5%90%A6%E5%B7%B2%E6%AD%BB">TDD是否已死？</a></li>
+</ul>
+</li>
+<li>AMDD：通过敏捷模型拓展TDD?<ul>
+<li><a href="#%E8%BF%AD%E4%BB%A30%E8%AE%BE%E6%83%B3envisioning">迭代0：设想(Envisioning)</a></li>
+<li><a href="#%E8%BF%AD%E4%BB%A3%E5%BB%BA%E6%A8%A1iteration-modeling">迭代建模（Iteration modeling）</a></li>
+<li><a href="#%E6%A8%A1%E5%9E%8B%E9%A3%8E%E6%9A%B4model-storming">模型风暴(Model storming)</a></li>
+<li><a href="#%E6%B5%8B%E8%AF%95%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91tdd">测试驱动开发（TDD）</a></li>
+<li><a href="#%E5%9B%9E%E9%A1%BEreviews">回顾（Reviews）</a></li>
+</ul>
+</li>
+<li><a href="#tdd%E7%A0%94%E7%A9%B6%E6%96%87%E7%8C%AE%E6%8E%A8%E8%8D%90">TDD研究文献推荐？</a></li>
+</ul>
+</li>
+<li><a href="#%E5%8F%82%E8%80%83%E6%96%87%E7%AB%A0">参考文章</a></li>
+</ul>
+</li>
+</ul>
+<h2><span id="什么是测试驱动开发tdd"> 什么是测试驱动开发(TDD)</span></h2><blockquote>
+<p>测试驱动开发(Test Driven Development, 简称TDD)是敏捷开发中的一项核心实践和技术，也是一种设计方法论。TDD的原理是在开发功能代码之前，先编写单元测试用例代码，测试代码确定需要编写什么产品代码。TDD的基本思路就是通过测试来推动整个开发的进行，但测试驱动开发并不只是单纯的测试工作，而是把需求分析，设计，质量控制量化的过程。TDD首先考虑使用需求（对象、功能、过程、接口等），主要是编写测试用例框架对功能的过程和接口进行设计，而测试框架可以持续进行验证。</p>
+</blockquote>
+<h3><span id="如何进行tdd"> 如何进行TDD？</span></h3><blockquote>
+<p>在做TDD时，一个周期(红-绿-重构)如下：</p>
+</blockquote>
+<ul>
+<li>写一个测试（红）</li>
+<li>让测试通过（绿）</li>
+<li>优化设计（重构）</li>
+</ul>
+<p><img src="/2023/07/20/2023-07-20-min-jie-kai-fa-ce-shi-qu-dong-kai-fa/tdd-1.jfif" alt="img"></p>
+<p>然后重复这个周期。</p>
+<h3><span id="什么是atdd和tdd是什么关系"> 什么是ATDD?和TDD是什么关系?</span></h3><blockquote>
+<p>通常我们指的TDD是狭义的测试驱动开发，它是基于单元测试驱动开发，即UTDD（Unit Test Driven Development 单元测试驱动开发）。由于单元测试的编写是由开发者来进行的，所以<strong>UTDD侧重从开发者测试的角度驱动开发</strong>。</p>
+</blockquote>
+<p>由于软件开发生命周期中角色并不仅仅是开发测试者，还需要考虑业务用户（在敏捷中角色是Product Owner），所以我们将测试驱动放宽到PO的角色（满足PO可接受的测试驱动开发），这便是ATDD（Acceptance Test Driven Development 验收测试驱动开发）， <strong>所以ATDD侧重从业务角度进行测试驱动开发</strong>。</p>
+<p><img src="/2023/07/20/2023-07-20-min-jie-kai-fa-ce-shi-qu-dong-kai-fa/attd-2.jpeg" alt="img"></p>
+<p>本质上<strong>ATDD还是基于TDD的基础上进行的</strong>，并且可以表述如下的4D模型</p>
+<p><img src="/2023/07/20/2023-07-20-min-jie-kai-fa-ce-shi-qu-dong-kai-fa/attd.png" alt="img"></p>
+<ul>
+<li><p><strong>Discuss</strong>: 各个角色一起参与，保障对需求用例（User Story）有一致的理解；避免开发完之后不满足客户需求的情况。</p>
+</li>
+<li><p>Distill</p>
+<p>: 需求的提取和拆分，也就是将需求分解成开发人员和测试人员都能理解，切认可的最小单元。 </p>
+<ul>
+<li>为了需求的理解一致，引入了一套满足Gherkins语法的需求描述语言（<strong>Gherkin是一种语法，使用 Given,when,then等关键来描述一个User Story</strong>），通过这种满足Gherkins语法的GWT语句需求描述语言，可以让需求理解上更加一致。</li>
+</ul>
+</li>
+<li><p>Develop</p>
+<p>: 通过单元测试驱动开发，即上面周期(红-绿-重构)的循环。 </p>
+<ul>
+<li>开发根据GWT需求描述语言进行开发设计，测试根据GWT需求描述语言来写验收测试用例。</li>
+</ul>
+</li>
+<li><p><strong>Demo</strong>: 验证阶段，团队成员向产品负责人和客户演示完成的功能, 验证的时候直接执行GWT需求，从而验证需求是否被实现。</p>
+</li>
+</ul>
+<h2><span id="tdd实践案例"> TDD实践案例</span></h2><blockquote>
+<p>通过一个实践案例向你展示如何进行单元测试驱动开发。@pdai</p>
+</blockquote>
+<p>以写一个计算器应用为例，看如何用TDD思路去实现。</p>
+<ul>
+<li><strong>准备开发环境</strong>，这里使用IDEA开发，目录结构如下</li>
+</ul>
+<p><img src="/2023/07/20/2023-07-20-min-jie-kai-fa-ce-shi-qu-dong-kai-fa/tdd-1.png" alt="img"></p>
+<h3><span id="第一个需求计算两个int类型的加法功能"> 第一个需求：计算两个int类型的加法功能</span></h3><p>写第一个测试用例（此时Calculator类是没有的)</p>
+<p><img src="/2023/07/20/2023-07-20-min-jie-kai-fa-ce-shi-qu-dong-kai-fa/tdd-2.png" alt="img"></p>
+<p>通过IDEA工具自动创建Calculator类</p>
+<p><img src="/2023/07/20/2023-07-20-min-jie-kai-fa-ce-shi-qu-dong-kai-fa/tdd-3.png" alt="img"></p>
+<p>创建类</p>
+<p><img src="/2023/07/20/2023-07-20-min-jie-kai-fa-ce-shi-qu-dong-kai-fa/tdd-4.png" alt="img"></p>
+<p>自动创建方法</p>
+<p><img src="/2023/07/20/2023-07-20-min-jie-kai-fa-ce-shi-qu-dong-kai-fa/tdd-5.png" alt="img"></p>
+<p>创建后的类和方法，完善该方法</p>
+<p><img src="/2023/07/20/2023-07-20-min-jie-kai-fa-ce-shi-qu-dong-kai-fa/tdd-6.png" alt="img"></p>
+<p>进行单元测试</p>
+<p><img src="/2023/07/20/2023-07-20-min-jie-kai-fa-ce-shi-qu-dong-kai-fa/tdd-7.png" alt="img"></p>
+<h3><span id="第二个需求如果两个int类型相加越界则抛出异常而不是错误值"> 第二个需求：如果两个int类型相加越界，则抛出异常而不是错误值</span></h3><p>添加测试用例，包含对抛出异常的检查；跑单元测试，出现错误；</p>
+<p><img src="/2023/07/20/2023-07-20-min-jie-kai-fa-ce-shi-qu-dong-kai-fa/tdd-8.png" alt="img"></p>
+<p><strong>重构</strong>原有add方法</p>
+<p><img src="/2023/07/20/2023-07-20-min-jie-kai-fa-ce-shi-qu-dong-kai-fa/tdd-9.png" alt="img"></p>
+<p>重新跑单元测试，通过</p>
+<p><img src="/2023/07/20/2023-07-20-min-jie-kai-fa-ce-shi-qu-dong-kai-fa/tdd-10.png" alt="img"></p>
+<h2><span id="进一步理解"> 进一步理解</span></h2><blockquote>
+<p>我们通过几个问题进一步理解TDD。</p>
+</blockquote>
+<h3><span id="tdd核心思想是什么"> TDD核心思想是什么?</span></h3><blockquote>
+<p>从开发的角度谈谈TDD的核心思想，可以总结为如下几个要点。</p>
+</blockquote>
+<ul>
+<li><strong>测试先行</strong></li>
+</ul>
+<p>更加关注测试的重要性，所以在开发功能代码之前，先编写单元测试用例代码。</p>
+<ul>
+<li><strong>迭代开发</strong></li>
+</ul>
+<p>敏捷的本质其实就是迭代，极限编程（XP）实践中的重要一环。迭代是期望逐步交付，减少一次性交付带来的弊端。</p>
+<ul>
+<li><strong>持续重构</strong></li>
+</ul>
+<p>每一次迭代，通常涉及到冗余，有冗余就需要重构，重构是满足当前的代码符合代码结构的设计。以避免后续迭代（一次性重构）对当前代码结构的冲击。</p>
+<h3><span id="为什么很多团队无法执行tdd"> 为什么很多团队无法执行TDD?</span></h3><blockquote>
+<p>软件开发领域常讲“没有银弹”，同样TDD也不是银弹；很多开发团队无法执行TDD, 我总结了几方面的内容：</p>
+</blockquote>
+<h4><span id="有些场景并不适合tdd方式"> 有些场景并不适合TDD方式</span></h4><blockquote>
+<p>总结而言，不符合<strong>迭代开发</strong>的或者无法进行对应的<strong>快速测试</strong>的场景不适合TDD方式开发。</p>
+</blockquote>
+<ol>
+<li><strong>无法迭代开发的</strong></li>
+</ol>
+<p>适合迭代的都是具体的需求实现，对于整体系统的设计是不适合迭代的，也不适合用用测试驱动开发。</p>
+<p>因为后续的重构会对之前的代码逻辑有冲击，迭代将带来的持续冲击式重构，这种常见下的测试驱动开发对开发者而言是一种灾难。</p>
+<p>比如复杂算法的实现，举个例子，你现在要开发一个傅里叶变化的模块，输入一些数据，得到傅里叶变换的结果。你花了一些时间，看懂了傅里叶变化的公式，对其实现也有把握，但是在写断言的时候就发现结果的验证太困难了，你可能需要借助matlab或者python来预先得到结果，然后复制结果到断言中。</p>
+<p>数据驱动的算法也无法用TDD来开发，例如机器学习、深度学习。因为其结果与数据相关，当数据发生变化时，算法行为也会发生变化，这就没法写测试用例了。</p>
+<ol>
+<li><strong>无法快速测试的</strong></li>
+</ol>
+<p>测试驱动开发的另外一个必要条件是每次的迭代是可以被快速验证的，如果无法快速测试，那么就不适合。</p>
+<ol>
+<li><strong>存在交互边界的</strong></li>
+</ol>
+<p>比如硬件的开发，因为存在物理的边界。</p>
+<h4><span id="tdd对团队本身有一定的要求"> TDD对团队本身有一定的要求</span></h4><ol>
+<li><strong>团队对质量管理的要求和认同</strong></li>
+</ol>
+<p>测试驱动开发只是一种敏捷开发方式，它是将测试提升到与开发同等重要的位置，以保证在敏捷的迭代开发中保持软件的质量。有些团队没有完善的软件开发质量体系和资源，没有将质量规范融入到整个开发流程中（也没有专人或团队来约束规范），甚至团队生存都存在问题，追求短平快更不会关注质量（@pdai: 想起一句经典台词：<strong>我都混到吃泡面了，我还在乎健康</strong>？）；在这些情况下团队对质量管理缺乏认同，对开发测试的工作就变成了负担。</p>
+<ol>
+<li><strong>团队对需求和任务拆分的能力</strong></li>
+</ol>
+<p>测试驱动开发有一个很重要的前提条件是有相对可迭代开发的拆分需求，所以团队对需求的理解以及任务的开发能力极为重要，拆分任务时需要对任务的粒度和可持续性有较高要求；频繁需求的变更和拆分不到位，将让驱动测试开发陷入疲于奔命。</p>
+<ol>
+<li><strong>团队对重构的理解和能力</strong></li>
+</ol>
+<p>重构对于测试驱动开发是极为重要的，正如上面的例子看到的，在后续的用例需求开发时需要对前面的开发代码进行必要的重构，以满足当前的代码是满足相对最佳实践的；此时你可能会发现，增量写的用例需要对前面写代码大幅度的重构，而这些代码可能不是你写的，所以在团队没有对重构有统一的理解或者缺乏对重构的把控时，测试驱动开发可能会成为一种负担。</p>
+<ol>
+<li><strong>团队对协作的理解和能力</strong></li>
+</ol>
+<p>一个团队中是有很多角色的（产品负责人，PM，架构，开发，测试等），测试驱动开发不仅仅是开发者要做的事情，而需要其它角色的协作。举个简单的例子，如果在必要时候后续开发需要对之前代码进行重构，但是产品负责人或者PM无法认同，认为只是一个平行功能的开发，没有给到开发者足够的重构时间，这时便会错失好的重构时间点，对后续整体质量将埋下一个坑，而且这种技术债务有一天是要还的。</p>
+<h4><span id="tdd是否已死"> TDD是否已死？</span></h4><blockquote>
+<p>在行业里最有名的是 Kent Beck、Martin Fowler、David关于<a target="_blank" rel="noopener" href="https://martinfowler.com/articles/is-tdd-dead/">Is TDD Dead在新窗口打开</a>?的辩论。</p>
+</blockquote>
+<p>pdai在这里添加这节内容是期望网站的读者明白：</p>
+<ol>
+<li>无论采用何种方式开发，都是需要平衡项目，资源，团队等多种因素的；</li>
+<li>TDD过不过时都是主观的，但是它提供了一种敏捷开发的思路；作为开发而言，不断思考，不断实现自我的迭代永远不会过时。</li>
+</ol>
+<h3><span id="amdd通过敏捷模型拓展tdd"> AMDD：通过敏捷模型拓展TDD?</span></h3><blockquote>
+<p>Agile Model Driven Development (AMDD)即敏捷模型驱动开发，TDD非常擅长详细的规范和验证，但是它不适合很大的问题，如总体设计、系统的使用或UI。AMDD解决了TDD没有解决的敏捷扩展问题, 因此，AMDD用于更大的问题。如下内容主要翻译自<a target="_blank" rel="noopener" href="https://www.guru99.com/test-driven-development.html">Scaling TDD via Agile Model Driven Development (AMDD)在新窗口打开</a></p>
+</blockquote>
+<p><img src="/2023/07/20/2023-07-20-min-jie-kai-fa-ce-shi-qu-dong-kai-fa/amdd.png" alt="img"></p>
+<p>在上图中，每个框代表一个开发活动。</p>
+<p>设想(Envisioning)是预测/想象测试的TDD过程之一，将在项目的第一周进行。设想(Envisioning)的主要目标是确定系统范围和系统架构。高级需求和架构建模是为成功的设想(Envisioning)而进行的。这是一个过程，没有对软件/系统进行详细说明，而是探索软件/系统的需求，确定了项目的总体战略。</p>
+<h4><span id="迭代0设想envisioning"> 迭代0：设想(Envisioning)</span></h4><p>有两个主要的部分：</p>
+<ul>
+<li>**最初需求的设想(Initial requirements envisioning)**：确定系统的高级需求和范围可能需要几天时间。主要重点是探索使用模型、初始域模型和用户界面模型（UI）。</li>
+<li>**最初架构的设想(Initial Architectural envisioning)**：识别系统的体系结构也需要几天时间。它允许为项目设置技术方向。主要重点是探索技术图、用户界面（UI）流、领域模型和变更案例。</li>
+</ul>
+<h4><span id="迭代建模iteration-modeling"> 迭代建模（Iteration modeling）</span></h4><p>在这里，团队必须计划每个迭代将要完成的工作。</p>
+<ul>
+<li>敏捷过程用于每次迭代，即在每次迭代期间，将优先添加新的工作项。</li>
+<li>首先，将考虑更优先的工作。添加的工作项可以随时重新排序或从项堆栈中删除。</li>
+<li>团队讨论如何实现每个需求。建模用于此目的。</li>
+<li>建模分析和设计是针对将要为该迭代实现的每个需求进行的。</li>
+</ul>
+<h4><span id="模型风暴model-storming"> 模型风暴(Model storming)</span></h4><p>这也称为即时建模。</p>
+<ul>
+<li>在这里，建模课程涉及一个由2/3名成员组成的团队，他们在纸上或白板上讨论问题。</li>
+<li>一名团队成员将要求另一名成员与他们一起建模。本次建模课程大约需要5到10分钟。团队成员聚集在一起共享白板/纸张。</li>
+<li>他们探索问题，直到找到问题的主要原因。及时，如果一个团队成员确定了他/她想要解决的问题，那么他/她将迅速得到其他团队成员的帮助。</li>
+<li>其他小组成员随后探讨这个问题，然后每个人都像以前一样继续。它也被称为独立建模或客户QA会议。</li>
+</ul>
+<h4><span id="测试驱动开发tdd"> 测试驱动开发（TDD）</span></h4><ul>
+<li>它促进了对应用程序代码和详细规范的确认性测试。</li>
+<li>验收测试（详细需求）和开发人员测试（单元测试）都是TDD的输入。</li>
+<li>TDD使代码更简单和清晰。它允许开发人员维护较少的文档。</li>
+</ul>
+<h4><span id="回顾reviews"> 回顾（Reviews）</span></h4><ul>
+<li>这是可选的。它包括代码检查和模型审查。</li>
+<li>这可以为每个迭代或整个项目完成。</li>
+<li>这是为项目提供反馈的好选择。</li>
+</ul>
+<h3><span id="tdd研究文献推荐"> TDD研究文献推荐？</span></h3><p>有关TDD的有效性和成本已经有很多研究了。下表是个总结</p>
+<table>
+<thead>
+<tr>
+<th>作者/年份</th>
+<th>重要发现</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/ftp/arxiv/papers/1711/1711.05082.pdf">Siniaalto,2017在新窗口打开</a></td>
+<td>TDD不总是能提高开发效率，特别是在对TDD不熟悉的情况下。但是TDD所生产的代码具有更高的测试覆盖率。</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://softwareprocess.es/pubs/borle2017EMSE-TDD.pdf">Neil,2017在新窗口打开</a></td>
+<td>github上使用TDD开发的Java项目非常少，将TDD开发的项目与其他项目进行对比，并没有发现TDD开发的项目有明显的优势。</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://www.sciencedirect.com/science/article/abs/pii/S0950584916300222">Wilson,2016在新窗口打开</a></td>
+<td>TDD能够生产更好质量的代码，但是开发效率不如TLD（开发完再测试）</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1611.05994.pdf">Davide,2016在新窗口打开</a></td>
+<td>TDD声称的好处可能不是由于其独特的测试先行产生的。但类似于TDD所鼓励的细粒度稳步的增量式开发，可以改善开发质量</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://research.microsoft.com/en-us/groups/ese/nagappan_tdd.pdf">Nagappan, 2008在新窗口打开</a></td>
+<td>TDD消除缺陷是40% ~ 90%,其成本在开发初期多出15% ~ 35%</td>
+</tr>
+<tr>
+<td>[Sanchez,J.C,2007在新窗口打开](<a target="_blank" rel="noopener" href="http://www.agile2007.org/downloads/proceedings/006_On">http://www.agile2007.org/downloads/proceedings/006_On</a> the Sustained Use_860.pdf)</td>
+<td>TDD产生的缺陷密度低于行业标准。TDD或许能减少代码复杂度随着软件年限而增长的程度</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://www.microsoft.com/en-us/research/group/saintes-group/">Bhat,2006在新窗口打开</a></td>
+<td>TDD的使用可以让代码质量提升，初始成本增加至少15%</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://www.agile-itea.org/public/deliverables/ITEA-AGILE-D2.7_v1.0.pdf">Siniaalto,2006在新窗口打开</a></td>
+<td>有些情况，TDD会大幅度提升效率，大概在2/13的情况下回减低生产效率（但会提升代码质量）</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="http://collaboration.csc.ncsu.edu/laurie/Papers/TDDpaperv8.pdf">George,2003在新窗口打开</a></td>
+<td>TDD开发的代码质量更好（可以多通过18%或者更多的功能测试），且多用16%的开发时间。事后测试的代码测试不够充分</td>
+</tr>
+</tbody></table>
+<h2><span id="参考文章"> 参考文章</span></h2><p><a target="_blank" rel="noopener" href="https://kentcdodds.com/blog/when-i-follow-tdd">https://kentcdodds.com/blog/when-i-follow-tdd</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weiwei9363/article/details/117805722">https://blog.csdn.net/weiwei9363/article/details/117805722</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.guru99.com/test-driven-development.html">https://www.guru99.com/test-driven-development.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/hxfirefox/blog/blob/master/TDD/TDD%E9%9A%8F%E6%83%B3%E5%BD%95.md">https://github.com/hxfirefox/blog/blob/master/TDD/TDD%E9%9A%8F%E6%83%B3%E5%BD%95.md</a></p>
+<p><a target="_blank" rel="noopener" href="http://agiledon.github.io/blog/2013/12/25/thought-about-applying-tdd/">http://agiledon.github.io/blog/2013/12/25/thought-about-applying-tdd/</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cxybb.com/article/zanfeng/119480625">https://www.cxybb.com/article/zanfeng/119480625</a></p>
+<p><a target="_blank" rel="noopener" href="https://martinfowler.com/articles/is-tdd-dead/">https://martinfowler.com/articles/is-tdd-dead/</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/b794d5491dd9">https://www.jianshu.com/p/b794d5491dd9</a></p>
+<hr>
+<p>著作权归@pdai所有 原文链接：<a target="_blank" rel="noopener" href="https://pdai.tech/md/dev-spec/dev-agile/dev-pratice-tdd.html">https://pdai.tech/md/dev-spec/dev-agile/dev-pratice-tdd.html</a></p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">pdai</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://codercandy.github.io/2023/07/20/2023-07-20-min-jie-kai-fa-ce-shi-qu-dong-kai-fa/">https://codercandy.github.io/2023/07/20/2023-07-20-min-jie-kai-fa-ce-shi-qu-dong-kai-fa/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">pdai</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E6%95%8F%E6%8D%B7%E5%BC%80%E5%8F%91-%E5%BC%80%E5%8F%91%E5%AE%9E%E8%B7%B5%EF%BC%9A%E6%B5%8B%E8%AF%95%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91-TDD%EF%BC%89/">
+                                    <span class="chip bg-color">敏捷开发 - 开发实践：测试驱动开发(TDD）</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+    <div class="livere-card card" data-aos="fade-up">
+    <!-- 来必力City版安装代码 -->
+    <div id="lv-container" class="card-content" data-id="city" data-uid="MTAyMC81NDg3My8zMTM0Mg==">
+        <script type="text/javascript">
+            (function (d, s) {
+                let j, e = d.getElementsByTagName(s)[0];
+                if (typeof LivereTower === 'function') {
+                    return;
+                }
+
+                j = d.createElement(s);
+                j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                j.async = true;
+
+                e.parentNode.insertBefore(j, e);
+            })(document, 'script');
+        </script>
+        <noscript>为正常使用来必力评论功能请激活JavaScript。</noscript>
+    </div>
+    <!-- City版安装代码已完成 -->
+</div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2023/07/20/2023-07-20-min-jie-kai-fa-scrum-fang-shi/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="敏捷开发-Scrum方式">
+                        
+                        <span class="card-title">敏捷开发-Scrum方式</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2023-07-20
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/" class="post-category">
+                                    开发流程
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%95%8F%E6%8D%B7%E5%BC%80%E5%8F%91-%E9%9D%A2%E5%90%91%E8%BF%87%E7%A8%8B%E7%AE%A1%E7%90%86%EF%BC%9AScrum%E6%96%B9%E5%BC%8F/">
+                        <span class="chip bg-color">敏捷开发 - 面向过程管理：Scrum方式</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2023/07/20/2023-07-20-min-jie-ruan-jian-kai-fa-li-lun-ji-liu-cheng/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="敏捷软件开发理论及流程">
+                        
+                        <span class="card-title">敏捷软件开发理论及流程</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-07-20
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/" class="post-category">
+                                    开发流程
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%95%8F%E6%8D%B7%E5%BC%80%E5%8F%91-%E6%95%8F%E6%8D%B7%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E7%90%86%E8%AE%BA%E5%8F%8A%E6%B5%81%E7%A8%8B/">
+                        <span class="chip bg-color">敏捷开发 - 敏捷软件开发理论及流程</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('10')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE' || selection.getRangeAt(0).commonAncestorContainer.nodeName === 'CODE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: 梓妤<br />'
+            + '文章作者: Candy liu<br />'
+            + '文章链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="/libs/aplayer/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2021-2023</span>
+            
+            <a href="/about" target="_blank">Candy liu</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+                <span id="sitetime"> Loading ...</span>
+                <script>
+                    var calcSiteTime = function () {
+                        var seconds = 1000;
+                        var minutes = seconds * 60;
+                        var hours = minutes * 60;
+                        var days = hours * 24;
+                        var years = days * 365;
+                        var today = new Date();
+                        var startYear = "2021";
+                        var startMonth = "12";
+                        var startDate = "5";
+                        var startHour = "22";
+                        var startMinute = "49";
+                        var startSecond = "0";
+                        var todayYear = today.getFullYear();
+                        var todayMonth = today.getMonth() + 1;
+                        var todayDate = today.getDate();
+                        var todayHour = today.getHours();
+                        var todayMinute = today.getMinutes();
+                        var todaySecond = today.getSeconds();
+                        var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                        var diff = t2 - t1;
+                        var diffYears = Math.floor(diff / years);
+                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+
+                        // 区分是否有年份.
+                        var language = 'zh-CN';
+                        if (startYear === String(todayYear)) {
+                            document.getElementById("year").innerHTML = todayYear;
+                            var daysTip = 'This site has been running for ' + diffDays + ' days';
+                            if (language === 'zh-CN') {
+                                daysTip = '本站已运行 ' + diffDays + ' 天';
+                            } else if (language === 'zh-HK') {
+                                daysTip = '本站已運行 ' + diffDays + ' 天';
+                            }
+                            document.getElementById("sitetime").innerHTML = daysTip;
+                        } else {
+                            document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                            var yearsAndDaysTip = 'This site has been running for ' + diffYears + ' years and '
+                                + diffDays + ' days';
+                            if (language === 'zh-CN') {
+                                yearsAndDaysTip = '本站已运行 ' + diffYears + ' 年 ' + diffDays + ' 天';
+                            } else if (language === 'zh-HK') {
+                                yearsAndDaysTip = '本站已運行 ' + diffYears + ' 年 ' + diffDays + ' 天';
+                            }
+                            document.getElementById("sitetime").innerHTML = yearsAndDaysTip;
+                        }
+                    }
+
+                    calcSiteTime();
+                </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+<a href="https://gitee.com/CandyLoveYL" class="tooltipped" target="_blank" data-tooltip="访问我的gitee" data-position="top" data-delay="50">
+	<i class="fab fa-github"></i>
+</a>
+<a href="mailto:595487347@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+	<i class="fas fa-envelope-open"></i>
+</a>
+<a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=595487347" class="tooltipped" target="_blank" data-tooltip="QQ联系我:595487347" data-position="top" data-delay="50">
+	<i class="fab fa-qq"></i>
+</a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+
+    <!-- 雪花特效 -->
+     
+        <script type="text/javascript">
+            // 只在桌面版网页启用特效
+            var windowWidth = $(window).width();
+            if (windowWidth > 768) {
+                document.write('<script type="text/javascript" src="/libs/others/snow.js"><\/script>');
+            }
+        </script>
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
