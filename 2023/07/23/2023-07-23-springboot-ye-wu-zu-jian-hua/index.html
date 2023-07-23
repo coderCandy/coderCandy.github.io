@@ -445,7 +445,7 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1><span id="springboot-业务组件化开发">SpringBoot 业务组件化开发</span></h1><p><img src="/2023/07/23/2023-07-23-springboot-ye-wu-zu-jian-hua/2023-07-23-SpringBoot%E4%B8%9A%E5%8A%A1%E7%BB%84%E4%BB%B6%E5%8C%96%5C640.png" alt="图片"></p>
+                <h1><span id="springboot-业务组件化开发">SpringBoot 业务组件化开发</span></h1><p><img src="/2023/07/23/2023-07-23-springboot-ye-wu-zu-jian-hua/640.png" alt="图片"></p>
 <ul>
 <li><p>1、背景</p>
 </li>
@@ -474,7 +474,7 @@
 <p>补充一句，之所以说“业务组件化”开发，来源于Vue的思想，希望Java后端开发的业务也可像vue的组件一样去使用，这样多好</p>
 </blockquote>
 <h2><span id="2-demo"><em><strong>*2、demo*</strong></em></span></h2><h3><span id="2-1项目准备">2-1项目准备</span></h3><p>①建一个Java项目项目，结构如下图：</p>
-<p><img src="/2023/07/23/2023-07-23-springboot-ye-wu-zu-jian-hua/2023-07-23-SpringBoot%E4%B8%9A%E5%8A%A1%E7%BB%84%E4%BB%B6%E5%8C%96%5C641.png" alt="图片"></p>
+<p><img src="/2023/07/23/2023-07-23-springboot-ye-wu-zu-jian-hua/641.png" alt="图片"></p>
 <p>②pom文件如下：</p>
 <pre class=" language-xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8"?></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>project</span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://maven.apache.org/POM/4.0.0<span class="token punctuation">"</span></span>
@@ -771,16 +771,16 @@
 <pre><code>
 </code></pre>
 <h3><span id="2-2项目打包-引入-运行">2-2项目打包、引入、运行</span></h3><p>①将2-1中的测试项目进行打包：install右键第一个选项</p>
-<p><img src="/2023/07/23/2023-07-23-springboot-ye-wu-zu-jian-hua/2023-07-23-SpringBoot%E4%B8%9A%E5%8A%A1%E7%BB%84%E4%BB%B6%E5%8C%96%5C642.png" alt="图片"></p>
+<p><img src="/2023/07/23/2023-07-23-springboot-ye-wu-zu-jian-hua/642.png" alt="图片"></p>
 <p>②此时你的本地maven仓库会出现刚才的项目（当然前提是你的idea配置过本地的maven）</p>
-<p><img src="/2023/07/23/2023-07-23-springboot-ye-wu-zu-jian-hua/2023-07-23-SpringBoot%E4%B8%9A%E5%8A%A1%E7%BB%84%E4%BB%B6%E5%8C%96%5C643.png" alt="图片"></p>
+<p><img src="/2023/07/23/2023-07-23-springboot-ye-wu-zu-jian-hua/643.png" alt="图片"></p>
 <p>图片</p>
-<p><img src="/2023/07/23/2023-07-23-springboot-ye-wu-zu-jian-hua/2023-07-23-SpringBoot%E4%B8%9A%E5%8A%A1%E7%BB%84%E4%BB%B6%E5%8C%96%5C644.png" alt="图片"></p>
+<p><img src="/2023/07/23/2023-07-23-springboot-ye-wu-zu-jian-hua/644.png" alt="图片"></p>
 <p>图片</p>
 <p>③新建另外一个项目cx-main</p>
-<p><img src="/2023/07/23/2023-07-23-springboot-ye-wu-zu-jian-hua/2023-07-23-SpringBoot%E4%B8%9A%E5%8A%A1%E7%BB%84%E4%BB%B6%E5%8C%96%5C645.png" alt="图片"></p>
+<p><img src="/2023/07/23/2023-07-23-springboot-ye-wu-zu-jian-hua/645.png" alt="图片"></p>
 <p>④pom文件如下：注意将你刚才的准备测试的项目引入进来</p>
-<p><img src="/2023/07/23/2023-07-23-springboot-ye-wu-zu-jian-hua/2023-07-23-SpringBoot%E4%B8%9A%E5%8A%A1%E7%BB%84%E4%BB%B6%E5%8C%96%5C646.png" alt="图片"></p>
+<p><img src="/2023/07/23/2023-07-23-springboot-ye-wu-zu-jian-hua/646.png" alt="图片"></p>
 <pre class=" language-xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8"?></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>project</span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://maven.apache.org/POM/4.0.0<span class="token punctuation">"</span></span>
          <span class="token attr-name"><span class="token namespace">xmlns:</span>xsi</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://www.w3.org/2001/XMLSchema-instance<span class="token punctuation">"</span></span>
@@ -902,7 +902,7 @@
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>project</span><span class="token punctuation">></span></span>
 </code></pre>
 <p>⑤application.yml配置文件 注意xml的扫描</p>
-<p><img src="/2023/07/23/2023-07-23-springboot-ye-wu-zu-jian-hua/2023-07-23-SpringBoot%E4%B8%9A%E5%8A%A1%E7%BB%84%E4%BB%B6%E5%8C%96%5C647.png" alt="图片"></p>
+<p><img src="/2023/07/23/2023-07-23-springboot-ye-wu-zu-jian-hua/647.png" alt="图片"></p>
 <pre class=" language-yaml"><code class="language-yaml"><span class="token comment" spellcheck="true">#服务配置</span>
 <span class="token key atrule">server</span><span class="token punctuation">:</span>
   <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">8081</span>
@@ -948,7 +948,7 @@
     <span class="token key atrule">boolValue</span><span class="token punctuation">:</span> <span class="token boolean important">TRUE</span>
 </code></pre>
 <p>⑥启动入口，注意spring和mapper扫描</p>
-<p><img src="/2023/07/23/2023-07-23-springboot-ye-wu-zu-jian-hua/2023-07-23-SpringBoot%E4%B8%9A%E5%8A%A1%E7%BB%84%E4%BB%B6%E5%8C%96%5C648.png" alt="图片"></p>
+<p><img src="/2023/07/23/2023-07-23-springboot-ye-wu-zu-jian-hua/648.png" alt="图片"></p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> top<span class="token punctuation">.</span>wp<span class="token punctuation">.</span>cx<span class="token punctuation">.</span>main<span class="token punctuation">;</span>
  
 <span class="token keyword">import</span> cn<span class="token punctuation">.</span>hutool<span class="token punctuation">.</span>log<span class="token punctuation">.</span>StaticLog<span class="token punctuation">;</span>
