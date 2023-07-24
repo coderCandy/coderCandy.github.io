@@ -6,7 +6,7 @@
   <link href="https://codercandy.github.io/atom.xml" rel="self"/>
   
   <link href="https://codercandy.github.io/"/>
-  <updated>2023-07-23T01:54:26.973Z</updated>
+  <updated>2023-07-24T14:47:38.067Z</updated>
   <id>https://codercandy.github.io/</id>
   
   <author>
@@ -17,11 +17,36 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>高项-标题类知识点</title>
+    <link href="https://codercandy.github.io/2023/07/24/2023-gao-xiang-biao-ti-lei-zhi-shi-dian/"/>
+    <id>https://codercandy.github.io/2023/07/24/2023-gao-xiang-biao-ti-lei-zhi-shi-dian/</id>
+    <published>2023-07-24T14:36:14.000Z</published>
+    <updated>2023-07-24T14:47:38.067Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2&gt;&lt;span id=&quot;第1章-信息化发展-标题类知识点&quot;&gt;第1章-信息化发展-标题类知识点&lt;/span&gt;&lt;/h2&gt;&lt;p&gt;&lt;img</summary>
+        
+      
+    
+    
+    
+    <category term="学习" scheme="https://codercandy.github.io/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="高项" scheme="https://codercandy.github.io/tags/%E9%AB%98%E9%A1%B9/"/>
+    
+  </entry>
+  
+  <entry>
     <title>SpringBoot业务组件化</title>
     <link href="https://codercandy.github.io/2023/07/23/2023-07-23-springboot-ye-wu-zu-jian-hua/"/>
     <id>https://codercandy.github.io/2023/07/23/2023-07-23-springboot-ye-wu-zu-jian-hua/</id>
     <published>2023-07-22T23:30:07.000Z</published>
-    <updated>2023-07-23T01:54:26.973Z</updated>
+    <updated>2023-07-23T02:45:56.769Z</updated>
     
     
       
@@ -95,19 +120,18 @@
   </entry>
   
   <entry>
-    <title>敏捷开发-测试驱动开发</title>
-    <link href="https://codercandy.github.io/2023/07/20/2023-07-20-min-jie-kai-fa-ce-shi-qu-dong-kai-fa/"/>
-    <id>https://codercandy.github.io/2023/07/20/2023-07-20-min-jie-kai-fa-ce-shi-qu-dong-kai-fa/</id>
+    <title>敏捷开发-Scrum方式</title>
+    <link href="https://codercandy.github.io/2023/07/20/2023-07-20-min-jie-kai-fa-scrum-fang-shi/"/>
+    <id>https://codercandy.github.io/2023/07/20/2023-07-20-min-jie-kai-fa-scrum-fang-shi/</id>
     <published>2023-07-20T07:49:16.000Z</published>
-    <updated>2023-07-22T23:40:32.846Z</updated>
+    <updated>2023-07-22T23:40:41.125Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h1&gt;&lt;span id=&quot;敏捷开发-开发实践测试驱动开发tdd&quot;&gt;敏捷开发 - 开发实践：测试驱动开发(TDD）&lt;/span&gt;&lt;/h1&gt;&lt;blockquote&gt;
-&lt;p&gt;测试驱动开发(Test Driven Development,</summary>
+    <summary type="html">&lt;h1&gt;&lt;span id=&quot;敏捷开发-面向过程管理scrum方式&quot;&gt;敏捷开发 -</summary>
         
       
     
@@ -121,18 +145,19 @@
   </entry>
   
   <entry>
-    <title>敏捷开发-Scrum方式</title>
-    <link href="https://codercandy.github.io/2023/07/20/2023-07-20-min-jie-kai-fa-scrum-fang-shi/"/>
-    <id>https://codercandy.github.io/2023/07/20/2023-07-20-min-jie-kai-fa-scrum-fang-shi/</id>
+    <title>敏捷开发-测试驱动开发</title>
+    <link href="https://codercandy.github.io/2023/07/20/2023-07-20-min-jie-kai-fa-ce-shi-qu-dong-kai-fa/"/>
+    <id>https://codercandy.github.io/2023/07/20/2023-07-20-min-jie-kai-fa-ce-shi-qu-dong-kai-fa/</id>
     <published>2023-07-20T07:49:16.000Z</published>
-    <updated>2023-07-22T23:40:41.125Z</updated>
+    <updated>2023-07-22T23:40:32.846Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h1&gt;&lt;span id=&quot;敏捷开发-面向过程管理scrum方式&quot;&gt;敏捷开发 -</summary>
+    <summary type="html">&lt;h1&gt;&lt;span id=&quot;敏捷开发-开发实践测试驱动开发tdd&quot;&gt;敏捷开发 - 开发实践：测试驱动开发(TDD）&lt;/span&gt;&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;测试驱动开发(Test Driven Development,</summary>
         
       
     
@@ -498,31 +523,6 @@
         
         
     <summary type="html">&lt;h1&gt;&lt;span id=&quot;第三章-vue-2&quot;&gt;第三章. Vue 2&lt;/span&gt;&lt;/h1&gt;&lt;h2&gt;&lt;span id=&quot;1-vue-基础&quot;&gt;1. Vue 基础&lt;/span&gt;&lt;/h2&gt;&lt;h3&gt;&lt;span id=&quot;1-环境准备&quot;&gt;1)</summary>
-        
-      
-    
-    
-    
-    <category term="学习" scheme="https://codercandy.github.io/categories/%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-    <category term="前端" scheme="https://codercandy.github.io/tags/%E5%89%8D%E7%AB%AF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java程序员要掌握的前端-HTML&amp;CSS</title>
-    <link href="https://codercandy.github.io/2022/08/18/java-cheng-xu-yuan-yao-zhang-wo-de-qian-duan-html-css/"/>
-    <id>https://codercandy.github.io/2022/08/18/java-cheng-xu-yuan-yao-zhang-wo-de-qian-duan-html-css/</id>
-    <published>2022-08-18T14:58:26.000Z</published>
-    <updated>2023-07-18T15:24:02.089Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1&gt;&lt;span id=&quot;前言&quot;&gt;前言&lt;/span&gt;&lt;/h1&gt;&lt;p&gt;Java</summary>
         
       
     
