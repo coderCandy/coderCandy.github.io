@@ -6,7 +6,7 @@
   <link href="https://codercandy.github.io/atom.xml" rel="self"/>
   
   <link href="https://codercandy.github.io/"/>
-  <updated>2023-07-24T14:47:38.067Z</updated>
+  <updated>2023-07-25T11:30:50.024Z</updated>
   <id>https://codercandy.github.io/</id>
   
   <author>
@@ -15,6 +15,56 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>让SpringBoot不需要Controller、Service、DAO、Mapper</title>
+    <link href="https://codercandy.github.io/2023/07/25/2023-07-25-rang-springboot-bu-xu-yao-controller-service-dao-mapper/"/>
+    <id>https://codercandy.github.io/2023/07/25/2023-07-25-rang-springboot-bu-xu-yao-controller-service-dao-mapper/</id>
+    <published>2023-07-25T07:00:02.000Z</published>
+    <updated>2023-07-25T11:30:50.024Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2&gt;&lt;span id=&quot;让springboot不需要controller-service-dao-mapper&quot;&gt;让SpringBoot不需要Controller、Service、DAO、Mapper&lt;/span&gt;&lt;/h2&gt;&lt;h2&gt;&lt;span</summary>
+        
+      
+    
+    
+    
+    <category term="学习" scheme="https://codercandy.github.io/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="springboot" scheme="https://codercandy.github.io/tags/springboot/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>图解一条 SQL 的执行过程</title>
+    <link href="https://codercandy.github.io/2023/07/25/2023-07-25-tu-jie-yi-tiao-sql-de-zhi-xing-guo-cheng/"/>
+    <id>https://codercandy.github.io/2023/07/25/2023-07-25-tu-jie-yi-tiao-sql-de-zhi-xing-guo-cheng/</id>
+    <published>2023-07-25T05:53:36.000Z</published>
+    <updated>2023-07-25T06:05:28.975Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2&gt;&lt;span id=&quot;前言&quot;&gt;前言&lt;/span&gt;&lt;/h2&gt;&lt;p&gt;天天和数据库打交道，一天能写上几十条 SQL 语句，但你知道我们的系统是如何和数据库交互的吗？MySQL 如何帮我们存储数据、又是如何帮我们管理事务？….是不是感觉真的除了写几个 「select * from</summary>
+        
+      
+    
+    
+    
+    <category term="学习" scheme="https://codercandy.github.io/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="mysql" scheme="https://codercandy.github.io/tags/mysql/"/>
+    
+  </entry>
   
   <entry>
     <title>高项-标题类知识点</title>
@@ -94,6 +144,31 @@
   </entry>
   
   <entry>
+    <title>敏捷开发-Scrum方式</title>
+    <link href="https://codercandy.github.io/2023/07/20/2023-07-20-min-jie-kai-fa-scrum-fang-shi/"/>
+    <id>https://codercandy.github.io/2023/07/20/2023-07-20-min-jie-kai-fa-scrum-fang-shi/</id>
+    <published>2023-07-20T07:49:16.000Z</published>
+    <updated>2023-07-22T23:40:41.125Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1&gt;&lt;span id=&quot;敏捷开发-面向过程管理scrum方式&quot;&gt;敏捷开发 -</summary>
+        
+      
+    
+    
+    
+    <category term="开发流程" scheme="https://codercandy.github.io/categories/%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/"/>
+    
+    
+    <category term="敏捷开发" scheme="https://codercandy.github.io/tags/%E6%95%8F%E6%8D%B7%E5%BC%80%E5%8F%91/"/>
+    
+  </entry>
+  
+  <entry>
     <title>敏捷开发-Kanban方式</title>
     <link href="https://codercandy.github.io/2023/07/20/2023-07-20-min-jie-kai-fa-kanban-fang-shi/"/>
     <id>https://codercandy.github.io/2023/07/20/2023-07-20-min-jie-kai-fa-kanban-fang-shi/</id>
@@ -120,18 +195,18 @@
   </entry>
   
   <entry>
-    <title>敏捷开发-Scrum方式</title>
-    <link href="https://codercandy.github.io/2023/07/20/2023-07-20-min-jie-kai-fa-scrum-fang-shi/"/>
-    <id>https://codercandy.github.io/2023/07/20/2023-07-20-min-jie-kai-fa-scrum-fang-shi/</id>
+    <title>敏捷软件开发理论及流程</title>
+    <link href="https://codercandy.github.io/2023/07/20/2023-07-20-min-jie-ruan-jian-kai-fa-li-lun-ji-liu-cheng/"/>
+    <id>https://codercandy.github.io/2023/07/20/2023-07-20-min-jie-ruan-jian-kai-fa-li-lun-ji-liu-cheng/</id>
     <published>2023-07-20T07:49:16.000Z</published>
-    <updated>2023-07-22T23:40:41.125Z</updated>
+    <updated>2023-07-22T23:41:36.713Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h1&gt;&lt;span id=&quot;敏捷开发-面向过程管理scrum方式&quot;&gt;敏捷开发 -</summary>
+    <summary type="html">&lt;h1&gt;&lt;span id=&quot;敏捷开发-敏捷软件开发理论及流程&quot;&gt;敏捷开发 -</summary>
         
       
     
@@ -171,31 +246,6 @@
   </entry>
   
   <entry>
-    <title>敏捷软件开发理论及流程</title>
-    <link href="https://codercandy.github.io/2023/07/20/2023-07-20-min-jie-ruan-jian-kai-fa-li-lun-ji-liu-cheng/"/>
-    <id>https://codercandy.github.io/2023/07/20/2023-07-20-min-jie-ruan-jian-kai-fa-li-lun-ji-liu-cheng/</id>
-    <published>2023-07-20T07:49:16.000Z</published>
-    <updated>2023-07-22T23:41:36.713Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1&gt;&lt;span id=&quot;敏捷开发-敏捷软件开发理论及流程&quot;&gt;敏捷开发 -</summary>
-        
-      
-    
-    
-    
-    <category term="开发流程" scheme="https://codercandy.github.io/categories/%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/"/>
-    
-    
-    <category term="敏捷开发" scheme="https://codercandy.github.io/tags/%E6%95%8F%E6%8D%B7%E5%BC%80%E5%8F%91/"/>
-    
-  </entry>
-  
-  <entry>
     <title>精益企业</title>
     <link href="https://codercandy.github.io/2023/07/20/2023-07-20-jing-yi-qi-ye/"/>
     <id>https://codercandy.github.io/2023/07/20/2023-07-20-jing-yi-qi-ye/</id>
@@ -218,31 +268,6 @@
     
     
     <category term="精益" scheme="https://codercandy.github.io/tags/%E7%B2%BE%E7%9B%8A/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>结合软件测试的过程模型演化</title>
-    <link href="https://codercandy.github.io/2023/07/20/2023-07-20-jie-he-ruan-jian-ce-shi-de-guo-cheng-mo-xing-yan-hua/"/>
-    <id>https://codercandy.github.io/2023/07/20/2023-07-20-jie-he-ruan-jian-ce-shi-de-guo-cheng-mo-xing-yan-hua/</id>
-    <published>2023-07-20T07:49:16.000Z</published>
-    <updated>2023-07-22T23:41:47.564Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1&gt;&lt;span id=&quot;传统模式-结合软件测试的过程模型演化v模型w模型x模型等&quot;&gt;传统模式 -</summary>
-        
-      
-    
-    
-    
-    <category term="开发流程" scheme="https://codercandy.github.io/categories/%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/"/>
-    
-    
-    <category term="传统模式" scheme="https://codercandy.github.io/tags/%E4%BC%A0%E7%BB%9F%E6%A8%A1%E5%BC%8F/"/>
     
   </entry>
   
@@ -294,6 +319,31 @@
     
     
     <category term="敏捷开发" scheme="https://codercandy.github.io/tags/%E6%95%8F%E6%8D%B7%E5%BC%80%E5%8F%91/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>结合软件测试的过程模型演化</title>
+    <link href="https://codercandy.github.io/2023/07/20/2023-07-20-jie-he-ruan-jian-ce-shi-de-guo-cheng-mo-xing-yan-hua/"/>
+    <id>https://codercandy.github.io/2023/07/20/2023-07-20-jie-he-ruan-jian-ce-shi-de-guo-cheng-mo-xing-yan-hua/</id>
+    <published>2023-07-20T07:49:16.000Z</published>
+    <updated>2023-07-22T23:41:47.564Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1&gt;&lt;span id=&quot;传统模式-结合软件测试的过程模型演化v模型w模型x模型等&quot;&gt;传统模式 -</summary>
+        
+      
+    
+    
+    
+    <category term="开发流程" scheme="https://codercandy.github.io/categories/%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/"/>
+    
+    
+    <category term="传统模式" scheme="https://codercandy.github.io/tags/%E4%BC%A0%E7%BB%9F%E6%A8%A1%E5%BC%8F/"/>
     
   </entry>
   
@@ -471,58 +521,6 @@
         
         
     <summary type="html">&lt;h1&gt;&lt;span id=&quot;第二章-javascript&quot;&gt;第二章.</summary>
-        
-      
-    
-    
-    
-    <category term="学习" scheme="https://codercandy.github.io/categories/%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-    <category term="前端" scheme="https://codercandy.github.io/tags/%E5%89%8D%E7%AB%AF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java程序员要掌握的前端-react</title>
-    <link href="https://codercandy.github.io/2022/12/13/java-cheng-xu-yuan-yao-zhang-wo-de-qian-duan-react/"/>
-    <id>https://codercandy.github.io/2022/12/13/java-cheng-xu-yuan-yao-zhang-wo-de-qian-duan-react/</id>
-    <published>2022-12-13T09:02:27.000Z</published>
-    <updated>2023-07-19T13:42:12.901Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1&gt;&lt;span id=&quot;第五章-react&quot;&gt;第五章. React&lt;/span&gt;&lt;/h1&gt;&lt;h2&gt;&lt;span id=&quot;1-react-基础&quot;&gt;1. React 基础&lt;/span&gt;&lt;/h2&gt;&lt;p&gt;react 是前端三大框架之一&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;没有 vue</summary>
-        
-      
-    
-    
-    
-    <category term="学习" scheme="https://codercandy.github.io/categories/%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-    <category term="前端" scheme="https://codercandy.github.io/tags/%E5%89%8D%E7%AB%AF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java程序员要掌握的前端-Vue 2</title>
-    <link href="https://codercandy.github.io/2022/11/22/java-cheng-xu-yuan-yao-zhang-wo-de-qian-duan-vue2/"/>
-    <id>https://codercandy.github.io/2022/11/22/java-cheng-xu-yuan-yao-zhang-wo-de-qian-duan-vue2/</id>
-    <published>2022-11-22T09:02:27.000Z</published>
-    <updated>2023-07-19T13:42:28.681Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1&gt;&lt;span id=&quot;第三章-vue-2&quot;&gt;第三章. Vue 2&lt;/span&gt;&lt;/h1&gt;&lt;h2&gt;&lt;span id=&quot;1-vue-基础&quot;&gt;1. Vue 基础&lt;/span&gt;&lt;/h2&gt;&lt;h3&gt;&lt;span id=&quot;1-环境准备&quot;&gt;1)</summary>
         
       
     
