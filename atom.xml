@@ -6,7 +6,7 @@
   <link href="https://codercandy.github.io/atom.xml" rel="self"/>
   
   <link href="https://codercandy.github.io/"/>
-  <updated>2023-07-25T11:30:50.024Z</updated>
+  <updated>2023-07-27T02:16:14.406Z</updated>
   <id>https://codercandy.github.io/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>利用本地缓存Caffeine技术实现重复请求拦截</title>
+    <link href="https://codercandy.github.io/2023/07/27/2023-07-27-li-yong-ben-di-huan-cun-caffeine-ji-zhu-shi-xian-chong-fu-qing-qiu-lan-jie/"/>
+    <id>https://codercandy.github.io/2023/07/27/2023-07-27-li-yong-ben-di-huan-cun-caffeine-ji-zhu-shi-xian-chong-fu-qing-qiu-lan-jie/</id>
+    <published>2023-07-27T00:39:34.000Z</published>
+    <updated>2023-07-27T02:16:14.406Z</updated>
+    
+    
+    
+    
+    <category term="缓存" scheme="https://codercandy.github.io/categories/%E7%BC%93%E5%AD%98/"/>
+    
+    
+    <category term="springboot" scheme="https://codercandy.github.io/tags/springboot/"/>
+    
+    <category term="本地缓存" scheme="https://codercandy.github.io/tags/%E6%9C%AC%E5%9C%B0%E7%BC%93%E5%AD%98/"/>
+    
+    <category term="Caffeine" scheme="https://codercandy.github.io/tags/Caffeine/"/>
+    
+  </entry>
   
   <entry>
     <title>让SpringBoot不需要Controller、Service、DAO、Mapper</title>
@@ -71,7 +92,7 @@
     <link href="https://codercandy.github.io/2023/07/24/2023-gao-xiang-biao-ti-lei-zhi-shi-dian/"/>
     <id>https://codercandy.github.io/2023/07/24/2023-gao-xiang-biao-ti-lei-zhi-shi-dian/</id>
     <published>2023-07-24T14:36:14.000Z</published>
-    <updated>2023-07-26T13:00:50.563Z</updated>
+    <updated>2023-07-28T13:26:13.182Z</updated>
     
     
       
@@ -137,9 +158,9 @@
     <category term="缓存" scheme="https://codercandy.github.io/categories/%E7%BC%93%E5%AD%98/"/>
     
     
-    <category term="java" scheme="https://codercandy.github.io/tags/java/"/>
-    
     <category term="本地缓存" scheme="https://codercandy.github.io/tags/%E6%9C%AC%E5%9C%B0%E7%BC%93%E5%AD%98/"/>
+    
+    <category term="java" scheme="https://codercandy.github.io/tags/java/"/>
     
   </entry>
   
@@ -496,31 +517,6 @@
         
         
     <summary type="html">&lt;h1&gt;&lt;span id=&quot;第四章-vue-3&quot;&gt;第四章. Vue 3&lt;/span&gt;&lt;/h1&gt;&lt;h2&gt;&lt;span id=&quot;1-typescript&quot;&gt;1. TypeScript&lt;/span&gt;&lt;/h2&gt;&lt;h3&gt;&lt;span id=&quot;1-动态类型的问题&quot;&gt;1)</summary>
-        
-      
-    
-    
-    
-    <category term="学习" scheme="https://codercandy.github.io/categories/%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-    <category term="前端" scheme="https://codercandy.github.io/tags/%E5%89%8D%E7%AB%AF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java程序员要掌握的前端-js</title>
-    <link href="https://codercandy.github.io/2023/03/02/java-cheng-xu-yuan-yao-zhang-wo-de-qian-duan-js/"/>
-    <id>https://codercandy.github.io/2023/03/02/java-cheng-xu-yuan-yao-zhang-wo-de-qian-duan-js/</id>
-    <published>2023-03-02T09:02:27.000Z</published>
-    <updated>2023-07-18T15:25:23.357Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1&gt;&lt;span id=&quot;第二章-javascript&quot;&gt;第二章.</summary>
         
       
     
