@@ -6,7 +6,7 @@
   <link href="https://codercandy.github.io/atom.xml" rel="self"/>
   
   <link href="https://codercandy.github.io/"/>
-  <updated>2023-07-27T02:16:14.406Z</updated>
+  <updated>2023-07-31T02:13:13.138Z</updated>
   <id>https://codercandy.github.io/</id>
   
   <author>
@@ -17,12 +17,49 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Java 架构设计的八大原则</title>
+    <link href="https://codercandy.github.io/2023/07/31/2023-07-31-java-jia-gou-she-ji-de-ba-da-yuan-ze/"/>
+    <id>https://codercandy.github.io/2023/07/31/2023-07-31-java-jia-gou-she-ji-de-ba-da-yuan-ze/</id>
+    <published>2023-07-31T02:07:59.000Z</published>
+    <updated>2023-07-31T02:13:13.138Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1&gt;&lt;span id=&quot;java-架构设计的八大原则&quot;&gt;Java 架构设计的八大原则&lt;/span&gt;&lt;/h1&gt;&lt;p&gt;今天我们来聊聊架构设计中的八大原则，大家在架构设计时需要合理运用这八大原则。&lt;/p&gt;
+&lt;h2&gt;&lt;span</summary>
+        
+      
+    
+    
+    
+    <category term="java" scheme="https://codercandy.github.io/categories/java/"/>
+    
+    
+    <category term="架构设计" scheme="https://codercandy.github.io/tags/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/"/>
+    
+  </entry>
+  
+  <entry>
     <title>利用本地缓存Caffeine技术实现重复请求拦截</title>
     <link href="https://codercandy.github.io/2023/07/27/2023-07-27-li-yong-ben-di-huan-cun-caffeine-ji-zhu-shi-xian-chong-fu-qing-qiu-lan-jie/"/>
     <id>https://codercandy.github.io/2023/07/27/2023-07-27-li-yong-ben-di-huan-cun-caffeine-ji-zhu-shi-xian-chong-fu-qing-qiu-lan-jie/</id>
     <published>2023-07-27T00:39:34.000Z</published>
-    <updated>2023-07-27T02:16:14.406Z</updated>
+    <updated>2023-08-01T10:11:20.888Z</updated>
     
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;在Java Spring Boot中实现高并发下拦截重复请求功能，可以通过以下步骤进行实现：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;首先，需要添加相关的依赖。在你的&lt;code&gt;pom.xml&lt;/code&gt;文件中添加以下依赖：&lt;br&gt;```xml&lt;dependency&gt;
+</summary>
+        
+      
     
     
     
@@ -34,6 +71,8 @@
     <category term="本地缓存" scheme="https://codercandy.github.io/tags/%E6%9C%AC%E5%9C%B0%E7%BC%93%E5%AD%98/"/>
     
     <category term="Caffeine" scheme="https://codercandy.github.io/tags/Caffeine/"/>
+    
+    <category term="面向切面" scheme="https://codercandy.github.io/tags/%E9%9D%A2%E5%90%91%E5%88%87%E9%9D%A2/"/>
     
   </entry>
   
@@ -92,7 +131,7 @@
     <link href="https://codercandy.github.io/2023/07/24/2023-gao-xiang-biao-ti-lei-zhi-shi-dian/"/>
     <id>https://codercandy.github.io/2023/07/24/2023-gao-xiang-biao-ti-lei-zhi-shi-dian/</id>
     <published>2023-07-24T14:36:14.000Z</published>
-    <updated>2023-07-28T13:26:13.182Z</updated>
+    <updated>2023-08-01T13:54:43.492Z</updated>
     
     
       
@@ -501,31 +540,6 @@
     
     
     <category term="励志" scheme="https://codercandy.github.io/tags/%E5%8A%B1%E5%BF%97/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java程序员要掌握的前端-vue3</title>
-    <link href="https://codercandy.github.io/2023/03/04/java-cheng-xu-yuan-yao-zhang-wo-de-qian-duan-vue3/"/>
-    <id>https://codercandy.github.io/2023/03/04/java-cheng-xu-yuan-yao-zhang-wo-de-qian-duan-vue3/</id>
-    <published>2023-03-04T09:02:27.000Z</published>
-    <updated>2023-07-19T13:42:41.484Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1&gt;&lt;span id=&quot;第四章-vue-3&quot;&gt;第四章. Vue 3&lt;/span&gt;&lt;/h1&gt;&lt;h2&gt;&lt;span id=&quot;1-typescript&quot;&gt;1. TypeScript&lt;/span&gt;&lt;/h2&gt;&lt;h3&gt;&lt;span id=&quot;1-动态类型的问题&quot;&gt;1)</summary>
-        
-      
-    
-    
-    
-    <category term="学习" scheme="https://codercandy.github.io/categories/%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-    <category term="前端" scheme="https://codercandy.github.io/tags/%E5%89%8D%E7%AB%AF/"/>
     
   </entry>
   

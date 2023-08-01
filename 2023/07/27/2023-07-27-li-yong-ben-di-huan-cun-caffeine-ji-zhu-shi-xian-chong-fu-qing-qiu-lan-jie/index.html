@@ -5,7 +5,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="利用本地缓存Caffeine技术实现重复请求拦截, Java,Flink,高级项目管理,Electron.js等">
-    <meta name="description" content="">
+    <meta name="description" content="在Java Spring Boot中实现高并发下拦截重复请求功能，可以通过以下步骤进行实现：
+
+首先，需要添加相关的依赖。在你的pom.xml文件中添加以下依赖：```xml
+ org.springframework.boot
+ sprin">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -383,6 +387,10 @@
                                 <span class="chip bg-color">Caffeine</span>
                             </a>
                         
+                            <a href="/tags/%E9%9D%A2%E5%90%91%E5%88%87%E9%9D%A2/">
+                                <span class="chip bg-color">面向切面</span>
+                            </a>
+                        
                     </div>
                     
                 </div>
@@ -411,14 +419,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2023-07-27
+                    2023-08-01
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    0
+                    1.3k
                 </div>
                 
 
@@ -440,7 +448,242 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <p>在Java Spring Boot中实现高并发下拦截重复请求功能，可以通过以下步骤进行实现：</p>
+<ol>
+<li>首先，需要添加相关的依赖。在你的<code>pom.xml</code>文件中添加以下依赖：<br>```xml<dependency>
+ <groupid>org.springframework.boot</groupid>
+ <artifactid>spring-boot-starter-aop</artifactid>
+</dependency>
+<dependency>
+ <groupid>org.springframework.boot</groupid>
+ <artifactid>spring-boot-starter-cache</artifactid>
+</dependency></li>
+</ol>
+<dependency>
+    <groupid>cn.hutool</groupid>
+    <artifactid>hutool-all</artifactid>
+    <version>5.8.16</version>
+</dependency>
+<dependency>
+    <groupid>com.alibaba</groupid>
+    <artifactid>fastjson</artifactid>
+    <version>2.0.37</version>
+</dependency>
+
+<dependency>
+    <groupid>com.github.ben-manes.caffeine</groupid>
+    <artifactid>caffeine</artifactid>
+</dependency>
+
+<dependency>
+    <groupid>com.google.guava</groupid>
+    <artifactid>guava</artifactid>
+    <version>27.1-jre</version>
+</dependency>
+```
+2. 创建一个自定义注解`@RepeatRequestIntercept`，用于标记需要拦截重复请求的方法。可以在`com.example.demo.annotation`包下创建一个`RepeatRequestIntercept.java`文件，内容如下：
+```java
+import java.lang.annotation.*;
+@Target(ElementType.METHOD)
+@Retention(RetentionPolicy.RUNTIME)
+@Documented
+public @interface RepeatRequestIntercept {
+}
+```
+3. 创建一个切面类`RepeatRequestAspect`，用于拦截带有`@RepeatRequestIntercept`注解的方法。可以在`com.example.aspect`包下创建一个`RepeatRequestAspect.java`文件，内容如下：
+```java
+import java.util.concurrent.TimeUnit;
+
+<p>import javax.servlet.http.HttpServletRequest;</p>
+<p>import org.aspectj.lang.ProceedingJoinPoint;<br>import org.aspectj.lang.annotation.Around;<br>import org.aspectj.lang.annotation.Aspect;<br>import org.aspectj.lang.annotation.Pointcut;<br>import org.checkerframework.checker.nullness.qual.NonNull;<br>import org.slf4j.Logger;<br>import org.slf4j.LoggerFactory;<br>import org.springframework.stereotype.Component;<br>import org.springframework.web.multipart.support.StandardMultipartHttpServletRequest;</p>
+<p>import com.github.benmanes.caffeine.cache.Caffeine;<br>import com.github.benmanes.caffeine.cache.LoadingCache;</p>
+<p>import cn.hutool.core.util.HashUtil;<br>import cn.hutool.core.util.IdUtil;<br>import cn.hutool.core.util.ObjectUtil;</p>
+<p>@Aspect<br>@Component<br>public class RepeatRequestAspect {</p>
+<pre><code>/**
+ * 日志工具
+ */
+Logger logger = LoggerFactory.getLogger(RepeatRequestAspect.class);
+
+
+/**
+ *   单台服务可以用Caffeine缓存，多台可用redis缓存
+ *   Caffeine 不对灵活使用过期时间不友好
+ *   redis 可以自定义过期时间，与代码产生强依赖
+ */
+</code></pre>
+<p>//    public static AsyncCache&lt;String, String&gt; loadingCache = Caffeine.newBuilder()<br>//            .expireAfterWrite(10, TimeUnit.SECONDS)<br>//            .maximumSize(10000)<br>//            .buildAsync();</p>
+<pre><code>public static LoadingCache&lt;String, String&gt; loadingCache = Caffeine.newBuilder()
+        .maximumSize(100)
+        .expireAfterWrite(1, TimeUnit.MINUTES)
+        .build(key -&gt; getUUID(key));
+
+private static String getUUID(@NonNull String key) &#123;
+    StringBuffer sb = new StringBuffer();
+    
+    Thread t = Thread.currentThread();
+    String name = t.getName();
+    sb.append(key);
+    sb.append(&quot;-&quot;);
+    sb.append(name);
+    
+    return sb.toString() ;
+&#125;
+
+
+@Pointcut(&quot;@annotation(com.example.demo.annotation.RepeatRequestIntercept)&quot;)
+public void repeatRequestPointcut() &#123;&#125;
+
+
+
+@Around(&quot;repeatRequestPointcut()&quot;)
+public Object repeatRequestIntercept(ProceedingJoinPoint joinPoint) throws Throwable &#123;
+    String requestId = generateRequestId(joinPoint.getArgs());
+
+    if (loadingCache.getIfPresent(requestId) != null) &#123;
+        logger.error(&quot;重复请求&quot;);
+</code></pre>
+<p>//            throw new Exception(“请等10秒钟再试”);<br>            return “请等10秒钟再试”;<br>        } else {<br>            putValue(requestId);<br>        }</p>
+<pre><code>    try &#123;
+        // 执行被拦截的方法
+        return joinPoint.proceed();
+    &#125; finally &#123;
+        // 请求处理完成后，移除请求记录
+</code></pre>
+<p>//             loadingCache.synchronous().invalidate(requestId);<br>        }<br>    }</p>
+<pre><code>private String putValue(String requestId) throws Exception &#123;
+    synchronized (loadingCache) &#123;
+        String fastUUID = getUUID(requestId);
+        
+        String str_val = loadingCache.get(requestId);
+        
+</code></pre>
+<p>//            CompletableFuture<string> val = loadingCache.get(requestId, k -&gt; fastUUID);<br>//            String str_val = val.get();<br>//            logger.info(“str_val  ======&gt;{}”,str_val);</string></p>
+<pre><code>        if(fastUUID.equals(str_val)) &#123;
+            logger.info(&quot;loadingCache    put  ======&gt;&#123;&#125; ,&#123;&#125;&quot;,requestId,str_val);
+            loadingCache.put(requestId,fastUUID);
+</code></pre>
+<p>//                loadingCache.put(requestId,val);<br>            }else {<br>                logger.error(“重复请求”);<br>//                throw new Exception(“请等10秒钟再试”);<br>                return “请等10秒钟再试”;<br>            }</p>
+<pre><code>        return str_val;
+    &#125;
+&#125;
+
+
+
+
+private String generateRequestId(Object[] args) &#123;
+    // 根据请求参数生成唯一的请求ID，可以根据具体场景进行定制
+    // 例如可以将请求参数序列化为JSON字符串，然后进行MD5或SHA1计算
+</code></pre>
+<p>//        logger.info(“args====&gt;{}”,args);</p>
+<pre><code>    try &#123;
+        for (int i = 0; i &lt; args.length; i++) &#123;
+</code></pre>
+<p>//                logger.info(“args[“+i+”]====&gt;{}”,args[i]);</p>
+<pre><code>            if(args[i] instanceof StandardMultipartHttpServletRequest) &#123;
+                HttpServletRequest req = (HttpServletRequest)args[i];
+                final String logisticsInterface = req.getParameter(&quot;logistics_interface&quot;);// 消息内容
+                 if (ObjectUtil.isEmpty(logisticsInterface)) &#123;
+                     continue;
+                 &#125;
+</code></pre>
+<p>//                     logger.info(“logisticsInterface====&gt;{}”,logisticsInterface);<br>                     long hash  = HashUtil.mixHash(logisticsInterface);<br>//                     logger.info(“hash====&gt;{}”,hash);<br>                     return String.valueOf(hash);<br>                }</p>
+<pre><code>        &#125;
+    &#125; catch (Exception e) &#123;
+        e.printStackTrace();
+    &#125;
+    
+    return IdUtil.fastUUID();
+&#125;
+</code></pre>
+<p>}</p>
+<pre><code>4. 在需要进行重复请求拦截的方法上添加`@RepeatRequestIntercept`注解。例如，在控制器类中的某个方法上添加该注解，如下所示：
+```java
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.demo.annotation.RepeatRequestIntercept;
+
+import cn.hutool.core.util.ObjectUtil;
+
+@RestController
+@RequestMapping(&quot;/order&quot;)
+public class MyController &#123;
+
+    /**
+     * 日志工具
+     */
+    Logger logger = LoggerFactory.getLogger(MyController.class);
+
+    @RepeatRequestIntercept
+    @RequestMapping(&quot;/create&quot;)
+    @ResponseBody
+    public String orderCreate(HttpServletRequest request, HttpServletResponse response) throws Exception &#123;
+        // 处理请求的业务逻辑
+        // 定义请求唯一编码
+        String success = &quot;true&quot;;
+        String reason = &quot;&quot;;
+        String waybillNo = &quot;&quot;;// 物流运单号
+        // --------------------------获取参数-----------------------//
+        final String logisticsInterface = request.getParameter(&quot;logistics_interface&quot;);// 消息内容
+//         logger.info(&quot;接收到的消息内容logisticsInterface为:&#123;&#125;&quot; , logisticsInterface);
+        if (ObjectUtil.isEmpty(logisticsInterface)) &#123;
+            success = &quot;false&quot;;
+            reason = &quot;logistics_interface消息不能为空&quot;;
+            return returnTbMsg(&quot;&quot;, success, reason, waybillNo);
+        &#125;
+
+        return returnTbMsg(&quot;&quot;, success, reason, waybillNo);
+    &#125;
+
+    /**
+     *
+     * @param txLogisticID 推送的数据
+     * @param success      成功
+     * @param reason       原因
+     * @param waybillNo    单号
+     * @return 返回值
+     */
+    private String returnTbMsg(String txLogisticID, String success, String reason, String waybillNo) &#123;
+        StringBuffer returnMessage = new StringBuffer(1024);
+        returnMessage.append(&quot;&lt;responses&gt;&quot;);
+        returnMessage.append(&quot;&lt;responseItems&gt;&quot;);
+        returnMessage.append(&quot;&lt;response&gt;&quot;);
+        if (!ObjectUtil.isEmpty(txLogisticID)) &#123;
+            returnMessage.append(&quot;&lt;txLogisticID&gt;&quot;);
+            returnMessage.append(txLogisticID); // 物流订单号
+            returnMessage.append(&quot;&lt;/txLogisticID&gt;&quot;);
+        &#125;
+        if (!ObjectUtil.isEmpty(waybillNo)) &#123;
+            returnMessage.append(&quot;&lt;waybillNo&gt;&quot;);
+            returnMessage.append(waybillNo); // 物流订单号
+            returnMessage.append(&quot;&lt;/waybillNo&gt;&quot;);
+        &#125;
+        returnMessage.append(&quot;&lt;success&gt;&quot;);
+        returnMessage.append(success);
+        returnMessage.append(&quot;&lt;/success&gt;&quot;);
+        returnMessage.append(&quot;&lt;reason&gt;&quot;);
+        returnMessage.append(reason);
+        returnMessage.append(&quot;&lt;/reason&gt;&quot;);
+        returnMessage.append(&quot;&lt;/response&gt;&quot;);
+        returnMessage.append(&quot;&lt;/responseItems&gt;&quot;);
+        returnMessage.append(&quot;&lt;/responses&gt;&quot;);
+        String info = returnMessage.toString();
+//       logger.info(&quot;推送给客户的数据:&#123;&#125;&quot;, info);
+        return info;
+    &#125;
+&#125;
+</code></pre>
+<ol start="5">
+<li>启动Spring Boot应用程序，然后就可以在高并发场景下测试重复请求拦截功能了。<br>通过以上步骤，我们可以实现在高并发场景下拦截重复请求的功能。切面类<code>RepeatRequestAspect</code>会在带有<code>@RepeatRequestIntercept</code>注解的方法执行前进行拦截，判断当前请求是否已存在，如果已存在则抛出异常，否则执行方法逻辑。同时，为了保证线程安全，使用<code>loadingCache</code>来存储请求记录，并在请求处理完成后移除记录。</li>
+</ol>
+<p>本地代码参考：F:\technology\Spring boot\2.7.10\repeatdemo</p>
+
                 
             </div>
             <hr/>
@@ -514,6 +757,10 @@
                             
                                 <a href="/tags/Caffeine/">
                                     <span class="chip bg-color">Caffeine</span>
+                                </a>
+                            
+                                <a href="/tags/%E9%9D%A2%E5%90%91%E5%88%87%E9%9D%A2/">
+                                    <span class="chip bg-color">面向切面</span>
                                 </a>
                             
                         </div>
@@ -707,18 +954,17 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2023/07/27/2023-07-27-li-yong-ben-di-huan-cun-caffeine-ji-zhu-shi-xian-chong-fu-qing-qiu-lan-jie/">
+                <a href="/2023/07/31/2023-07-31-java-jia-gou-she-ji-de-ba-da-yuan-ze/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="利用本地缓存Caffeine技术实现重复请求拦截">
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="Java 架构设计的八大原则">
                         
-                        <span class="card-title">利用本地缓存Caffeine技术实现重复请求拦截</span>
+                        <span class="card-title">Java 架构设计的八大原则</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -728,35 +974,26 @@
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-07-27
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2023-07-31
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E7%BC%93%E5%AD%98/" class="post-category">
-                                    缓存
+                            <a href="/categories/java/" class="post-category">
+                                    java
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/springboot/">
-                        <span class="chip bg-color">springboot</span>
-                    </a>
-                    
-                    <a href="/tags/%E6%9C%AC%E5%9C%B0%E7%BC%93%E5%AD%98/">
-                        <span class="chip bg-color">本地缓存</span>
-                    </a>
-                    
-                    <a href="/tags/Caffeine/">
-                        <span class="chip bg-color">Caffeine</span>
+                    <a href="/tags/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/">
+                        <span class="chip bg-color">架构设计</span>
                     </a>
                     
                 </div>
