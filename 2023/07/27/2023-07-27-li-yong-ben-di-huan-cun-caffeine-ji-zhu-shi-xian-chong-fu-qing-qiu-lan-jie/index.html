@@ -425,7 +425,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.3k
+                    1.2k
                 </div>
                 
 
@@ -486,177 +486,177 @@
 <span class="token punctuation">}</span>
 </code></pre>
 </li>
-<li>创建一个切面类<code>RepeatRequestAspect</code>，用于拦截带有<code>@RepeatRequestIntercept</code>注解的方法。可以在<code>com.example.aspect</code>包下创建一个<code>RepeatRequestAspect.java</code>文件，内容如下：<br>```java<br>import java.util.concurrent.TimeUnit;</li>
-</ol>
-<p>import javax.servlet.http.HttpServletRequest;</p>
-<p>import org.aspectj.lang.ProceedingJoinPoint;<br>import org.aspectj.lang.annotation.Around;<br>import org.aspectj.lang.annotation.Aspect;<br>import org.aspectj.lang.annotation.Pointcut;<br>import org.checkerframework.checker.nullness.qual.NonNull;<br>import org.slf4j.Logger;<br>import org.slf4j.LoggerFactory;<br>import org.springframework.stereotype.Component;<br>import org.springframework.web.multipart.support.StandardMultipartHttpServletRequest;</p>
-<p>import com.github.benmanes.caffeine.cache.Caffeine;<br>import com.github.benmanes.caffeine.cache.LoadingCache;</p>
-<p>import cn.hutool.core.util.HashUtil;<br>import cn.hutool.core.util.IdUtil;<br>import cn.hutool.core.util.ObjectUtil;</p>
-<p>@Aspect<br>@Component<br>public class RepeatRequestAspect {</p>
-<pre><code>/**
- * 日志工具
- */
-Logger logger = LoggerFactory.getLogger(RepeatRequestAspect.class);
-
-public static LoadingCache&lt;String, String&gt; loadingCache = Caffeine.newBuilder()
-        .maximumSize(100)
-        .expireAfterWrite(1, TimeUnit.MINUTES)
-        .build(key -&gt; getUUID(key));
-
-private static String getUUID(@NonNull String key) &#123;
-    StringBuffer sb = new StringBuffer();
-    
-    Thread t = Thread.currentThread();
-    String name = t.getName();
-    sb.append(key);
-    sb.append(&quot;-&quot;);
-    sb.append(name);
-    
-    return sb.toString() ;
-&#125;
-
-
-@Pointcut(&quot;@annotation(com.example.demo.annotation.RepeatRequestIntercept)&quot;)
-public void repeatRequestPointcut() &#123;&#125;
-
-
-
-@Around(&quot;repeatRequestPointcut()&quot;)
-public Object repeatRequestIntercept(ProceedingJoinPoint joinPoint) throws Throwable &#123;
-    String requestId = generateRequestId(joinPoint.getArgs());
-
-    if (loadingCache.getIfPresent(requestId) != null) &#123;
-        logger.error(&quot;重复请求&quot;);
+<li>创建一个切面类<code>RepeatRequestAspect</code>，用于拦截带有<code>@RepeatRequestIntercept</code>注解的方法。可以在<code>com.example.aspect</code>包下创建一个<code>RepeatRequestAspect.java</code>文件，内容如下：<pre class=" language-java"><code class="language-java"><span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>concurrent<span class="token punctuation">.</span>TimeUnit<span class="token punctuation">;</span>
+<span class="token keyword">import</span> javax<span class="token punctuation">.</span>servlet<span class="token punctuation">.</span>http<span class="token punctuation">.</span>HttpServletRequest<span class="token punctuation">;</span>
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>aspectj<span class="token punctuation">.</span>lang<span class="token punctuation">.</span>ProceedingJoinPoint<span class="token punctuation">;</span>
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>aspectj<span class="token punctuation">.</span>lang<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>Around<span class="token punctuation">;</span>
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>aspectj<span class="token punctuation">.</span>lang<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>Aspect<span class="token punctuation">;</span>
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>aspectj<span class="token punctuation">.</span>lang<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>Pointcut<span class="token punctuation">;</span>
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>checkerframework<span class="token punctuation">.</span>checker<span class="token punctuation">.</span>nullness<span class="token punctuation">.</span>qual<span class="token punctuation">.</span>NonNull<span class="token punctuation">;</span>
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>slf4j<span class="token punctuation">.</span>Logger<span class="token punctuation">;</span>
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>slf4j<span class="token punctuation">.</span>LoggerFactory<span class="token punctuation">;</span>
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>stereotype<span class="token punctuation">.</span>Component<span class="token punctuation">;</span>
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>web<span class="token punctuation">.</span>multipart<span class="token punctuation">.</span>support<span class="token punctuation">.</span>StandardMultipartHttpServletRequest<span class="token punctuation">;</span>
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>github<span class="token punctuation">.</span>benmanes<span class="token punctuation">.</span>caffeine<span class="token punctuation">.</span>cache<span class="token punctuation">.</span>Caffeine<span class="token punctuation">;</span>
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>github<span class="token punctuation">.</span>benmanes<span class="token punctuation">.</span>caffeine<span class="token punctuation">.</span>cache<span class="token punctuation">.</span>LoadingCache<span class="token punctuation">;</span>
+<span class="token keyword">import</span> cn<span class="token punctuation">.</span>hutool<span class="token punctuation">.</span>core<span class="token punctuation">.</span>util<span class="token punctuation">.</span>HashUtil<span class="token punctuation">;</span>
+<span class="token keyword">import</span> cn<span class="token punctuation">.</span>hutool<span class="token punctuation">.</span>core<span class="token punctuation">.</span>util<span class="token punctuation">.</span>IdUtil<span class="token punctuation">;</span>
+<span class="token keyword">import</span> cn<span class="token punctuation">.</span>hutool<span class="token punctuation">.</span>core<span class="token punctuation">.</span>util<span class="token punctuation">.</span>ObjectUtil<span class="token punctuation">;</span>
+<span class="token annotation punctuation">@Aspect</span>
+<span class="token annotation punctuation">@Component</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RepeatRequestAspect</span> <span class="token punctuation">{</span>    
+ <span class="token comment" spellcheck="true">/**
+  * 日志工具
+  */</span>
+ Logger logger <span class="token operator">=</span> LoggerFactory<span class="token punctuation">.</span><span class="token function">getLogger</span><span class="token punctuation">(</span>RepeatRequestAspect<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    
+ <span class="token keyword">public</span> <span class="token keyword">static</span> LoadingCache<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> String<span class="token operator">></span> loadingCache <span class="token operator">=</span> Caffeine<span class="token punctuation">.</span><span class="token function">newBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+         <span class="token punctuation">.</span><span class="token function">maximumSize</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span>
+         <span class="token punctuation">.</span><span class="token function">expireAfterWrite</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> TimeUnit<span class="token punctuation">.</span>MINUTES<span class="token punctuation">)</span>
+         <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span>key <span class="token operator">-</span><span class="token operator">></span> <span class="token function">getUUID</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   
+ <span class="token keyword">private</span> <span class="token keyword">static</span> String <span class="token function">getUUID</span><span class="token punctuation">(</span><span class="token annotation punctuation">@NonNull</span> String key<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+     StringBuffer sb <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">StringBuffer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>       
+     Thread t <span class="token operator">=</span> Thread<span class="token punctuation">.</span><span class="token function">currentThread</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     String name <span class="token operator">=</span> t<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     sb<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">;</span>
+     sb<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">"-"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     sb<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+     <span class="token keyword">return</span> sb<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">;</span>
+ <span class="token punctuation">}</span>
+ <span class="token annotation punctuation">@Pointcut</span><span class="token punctuation">(</span><span class="token string">"@annotation(com.example.demo.annotation.RepeatRequestIntercept)"</span><span class="token punctuation">)</span>
+ <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">repeatRequestPointcut</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+ <span class="token annotation punctuation">@Around</span><span class="token punctuation">(</span><span class="token string">"repeatRequestPointcut()"</span><span class="token punctuation">)</span>
+ <span class="token keyword">public</span> Object <span class="token function">repeatRequestIntercept</span><span class="token punctuation">(</span>ProceedingJoinPoint joinPoint<span class="token punctuation">)</span> <span class="token keyword">throws</span> Throwable <span class="token punctuation">{</span>
+     String requestId <span class="token operator">=</span> <span class="token function">generateRequestId</span><span class="token punctuation">(</span>joinPoint<span class="token punctuation">.</span><span class="token function">getArgs</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     <span class="token keyword">if</span> <span class="token punctuation">(</span>loadingCache<span class="token punctuation">.</span><span class="token function">getIfPresent</span><span class="token punctuation">(</span>requestId<span class="token punctuation">)</span> <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+         logger<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">"重复请求"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//            throw new Exception("请等10秒钟再试");</span>
+         <span class="token keyword">return</span> <span class="token string">"请等10秒钟再试"</span><span class="token punctuation">;</span>
+     <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+         <span class="token function">putValue</span><span class="token punctuation">(</span>requestId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+     <span class="token punctuation">}</span>
+     <span class="token keyword">try</span> <span class="token punctuation">{</span>
+         <span class="token comment" spellcheck="true">// 执行被拦截的方法</span>
+         <span class="token keyword">return</span> joinPoint<span class="token punctuation">.</span><span class="token function">proceed</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     <span class="token punctuation">}</span> <span class="token keyword">finally</span> <span class="token punctuation">{</span>
+         <span class="token comment" spellcheck="true">// 请求处理完成后，移除请求记录</span>
+<span class="token comment" spellcheck="true">//             loadingCache.synchronous().invalidate(requestId);</span>
+     <span class="token punctuation">}</span>
+ <span class="token punctuation">}</span>
+ <span class="token keyword">private</span> String <span class="token function">putValue</span><span class="token punctuation">(</span>String requestId<span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception <span class="token punctuation">{</span>
+     <span class="token keyword">synchronized</span> <span class="token punctuation">(</span>loadingCache<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+         String fastUUID <span class="token operator">=</span> <span class="token function">getUUID</span><span class="token punctuation">(</span>requestId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+         String str_val <span class="token operator">=</span> loadingCache<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>requestId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+         <span class="token keyword">if</span><span class="token punctuation">(</span>fastUUID<span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>str_val<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+             logger<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"loadingCache    put  ======>{} ,{}"</span><span class="token punctuation">,</span>requestId<span class="token punctuation">,</span>str_val<span class="token punctuation">)</span><span class="token punctuation">;</span>
+             loadingCache<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span>requestId<span class="token punctuation">,</span>fastUUID<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//                loadingCache.put(requestId,val);</span>
+         <span class="token punctuation">}</span><span class="token keyword">else</span> <span class="token punctuation">{</span>
+             logger<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">"重复请求"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//                throw new Exception("请等10秒钟再试");</span>
+             <span class="token keyword">return</span> <span class="token string">"请等10秒钟再试"</span><span class="token punctuation">;</span>
+         <span class="token punctuation">}</span>
+         <span class="token keyword">return</span> str_val<span class="token punctuation">;</span>
+     <span class="token punctuation">}</span>
+ <span class="token punctuation">}</span>
+ <span class="token keyword">private</span> String <span class="token function">generateRequestId</span><span class="token punctuation">(</span>Object<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+     <span class="token comment" spellcheck="true">// 根据请求参数生成唯一的请求ID，可以根据具体场景进行定制</span>
+     <span class="token comment" spellcheck="true">// 例如可以将请求参数序列化为JSON字符串，然后进行MD5或SHA1计算</span>
+     <span class="token keyword">try</span> <span class="token punctuation">{</span>
+         <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> args<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>    
+             <span class="token keyword">if</span><span class="token punctuation">(</span>args<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token keyword">instanceof</span> <span class="token class-name">StandardMultipartHttpServletRequest</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                 HttpServletRequest req <span class="token operator">=</span> <span class="token punctuation">(</span>HttpServletRequest<span class="token punctuation">)</span>args<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+                 <span class="token keyword">final</span> String logisticsInterface <span class="token operator">=</span> req<span class="token punctuation">.</span><span class="token function">getParameter</span><span class="token punctuation">(</span><span class="token string">"logistics_interface"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">// 消息内容</span>
+                  <span class="token keyword">if</span> <span class="token punctuation">(</span>ObjectUtil<span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span>logisticsInterface<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                      <span class="token keyword">continue</span><span class="token punctuation">;</span>
+                  <span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">//                     logger.info("logisticsInterface====>{}",logisticsInterface);</span>
+                  <span class="token keyword">long</span> hash  <span class="token operator">=</span> HashUtil<span class="token punctuation">.</span><span class="token function">mixHash</span><span class="token punctuation">(</span>logisticsInterface<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//                     logger.info("hash====>{}",hash);</span>
+                  <span class="token keyword">return</span> String<span class="token punctuation">.</span><span class="token function">valueOf</span><span class="token punctuation">(</span>hash<span class="token punctuation">)</span><span class="token punctuation">;</span>
+             <span class="token punctuation">}</span>
+         <span class="token punctuation">}</span>
+     <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+         e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     <span class="token punctuation">}</span>
+     <span class="token keyword">return</span> IdUtil<span class="token punctuation">.</span><span class="token function">fastUUID</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 </code></pre>
-<p>//            throw new Exception(“请等10秒钟再试”);<br>            return “请等10秒钟再试”;<br>        } else {<br>            putValue(requestId);<br>        }</p>
-<pre><code>    try &#123;
-        // 执行被拦截的方法
-        return joinPoint.proceed();
-    &#125; finally &#123;
-        // 请求处理完成后，移除请求记录
+</li>
+<li>在需要进行重复请求拦截的方法上添加<code>@RepeatRequestIntercept</code>注解。例如，在控制器类中的某个方法上添加该注解，如下所示：<pre class=" language-java"><code class="language-java"><span class="token keyword">import</span> javax<span class="token punctuation">.</span>servlet<span class="token punctuation">.</span>http<span class="token punctuation">.</span>HttpServletRequest<span class="token punctuation">;</span>
+<span class="token keyword">import</span> javax<span class="token punctuation">.</span>servlet<span class="token punctuation">.</span>http<span class="token punctuation">.</span>HttpServletResponse<span class="token punctuation">;</span>
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>slf4j<span class="token punctuation">.</span>Logger<span class="token punctuation">;</span>
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>slf4j<span class="token punctuation">.</span>LoggerFactory<span class="token punctuation">;</span>
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>web<span class="token punctuation">.</span>bind<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>RequestMapping<span class="token punctuation">;</span>
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>web<span class="token punctuation">.</span>bind<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>ResponseBody<span class="token punctuation">;</span>
+<span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>web<span class="token punctuation">.</span>bind<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>RestController<span class="token punctuation">;</span>
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>example<span class="token punctuation">.</span>demo<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>RepeatRequestIntercept<span class="token punctuation">;</span>
+<span class="token keyword">import</span> cn<span class="token punctuation">.</span>hutool<span class="token punctuation">.</span>core<span class="token punctuation">.</span>util<span class="token punctuation">.</span>ObjectUtil<span class="token punctuation">;</span>
+<span class="token annotation punctuation">@RestController</span>
+<span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">"/order"</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MyController</span> <span class="token punctuation">{</span>
+ <span class="token comment" spellcheck="true">/**
+  * 日志工具
+  */</span>
+ Logger logger <span class="token operator">=</span> LoggerFactory<span class="token punctuation">.</span><span class="token function">getLogger</span><span class="token punctuation">(</span>MyController<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token annotation punctuation">@RepeatRequestIntercept</span>
+ <span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">"/create"</span><span class="token punctuation">)</span>
+ <span class="token annotation punctuation">@ResponseBody</span>
+ <span class="token keyword">public</span> String <span class="token function">orderCreate</span><span class="token punctuation">(</span>HttpServletRequest request<span class="token punctuation">,</span> HttpServletResponse response<span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception <span class="token punctuation">{</span>
+     <span class="token comment" spellcheck="true">// 处理请求的业务逻辑</span>
+     <span class="token comment" spellcheck="true">// 定义请求唯一编码</span>
+     String success <span class="token operator">=</span> <span class="token string">"true"</span><span class="token punctuation">;</span>
+     String reason <span class="token operator">=</span> <span class="token string">""</span><span class="token punctuation">;</span>
+     String waybillNo <span class="token operator">=</span> <span class="token string">""</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">// 物流运单号</span>
+     <span class="token comment" spellcheck="true">// --------------------------获取参数-----------------------//</span>
+     <span class="token keyword">final</span> String logisticsInterface <span class="token operator">=</span> request<span class="token punctuation">.</span><span class="token function">getParameter</span><span class="token punctuation">(</span><span class="token string">"logistics_interface"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">// 消息内容</span>
+<span class="token comment" spellcheck="true">//         logger.info("接收到的消息内容logisticsInterface为:{}" , logisticsInterface);</span>
+     <span class="token keyword">if</span> <span class="token punctuation">(</span>ObjectUtil<span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span>logisticsInterface<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+         success <span class="token operator">=</span> <span class="token string">"false"</span><span class="token punctuation">;</span>
+         reason <span class="token operator">=</span> <span class="token string">"logistics_interface消息不能为空"</span><span class="token punctuation">;</span>
+         <span class="token keyword">return</span> <span class="token function">returnTbMsg</span><span class="token punctuation">(</span><span class="token string">""</span><span class="token punctuation">,</span> success<span class="token punctuation">,</span> reason<span class="token punctuation">,</span> waybillNo<span class="token punctuation">)</span><span class="token punctuation">;</span>
+     <span class="token punctuation">}</span>
+     <span class="token keyword">return</span> <span class="token function">returnTbMsg</span><span class="token punctuation">(</span><span class="token string">""</span><span class="token punctuation">,</span> success<span class="token punctuation">,</span> reason<span class="token punctuation">,</span> waybillNo<span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token punctuation">}</span>
+ <span class="token comment" spellcheck="true">/**
+  *
+  * @param txLogisticID 推送的数据
+  * @param success      成功
+  * @param reason       原因
+  * @param waybillNo    单号
+  * @return 返回值
+  */</span>
+ <span class="token keyword">private</span> String <span class="token function">returnTbMsg</span><span class="token punctuation">(</span>String txLogisticID<span class="token punctuation">,</span> String success<span class="token punctuation">,</span> String reason<span class="token punctuation">,</span> String waybillNo<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+     StringBuffer returnMessage <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">StringBuffer</span><span class="token punctuation">(</span><span class="token number">1024</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     returnMessage<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">"&lt;responses>"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     returnMessage<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">"&lt;responseItems>"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     returnMessage<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">"&lt;response>"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>ObjectUtil<span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span>txLogisticID<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+         returnMessage<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">"&lt;txLogisticID>"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+         returnMessage<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span>txLogisticID<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 物流订单号</span>
+         returnMessage<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">"&lt;/txLogisticID>"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     <span class="token punctuation">}</span>
+     <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>ObjectUtil<span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span>waybillNo<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+         returnMessage<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">"&lt;waybillNo>"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+         returnMessage<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span>waybillNo<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 物流订单号</span>
+         returnMessage<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">"&lt;/waybillNo>"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     <span class="token punctuation">}</span>
+     returnMessage<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">"&lt;success>"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     returnMessage<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span>success<span class="token punctuation">)</span><span class="token punctuation">;</span>
+     returnMessage<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">"&lt;/success>"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     returnMessage<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">"&lt;reason>"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     returnMessage<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span>reason<span class="token punctuation">)</span><span class="token punctuation">;</span>
+     returnMessage<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">"&lt;/reason>"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     returnMessage<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">"&lt;/response>"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     returnMessage<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">"&lt;/responseItems>"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     returnMessage<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">"&lt;/responses>"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     String info <span class="token operator">=</span> returnMessage<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//       logger.info("推送给客户的数据:{}", info);</span>
+     <span class="token keyword">return</span> info<span class="token punctuation">;</span>
+ <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 </code></pre>
-<p>//             loadingCache.synchronous().invalidate(requestId);<br>        }<br>    }</p>
-<pre><code>private String putValue(String requestId) throws Exception &#123;
-    synchronized (loadingCache) &#123;
-        String fastUUID = getUUID(requestId);
-        
-        String str_val = loadingCache.get(requestId);
-        
-        
-        if(fastUUID.equals(str_val)) &#123;
-            logger.info(&quot;loadingCache    put  ======&gt;&#123;&#125; ,&#123;&#125;&quot;,requestId,str_val);
-            loadingCache.put(requestId,fastUUID);
-</code></pre>
-<p>//                loadingCache.put(requestId,val);<br>            }else {<br>                logger.error(“重复请求”);<br>//                throw new Exception(“请等10秒钟再试”);<br>                return “请等10秒钟再试”;<br>            }</p>
-<pre><code>        return str_val;
-    &#125;
-&#125;
-
-
-
-
-private String generateRequestId(Object[] args) &#123;
-    // 根据请求参数生成唯一的请求ID，可以根据具体场景进行定制
-    // 例如可以将请求参数序列化为JSON字符串，然后进行MD5或SHA1计算
-    
-    try &#123;
-        for (int i = 0; i &lt; args.length; i++) &#123;    
-            if(args[i] instanceof StandardMultipartHttpServletRequest) &#123;
-                HttpServletRequest req = (HttpServletRequest)args[i];
-                final String logisticsInterface = req.getParameter(&quot;logistics_interface&quot;);// 消息内容
-                 if (ObjectUtil.isEmpty(logisticsInterface)) &#123;
-                     continue;
-                 &#125;
-</code></pre>
-<p>//                     logger.info(“logisticsInterface====&gt;{}”,logisticsInterface);<br>                     long hash  = HashUtil.mixHash(logisticsInterface);<br>//                     logger.info(“hash====&gt;{}”,hash);<br>                     return String.valueOf(hash);<br>                }<br>            }<br>        } catch (Exception e) {<br>            e.printStackTrace();<br>        }</p>
-<pre><code>    return IdUtil.fastUUID();
-&#125;
-</code></pre>
-<p>}</p>
-<pre><code>4. 在需要进行重复请求拦截的方法上添加`@RepeatRequestIntercept`注解。例如，在控制器类中的某个方法上添加该注解，如下所示：
-```java
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.example.demo.annotation.RepeatRequestIntercept;
-
-import cn.hutool.core.util.ObjectUtil;
-
-@RestController
-@RequestMapping(&quot;/order&quot;)
-public class MyController &#123;
-
-    /**
-     * 日志工具
-     */
-    Logger logger = LoggerFactory.getLogger(MyController.class);
-
-    @RepeatRequestIntercept
-    @RequestMapping(&quot;/create&quot;)
-    @ResponseBody
-    public String orderCreate(HttpServletRequest request, HttpServletResponse response) throws Exception &#123;
-        // 处理请求的业务逻辑
-        // 定义请求唯一编码
-        String success = &quot;true&quot;;
-        String reason = &quot;&quot;;
-        String waybillNo = &quot;&quot;;// 物流运单号
-        // --------------------------获取参数-----------------------//
-        final String logisticsInterface = request.getParameter(&quot;logistics_interface&quot;);// 消息内容
-//         logger.info(&quot;接收到的消息内容logisticsInterface为:&#123;&#125;&quot; , logisticsInterface);
-        if (ObjectUtil.isEmpty(logisticsInterface)) &#123;
-            success = &quot;false&quot;;
-            reason = &quot;logistics_interface消息不能为空&quot;;
-            return returnTbMsg(&quot;&quot;, success, reason, waybillNo);
-        &#125;
-
-        return returnTbMsg(&quot;&quot;, success, reason, waybillNo);
-    &#125;
-
-    /**
-     *
-     * @param txLogisticID 推送的数据
-     * @param success      成功
-     * @param reason       原因
-     * @param waybillNo    单号
-     * @return 返回值
-     */
-    private String returnTbMsg(String txLogisticID, String success, String reason, String waybillNo) &#123;
-        StringBuffer returnMessage = new StringBuffer(1024);
-        returnMessage.append(&quot;&lt;responses&gt;&quot;);
-        returnMessage.append(&quot;&lt;responseItems&gt;&quot;);
-        returnMessage.append(&quot;&lt;response&gt;&quot;);
-        if (!ObjectUtil.isEmpty(txLogisticID)) &#123;
-            returnMessage.append(&quot;&lt;txLogisticID&gt;&quot;);
-            returnMessage.append(txLogisticID); // 物流订单号
-            returnMessage.append(&quot;&lt;/txLogisticID&gt;&quot;);
-        &#125;
-        if (!ObjectUtil.isEmpty(waybillNo)) &#123;
-            returnMessage.append(&quot;&lt;waybillNo&gt;&quot;);
-            returnMessage.append(waybillNo); // 物流订单号
-            returnMessage.append(&quot;&lt;/waybillNo&gt;&quot;);
-        &#125;
-        returnMessage.append(&quot;&lt;success&gt;&quot;);
-        returnMessage.append(success);
-        returnMessage.append(&quot;&lt;/success&gt;&quot;);
-        returnMessage.append(&quot;&lt;reason&gt;&quot;);
-        returnMessage.append(reason);
-        returnMessage.append(&quot;&lt;/reason&gt;&quot;);
-        returnMessage.append(&quot;&lt;/response&gt;&quot;);
-        returnMessage.append(&quot;&lt;/responseItems&gt;&quot;);
-        returnMessage.append(&quot;&lt;/responses&gt;&quot;);
-        String info = returnMessage.toString();
-//       logger.info(&quot;推送给客户的数据:&#123;&#125;&quot;, info);
-        return info;
-    &#125;
-&#125;
-</code></pre>
-<ol start="5">
+</li>
 <li>启动Spring Boot应用程序，然后就可以在高并发场景下测试重复请求拦截功能了。<br>通过以上步骤，我们可以实现在高并发场景下拦截重复请求的功能。切面类<code>RepeatRequestAspect</code>会在带有<code>@RepeatRequestIntercept</code>注解的方法执行前进行拦截，判断当前请求是否已存在，如果已存在则抛出异常，否则执行方法逻辑。同时，为了保证线程安全，使用<code>loadingCache</code>来存储请求记录，并在请求处理完成后移除记录。</li>
 </ol>
 <p>本地代码参考：F:\technology\Spring boot\2.7.10\repeatdemo</p>
