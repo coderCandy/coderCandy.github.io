@@ -6,7 +6,7 @@
   <link href="https://codercandy.github.io/atom.xml" rel="self"/>
   
   <link href="https://codercandy.github.io/"/>
-  <updated>2023-08-02T07:51:23.681Z</updated>
+  <updated>2023-08-03T14:50:25.447Z</updated>
   <id>https://codercandy.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://codercandy.github.io/2023/08/02/2023-08-02-springboot-ji-cheng-camunda-liu-cheng-yin-qing/"/>
     <id>https://codercandy.github.io/2023/08/02/2023-08-02-springboot-ji-cheng-camunda-liu-cheng-yin-qing/</id>
     <published>2023-08-02T06:15:59.000Z</published>
-    <updated>2023-08-02T07:51:23.681Z</updated>
+    <updated>2023-08-03T14:50:25.447Z</updated>
     
     
       
@@ -46,7 +46,7 @@
     <link href="https://codercandy.github.io/2023/08/02/2023-08-02-activiti-flowable-camunda-liu-cheng-yin-qing-dui-bi/"/>
     <id>https://codercandy.github.io/2023/08/02/2023-08-02-activiti-flowable-camunda-liu-cheng-yin-qing-dui-bi/</id>
     <published>2023-08-02T02:30:28.000Z</published>
-    <updated>2023-08-02T06:00:10.542Z</updated>
+    <updated>2023-08-03T14:47:39.148Z</updated>
     
     
       
@@ -352,6 +352,31 @@
   </entry>
   
   <entry>
+    <title>结合软件测试的过程模型演化</title>
+    <link href="https://codercandy.github.io/2023/07/20/2023-07-20-jie-he-ruan-jian-ce-shi-de-guo-cheng-mo-xing-yan-hua/"/>
+    <id>https://codercandy.github.io/2023/07/20/2023-07-20-jie-he-ruan-jian-ce-shi-de-guo-cheng-mo-xing-yan-hua/</id>
+    <published>2023-07-20T07:49:16.000Z</published>
+    <updated>2023-07-22T23:41:47.564Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1&gt;&lt;span id=&quot;传统模式-结合软件测试的过程模型演化v模型w模型x模型等&quot;&gt;传统模式 -</summary>
+        
+      
+    
+    
+    
+    <category term="开发流程" scheme="https://codercandy.github.io/categories/%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/"/>
+    
+    
+    <category term="传统模式" scheme="https://codercandy.github.io/tags/%E4%BC%A0%E7%BB%9F%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
     <title>精益企业</title>
     <link href="https://codercandy.github.io/2023/07/20/2023-07-20-jing-yi-qi-ye/"/>
     <id>https://codercandy.github.io/2023/07/20/2023-07-20-jing-yi-qi-ye/</id>
@@ -374,31 +399,6 @@
     
     
     <category term="精益" scheme="https://codercandy.github.io/tags/%E7%B2%BE%E7%9B%8A/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>结合软件测试的过程模型演化</title>
-    <link href="https://codercandy.github.io/2023/07/20/2023-07-20-jie-he-ruan-jian-ce-shi-de-guo-cheng-mo-xing-yan-hua/"/>
-    <id>https://codercandy.github.io/2023/07/20/2023-07-20-jie-he-ruan-jian-ce-shi-de-guo-cheng-mo-xing-yan-hua/</id>
-    <published>2023-07-20T07:49:16.000Z</published>
-    <updated>2023-07-22T23:41:47.564Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1&gt;&lt;span id=&quot;传统模式-结合软件测试的过程模型演化v模型w模型x模型等&quot;&gt;传统模式 -</summary>
-        
-      
-    
-    
-    
-    <category term="开发流程" scheme="https://codercandy.github.io/categories/%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/"/>
-    
-    
-    <category term="传统模式" scheme="https://codercandy.github.io/tags/%E4%BC%A0%E7%BB%9F%E6%A8%A1%E5%BC%8F/"/>
     
   </entry>
   

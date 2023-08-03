@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="Activiti，Flowable,Camunda流程引擎对比, Java,Flink,高级项目管理,Electron.js等">
-    <meta name="description" content="Activiti,Flowable,Camunda流程引擎对比1 简介1.1 发展历史    市场上比较有名的开源流程引擎有osworkflow、jbpm、activiti、flowable、camunda。其中：Jbpm4、Activit">
+    <meta name="description" content="Activiti,Flowable,Camunda流程引擎对比1 简介1.1 发展历史​    市场上比较有名的开源流程引擎有osworkflow、jbpm、activiti、flowable、camunda。其中：Jbpm4、Activi">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -403,7 +403,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2023-08-02
+                    2023-08-03
                 </div>
                 
 
@@ -432,84 +432,43 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1><span id="activitiflowablecamunda流程引擎对比">Activiti,Flowable,Camunda流程引擎对比</span></h1><h2><span id="1-简介">1 简介</span></h2><h3><span id="11-发展历史">1.1 发展历史</span></h3><pre><code>    市场上比较有名的开源流程引擎有osworkflow、jbpm、activiti、flowable、camunda。其中：Jbpm4、Activiti、Flowable、camunda四个框架同宗同源，祖先都是Jbpm4，开发者只要用过其中一个框架，基本上就会用其它三个。osworkflow目前功能简单，目前已处于不活跃状态，此处就不展开描述了。       
-</code></pre>
+                <h1><span id="activitiflowablecamunda流程引擎对比">Activiti,Flowable,Camunda流程引擎对比</span></h1><h2><span id="1-简介">1 简介</span></h2><h3><span id="11-发展历史">1.1 发展历史</span></h3><p>​    市场上比较有名的开源流程引擎有osworkflow、jbpm、activiti、flowable、camunda。其中：Jbpm4、Activiti、Flowable、camunda四个框架同宗同源，祖先都是Jbpm4，开发者只要用过其中一个框架，基本上就会用其它三个。osworkflow目前功能简单，目前已处于不活跃状态，此处就不展开描述了。       </p>
 <p><img src="/2023/08/02/2023-08-02-activiti-flowable-camunda-liu-cheng-yin-qing-dui-bi/%E5%8F%91%E5%B1%95%E5%8E%86%E5%8F%B2.jpeg" alt="image-20230724223904855"></p>
-<h3><span id="12-官网">1.2 官网</span></h3><pre><code>JBPM（JBoss公司）：jBPM - Open Source Business Automation Toolkit - jBPM Business Automation Toolkit
-Activiti（Alfresco团队）：Open Source Business Automation | Activiti
-Flowable（Tijs Rademakers团队）：Open Source
-Camunda（德国Camunda公司）：https://camunda.com/
-</code></pre>
-<h3><span id="13-术语">1.3 术语</span></h3><pre><code>BPMN（Business Process Modeling Notation）业务流程建模与符号
-CMMN(Case Management Model and Notation) 案例管理模型与符号
-DMN(Decision Model and Notation) 决策模型与符号
-表单引擎(Form Engine) 
-</code></pre>
+<h3><span id="12-官网">1.2 官网</span></h3><p>JBPM（JBoss公司）：jBPM - Open Source Business Automation Toolkit - jBPM Business Automation Toolkit<br>Activiti（Alfresco团队）：Open Source Business Automation | Activiti<br>Flowable（Tijs Rademakers团队）：Open Source<br>Camunda（德国Camunda公司）：<a target="_blank" rel="noopener" href="https://camunda.com/">https://camunda.com/</a></p>
+<h3><span id="13-术语">1.3 术语</span></h3><p>BPMN（Business Process Modeling Notation）业务流程建模与符号<br>CMMN(Case Management Model and Notation) 案例管理模型与符号<br>DMN(Decision Model and Notation) 决策模型与符号<br>表单引擎(Form Engine) </p>
 <h3><span id="14-工作流引擎对比">1.4 工作流引擎对比</span></h3><p><img src="/2023/08/02/2023-08-02-activiti-flowable-camunda-liu-cheng-yin-qing-dui-bi/%E5%B7%A5%E4%BD%9C%E6%B5%81%E5%BC%95%E6%93%8E%E5%AF%B9%E6%AF%94.jpeg" alt="image-20230724223904855"></p>
 <h3><span id="15-流程引擎选型">1.5 流程引擎选型</span></h3><p>1.5.1 JBPM</p>
-<pre><code>  JBPM 是一套灵活的商业进程管理 (BPM) 套件。轻量、开源(基于Apache License 2.0) 、使用Java实现。你可以用于商业进程与案例整个生命周期中的建模、执行与监控。
-  
-  JBPM由JBoss公司开发，目前最高版本JPBM7，不过从JBPM5开始已经跟之前不是同一个产品了，JBPM5的代码基础不是JBPM4，而是从Drools Flow重新开始。
-
-JBPM自从版本五后，便重启炉灶，完全抛弃了JBMP4的代码基础，重新基于drools进行了实现。JBPM5，JBPM6似乎缺少一个合格的系统架构师，其接口设计匪夷所思，基本上是按照drools的接口再提供了一套JBPM接口，同名的接口，实现类不断重复出现，代码体系十分混乱。
-
-基于Drools Flow技术在国内市场上用的很少，所有不建议选择jBPM5以后版本。
-
-JBPM5，JBPM6是一个巨大的失败，使用drools规则引擎来实现工作流引擎听起来是一个很酷的概念，但JBPM开发团队显然没有很好地去掌控好整个架构的变化。因此选择activiti作为工作流引擎至少在可见的几年间都是正道，今后需要实现规则库时，再单独引入drools工具包，相信drools会是一个比JBPM靠谱的工具。
-
-jBPM4诞生的比较早，后来JBPM4创建者Tom Baeyens离开JBoss后，加入Alfresco后很快推出了新的基于jBPM4的开源工作流系统Activiti, 另外JBPM以hibernate作为数据持久化ORM也已不是主流技术，JBPM不是最佳选择。
-
-jBPM3是一个完整的工作流系统实现，面向开发人员，目的在于简化对组织核心流程进行支撑的软件创建，不支持标准。
-
-jBPM4引入PVM，使其拥有更强大的扩展性，同时增加BPMS特性，这些特性包括了对BPMN的支持、面向业务人员的Web建模器和简单统计分析功能的加入。
-
-jBPM5基于原先的Drools Flow，支持BPMN，通过与Drools的合并支持BAM，通过内容仓库增加对流程可视化的支持。由于放弃了jBPM4的PVM，引擎的可扩展性受到损害，并且不再支持jPDL。
-</code></pre>
+<p>  JBPM 是一套灵活的商业进程管理 (BPM) 套件。轻量、开源(基于Apache License 2.0) 、使用Java实现。你可以用于商业进程与案例整个生命周期中的建模、执行与监控。</p>
+<p>  JBPM由JBoss公司开发，目前最高版本JPBM7，不过从JBPM5开始已经跟之前不是同一个产品了，JBPM5的代码基础不是JBPM4，而是从Drools Flow重新开始。</p>
+<p>JBPM自从版本五后，便重启炉灶，完全抛弃了JBMP4的代码基础，重新基于drools进行了实现。JBPM5，JBPM6似乎缺少一个合格的系统架构师，其接口设计匪夷所思，基本上是按照drools的接口再提供了一套JBPM接口，同名的接口，实现类不断重复出现，代码体系十分混乱。</p>
+<p>基于Drools Flow技术在国内市场上用的很少，所有不建议选择jBPM5以后版本。</p>
+<p>JBPM5，JBPM6是一个巨大的失败，使用drools规则引擎来实现工作流引擎听起来是一个很酷的概念，但JBPM开发团队显然没有很好地去掌控好整个架构的变化。因此选择activiti作为工作流引擎至少在可见的几年间都是正道，今后需要实现规则库时，再单独引入drools工具包，相信drools会是一个比JBPM靠谱的工具。</p>
+<p>jBPM4诞生的比较早，后来JBPM4创建者Tom Baeyens离开JBoss后，加入Alfresco后很快推出了新的基于jBPM4的开源工作流系统Activiti, 另外JBPM以hibernate作为数据持久化ORM也已不是主流技术，JBPM不是最佳选择。</p>
+<p>jBPM3是一个完整的工作流系统实现，面向开发人员，目的在于简化对组织核心流程进行支撑的软件创建，不支持标准。</p>
+<p>jBPM4引入PVM，使其拥有更强大的扩展性，同时增加BPMS特性，这些特性包括了对BPMN的支持、面向业务人员的Web建模器和简单统计分析功能的加入。</p>
+<p>jBPM5基于原先的Drools Flow，支持BPMN，通过与Drools的合并支持BAM，通过内容仓库增加对流程可视化的支持。由于放弃了jBPM4的PVM，引擎的可扩展性受到损害，并且不再支持jPDL。</p>
 <p>1.5.2 Activiti</p>
-<pre><code>  Activiti由Alfresco软件开发，目前最高版本v7.7.0。
-  
-  Activiti的版本比较复杂，有Activiti5、Activiti6、Activiti7几个主流版本，选型时让人晕头转向，有必要先了解一下Activiti这几个版本的发展历史。
-
-    Activiti5和Activiti6的核心leader是Tijs Rademakers，由于团队内部分歧，在2017年时Tijs Rademakers离开团队，创建了后来的Flowable, Activiti6以及Activiti5代码已经交接给了 Salaboy团队, Activiti6以及Activiti5的代码官方已经暂停维护了。
-
-    Salaboy团队目前在开发Activiti7框架，Activiti7内核使用的还是Activiti6，并没有为引擎注入更多的新特性，只是在Activiti之外的上层封装了一些应用。结论是Activiti谨慎选择。
-</code></pre>
+<p>  Activiti由Alfresco软件开发，目前最高版本v7.7.0。</p>
+<p>  Activiti的版本比较复杂，有Activiti5、Activiti6、Activiti7几个主流版本，选型时让人晕头转向，有必要先了解一下Activiti这几个版本的发展历史。</p>
+<p>​    Activiti5和Activiti6的核心leader是Tijs Rademakers，由于团队内部分歧，在2017年时Tijs Rademakers离开团队，创建了后来的Flowable, Activiti6以及Activiti5代码已经交接给了 Salaboy团队, Activiti6以及Activiti5的代码官方已经暂停维护了。</p>
+<p>​    Salaboy团队目前在开发Activiti7框架，Activiti7内核使用的还是Activiti6，并没有为引擎注入更多的新特性，只是在Activiti之外的上层封装了一些应用。结论是Activiti谨慎选择。</p>
 <p> 1.5.3 Flowable</p>
-<pre><code>  Flowable基于activiti6衍生出来的版本，flowable目前开源最新版本是v6.7.2。
-  
-  开发团队是从activiti中分裂出来的，修复了一众activiti6的bug，并在其基础上研发了DMN支持，BPEL支持等等，相对开源版，其商业版的功能会更强大。
-
-    以flowable6.4.1版本为分水岭，大力发展其商业版产品，开源版本维护不及时，目前已一年没有进行更新，部分功能已经不再开源版发布，比如表单生成器（表单引擎）、历史数据同步至其他数据源、ES、支持mongodb数据库等。
-</code></pre>
+<p>  Flowable基于activiti6衍生出来的版本，flowable目前开源最新版本是v6.7.2。</p>
+<p>  开发团队是从activiti中分裂出来的，修复了一众activiti6的bug，并在其基础上研发了DMN支持，BPEL支持等等，相对开源版，其商业版的功能会更强大。</p>
+<p>​    以flowable6.4.1版本为分水岭，大力发展其商业版产品，开源版本维护不及时，目前已一年没有进行更新，部分功能已经不再开源版发布，比如表单生成器（表单引擎）、历史数据同步至其他数据源、ES、支持mongodb数据库等。</p>
 <p>1.5.4 Camunda</p>
-<pre><code>  Camunda基于Activiti5，所以其保留了PVM，最新版本v8.1.5，保持每年发布2个小版本的节奏，开发团队也是从activiti中分裂出来的，发展轨迹与flowable相似，同时也提供了商业版，不过对于一般企业应用，开源版本也足够了，
-选择Camunda的理由：
-（1）通过压力测试验证Camunda BPMN引擎性能和稳定性更好，性能对比Flowable提升最小10%，最大39%，而且Camunda无报错，Flowable有报错，Camunda在高并发场景下稳定性更好。
-（2）功能比较完善，除了BPMN，Camunda还支持企业和社区版本中的CMMN（案例管理）和DMN（决策自动化）。Camunda不仅带有引擎，还带有非常强大的工具，用于建模，任务管理，操作监控和用户管理，所有这些都是开源的。
-</code></pre>
-<h2><span id="2-流程设计器选型">2 流程设计器选型</span></h2><pre><code>    对于低代码平台中的流程可视化，流程设计器是重要的支撑工具，目前市场上比较主流的流程设计器有bpmn-js、mxGraph、Activiti-Modeler、flowable-modeler。
-</code></pre>
-<h3><span id="21-官网">2.1 官网</span></h3><pre><code>bpms-js：https://bpmn.io/
-mxGraph：mxGraph 4.2.2
-Activiti-Modeler：同Activiti官网
-Flowable-Modeler：同Flowable官网
-</code></pre>
+<p>  Camunda基于Activiti5，所以其保留了PVM，最新版本v8.1.5，保持每年发布2个小版本的节奏，开发团队也是从activiti中分裂出来的，发展轨迹与flowable相似，同时也提供了商业版，不过对于一般企业应用，开源版本也足够了，<br>选择Camunda的理由：<br>（1）通过压力测试验证Camunda BPMN引擎性能和稳定性更好，性能对比Flowable提升最小10%，最大39%，而且Camunda无报错，Flowable有报错，Camunda在高并发场景下稳定性更好。<br>（2）功能比较完善，除了BPMN，Camunda还支持企业和社区版本中的CMMN（案例管理）和DMN（决策自动化）。Camunda不仅带有引擎，还带有非常强大的工具，用于建模，任务管理，操作监控和用户管理，所有这些都是开源的。</p>
+<h2><span id="2-流程设计器选型">2 流程设计器选型</span></h2><p>​    对于低代码平台中的流程可视化，流程设计器是重要的支撑工具，目前市场上比较主流的流程设计器有bpmn-js、mxGraph、Activiti-Modeler、flowable-modeler。</p>
+<h3><span id="21-官网">2.1 官网</span></h3><p>bpms-js：<a target="_blank" rel="noopener" href="https://bpmn.io/">https://bpmn.io/</a><br>mxGraph：mxGraph 4.2.2<br>Activiti-Modeler：同Activiti官网<br>Flowable-Modeler：同Flowable官网</p>
 <h3><span id="22-选型">2.2 选型</span></h3><p>2.2.1 bpmn-js</p>
-<pre><code>    bpmn-js 是 BPMN 2.0 渲染工具包和 Web 模型。bpmn-js 正在努力成为 Camunda BPM 的一部分。
-    bpmn-js 使用 Web 建模工具可以很方便的构建 BPMN 图表，可以把 BPMN 图表嵌入到你的项目中，容易扩展。bpmn-js是基于原生js开发，支持集成到vue、react等开源框架中。
-</code></pre>
+<p>​    bpmn-js 是 BPMN 2.0 渲染工具包和 Web 模型。bpmn-js 正在努力成为 Camunda BPM 的一部分。<br>​    bpmn-js 使用 Web 建模工具可以很方便的构建 BPMN 图表，可以把 BPMN 图表嵌入到你的项目中，容易扩展。bpmn-js是基于原生js开发，支持集成到vue、react等开源框架中。</p>
 <p>2.2.2  mxGraph       </p>
-<pre><code>    mxGraph是一个强大的JavaScript流程图前端库，可以快速创建交互式图表和图表应用程序。
-    国内外著名的ProcessOne和draw.io都是使用该库创建的强大的在线流程图绘制网站. 由于mxGraph是一个开放的js绘图开发框架，我们可以开发出很炫的样式，或者完全按照项目需求定制。
-</code></pre>
+<p>​    mxGraph是一个强大的JavaScript流程图前端库，可以快速创建交互式图表和图表应用程序。<br>​    国内外著名的ProcessOne和draw.io都是使用该库创建的强大的在线流程图绘制网站. 由于mxGraph是一个开放的js绘图开发框架，我们可以开发出很炫的样式，或者完全按照项目需求定制。</p>
 <p>2.2.3 Activiti-Modeler</p>
-<pre><code>     Activiti 开源版本中带了web版流程设计器，在Activiti-explorer项目中有Activiti-Modeler，优点是集成简单，开发工作量小，缺点是界面不美观，用户体验差。
-</code></pre>
+<p>​     Activiti 开源版本中带了web版流程设计器，在Activiti-explorer项目中有Activiti-Modeler，优点是集成简单，开发工作量小，缺点是界面不美观，用户体验差。</p>
 <p>2.2.4 Flowable-Modeler</p>
-<pre><code>     Flowable开源版本中带了web版流程设计器，展示风格和功能基本跟Activiti-Modeler一样，优点是集成简单，开发工作量小，缺点是界面不美观，用户体验差。
-</code></pre>
-<h2><span id="3-选型推荐">3 选型推荐</span></h2><pre><code>    推荐大家使用Camunda+bpms-js组合，笔者因工作需要，后续将从事这方面的开发，后续针对Camunda的开发再出系列博客进行说明
-</code></pre>
+<p>​     Flowable开源版本中带了web版流程设计器，展示风格和功能基本跟Activiti-Modeler一样，优点是集成简单，开发工作量小，缺点是界面不美观，用户体验差。</p>
+<h2><span id="3-选型推荐">3 选型推荐</span></h2><p>​    推荐大家使用Camunda+bpms-js组合，笔者因工作需要，后续将从事这方面的开发，后续针对Camunda的开发再出系列博客进行说明</p>
 <h2><span id="4-参考资料">4 参考资料</span></h2><p><a target="_blank" rel="noopener" href="https://lowcode.blog.csdn.net/article/details/109030329">https://lowcode.blog.csdn.net/article/details/109030329</a></p>
 <p>Activiti、Flowable和Camunda用哪个会比较好？ - 知乎</p>
 <p><a target="_blank" rel="noopener" href="https://lowcode.blog.csdn.net/article/details/109121092">https://lowcode.blog.csdn.net/article/details/109121092</a></p>
