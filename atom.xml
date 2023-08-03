@@ -177,7 +177,7 @@
     <link href="https://codercandy.github.io/2023/07/24/2023-gao-xiang-biao-ti-lei-zhi-shi-dian/"/>
     <id>https://codercandy.github.io/2023/07/24/2023-gao-xiang-biao-ti-lei-zhi-shi-dian/</id>
     <published>2023-07-24T14:36:14.000Z</published>
-    <updated>2023-08-03T14:07:23.598Z</updated>
+    <updated>2023-08-03T14:41:17.682Z</updated>
     
     
       
@@ -250,31 +250,6 @@
   </entry>
   
   <entry>
-    <title>敏捷开发-Scrum方式</title>
-    <link href="https://codercandy.github.io/2023/07/20/2023-07-20-min-jie-kai-fa-scrum-fang-shi/"/>
-    <id>https://codercandy.github.io/2023/07/20/2023-07-20-min-jie-kai-fa-scrum-fang-shi/</id>
-    <published>2023-07-20T07:49:16.000Z</published>
-    <updated>2023-07-22T23:40:41.125Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1&gt;&lt;span id=&quot;敏捷开发-面向过程管理scrum方式&quot;&gt;敏捷开发 -</summary>
-        
-      
-    
-    
-    
-    <category term="开发流程" scheme="https://codercandy.github.io/categories/%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/"/>
-    
-    
-    <category term="敏捷开发" scheme="https://codercandy.github.io/tags/%E6%95%8F%E6%8D%B7%E5%BC%80%E5%8F%91/"/>
-    
-  </entry>
-  
-  <entry>
     <title>敏捷开发-Kanban方式</title>
     <link href="https://codercandy.github.io/2023/07/20/2023-07-20-min-jie-kai-fa-kanban-fang-shi/"/>
     <id>https://codercandy.github.io/2023/07/20/2023-07-20-min-jie-kai-fa-kanban-fang-shi/</id>
@@ -288,6 +263,31 @@
         
     <summary type="html">&lt;h1&gt;&lt;span id=&quot;敏捷开发-面向过程管理kanban方式&quot;&gt;敏捷开发 - 面向过程管理：Kanban方式&lt;/span&gt;&lt;/h1&gt;&lt;blockquote&gt;
 &lt;p&gt;看板本身源于日本丰田公司对精益制造的实践，后延伸到敏捷开发领域；它的核心是JIT（Just In</summary>
+        
+      
+    
+    
+    
+    <category term="开发流程" scheme="https://codercandy.github.io/categories/%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/"/>
+    
+    
+    <category term="敏捷开发" scheme="https://codercandy.github.io/tags/%E6%95%8F%E6%8D%B7%E5%BC%80%E5%8F%91/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>敏捷开发-Scrum方式</title>
+    <link href="https://codercandy.github.io/2023/07/20/2023-07-20-min-jie-kai-fa-scrum-fang-shi/"/>
+    <id>https://codercandy.github.io/2023/07/20/2023-07-20-min-jie-kai-fa-scrum-fang-shi/</id>
+    <published>2023-07-20T07:49:16.000Z</published>
+    <updated>2023-07-22T23:40:41.125Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1&gt;&lt;span id=&quot;敏捷开发-面向过程管理scrum方式&quot;&gt;敏捷开发 -</summary>
         
       
     
@@ -378,31 +378,6 @@
   </entry>
   
   <entry>
-    <title>面向工程管理</title>
-    <link href="https://codercandy.github.io/2023/07/20/2023-07-20-mian-xiang-gong-cheng-guan-li/"/>
-    <id>https://codercandy.github.io/2023/07/20/2023-07-20-mian-xiang-gong-cheng-guan-li/</id>
-    <published>2023-07-20T07:49:16.000Z</published>
-    <updated>2023-07-22T23:41:03.805Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1&gt;&lt;span id=&quot;敏捷开发-面向工程管理极限编程xp&quot;&gt;敏捷开发 -</summary>
-        
-      
-    
-    
-    
-    <category term="开发流程" scheme="https://codercandy.github.io/categories/%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/"/>
-    
-    
-    <category term="敏捷开发" scheme="https://codercandy.github.io/tags/%E6%95%8F%E6%8D%B7%E5%BC%80%E5%8F%91/"/>
-    
-  </entry>
-  
-  <entry>
     <title>结合软件测试的过程模型演化</title>
     <link href="https://codercandy.github.io/2023/07/20/2023-07-20-jie-he-ruan-jian-ce-shi-de-guo-cheng-mo-xing-yan-hua/"/>
     <id>https://codercandy.github.io/2023/07/20/2023-07-20-jie-he-ruan-jian-ce-shi-de-guo-cheng-mo-xing-yan-hua/</id>
@@ -450,6 +425,31 @@
     
     
     <category term="传统模式" scheme="https://codercandy.github.io/tags/%E4%BC%A0%E7%BB%9F%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>面向工程管理</title>
+    <link href="https://codercandy.github.io/2023/07/20/2023-07-20-mian-xiang-gong-cheng-guan-li/"/>
+    <id>https://codercandy.github.io/2023/07/20/2023-07-20-mian-xiang-gong-cheng-guan-li/</id>
+    <published>2023-07-20T07:49:16.000Z</published>
+    <updated>2023-07-22T23:41:03.805Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1&gt;&lt;span id=&quot;敏捷开发-面向工程管理极限编程xp&quot;&gt;敏捷开发 -</summary>
+        
+      
+    
+    
+    
+    <category term="开发流程" scheme="https://codercandy.github.io/categories/%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/"/>
+    
+    
+    <category term="敏捷开发" scheme="https://codercandy.github.io/tags/%E6%95%8F%E6%8D%B7%E5%BC%80%E5%8F%91/"/>
     
   </entry>
   
