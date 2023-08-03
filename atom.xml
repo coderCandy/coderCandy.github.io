@@ -6,7 +6,7 @@
   <link href="https://codercandy.github.io/atom.xml" rel="self"/>
   
   <link href="https://codercandy.github.io/"/>
-  <updated>2023-07-31T02:13:13.138Z</updated>
+  <updated>2023-08-02T07:51:23.681Z</updated>
   <id>https://codercandy.github.io/</id>
   
   <author>
@@ -15,6 +15,56 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>SpringBoot 集成 Camunda 流程引擎</title>
+    <link href="https://codercandy.github.io/2023/08/02/2023-08-02-springboot-ji-cheng-camunda-liu-cheng-yin-qing/"/>
+    <id>https://codercandy.github.io/2023/08/02/2023-08-02-springboot-ji-cheng-camunda-liu-cheng-yin-qing/</id>
+    <published>2023-08-02T06:15:59.000Z</published>
+    <updated>2023-08-02T07:51:23.681Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1&gt;&lt;span id=&quot;springboot-集成-camunda-流程引擎实现一套完整的业务流程&quot;&gt;SpringBoot 集成 Camunda 流程引擎，实现一套完整的业务流程&lt;/span&gt;&lt;/h1&gt;&lt;h1&gt;&lt;span</summary>
+        
+      
+    
+    
+    
+    <category term="流程引擎" scheme="https://codercandy.github.io/categories/%E6%B5%81%E7%A8%8B%E5%BC%95%E6%93%8E/"/>
+    
+    
+    <category term="Camunda" scheme="https://codercandy.github.io/tags/Camunda/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Activiti，Flowable,Camunda流程引擎对比</title>
+    <link href="https://codercandy.github.io/2023/08/02/2023-08-02-activiti-flowable-camunda-liu-cheng-yin-qing-dui-bi/"/>
+    <id>https://codercandy.github.io/2023/08/02/2023-08-02-activiti-flowable-camunda-liu-cheng-yin-qing-dui-bi/</id>
+    <published>2023-08-02T02:30:28.000Z</published>
+    <updated>2023-08-02T06:00:10.542Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1&gt;&lt;span id=&quot;activitiflowablecamunda流程引擎对比&quot;&gt;Activiti,Flowable,Camunda流程引擎对比&lt;/span&gt;&lt;/h1&gt;&lt;h2&gt;&lt;span id=&quot;1-简介&quot;&gt;1 简介&lt;/span&gt;&lt;/h2&gt;&lt;h3&gt;&lt;span</summary>
+        
+      
+    
+    
+    
+    <category term="流程引擎" scheme="https://codercandy.github.io/categories/%E6%B5%81%E7%A8%8B%E5%BC%95%E6%93%8E/"/>
+    
+    
+    <category term="Camunda" scheme="https://codercandy.github.io/tags/Camunda/"/>
+    
+  </entry>
   
   <entry>
     <title>Java 架构设计的八大原则</title>
@@ -47,7 +97,7 @@
     <link href="https://codercandy.github.io/2023/07/27/2023-07-27-li-yong-ben-di-huan-cun-caffeine-ji-zhu-shi-xian-chong-fu-qing-qiu-lan-jie/"/>
     <id>https://codercandy.github.io/2023/07/27/2023-07-27-li-yong-ben-di-huan-cun-caffeine-ji-zhu-shi-xian-chong-fu-qing-qiu-lan-jie/</id>
     <published>2023-07-27T00:39:34.000Z</published>
-    <updated>2023-08-01T14:17:08.488Z</updated>
+    <updated>2023-08-02T05:58:43.750Z</updated>
     
     
       
@@ -55,8 +105,7 @@
         
         
     <summary type="html">&lt;p&gt;在Java Spring Boot中实现高并发下拦截重复请求功能，可以通过以下步骤进行实现：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;首先，需要添加相关的依赖。在你的&lt;code&gt;pom.xml&lt;/code&gt;文件中添加以下依赖：&lt;pre class=&quot;</summary>
+&lt;h2&gt;&lt;span</summary>
         
       
     
@@ -66,8 +115,6 @@
     
     
     <category term="springboot" scheme="https://codercandy.github.io/tags/springboot/"/>
-    
-    <category term="本地缓存" scheme="https://codercandy.github.io/tags/%E6%9C%AC%E5%9C%B0%E7%BC%93%E5%AD%98/"/>
     
     <category term="Caffeine" scheme="https://codercandy.github.io/tags/Caffeine/"/>
     
@@ -130,7 +177,7 @@
     <link href="https://codercandy.github.io/2023/07/24/2023-gao-xiang-biao-ti-lei-zhi-shi-dian/"/>
     <id>https://codercandy.github.io/2023/07/24/2023-gao-xiang-biao-ti-lei-zhi-shi-dian/</id>
     <published>2023-07-24T14:36:14.000Z</published>
-    <updated>2023-08-01T13:54:43.492Z</updated>
+    <updated>2023-08-03T14:07:23.598Z</updated>
     
     
       
@@ -196,9 +243,34 @@
     <category term="缓存" scheme="https://codercandy.github.io/categories/%E7%BC%93%E5%AD%98/"/>
     
     
+    <category term="java" scheme="https://codercandy.github.io/tags/java/"/>
+    
     <category term="本地缓存" scheme="https://codercandy.github.io/tags/%E6%9C%AC%E5%9C%B0%E7%BC%93%E5%AD%98/"/>
     
-    <category term="java" scheme="https://codercandy.github.io/tags/java/"/>
+  </entry>
+  
+  <entry>
+    <title>敏捷开发-Scrum方式</title>
+    <link href="https://codercandy.github.io/2023/07/20/2023-07-20-min-jie-kai-fa-scrum-fang-shi/"/>
+    <id>https://codercandy.github.io/2023/07/20/2023-07-20-min-jie-kai-fa-scrum-fang-shi/</id>
+    <published>2023-07-20T07:49:16.000Z</published>
+    <updated>2023-07-22T23:40:41.125Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1&gt;&lt;span id=&quot;敏捷开发-面向过程管理scrum方式&quot;&gt;敏捷开发 -</summary>
+        
+      
+    
+    
+    
+    <category term="开发流程" scheme="https://codercandy.github.io/categories/%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/"/>
+    
+    
+    <category term="敏捷开发" scheme="https://codercandy.github.io/tags/%E6%95%8F%E6%8D%B7%E5%BC%80%E5%8F%91/"/>
     
   </entry>
   
@@ -216,31 +288,6 @@
         
     <summary type="html">&lt;h1&gt;&lt;span id=&quot;敏捷开发-面向过程管理kanban方式&quot;&gt;敏捷开发 - 面向过程管理：Kanban方式&lt;/span&gt;&lt;/h1&gt;&lt;blockquote&gt;
 &lt;p&gt;看板本身源于日本丰田公司对精益制造的实践，后延伸到敏捷开发领域；它的核心是JIT（Just In</summary>
-        
-      
-    
-    
-    
-    <category term="开发流程" scheme="https://codercandy.github.io/categories/%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/"/>
-    
-    
-    <category term="敏捷开发" scheme="https://codercandy.github.io/tags/%E6%95%8F%E6%8D%B7%E5%BC%80%E5%8F%91/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>敏捷开发-Scrum方式</title>
-    <link href="https://codercandy.github.io/2023/07/20/2023-07-20-min-jie-kai-fa-scrum-fang-shi/"/>
-    <id>https://codercandy.github.io/2023/07/20/2023-07-20-min-jie-kai-fa-scrum-fang-shi/</id>
-    <published>2023-07-20T07:49:16.000Z</published>
-    <updated>2023-07-22T23:40:41.125Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1&gt;&lt;span id=&quot;敏捷开发-面向过程管理scrum方式&quot;&gt;敏捷开发 -</summary>
         
       
     
@@ -331,19 +378,18 @@
   </entry>
   
   <entry>
-    <title>软件开发生命周期与过程模型</title>
-    <link href="https://codercandy.github.io/2023/07/20/2023-07-20-ruan-jian-kai-fa-sheng-ming-zhou-qi-yu-guo-cheng-mo-xing/"/>
-    <id>https://codercandy.github.io/2023/07/20/2023-07-20-ruan-jian-kai-fa-sheng-ming-zhou-qi-yu-guo-cheng-mo-xing/</id>
+    <title>面向工程管理</title>
+    <link href="https://codercandy.github.io/2023/07/20/2023-07-20-mian-xiang-gong-cheng-guan-li/"/>
+    <id>https://codercandy.github.io/2023/07/20/2023-07-20-mian-xiang-gong-cheng-guan-li/</id>
     <published>2023-07-20T07:49:16.000Z</published>
-    <updated>2023-07-22T23:41:57.154Z</updated>
+    <updated>2023-07-22T23:41:03.805Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h1&gt;&lt;span id=&quot;传统模式-软件开发生命周期与过程模型瀑布模型原型模型和螺旋模型等&quot;&gt;传统模式 - 软件开发生命周期与过程模型(瀑布模型，原型模型和螺旋模型等）&lt;/span&gt;&lt;/h1&gt;&lt;blockquote&gt;
-&lt;p&gt;软件生命周期(Software Life</summary>
+    <summary type="html">&lt;h1&gt;&lt;span id=&quot;敏捷开发-面向工程管理极限编程xp&quot;&gt;敏捷开发 -</summary>
         
       
     
@@ -352,7 +398,7 @@
     <category term="开发流程" scheme="https://codercandy.github.io/categories/%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/"/>
     
     
-    <category term="传统模式" scheme="https://codercandy.github.io/tags/%E4%BC%A0%E7%BB%9F%E6%A8%A1%E5%BC%8F/"/>
+    <category term="敏捷开发" scheme="https://codercandy.github.io/tags/%E6%95%8F%E6%8D%B7%E5%BC%80%E5%8F%91/"/>
     
   </entry>
   
@@ -382,18 +428,19 @@
   </entry>
   
   <entry>
-    <title>面向工程管理</title>
-    <link href="https://codercandy.github.io/2023/07/20/2023-07-20-mian-xiang-gong-cheng-guan-li/"/>
-    <id>https://codercandy.github.io/2023/07/20/2023-07-20-mian-xiang-gong-cheng-guan-li/</id>
+    <title>软件开发生命周期与过程模型</title>
+    <link href="https://codercandy.github.io/2023/07/20/2023-07-20-ruan-jian-kai-fa-sheng-ming-zhou-qi-yu-guo-cheng-mo-xing/"/>
+    <id>https://codercandy.github.io/2023/07/20/2023-07-20-ruan-jian-kai-fa-sheng-ming-zhou-qi-yu-guo-cheng-mo-xing/</id>
     <published>2023-07-20T07:49:16.000Z</published>
-    <updated>2023-07-22T23:41:03.805Z</updated>
+    <updated>2023-07-22T23:41:57.154Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h1&gt;&lt;span id=&quot;敏捷开发-面向工程管理极限编程xp&quot;&gt;敏捷开发 -</summary>
+    <summary type="html">&lt;h1&gt;&lt;span id=&quot;传统模式-软件开发生命周期与过程模型瀑布模型原型模型和螺旋模型等&quot;&gt;传统模式 - 软件开发生命周期与过程模型(瀑布模型，原型模型和螺旋模型等）&lt;/span&gt;&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;软件生命周期(Software Life</summary>
         
       
     
@@ -402,7 +449,7 @@
     <category term="开发流程" scheme="https://codercandy.github.io/categories/%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/"/>
     
     
-    <category term="敏捷开发" scheme="https://codercandy.github.io/tags/%E6%95%8F%E6%8D%B7%E5%BC%80%E5%8F%91/"/>
+    <category term="传统模式" scheme="https://codercandy.github.io/tags/%E4%BC%A0%E7%BB%9F%E6%A8%A1%E5%BC%8F/"/>
     
   </entry>
   
@@ -484,61 +531,6 @@
     
     
     <category term="中小团队" scheme="https://codercandy.github.io/tags/%E4%B8%AD%E5%B0%8F%E5%9B%A2%E9%98%9F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>能力成熟度模型集成认证</title>
-    <link href="https://codercandy.github.io/2023/07/20/neng-li-cheng-shou-du-mo-xing-ji-cheng-ren-zheng-cmmi/"/>
-    <id>https://codercandy.github.io/2023/07/20/neng-li-cheng-shou-du-mo-xing-ji-cheng-ren-zheng-cmmi/</id>
-    <published>2023-07-20T07:49:16.000Z</published>
-    <updated>2023-07-20T07:51:23.643Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1&gt;&lt;span id=&quot;能力成熟度模型集成认证-cmmi&quot;&gt;能力成熟度模型集成认证 - CMMI&lt;/span&gt;&lt;/h1&gt;&lt;blockquote&gt;
-&lt;p&gt;能力成熟度模型集成认证 - CMMI。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;能力成熟度模型集成认证 -</summary>
-        
-      
-    
-    
-    
-    <category term="系统认证" scheme="https://codercandy.github.io/categories/%E7%B3%BB%E7%BB%9F%E8%AE%A4%E8%AF%81/"/>
-    
-    
-    <category term="cmmi" scheme="https://codercandy.github.io/tags/cmmi/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>洛克菲勒留给儿子的38封信</title>
-    <link href="https://codercandy.github.io/2023/07/18/luo-ke-fei-le-liu-gei-er-zi-de-38-feng-xin/"/>
-    <id>https://codercandy.github.io/2023/07/18/luo-ke-fei-le-liu-gei-er-zi-de-38-feng-xin/</id>
-    <published>2023-07-18T14:58:26.000Z</published>
-    <updated>2023-07-18T15:20:12.775Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;《洛克菲勒留给儿子的38封信》&lt;/p&gt;
-&lt;h2&gt;&lt;span</summary>
-        
-      
-    
-    
-    
-    <category term="生活" scheme="https://codercandy.github.io/categories/%E7%94%9F%E6%B4%BB/"/>
-    
-    
-    <category term="励志" scheme="https://codercandy.github.io/tags/%E5%8A%B1%E5%BF%97/"/>
     
   </entry>
   
