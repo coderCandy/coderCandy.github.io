@@ -6,7 +6,7 @@
   <link href="https://codercandy.github.io/atom.xml" rel="self"/>
   
   <link href="https://codercandy.github.io/"/>
-  <updated>2023-08-03T14:50:25.447Z</updated>
+  <updated>2023-08-09T08:54:03.955Z</updated>
   <id>https://codercandy.github.io/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Disruptor 消息队列</title>
+    <link href="https://codercandy.github.io/2023/08/09/2023-08-09-disruptor-xiao-xi-dui-lie/"/>
+    <id>https://codercandy.github.io/2023/08/09/2023-08-09-disruptor-xiao-xi-dui-lie/</id>
+    <published>2023-08-09T06:14:57.000Z</published>
+    <updated>2023-08-09T08:54:03.955Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1&gt;&lt;span id=&quot;springboot-disruptor&quot;&gt;SpringBoot + Disruptor&lt;/span&gt;&lt;/h1&gt;&lt;h2&gt;&lt;span</summary>
+        
+      
+    
+    
+    
+    <category term="学习-Disruptor" scheme="https://codercandy.github.io/categories/%E5%AD%A6%E4%B9%A0-Disruptor/"/>
+    
+    
+    <category term="SpringBoot" scheme="https://codercandy.github.io/tags/SpringBoot/"/>
+    
+    <category term="消息队列" scheme="https://codercandy.github.io/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/"/>
+    
+    <category term="Disruptor" scheme="https://codercandy.github.io/tags/Disruptor/"/>
+    
+  </entry>
   
   <entry>
     <title>SpringBoot 集成 Camunda 流程引擎</title>
@@ -177,7 +206,7 @@
     <link href="https://codercandy.github.io/2023/07/24/2023-gao-xiang-biao-ti-lei-zhi-shi-dian/"/>
     <id>https://codercandy.github.io/2023/07/24/2023-gao-xiang-biao-ti-lei-zhi-shi-dian/</id>
     <published>2023-07-24T14:36:14.000Z</published>
-    <updated>2023-08-08T14:21:24.602Z</updated>
+    <updated>2023-08-10T12:40:21.936Z</updated>
     
     
       
@@ -505,32 +534,6 @@
     
     
     <category term="信息安全管理认证" scheme="https://codercandy.github.io/tags/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%AE%A1%E7%90%86%E8%AE%A4%E8%AF%81/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>中小团队开发流程</title>
-    <link href="https://codercandy.github.io/2023/07/20/dian-xing-de-zhong-xiao-tuan-dui-kai-fa-liu-cheng-xiang-jie/"/>
-    <id>https://codercandy.github.io/2023/07/20/dian-xing-de-zhong-xiao-tuan-dui-kai-fa-liu-cheng-xiang-jie/</id>
-    <published>2023-07-20T07:49:16.000Z</published>
-    <updated>2023-07-22T23:42:29.878Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1&gt;&lt;span id=&quot;典型的中小团队开发流程详解&quot;&gt;典型的中小团队开发流程详解&lt;/span&gt;&lt;/h1&gt;&lt;blockquote&gt;
-&lt;p&gt;一直想总结一个比较完善的开发流程，但是各个公司的规模，文化和开发方式有很大的差异；后期会加入其它公司的研发流程。</summary>
-        
-      
-    
-    
-    
-    <category term="开发流程" scheme="https://codercandy.github.io/categories/%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/"/>
-    
-    
-    <category term="中小团队" scheme="https://codercandy.github.io/tags/%E4%B8%AD%E5%B0%8F%E5%9B%A2%E9%98%9F/"/>
     
   </entry>
   
