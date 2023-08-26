@@ -206,7 +206,7 @@
     <link href="https://codercandy.github.io/2023/07/24/2023-gao-xiang-biao-ti-lei-zhi-shi-dian/"/>
     <id>https://codercandy.github.io/2023/07/24/2023-gao-xiang-biao-ti-lei-zhi-shi-dian/</id>
     <published>2023-07-24T14:36:14.000Z</published>
-    <updated>2023-08-24T12:45:15.520Z</updated>
+    <updated>2023-08-26T12:26:29.936Z</updated>
     
     
       
@@ -305,19 +305,18 @@
   </entry>
   
   <entry>
-    <title>敏捷开发-测试驱动开发</title>
-    <link href="https://codercandy.github.io/2023/07/20/2023-07-20-min-jie-kai-fa-ce-shi-qu-dong-kai-fa/"/>
-    <id>https://codercandy.github.io/2023/07/20/2023-07-20-min-jie-kai-fa-ce-shi-qu-dong-kai-fa/</id>
+    <title>敏捷开发-Scrum方式</title>
+    <link href="https://codercandy.github.io/2023/07/20/2023-07-20-min-jie-kai-fa-scrum-fang-shi/"/>
+    <id>https://codercandy.github.io/2023/07/20/2023-07-20-min-jie-kai-fa-scrum-fang-shi/</id>
     <published>2023-07-20T07:49:16.000Z</published>
-    <updated>2023-07-22T23:40:32.846Z</updated>
+    <updated>2023-07-22T23:40:41.125Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h1&gt;&lt;span id=&quot;敏捷开发-开发实践测试驱动开发tdd&quot;&gt;敏捷开发 - 开发实践：测试驱动开发(TDD）&lt;/span&gt;&lt;/h1&gt;&lt;blockquote&gt;
-&lt;p&gt;测试驱动开发(Test Driven Development,</summary>
+    <summary type="html">&lt;h1&gt;&lt;span id=&quot;敏捷开发-面向过程管理scrum方式&quot;&gt;敏捷开发 -</summary>
         
       
     
@@ -331,18 +330,19 @@
   </entry>
   
   <entry>
-    <title>敏捷开发-Scrum方式</title>
-    <link href="https://codercandy.github.io/2023/07/20/2023-07-20-min-jie-kai-fa-scrum-fang-shi/"/>
-    <id>https://codercandy.github.io/2023/07/20/2023-07-20-min-jie-kai-fa-scrum-fang-shi/</id>
+    <title>敏捷开发-测试驱动开发</title>
+    <link href="https://codercandy.github.io/2023/07/20/2023-07-20-min-jie-kai-fa-ce-shi-qu-dong-kai-fa/"/>
+    <id>https://codercandy.github.io/2023/07/20/2023-07-20-min-jie-kai-fa-ce-shi-qu-dong-kai-fa/</id>
     <published>2023-07-20T07:49:16.000Z</published>
-    <updated>2023-07-22T23:40:41.125Z</updated>
+    <updated>2023-07-22T23:40:32.846Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h1&gt;&lt;span id=&quot;敏捷开发-面向过程管理scrum方式&quot;&gt;敏捷开发 -</summary>
+    <summary type="html">&lt;h1&gt;&lt;span id=&quot;敏捷开发-开发实践测试驱动开发tdd&quot;&gt;敏捷开发 - 开发实践：测试驱动开发(TDD）&lt;/span&gt;&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;测试驱动开发(Test Driven Development,</summary>
         
       
     
