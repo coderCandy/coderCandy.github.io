@@ -6,7 +6,7 @@
   <link href="https://codercandy.github.io/atom.xml" rel="self"/>
   
   <link href="https://codercandy.github.io/"/>
-  <updated>2023-08-31T02:20:23.491Z</updated>
+  <updated>2023-08-31T02:29:01.231Z</updated>
   <id>https://codercandy.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://codercandy.github.io/2023/08/31/2023-08-31-jetcache-ji-yu-java-kai-fa-de-huan-cun-kuang-jia/"/>
     <id>https://codercandy.github.io/2023/08/31/2023-08-31-jetcache-ji-yu-java-kai-fa-de-huan-cun-kuang-jia/</id>
     <published>2023-08-31T01:28:43.000Z</published>
-    <updated>2023-08-31T02:20:23.491Z</updated>
+    <updated>2023-08-31T02:29:01.231Z</updated>
     
     
       
@@ -360,19 +360,18 @@
   </entry>
   
   <entry>
-    <title>敏捷开发-测试驱动开发</title>
-    <link href="https://codercandy.github.io/2023/07/20/2023-07-20-min-jie-kai-fa-ce-shi-qu-dong-kai-fa/"/>
-    <id>https://codercandy.github.io/2023/07/20/2023-07-20-min-jie-kai-fa-ce-shi-qu-dong-kai-fa/</id>
+    <title>敏捷软件开发理论及流程</title>
+    <link href="https://codercandy.github.io/2023/07/20/2023-07-20-min-jie-ruan-jian-kai-fa-li-lun-ji-liu-cheng/"/>
+    <id>https://codercandy.github.io/2023/07/20/2023-07-20-min-jie-ruan-jian-kai-fa-li-lun-ji-liu-cheng/</id>
     <published>2023-07-20T07:49:16.000Z</published>
-    <updated>2023-07-22T23:40:32.846Z</updated>
+    <updated>2023-07-22T23:41:36.713Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h1&gt;&lt;span id=&quot;敏捷开发-开发实践测试驱动开发tdd&quot;&gt;敏捷开发 - 开发实践：测试驱动开发(TDD）&lt;/span&gt;&lt;/h1&gt;&lt;blockquote&gt;
-&lt;p&gt;测试驱动开发(Test Driven Development,</summary>
+    <summary type="html">&lt;h1&gt;&lt;span id=&quot;敏捷开发-敏捷软件开发理论及流程&quot;&gt;敏捷开发 -</summary>
         
       
     
@@ -386,18 +385,19 @@
   </entry>
   
   <entry>
-    <title>敏捷软件开发理论及流程</title>
-    <link href="https://codercandy.github.io/2023/07/20/2023-07-20-min-jie-ruan-jian-kai-fa-li-lun-ji-liu-cheng/"/>
-    <id>https://codercandy.github.io/2023/07/20/2023-07-20-min-jie-ruan-jian-kai-fa-li-lun-ji-liu-cheng/</id>
+    <title>敏捷开发-测试驱动开发</title>
+    <link href="https://codercandy.github.io/2023/07/20/2023-07-20-min-jie-kai-fa-ce-shi-qu-dong-kai-fa/"/>
+    <id>https://codercandy.github.io/2023/07/20/2023-07-20-min-jie-kai-fa-ce-shi-qu-dong-kai-fa/</id>
     <published>2023-07-20T07:49:16.000Z</published>
-    <updated>2023-07-22T23:41:36.713Z</updated>
+    <updated>2023-07-22T23:40:32.846Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h1&gt;&lt;span id=&quot;敏捷开发-敏捷软件开发理论及流程&quot;&gt;敏捷开发 -</summary>
+    <summary type="html">&lt;h1&gt;&lt;span id=&quot;敏捷开发-开发实践测试驱动开发tdd&quot;&gt;敏捷开发 - 开发实践：测试驱动开发(TDD）&lt;/span&gt;&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;测试驱动开发(Test Driven Development,</summary>
         
       
     
