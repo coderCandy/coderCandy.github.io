@@ -309,32 +309,6 @@
   </entry>
   
   <entry>
-    <title>敏捷开发-测试驱动开发</title>
-    <link href="https://codercandy.github.io/2023/07/20/2023-07-20-min-jie-kai-fa-ce-shi-qu-dong-kai-fa/"/>
-    <id>https://codercandy.github.io/2023/07/20/2023-07-20-min-jie-kai-fa-ce-shi-qu-dong-kai-fa/</id>
-    <published>2023-07-20T07:49:16.000Z</published>
-    <updated>2023-07-22T23:40:32.846Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1&gt;&lt;span id=&quot;敏捷开发-开发实践测试驱动开发tdd&quot;&gt;敏捷开发 - 开发实践：测试驱动开发(TDD）&lt;/span&gt;&lt;/h1&gt;&lt;blockquote&gt;
-&lt;p&gt;测试驱动开发(Test Driven Development,</summary>
-        
-      
-    
-    
-    
-    <category term="开发流程" scheme="https://codercandy.github.io/categories/%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/"/>
-    
-    
-    <category term="敏捷开发" scheme="https://codercandy.github.io/tags/%E6%95%8F%E6%8D%B7%E5%BC%80%E5%8F%91/"/>
-    
-  </entry>
-  
-  <entry>
     <title>敏捷开发-Kanban方式</title>
     <link href="https://codercandy.github.io/2023/07/20/2023-07-20-min-jie-kai-fa-kanban-fang-shi/"/>
     <id>https://codercandy.github.io/2023/07/20/2023-07-20-min-jie-kai-fa-kanban-fang-shi/</id>
@@ -373,6 +347,32 @@
         
         
     <summary type="html">&lt;h1&gt;&lt;span id=&quot;敏捷开发-面向过程管理scrum方式&quot;&gt;敏捷开发 -</summary>
+        
+      
+    
+    
+    
+    <category term="开发流程" scheme="https://codercandy.github.io/categories/%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/"/>
+    
+    
+    <category term="敏捷开发" scheme="https://codercandy.github.io/tags/%E6%95%8F%E6%8D%B7%E5%BC%80%E5%8F%91/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>敏捷开发-测试驱动开发</title>
+    <link href="https://codercandy.github.io/2023/07/20/2023-07-20-min-jie-kai-fa-ce-shi-qu-dong-kai-fa/"/>
+    <id>https://codercandy.github.io/2023/07/20/2023-07-20-min-jie-kai-fa-ce-shi-qu-dong-kai-fa/</id>
+    <published>2023-07-20T07:49:16.000Z</published>
+    <updated>2023-07-22T23:40:32.846Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1&gt;&lt;span id=&quot;敏捷开发-开发实践测试驱动开发tdd&quot;&gt;敏捷开发 - 开发实践：测试驱动开发(TDD）&lt;/span&gt;&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;测试驱动开发(Test Driven Development,</summary>
         
       
     
@@ -513,22 +513,19 @@
   </entry>
   
   <entry>
-    <title>信息安全管理认证</title>
-    <link href="https://codercandy.github.io/2023/07/20/xin-xi-an-quan-guan-li-ren-zheng/"/>
-    <id>https://codercandy.github.io/2023/07/20/xin-xi-an-quan-guan-li-ren-zheng/</id>
+    <title>信息安全等级保护认证</title>
+    <link href="https://codercandy.github.io/2023/07/20/xin-xi-an-quan-deng-ji-bao-hu-ren-zheng/"/>
+    <id>https://codercandy.github.io/2023/07/20/xin-xi-an-quan-deng-ji-bao-hu-ren-zheng/</id>
     <published>2023-07-20T07:49:16.000Z</published>
-    <updated>2023-07-20T08:02:40.590Z</updated>
+    <updated>2023-07-20T07:54:52.632Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h1&gt;&lt;span id=&quot;信息安全管理认证-iso27001&quot;&gt;信息安全管理认证 - ISO27001&lt;/span&gt;&lt;/h1&gt;&lt;blockquote&gt;
-&lt;p&gt;信息安全管理认证 - ISO27001详解。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;信息安全管理认证</summary>
+    <summary type="html">&lt;h1&gt;&lt;span id=&quot;信息安全等级保护认证&quot;&gt;信息安全等级保护认证&lt;/span&gt;&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;随着国内对网络安全的逐步重视，以及《网络安全法》的出台，</summary>
         
       
     
@@ -537,7 +534,7 @@
     <category term="系统认证" scheme="https://codercandy.github.io/categories/%E7%B3%BB%E7%BB%9F%E8%AE%A4%E8%AF%81/"/>
     
     
-    <category term="信息安全管理认证" scheme="https://codercandy.github.io/tags/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%AE%A1%E7%90%86%E8%AE%A4%E8%AF%81/"/>
+    <category term="信息安全等级保护" scheme="https://codercandy.github.io/tags/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%AD%89%E7%BA%A7%E4%BF%9D%E6%8A%A4/"/>
     
   </entry>
   
